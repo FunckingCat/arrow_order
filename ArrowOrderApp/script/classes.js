@@ -33,34 +33,25 @@ class User {
   }
 }
 
-class Order{
-  constructor(){
-
+class Cake {
+  constructor(options){
+    this.filling = options.filling;
+    this.sponge = options.sponge;
+    this.cream = options.cream;
+    this.weight = options.weight;
   }
 }
 
-class Cake extends Order{
-  constructor(){
-    this.inner = inner;
-    this.biskit = biskit;
-    this.cream = cream;
+class SpongeCake extends Cake{
+  constructor(options){
+    super(options)
   }
 }
 
-class Bickit extends Cake{
-  constructor(){
-
-  }
-}
-
-class Honey extends Cake{
-  constructor(){
-
-  }
-}
-
-class Digit extends Honey{
-  constructor(){
-
+class HoneyCake extends Cake{
+  constructor(options){
+    super(options)
+    this.type = options.type;
+    this.form = options. form;
   }
 }

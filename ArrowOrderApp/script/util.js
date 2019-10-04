@@ -15,3 +15,10 @@ function validateInsta(str) {
     }
     return false
 }
+
+function formulaParser(formula) {//Должна вернуть объект скласса торта
+  let reg = /^(?<type>[A-Z]+):(?<filling>[A-Z]+)-(?<sponge>[A-Z]+)~(?<cream>[A-Z]+)/i
+  let groups = formula.match(reg).groups;
+  //Даллее сюда пишем развертывание в объект с полноценными свойствами
+  return groups
+}
