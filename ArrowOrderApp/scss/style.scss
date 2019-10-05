@@ -1,0 +1,18 @@
+$Roboto: 'Roboto', sans-serif;
+$Comfortaa: 'Comfortaa', cursive;
+
+@mixin fullscreen(){
+  width: 100vw;
+  height: 100vh;
+}
+
+body{
+  font-family: $Roboto;
+}
+
+.login{
+  @include fullscreen();
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
