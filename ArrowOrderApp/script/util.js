@@ -1,10 +1,14 @@
+//================================================================
+//                    LOG IN FUNCTIONS
+//================================================================
+
+// Устанавливает значения в поля ввода из локального хранилища
 function setChacheInfo() {
   if (localStorage.getItem('user')){
     user = JSON.parse(localStorage.getItem('user'));
     user = new User(user._name, user._insta||user._phone)
     $('.login form div input').each(function() {
       if($(this).attr('kind') == 'name'){
-        console.log(user._name)
         $(this).val(user.name)
       }else if($(this).attr('kind') == 'contact'){
         $(this).val(user.contact[1])
@@ -13,6 +17,7 @@ function setChacheInfo() {
   }
 }
 
+//проверяет правильность ввода телефона
 function validatePhone(str) {
     reg = /\d/gi
     match = str.match(reg)
@@ -22,6 +27,7 @@ function validatePhone(str) {
     return false
 }
 
+// Проверяет правильность ввода Instagram
 function validateInsta(str) {
     reg = /^@*[\w\d\.]+$/ig
     match = str.match(reg)
@@ -31,6 +37,7 @@ function validateInsta(str) {
     return false
 }
 
+// Выводит надописи под полями ввода в соответсвие с введенными в них данными
 function loginValidationLabel() {
   $('.login form div input').nextAll('.valid').html('').end().each(function() {
     if ($(this).val() != ''){
@@ -49,6 +56,7 @@ function loginValidationLabel() {
   });
 }
 
+//Перенаправляет на главную страницу в случае корректного ввода, сохраняет последний Некорректный ввод в LocalStorage
 function loginIfValidInput() {
   result = $('.login form div input').map(function() {
     val = $(this).val()
@@ -63,7 +71,6 @@ function loginIfValidInput() {
     return true
   }).get();
   if (result.indexOf(false) == -1){
-    //Сохранение данных в LocalStorage
     vals = $('.login form div input').map(function() {
       return $(this).val()
     }).get();
@@ -74,6 +81,24 @@ function loginIfValidInput() {
   }
 }
 
+//Убрать в нужный раздел
+function formulaParser(formula) {//Должна вернуть объект скласса торта
+  let reg = /^(?<type>[A-Z]+):(?<filling>[A-Z]+)-(?<sponge>[A-Z]+)~(?<cream>[A-Z]+)/i
+  let groups = formula.match(reg).groups;
+  //Даллее сюда пишем развертывание в объект с полноценными свойствами
+  return groups
+}
+//================================================================
+//                    MAIN PAGE FUNCTIONS
+//================================================================
+
+
+
+//================================================================
+//                    CONSTRUCTOR FUNCTIONS
+//================================================================
+
+//Парсит формулу торта в объект - недописана
 function formulaParser(formula) {//Должна вернуть объект скласса торта
   let reg = /^(?<type>[A-Z]+):(?<filling>[A-Z]+)-(?<sponge>[A-Z]+)~(?<cream>[A-Z]+)/i
   let groups = formula.match(reg).groups;
