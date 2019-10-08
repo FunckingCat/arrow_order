@@ -1,3 +1,5 @@
+setChacheInfo();
+//Добавляет входные данные из хранилища
 $('.login form input[type="button"]').on('click', loginValidationLabel);
 //Обработчик правильности ввода; Выводит надписи
 $('.login form input[type="button"]').on('click', loginIfValidInput);

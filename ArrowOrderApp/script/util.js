@@ -1,8 +1,23 @@
+function setChacheInfo() {
+  if (localStorage.getItem('user')){
+    user = JSON.parse(localStorage.getItem('user'));
+    user = new User(user._name, user._insta||user._phone)
+    $('.login form div input').each(function() {
+      if($(this).attr('kind') == 'name'){
+        console.log(user._name)
+        $(this).val(user.name)
+      }else if($(this).attr('kind') == 'contact'){
+        $(this).val(user.contact[1])
+      }
+    });
+  }
+}
+
 function validatePhone(str) {
     reg = /\d/gi
     match = str.match(reg)
     if (match != null && match.length == 11 && (match[0] == 7 || match[0] == 8) && match[1] == 9){
-        return match.join('')
+        return `${match[0]}(${match[1]}${match[2]}${match[3]}) ${match[4]}${match[5]}${match[6]}-${match[7]}${match[8]}-${match[9]}${match[10]}`
     }
     return false
 }
@@ -53,7 +68,7 @@ function loginIfValidInput() {
       return $(this).val()
     }).get();
     user = new User(vals[0], vals[1]);
-    console.log(user.contact)
+    localStorage.setItem('user', JSON.stringify(user));
     console.log('Переход на другую страницу')
     //Дописать код перехода на главную страницу или скрытия окна решистрации
   }
