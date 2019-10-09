@@ -1,9 +1,9 @@
 //================================================================
 //                    REMOVABLE INSTRUCTIONS
 //================================================================
-
 $('.login').css('display','none');
-
+$('.mainPage').css('display','none');
+//parallaxMainPage();
 //================================================================
 //                    LOG IN LISTENERS
 //================================================================
@@ -18,5 +18,3 @@ $('.login form input[type="button"]').on('click', loginIfValidInput);
 //================================================================
 //                    MAIN PAGE LISTENERS
 //================================================================
-var scene = document.getElementById('scene');
-var parallax = new Parallax(scene);

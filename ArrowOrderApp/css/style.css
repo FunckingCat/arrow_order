@@ -30,7 +30,7 @@ p {
     flex-direction: column; }
     .login form div {
       width: 80vw;
-      max-width: 450px;
+      max-width: 350px;
       margin-bottom: 10px;
       font-size: 23px; }
       .login form div input {
@@ -55,3 +55,86 @@ p {
       background-color: black;
       color: white;
       letter-spacing: 1.5px; }
+
+/*--------------
+    MAIN PAGE
+----------------*/
+.mainPage {
+  width: 100vw; }
+  .mainPage .parallax-container {
+    max-width: 400px;
+    margin: 0 auto; }
+    .mainPage .parallax-container .hat {
+      padding-left: 20px;
+      padding-right: 20px;
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+      align-items: center;
+      height: 60px; }
+      .mainPage .parallax-container .hat .burger {
+        height: 24px;
+        width: 25px; }
+        .mainPage .parallax-container .hat .burger div {
+          background-color: #505050;
+          height: 3px;
+          margin-bottom: 5.5px;
+          border-radius: 2px; }
+      .mainPage .parallax-container .hat .button {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: row;
+        border: 2px solid black;
+        box-sizing: border-box;
+        width: 70vw;
+        max-width: 290px;
+        height: 40px; }
+        .mainPage .parallax-container .hat .button .text {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          font-family: "Comfortaa", cursive;
+          width: 65vw;
+          max-width: 270px;
+          height: 40px; }
+        .mainPage .parallax-container .hat .button .arrow {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          width: 20px;
+          height: 40px;
+          background-color: black; }
+          .mainPage .parallax-container .hat .button .arrow img {
+            transform: scale(0.4); }
+    .mainPage .parallax-container .content {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 40vh; }
+      .mainPage .parallax-container .content p {
+        max-width: 240px; }
+    .mainPage .parallax-container .basement {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding-top: 20px;
+      padding-bottom: 20px;
+      flex-direction: column;
+      justify-content: space-around;
+      min-height: 120px;
+      background-color: #494949;
+      color: white;
+      font-family: "Comfortaa", cursive; }
+      .mainPage .parallax-container .basement h2 {
+        font-size: 1.2em; }
+      .mainPage .parallax-container .basement span:last-child {
+        font-size: 0.8em; }
+      .mainPage .parallax-container .basement img {
+        width: 30px; }
+    .mainPage .parallax-container img {
+      width: 100%; }
+
+/*--------------
+    BURGER MENU
+----------------*/

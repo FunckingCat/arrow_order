@@ -1,9 +1,18 @@
 $Roboto: 'Roboto', sans-serif;
 $Comfortaa: 'Comfortaa', cursive;
+$BurgerColor: #505050;
+$hatButtonHeight: 40px;
+
 
 @mixin fullscreen(){
   width: 100vw;
   height: 100vh;
+}
+
+@mixin center(){
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 body{
@@ -18,7 +27,6 @@ a{
 p{
   font-size: 16px;
 }
-
 
 /*--------------
     LOGIN
@@ -43,7 +51,7 @@ p{
       flex-direction: column;
       div{
           width: 80vw;
-          max-width: 450px;
+          max-width: 350px;
           margin-bottom: 10px;
           font-size: 23px;
           input{
@@ -74,4 +82,100 @@ p{
           letter-spacing: 1.5px;
       }
   }
+}
+
+/*--------------
+    MAIN PAGE
+----------------*/
+.mainPage{
+  width: 100vw;
+  .parallax-container{
+    max-width: 400px;
+    margin: 0 auto;
+    .hat{
+      padding-left: 20px;
+      padding-right: 20px;
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+      align-items: center;
+      height: 60px;
+      .burger{
+        height: 24px;
+        width: 25px;
+        div{
+          background-color: $BurgerColor;
+          height: 3px;
+          margin-bottom: 5.5px;
+          border-radius: 2px;
+        }
+      }
+      .button{
+        @include center();
+        $hatButtonHeight: 40px;
+        flex-direction: row;
+        border: 2px solid black;
+        box-sizing: border-box;
+        width: 70vw;
+        max-width: 290px;
+        height: $hatButtonHeight;
+        .text{
+          @include center();
+          font-family: $Comfortaa;
+          width: 65vw;
+          max-width: 270px;
+          height: $hatButtonHeight;
+        }
+        .arrow{
+          @include center();
+          width: 20px;
+          height: $hatButtonHeight;
+          background-color: black;
+          img{
+            transform: scale(0.4);
+          }
+        }
+      }
+    }
+    .content{
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 40vh;
+      p{
+        max-width: 240px;
+      }
+    }
+    .basement{
+      @include center();
+      padding-top: 20px;
+      padding-bottom: 20px;
+      flex-direction: column;
+      justify-content: space-around;
+      min-height: 120px;
+      background-color: #494949;
+      color: white;
+      font-family: $Comfortaa;
+      h2{
+        font-size: 1.2em;
+      }
+      span:last-child{
+        font-size: 0.8em;
+      }
+      img{
+        width: 30px;
+      }
+    }
+
+    img{
+      width: 100%;
+    }
+  }
+}
+
+/*--------------
+    BURGER MENU
+----------------*/
+.burgerMenu{
+  
 }

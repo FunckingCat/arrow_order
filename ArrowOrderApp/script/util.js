@@ -78,9 +78,11 @@ function loginIfValidInput() {
     localStorage.setItem('user', JSON.stringify(user));
     console.log('Переход на другую страницу')
     //Дописать код перехода на главную страницу или скрытия окна решистрации
+    $('.login').css('display','none');
+    $('.mainPage').css('display','block');
+    parallaxMainPage();
   }
 }
-
 //Убрать в нужный раздел
 function formulaParser(formula) {//Должна вернуть объект скласса торта
   let reg = /^(?<type>[A-Z]+):(?<filling>[A-Z]+)-(?<sponge>[A-Z]+)~(?<cream>[A-Z]+)/i
@@ -90,6 +92,19 @@ function formulaParser(formula) {//Должна вернуть объект ск
 }
 //================================================================
 //                    MAIN PAGE FUNCTIONS
+//================================================================
+
+function parallaxMainPage() {
+  const images = document.querySelectorAll('.parallax-container .thumbnail');
+  new simpleParallax(images,{
+    scale: 1.7,
+    delay: 0,
+    orientation: 'down',
+  });
+}
+
+//================================================================
+//                    BURGER MENU FUNCTIONS
 //================================================================
 
 
