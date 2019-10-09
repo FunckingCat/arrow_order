@@ -107,7 +107,10 @@ function parallaxMainPage() {
 //                    BURGER MENU FUNCTIONS
 //================================================================
 
-
+function showBurgerMenu(){
+    $('.mainPage').css('display','none');
+    $('.burgerMenu').css('display','flex');
+}
 
 //================================================================
 //                    CONSTRUCTOR FUNCTIONS
