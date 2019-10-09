@@ -1,8 +1,9 @@
 //================================================================
 //                    REMOVABLE INSTRUCTIONS
 //================================================================
-$('.login').css('display','none');
+//$('.login').css('display','none');
 $('.mainPage').css('display','none');
+$('.burgerMenu').css('display','none');
 //parallaxMainPage();
 //================================================================
 //                    LOG IN LISTENERS
