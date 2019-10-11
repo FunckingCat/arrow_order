@@ -15,6 +15,15 @@ $hatButtonHeight: 40px;
   align-items: center;
 }
 
+.transition-fade {
+  transition: 0.4s;
+  opacity: 1;
+}
+
+html.is-animating .transition-fade {
+  opacity: 0;
+}
+
 body{
   font-family: $Roboto;
 }
@@ -203,16 +212,18 @@ p{
         .nav{
 
         }
-        .cross{
-            align-self: center;
-            margin-top: 7vh;
-            border-radius: 50%;
-            width:30px;
-            transition: transform 1s;
-            &:hover{
-                transform: rotate(180deg);
-                transition: 1s;
-            }
+        a.exit{
+          align-self: center;
+          .cross{
+              margin-top: 7vh;
+              border-radius: 50%;
+              width:30px;
+              transition: transform 1s;
+              &:hover{
+                  transform: rotate(180deg);
+                  transition: 1s;
+              }
+          }
         }
     }
 }

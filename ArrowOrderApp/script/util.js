@@ -77,10 +77,7 @@ function loginIfValidInput() {
     user = new User(vals[0], vals[1]);
     localStorage.setItem('user', JSON.stringify(user));
     console.log('Переход на другую страницу')
-    //Дописать код перехода на главную страницу или скрытия окна решистрации
-    $('.login').css('display','none');
-    $('.mainPage').css('display','block');
-    parallaxMainPage();
+    document.location.href = "./mainPage.html";
   }
 }
 //Убрать в нужный раздел
