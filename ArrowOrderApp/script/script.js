@@ -1,18 +1,22 @@
+init();
+const swup = new Swup(); console.log(swup);
+swup.on('contentReplaced', init);
+function init(){
 //================================================================
 //                    REMOVABLE INSTRUCTIONS
 //================================================================
-const swup = new Swup(); console.log(swup);
+
 //================================================================
 //                    LOG IN LISTENERS
 //================================================================
 
 setChacheInfo();
 //Добавляет входные данные из хранилища
-$('.login form input[type="button"]').on('click', loginValidationLabel);
+$('.login form input[type="text"]').on('input', loginValidationLabel);
 //Обработчик правильности ввода; Выводит надписи
-$('.login form input[type="button"]').on('click', loginIfValidInput);
-//Перекидывает на главную страницу если данные корректны
-
+$('.login form input[type="text"]').on('input', loginIfValidInput);
+//Включает ссылку на главную страницу если данные корректны
+$('.login form a').on('click', chacheCreateUser);
 //================================================================
 //                    MAIN PAGE LISTENERS
 //================================================================
@@ -23,3 +27,4 @@ $('.mainPage .hat .burger').on('click', showBurgerMenu);
 //================================================================
 //                    BURGER MENU LISTENERS
 //================================================================
+}

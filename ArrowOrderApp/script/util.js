@@ -14,6 +14,7 @@ function setChacheInfo() {
         $(this).val(user.contact[1])
       }
     });
+    loginIfValidInput();
   }
 }
 
@@ -39,10 +40,12 @@ function validateInsta(str) {
 
 // Выводит надописи под полями ввода в соответсвие с введенными в них данными
 function loginValidationLabel() {
-  $('.login form div input').nextAll('.valid').html('').end().each(function() {
+  $(this).nextAll('.valid').html('').end().each(function() {
     if ($(this).val() != ''){
       if($(this).attr('validate')){
-        if(validatePhone($(this).val())){
+        if($(this).val() == '@'){
+
+        }else if(validatePhone($(this).val())){
           $(this).nextAll('.valid').html('Корректный номер').css('color','green');
         }else if(validateInsta($(this).val())){
             $(this).nextAll('.valid').html('Корректный инстаграм').css('color','green');
@@ -71,21 +74,21 @@ function loginIfValidInput() {
     return true
   }).get();
   if (result.indexOf(false) == -1){
+    $('.login>form>a>input').css('background', 'black');
+    $('.login>form>a').attr('href', '/mainPage.html');
+  }
+  else{
+    $('.login>form>a>input').css('background', '#787878');
+    $('.login>form>a').attr('href', '#');
+  }
+}
+
+function chacheCreateUser(){
     vals = $('.login form div input').map(function() {
       return $(this).val()
     }).get();
     user = new User(vals[0], vals[1]);
     localStorage.setItem('user', JSON.stringify(user));
-    console.log('Переход на другую страницу')
-    location.href = '/mainPage.html'
-  }
-}
-//Убрать в нужный раздел
-function formulaParser(formula) {//Должна вернуть объект скласса торта
-  let reg = /^(?<type>[A-Z]+):(?<filling>[A-Z]+)-(?<sponge>[A-Z]+)~(?<cream>[A-Z]+)/i
-  let groups = formula.match(reg).groups;
-  //Даллее сюда пишем развертывание в объект с полноценными свойствами
-  return groups
 }
 //================================================================
 //                    MAIN PAGE FUNCTIONS

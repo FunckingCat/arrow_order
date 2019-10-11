@@ -8,9 +8,10 @@ html.is-animating .transition-fade {
 body {
   font-family: "Roboto", sans-serif; }
 
-a {
+a, a:focus {
   text-decoration: none;
-  color: black; }
+  color: black;
+  outline: none; }
 
 p {
   font-size: 16px; }
@@ -46,24 +47,23 @@ p {
         border: 0px solid white;
         font-family: "Comfortaa", cursive; }
         .login form div input::placeholder {
-          color: black; }
+          color: #6a6a6a; }
       .login form div .valid {
         font-family: "Comfortaa", cursive;
         color: #860000;
         height: 16px;
         font-size: 14px; }
-    .login form > input {
+    .login form > a > input {
       width: 70vw;
       max-width: 250px;
       height: 55px;
       font-size: 20px;
       font-weight: 300;
       border: 0px solid black;
-      background-color: black;
+      background: #787878;
       color: white;
-      letter-spacing: 1.5px; }
-      .login form > input:hover {
-        background-color: #494949; }
+      letter-spacing: 1.5px;
+      transition: background 1s; }
 
 /*--------------
     MAIN PAGE
