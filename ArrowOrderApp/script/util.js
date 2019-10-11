@@ -77,7 +77,7 @@ function loginIfValidInput() {
     user = new User(vals[0], vals[1]);
     localStorage.setItem('user', JSON.stringify(user));
     console.log('Переход на другую страницу')
-    document.location.href = "./mainPage.html";
+    location.href = '/mainPage.html'
   }
 }
 //Убрать в нужный раздел
