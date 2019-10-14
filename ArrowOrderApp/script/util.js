@@ -97,7 +97,7 @@ function chacheCreateUser(){
 function parallaxMainPage() {
   const images = document.querySelectorAll('.parallax-container .thumbnail');
   new simpleParallax(images,{
-    scale: 1.7,
+    scale: 1.4,
     delay: 0,
     orientation: 'down',
   });
