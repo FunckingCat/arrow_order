@@ -310,26 +310,28 @@ p{
 
 @keyframes burgerIconAnimation {
     from{
-        width: 12px;
-        align-self: flex-end;
+        width: 50%;
+        margin-left: 50%;
     }
     35%{
-        width: 12px;
-        align-self: flex-end;
+        width: 50%;
+        margin-left: 50%;
     }
     40%{
         width: 100%;
+        margin-left: 0;
     }
     60%{
         width: 100%;
+        margin-left: 0;
     }
     65%{
-        width: 12px;
-        align-self: flex-start;
+        width: 50%;
+        margin-left: 0;
     }
     to{
-        width: 12px;
-        align-self: flex-start;
+        width: 50%;
+        margin-left: 0;
     }
 
 }
