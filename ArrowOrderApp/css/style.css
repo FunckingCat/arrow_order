@@ -175,7 +175,9 @@ p {
   max-width: 400px;
   margin: 0 auto;
   display: flex;
-  justify-content: space-between; }
+  justify-content: space-between;
+  font-family: "Comfortaa";
+  font-size: 1.1em; }
   .burgerMenu .arrow {
     margin-top: 5vh;
     margin-left: 5%; }
