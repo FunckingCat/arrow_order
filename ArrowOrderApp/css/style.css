@@ -100,10 +100,10 @@ p {
         height: 3px;
         border-radius: 2px; }
         .mainPage .hat .burger div:first-child {
-          animation: burgerIconAnimation  3s infinite linear;
+          animation: burgerIconAnimation  4s infinite linear;
           animation-direction: alternate; }
         .mainPage .hat .burger div:last-child {
-          animation: burgerIconAnimation  3s infinite linear;
+          animation: burgerIconAnimation  4s infinite linear;
           animation-direction: alternate-reverse; }
     .mainPage .hat a > .button {
       display: flex;
@@ -244,12 +244,14 @@ p {
   from {
     width: 12px;
     align-self: flex-end; }
-  40% {
+  35% {
     width: 12px;
     align-self: flex-end; }
-  50% {
+  40% {
     width: 100%; }
   60% {
+    width: 100%; }
+  65% {
     width: 12px;
     align-self: flex-start; }
   to {
