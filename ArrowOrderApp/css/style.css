@@ -33,8 +33,8 @@ p {
   .login form, .login form > input, .login .copyright {
     margin-top: 3vh; }
   .login .logo {
-    width: 86vw;
-    max-width: 350px; }
+    width: 80vw;
+    max-width: 330px; }
   .login .copyright {
     font-size: 14px; }
   .login form {

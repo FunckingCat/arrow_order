@@ -1,4 +1,23 @@
 //================================================================
+//                    GLOBAL FUNCTIONS
+//================================================================
+
+function isLocalStorageNameSupported()
+{
+    var testKey = 'test', storage = window.sessionStorage;
+    try
+    {
+        storage.setItem(testKey, '1');
+        storage.removeItem(testKey);
+        return true;
+    }
+    catch (error)
+    {
+        return false;
+    }
+}
+
+//================================================================
 //                    LOG IN FUNCTIONS
 //================================================================
 
