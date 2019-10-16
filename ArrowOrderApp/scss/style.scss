@@ -63,6 +63,8 @@ p{
   }
   .copyright{
       font-size: 14px;
+      width: 200px;
+      text-align: center;
   }
   form{
       display: flex;
@@ -72,7 +74,6 @@ p{
           width: 80vw;
           max-width: 350px;
           margin-bottom: 10px;
-          font-size: px;
           input{
               width: 100%;
               font-weight: 300;
@@ -147,7 +148,7 @@ p{
       @include center();
       $hatButtonHeight: 35px;
       flex-direction: row;
-      border: 2px solid black;
+      border: 2px solid $BurgerColor;
       box-sizing: border-box;
       width: 70vw;
       max-width: 290px;
@@ -164,7 +165,7 @@ p{
         @include center();
         width: 20px;
         height: $hatButtonHeight;
-        background-color: black;
+        background-color: $BurgerColor;
         img{
           transform: scale(0.4);
         }
@@ -178,13 +179,19 @@ p{
       }
     }
     .content{
-      min-height: 200px;
+      min-height: 170px;
       display: flex;
+      flex-direction: column;
       justify-content: center;
       align-items: center;
-      padding: 40px 0;
+      padding: 25px 0;
+      h1{
+          font-size: 1.3em;
+          font-family: $Comfortaa;
+          margin-bottom: 1em;
+      }
       p{
-        max-width: 340px;
+        max-width: 320px;
       }
     }
     .basement{

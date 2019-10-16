@@ -36,7 +36,9 @@ p {
     width: 80vw;
     max-width: 330px; }
   .login .copyright {
-    font-size: 14px; }
+    font-size: 14px;
+    width: 200px;
+    text-align: center; }
   .login form {
     display: flex;
     align-items: center;
@@ -44,8 +46,7 @@ p {
     .login form div {
       width: 80vw;
       max-width: 350px;
-      margin-bottom: 10px;
-      font-size: px; }
+      margin-bottom: 10px; }
       .login form div input {
         width: 100%;
         font-weight: 300;
@@ -110,7 +111,7 @@ p {
       justify-content: center;
       align-items: center;
       flex-direction: row;
-      border: 2px solid black;
+      border: 2px solid #505050;
       box-sizing: border-box;
       width: 70vw;
       max-width: 290px;
@@ -130,7 +131,7 @@ p {
         align-items: center;
         width: 20px;
         height: 35px;
-        background-color: black; }
+        background-color: #505050; }
         .mainPage .hat a > .button .arrow img {
           transform: scale(0.4); }
   .mainPage .parallax-container {
@@ -138,13 +139,18 @@ p {
     .mainPage .parallax-container .underHat {
       height: 60px; }
   .mainPage .content {
-    min-height: 200px;
+    min-height: 170px;
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
-    padding: 40px 0; }
+    padding: 25px 0; }
+    .mainPage .content h1 {
+      font-size: 1.3em;
+      font-family: "Comfortaa";
+      margin-bottom: 1em; }
     .mainPage .content p {
-      max-width: 340px; }
+      max-width: 320px; }
   .mainPage .basement {
     display: flex;
     justify-content: center;
