@@ -44,17 +44,17 @@ function validatePhone(str) {
     if (match != null && match.length == 11 && (match[0] == 7 || match[0] == 8) && match[1] == 9){
         return `${match[0]}(${match[1]}${match[2]}${match[3]}) ${match[4]}${match[5]}${match[6]}-${match[7]}${match[8]}-${match[9]}${match[10]}`
     }
-    return false
+    return false;
 }
 
 // Проверяет правильность ввода Instagram
 function validateInsta(str) {
-    reg = /^@*[\w\d\.]+$/ig
-    match = str.match(reg)
+    reg = /^@*[\w\d\.]+$/ig;
+    match = str.match(reg);
     if (match){
-        return match[0]
+        return match[0];
     }
-    return false
+    return false;
 }
 
 // Выводит надописи под полями ввода в соответсвие с введенными в них данными
@@ -82,15 +82,15 @@ function loginValidationLabel() {
 function loginIfValidInput() {
   result = $('.login form div input').map(function() {
     val = $(this).val()
-    if (val == '') return false
+    if (val == '') return false;
     if ($(this).attr('validate')){
       if (validateInsta(val)||validatePhone(val)){
-          return true
+          return true;
       }else{
-        return false
+        return false;
       }
     }
-    return true
+    return true;
   }).get();
   if (result.indexOf(false) == -1){
     $('.login>form>a>input').css('background', 'black');
@@ -140,5 +140,5 @@ function formulaParser(formula) {//Должна вернуть объект ск
   let reg = /^(?<type>[A-Z]+):(?<filling>[A-Z]+)-(?<sponge>[A-Z]+)~(?<cream>[A-Z]+)/i
   let groups = formula.match(reg).groups;
   //Даллее сюда пишем развертывание в объект с полноценными свойствами
-  return groups
+  return groups;
 }
