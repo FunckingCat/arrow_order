@@ -1,0 +1,63 @@
+/*---GLOBAL VARIABLES---*/
+
+$Roboto: 'Roboto';
+$Comfortaa: 'Comfortaa';
+$BurgerColor: #505050;
+$hatButtonHeight: 40px;
+
+/*---MIXINES---*/
+
+@mixin fullscreen(){
+  width: 100vw;
+  height: 100vh;
+}
+
+@mixin center(){
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/*---GLOBAL CLASSES---*/
+
+body{
+    font-family: $Roboto;
+  }
+  
+  a, a:focus{
+      text-decoration: none;
+      color: black;
+      outline: none;
+  }
+  
+  p{
+    font-size: 16px;
+  }
+
+  a > .button{
+    @include center();
+    $hatButtonHeight: 35px;
+    flex-direction: row;
+    border: 2px solid $BurgerColor;
+    box-sizing: border-box;
+    width: 70vw;
+    max-width: 290px;
+    height: $hatButtonHeight;
+    margin-right: 20px;
+    .text{
+      @include center();
+      font-family: $Comfortaa;
+      width: 65vw;
+      max-width: 270px;
+      height: $hatButtonHeight;
+    }
+    .arrow{
+      @include center();
+      width: 20px;
+      height: $hatButtonHeight;
+      background-color: $BurgerColor;
+      img{
+        transform: scale(0.4);
+      }
+    }
+  }

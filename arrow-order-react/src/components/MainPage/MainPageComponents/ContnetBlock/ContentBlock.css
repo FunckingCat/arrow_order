@@ -1,0 +1,13 @@
+.content {
+  min-height: 170px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 25px 0; }
+  .content h1 {
+    font-size: 1.3em;
+    font-family: "Comfortaa";
+    margin-bottom: 1em; }
+  .content p {
+    max-width: 320px; }

@@ -1,0 +1,85 @@
+/*---GLOBAL VARIABLES---*/
+
+$Roboto: 'Roboto';
+$Comfortaa: 'Comfortaa';
+$BurgerColor: #505050;
+$hatButtonHeight: 40px;
+
+/*---MIXINES---*/
+
+@mixin fullscreen(){
+  width: 100vw;
+  height: 100vh;
+}
+
+@mixin center(){
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/*---GLOBAL CLASSES---*/
+
+body{
+    font-family: $Roboto;
+  }
+  
+  a, a:focus{
+      text-decoration: none;
+      color: black;
+      outline: none;
+  }
+  
+  p{
+    font-size: 16px;
+  }
+
+  .burger{
+    margin-left: 20px;
+    height: 17px;
+    width: 25px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    div{
+      background-color: $BurgerColor;
+      height: 3px;
+      border-radius: 2px;
+      &:first-child{
+          animation: burgerIconAnimation  4s infinite linear;
+          animation-direction: alternate;
+      }
+      &:last-child{
+          animation: burgerIconAnimation  4s infinite linear;
+          animation-direction: alternate-reverse;
+      }
+    }
+  }  
+
+  @keyframes burgerIconAnimation {
+    from{
+        width: 50%;
+        margin-left: 50%;
+    }
+    35%{
+        width: 50%;
+        margin-left: 50%;
+    }
+    40%{
+        width: 100%;
+        margin-left: 0;
+    }
+    60%{
+        width: 100%;
+        margin-left: 0;
+    }
+    65%{
+        width: 50%;
+        margin-left: 0;
+    }
+    to{
+        width: 50%;
+        margin-left: 0;
+    }
+
+}

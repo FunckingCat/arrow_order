@@ -1,5 +1,6 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import React, {Component} from 'react';
+//import {TransitionGroup, CSSTransition} from 'react-transition-group';
 import InputField from './logincomponents/InputField';
 import LoginButton from './logincomponents/LoginButton';
 import logo from './logo.svg';
@@ -63,6 +64,7 @@ export default class Login extends Component {
         return(
             <div className="login">
                 <div className="logo"><img src={logo} alt="ArrowOrder"/></div>
+              
                 <form>
 
                     <InputField 

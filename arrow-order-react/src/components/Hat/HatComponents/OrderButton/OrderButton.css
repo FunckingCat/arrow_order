@@ -1,0 +1,42 @@
+/*---GLOBAL VARIABLES---*/
+/*---MIXINES---*/
+/*---GLOBAL CLASSES---*/
+body {
+  font-family: "Roboto"; }
+
+a, a:focus {
+  text-decoration: none;
+  color: black;
+  outline: none; }
+
+p {
+  font-size: 16px; }
+
+a > .button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: row;
+  border: 2px solid #505050;
+  box-sizing: border-box;
+  width: 70vw;
+  max-width: 290px;
+  height: 35px;
+  margin-right: 20px; }
+  a > .button .text {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: "Comfortaa";
+    width: 65vw;
+    max-width: 270px;
+    height: 35px; }
+  a > .button .arrow {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 20px;
+    height: 35px;
+    background-color: #505050; }
+    a > .button .arrow img {
+      transform: scale(0.4); }
