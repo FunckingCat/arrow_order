@@ -12,7 +12,8 @@ export default class MainPage extends Component {
     RequestService = new RequestService();
 
     state = {
-        contentBlocks : []
+        contentBlocks : [],
+        error : false
     }
 
     componentDidMount() {
@@ -27,6 +28,12 @@ export default class MainPage extends Component {
     onContentLoaded = (content) => {
         this.setState({
             contentBlocks : content
+        })
+    }
+
+    onError = () => {
+        this.setState({
+            error: true
         })
     }
 
@@ -50,7 +57,7 @@ export default class MainPage extends Component {
 
     render() {
 
-        const content = this.renderContent(this.state.contentBlocks);
+        let content = this.renderContent(this.state.contentBlocks);
 
         return(
             <div className="mainPage">

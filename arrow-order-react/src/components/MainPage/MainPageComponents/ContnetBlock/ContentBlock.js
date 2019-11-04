@@ -3,10 +3,16 @@ import React, {Component} from 'react';
 import './ContentBlock.css'
 
 export default class ContentBlock extends Component {
+    
     render() {
+        let header = '';
+        if(this.props.header){
+            header = <h2>{this.props.header}</h2>
+        }
+
         return(
             <div className="content">
-                <h2>{this.props.header}</h2>
+                {header}
                 <p>{this.props.text}</p>
             </div>
         )

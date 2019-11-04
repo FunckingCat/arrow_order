@@ -14,8 +14,18 @@ export default class requestService {
 
     }
 
-    getMainPageBlocksContents = async () => {
-        const res = await this.getResource('/mainPageContents/');
+    getGlobal = async () => {
+        const res = await this.getResource('/global/');
         return res;
+    }
+
+    getMainPageBlocksContents = async () => {
+        const res = await this.getGlobal();
+        return res.mainPageContents;
+    }
+
+    getBurgerMenuContent = async () => {
+        const res = await this.getGlobal();
+        return res.BurgerMenuItems;
     }
 }
