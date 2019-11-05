@@ -1,6 +1,6 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import React, {Component} from 'react';
-
+import {Link} from "react-router-dom";
 export default class LoginButton extends Component {
 
     highlight = () => {
@@ -27,8 +27,11 @@ export default class LoginButton extends Component {
     }
 
     render() {
+        let {nameIsValid: NIV, contactIsValid: CIV} = this.props;
         return(
-            <a href="#"><input type="button" value="SIGN IN" onClick = {this.createUser}/></a>
+            <Link to = {(NIV && CIV)? '/MainPage' : '#'}>
+                <input type="button" value="SIGN IN" onClick = {this.createUser}/>
+            </Link>
         )
     }
 }

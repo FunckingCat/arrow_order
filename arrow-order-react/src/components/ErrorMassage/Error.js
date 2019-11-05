@@ -16,7 +16,7 @@ export default class Error extends Component {
                     <p>Статус ошибки {this.props.status}</p>
                     : false            
                 }
-                <button onClick = {this.props.callback}> <img src={rebootArrow} alt=""/> </button>
+                <button onClick = {() => window.location.reload()}> <img src={rebootArrow} alt=""/> </button>
             </div>
         )
     }

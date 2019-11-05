@@ -12,7 +12,15 @@ function App() {
   return (
     <Router>
       <div className="App">
-        <Route exact path = '/' component = {Login} />
+        <Route exact path = '/' component = {Login} /> 
+        <Route exact path = '/MainPage' component = {MainPage} />
+        <Route exact path = '/Menu' component = {BurgerMenu} />
+        <Route exact path = '/Wiki' component = {CommingSoon} />
+        <Route exact path = '/FreeDates' component = {CommingSoon} />
+        <Route exact path = '/Rules' component = {CommingSoon} />
+        <Route exact path = '/Contacts' component = {CommingSoon} />
+        <Route exact path = '/WorkWithUs' component = {CommingSoon} />
+        <Route exact path = '/Products' component = {CommingSoon} />
       </div>
     </Router>
   );

@@ -6,6 +6,8 @@ import Image from './MainPageComponents/ParallaxImage/ParallaxImage'
 import Basement from './MainPageComponents/Basement/Basement';
 import './MainPage.css';
 import RequestService from '../../servises/requestService';
+import Error from '../ErrorMassage/Error'
+//import './simpleParallax.min';
 
 export default class MainPage extends Component {
     RequestService = new RequestService();
@@ -22,6 +24,7 @@ export default class MainPage extends Component {
     updateContentBlocks() {
         this.RequestService.getMainPageBlocksContents()
         .then(this.onContentLoaded)
+        .catch(this.onError)
     }
 
     onContentLoaded = (content) => {
@@ -57,6 +60,10 @@ export default class MainPage extends Component {
     render() {
 
         let content = this.renderContent(this.state.contentBlocks);
+
+        if (this.state.error){
+            content = <Error />
+        }
 
         return(
             <div className="mainPage">
