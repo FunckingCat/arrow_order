@@ -21,27 +21,27 @@
         "BurgerMenuItems" : [
         {
             "text" : "Вики",
-            "href" : "#"
+            "href" : "/Wiki"
         },
         {
             "text" : "Свободные даты",
-            "href" : "#"
+            "href" : "/FreeDates"
         },
         {
             "text" : "Изменить контактные данные",
-            "href" : "#"
+            "href" : "/"
         },
         {
             "text" : "Правила и соглашения",
-            "href" : "#"
+            "href" : "/Rules"
         },
         {
             "text" : "Контакты",
-            "href" : "#"
+            "href" : "/Contacts"
         },
         {
             "text" : "Сотрудничество",
-            "href" : "#"
+            "href" : "/WorkWithUs"
         }        
         ]
     }

@@ -16,7 +16,8 @@ p {
   display: flex;
   flex-direction: column;
   align-items: center;
-  font-family: "Comfortaa"; }
+  font-family: "Comfortaa";
+  margin-bottom: 1.5em; }
   .error .errorImg {
     max-width: 175px;
     width: 50%; }

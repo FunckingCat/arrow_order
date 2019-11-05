@@ -5,6 +5,7 @@ import InputField from './logincomponents/InputField';
 import LoginButton from './logincomponents/LoginButton';
 import logo from './logo.svg';
 import './Login.css';
+import {Link} from "react-router-dom";
 
 export default class Login extends Component {
 
@@ -89,7 +90,7 @@ export default class Login extends Component {
                         setChache = {this.setChache}/>
 
                     <div className="copyright">
-                        <a href="#">by @arrowcook</a>
+                        <Link to = '/'>by @arrowcook</Link>
                     </div>
 
                 </form>

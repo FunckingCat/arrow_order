@@ -55,7 +55,7 @@ export default class BurgerMenu extends Component {
     render() {
 
         let menuItems = this.renderMenuItems(this.state.items)
-        menuItems.push(<Cross key = 'cross' href = '#' />)
+        menuItems.push(<Cross key = 'cross' href = '/MainPAge' />)
         if (this.state.error){
             menuItems = <Error />
         }
