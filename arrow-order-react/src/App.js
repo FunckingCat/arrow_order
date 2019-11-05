@@ -5,16 +5,16 @@ import MainPage from './components/MainPage/MainPage';
 import BurgerMenu from './components/BurgerMenu/BurgerMenu';
 import Error from './components/ErrorMassage/Error';
 import CommingSoon from './components/CommigSoon/CommingSoon';
+import {BrowserRouter as Router, Route, Link} from 'react-router-dom';
 
 
 function App() {
   return (
-    <div className="App">
-      {/* <Login/> */}
-      {/* <MainPage /> */}
-      {/* <BurgerMenu /> */}
-      <CommingSoon />
-    </div>
+    <Router>
+      <div className="App">
+        <Route exact path = '/' component = {Login} />
+      </div>
+    </Router>
   );
 }
 
