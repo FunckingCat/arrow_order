@@ -6,7 +6,6 @@ import Image from './MainPageComponents/ParallaxImage/ParallaxImage'
 import Basement from './MainPageComponents/Basement/Basement';
 import './MainPage.css';
 import RequestService from '../../servises/requestService';
-//import './simpleParallax.min';
 
 export default class MainPage extends Component {
     RequestService = new RequestService();
