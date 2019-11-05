@@ -1,0 +1,10 @@
+a.exit {
+  margin-left: calc(100% / 2 - 15px); }
+  a.exit .cross {
+    margin-top: 7vh;
+    border-radius: 50%;
+    width: 30px;
+    transition: transform 1s; }
+    a.exit .cross:hover {
+      transform: rotate(180deg);
+      transition: 1s; }

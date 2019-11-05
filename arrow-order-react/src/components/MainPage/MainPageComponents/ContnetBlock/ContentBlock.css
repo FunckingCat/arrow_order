@@ -4,10 +4,11 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  padding: 25px 0; }
-  .content h1 {
+  padding: 25px 0;
+  font-family: "Comfortaa"; }
+  .content h2 {
     font-size: 1.3em;
-    font-family: "Comfortaa";
     margin-bottom: 1em; }
   .content p {
-    max-width: 320px; }
+    max-width: 350px;
+    line-height: 1.1em; }
