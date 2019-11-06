@@ -1,22 +1,40 @@
 import React, {Component} from 'react';
-
-import './Error.css';
-import ErrorImg from './ErrorImg.svg'
-import rebootArrow from "./rebootArrow.svg"
+import './Animator.css';
 
 
-export default class Error extends Component {
+
+export default class Animator extends Component {
+
+    animatorElement = React.createRef();
+
+    componentDidMount() {
+        this.Mount(this.animatorElement.current);
+    }
+
+    componentWillUnmount() {
+        this.Unmount(this.animatorElement.current);
+    }
+
+    Mount = (element) => {
+        element.classList.add(`${this.props.type || 'fade'}-enter`);
+        setTimeout( () => {
+            element.classList.add(`${this.props.type || 'fade'}-enter-active`);
+            element.classList.remove(`${this.props.type || 'fade'}-enter`);
+        }, this.props.timeout || 0)
+    }
+
+    Unmount = (element) => {
+        element.classList.add(`${this.props.type || 'fade'}-exit`);
+        setTimeout( () => {
+            element.classList.add(`${this.props.type || 'fade'}-exit-active`);
+            element.classList.remove(`${this.props.type || 'fade'}-exit`);
+        }, 0)
+    }
+
     render() {
         return(
-            <div className="error">
-                <img className = 'errorImg' src={ErrorImg} alt=""/>
-                <h2>Network Error</h2>
-                <p>Упс, кажется возникли проблемы с сервером</p>
-                { this.props.status ?
-                    <p>Статус ошибки {this.props.status}</p>
-                    : false            
-                }
-                <button onClick = {this.props.callback}> <img src={rebootArrow} alt=""/> </button>
+            <div ref = {this.animatorElement}>
+                {this.props.children}
             </div>
         )
     }

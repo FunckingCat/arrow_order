@@ -6,6 +6,7 @@ import './BurgerMenu.css';
 import RequestSevice from '../../servises/requestService';
 import arrow from './Arrow.svg';
 import logo from './ArrowCook.svg';
+import Animator from '../Animator/Animator';
 
 
 export default class BurgerMenu extends Component {
@@ -60,15 +61,17 @@ export default class BurgerMenu extends Component {
             menuItems = <Error />
         }
         return(
-            <div className = 'burgerMenu'>
-                <div className="arrow"><img src={arrow} alt="" className="logo"/></div>
-                <div className="wrapper">
-                    <div className="logo"><img src={logo} alt=""/></div>
-                    <nav>
-                       {menuItems}
-                    </nav>
+           <Animator type = 'fade' >
+                <div className = 'burgerMenu'>
+                    <div className="arrow"><img src={arrow} alt="" className="logo"/></div>
+                    <div className="wrapper">
+                        <div className="logo"><img src={logo} alt=""/></div>
+                        <nav>
+                        {menuItems}
+                        </nav>
+                    </div>
                 </div>
-            </div>
+           </Animator>
         )
     }
 }

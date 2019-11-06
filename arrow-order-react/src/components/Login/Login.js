@@ -1,8 +1,8 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import React, {Component} from 'react';
-//import {TransitionGroup, CSSTransition} from 'react-transition-group';
 import InputField from './logincomponents/InputField';
 import LoginButton from './logincomponents/LoginButton';
+import Animator from '../Animator/Animator';
 import logo from './logo.svg';
 import './Login.css';
 import {Link} from "react-router-dom";
@@ -63,9 +63,11 @@ export default class Login extends Component {
 
     render() {
         return(
-            <div className="login">
+            <Animator type = 'rise'>
+                <div className="login">
                 <div className="logo"><img src={logo} alt="ArrowOrder"/></div>
-              
+                
+                <Animator type = 'fade' timeout = '450'>
                 <form>
 
                     <InputField 
@@ -94,7 +96,9 @@ export default class Login extends Component {
                     </div>
 
                 </form>
+                </Animator>
             </div>
+            </Animator>
         )
     }
 }

@@ -6,9 +6,9 @@ export default class LoginButton extends Component {
     highlight = () => {
 
         if (this.props.nameIsValid && this.props.contactIsValid){
-            document.querySelector('.login>form>a>input').style.background = 'black';
+            document.querySelector('.login form>a>input').style.background = 'black';
         }else{
-            document.querySelector('.login>form>a>input').style.background = '#787878';
+            document.querySelector('.login form>a>input').style.background = '#787878';
         }
     }
 

@@ -6,8 +6,8 @@ import Image from './MainPageComponents/ParallaxImage/ParallaxImage'
 import Basement from './MainPageComponents/Basement/Basement';
 import './MainPage.css';
 import RequestService from '../../servises/requestService';
-import Error from '../ErrorMassage/Error'
-//import './simpleParallax.min';
+import Error from '../ErrorMassage/Error';
+import Animator from '../Animator/Animator';
 
 export default class MainPage extends Component {
     RequestService = new RequestService();
@@ -67,12 +67,16 @@ export default class MainPage extends Component {
 
         return(
             <div className="mainPage">
-                <Hat/>
-                <div className="parallaxContainer">
-                    <div className="underhat" id = 'underHat'>Under Hat</div>
-                    {content}
+                <Animator type = 'fade'>
+                    <Hat/>
+                </Animator>
+                <Animator type = 'fade' timeout = '300'>
+                    <div className="parallaxContainer">
+                        <div className="underhat" id = 'underHat'>Under Hat</div>
+                        {content}
                     <Basement />
-                </div>
+                     </div>
+                </Animator>
             </div>
         )
     }
