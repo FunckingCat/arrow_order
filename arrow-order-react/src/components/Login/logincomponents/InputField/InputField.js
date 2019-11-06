@@ -1,6 +1,7 @@
 /* eslint-disable eqeqeq */
 import React, {Component} from 'react';
 
+
 export default class InputField extends Component {
 
     state = {

@@ -1,7 +1,7 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import React, {Component} from 'react';
-import InputField from './logincomponents/InputField';
-import LoginButton from './logincomponents/LoginButton';
+import InputField from './logincomponents/InputField/InputField';
+import LoginButton from './logincomponents/LoginButton/LoginButton';
 import Animator from '../Animator/Animator';
 import logo from './logo.svg';
 import './Login.css';

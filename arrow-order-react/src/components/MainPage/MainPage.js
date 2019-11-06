@@ -8,6 +8,8 @@ import './MainPage.css';
 import RequestService from '../../servises/requestService';
 import Error from '../ErrorMassage/Error';
 import Animator from '../Animator/Animator';
+import BurgerButton from '../Hat/HatComponents/BurgerButton/BurgerButton';
+import OrderButton from '../Hat/HatComponents/OrderButton/OrderButton';
 
 export default class MainPage extends Component {
     RequestService = new RequestService();
@@ -68,7 +70,9 @@ export default class MainPage extends Component {
         return(
             <div className="mainPage">
                 <Animator type = 'fade'>
-                    <Hat/>
+                    <Hat
+                        left = {<BurgerButton/>}
+                        right = {<OrderButton/>} />
                 </Animator>
                 <Animator type = 'fade' timeout = '300'>
                     <div className="parallaxContainer">

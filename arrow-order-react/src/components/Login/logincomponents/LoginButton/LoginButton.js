@@ -1,6 +1,8 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import React, {Component} from 'react';
 import {Link} from "react-router-dom";
+
+
 export default class LoginButton extends Component {
 
     highlight = () => {

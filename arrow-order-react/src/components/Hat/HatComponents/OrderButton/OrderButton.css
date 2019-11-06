@@ -21,8 +21,7 @@ a > .button {
   box-sizing: border-box;
   width: 70vw;
   max-width: 290px;
-  height: 35px;
-  margin-right: 20px; }
+  height: 35px; }
   a > .button .text {
     display: flex;
     justify-content: center;
