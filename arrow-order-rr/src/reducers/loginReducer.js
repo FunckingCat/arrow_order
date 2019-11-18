@@ -1,11 +1,12 @@
 const initialState = {
     name : undefined,
     contact : undefined,
-    contactMessage : 'message'
+    contactMessage : ''
 }
 
-const validatePhone = (str) => {
+const validatePhone = (str = '') => {
     const reg = /\d/gi
+    console.log(str);
     let match = str.match(reg)
     if (match != null && match.length === 11 && (match[0] === '7' || match[0] === '8') && match[1] === '9'){
         return `${match[0]}(${match[1]}${match[2]}${match[3]}) ${match[4]}${match[5]}${match[6]}-${match[7]}${match[8]}-${match[9]}${match[10]}`
@@ -13,7 +14,7 @@ const validatePhone = (str) => {
 return false
 }
 
-const validateInsta = (str)=> {
+const validateInsta = (str = '')=> {
     // eslint-disable-next-line no-useless-escape
     const reg = /^@*[\w\d\.]+$/ig
     let match = str.match(reg)
