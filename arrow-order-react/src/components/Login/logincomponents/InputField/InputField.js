@@ -1,79 +1,69 @@
 /* eslint-disable eqeqeq */
 import React, {Component} from 'react';
+import {connect} from 'react-redux';
+import {setUserNAme, setUserContact} from '../../../../actions/loginActions'
 
-
-export default class InputField extends Component {
+class InputField extends Component {
 
     state = {
-        validate : this.props.validate,
-        isValid : false,
-        validText : '',
+        valueFromChache : this.getChache(),
+        placeholder : this.props.type ==='name'? 'Ваше имя':'Instagram / WhatsApp'
     }
 
-    updateInfo = this.props.composeFunction;
-    activate = this.props.activate;
+    getChache(){
+        if (localStorage.getItem('user')){
+            const user = JSON.parse(localStorage.getItem('user'));
+            switch (this.props.type){
+                case 'name':
+                    this.props.updateName(user.name)
+                    return user.name
+                case 'contact':
+                    this.props.updateContact(user.contact)
+                    return user.contact
+                default:
+                    return undefined
+            }
+        }
+    }
 
-    setColor = (element, color) => {
+    setColor = (element, color) => { //red color = 'rgb(134, 0, 0)'
         element.nextSibling.nextSibling.style.color = color
     }
 
-    validatePhone = (str)=> {
-        const reg = /\d/gi
-        let match = str.match(reg)
-        if (match != null && match.length === 11 && (match[0] == 7 || match[0] == 8) && match[1] == 9){
-            return `${match[0]}(${match[1]}${match[2]}${match[3]}) ${match[4]}${match[5]}${match[6]}-${match[7]}${match[8]}-${match[9]}${match[10]}`
-        }
-    return false
-    }
-
-    validateInsta = (str)=> {
-        // eslint-disable-next-line no-useless-escape
-        const reg = /^@*[\w\d\.]+$/ig
-        let match = str.match(reg)
-        if (match){
-            return match[0]
-        }
-    return false
-    }
-
-    validate = (event) => {
-        let value = event.target.value;
-        if (value !== ''){
-            if (this.state.validate){
-                if (value === "@"){
-                    this.setState({validText : ''});
-                    this.updateInfo(this.props.type, value, false);
-                }else if (this.validatePhone(value)){
-                    this.setState({validText : 'Корректный номер'});
-                    this.setColor(event.target, 'green');
-                    this.updateInfo(this.props.type, value, true);
-                }else if (this.validateInsta(value)){
-                    this.setState({validText : 'Корректный инстаграм'});
-                    this.setColor(event.target, 'green');
-                    this.updateInfo(this.props.type, value, true);
-                }else{
-                    this.setState({validText : 'Некорректный ввод'});
-                    this.setColor(event.target, 'rgb(134, 0, 0)');
-                    this.updateInfo(this.props.type, '', false);
-                }
-            }else{
-                this.setState({validText : ''});
-                this.updateInfo(this.props.type, value, true);
-            }
-        }else{
-            this.setState({validText : 'Обязательное поле'});
-            this.setColor(event.target, 'rgb(134, 0, 0)');
-            this.updateInfo(this.props.type, '', false);
+    update = (event) => {
+        const value = event.target.value;
+        switch (this.props.type){
+            case 'name':
+                this.props.updateName(value);
+                break;
+            case 'contact':
+                this.props.updateContact(value)
+                break;
+            default:
+                return undefined
         }
     }
 
     render() {
         return(
             <div>
-               <input type="text" defaultValue = {this.props.value} onInput={this.validate} placeholder={this.props.placeholder}/>
-               <hr/>
-               <div className="valid">{this.state.validText}</div>
+                <input type="text" defaultValue = {this.state.valueFromChache} onInput={this.update} placeholder={this.state.placeholder}/>
+                <hr/>
+                <div className="valid">{this.props.type === 'contact'? this.props.message : ''}</div>
             </div>
         )
     }
 }
+
+const mapStatetoProps = (state) => {
+    return {
+        message : state.login.contactMessage
+    }
+}
+
+const mapDispatchToProps = {
+    updateName :  setUserNAme,
+    updateContact : setUserContact
+}
+
+export default connect(mapStatetoProps, mapDispatchToProps)(InputField)
