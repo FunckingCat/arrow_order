@@ -30,8 +30,9 @@ class LoginButton extends Component {
     }
 
     render() {
+        const {name, contact} = this.props;
         return(
-            <Link to = '#'>
+            <Link to = {(name&&contact)? '/MainPage' : '#'}>
                 <input type="button" value="SIGN IN" onClick = {this.handaleClick}/>
             </Link>
         )

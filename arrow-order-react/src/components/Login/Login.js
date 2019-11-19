@@ -28,7 +28,7 @@ export default class Login extends Component {
                     <LoginButton />
 
                     <div className="copyright">
-                        <Link to = '/'>by @arrowcook</Link>
+                        <Link to = '/Contacts'>by @arrowcook</Link>
                     </div>
 
                 </form>
