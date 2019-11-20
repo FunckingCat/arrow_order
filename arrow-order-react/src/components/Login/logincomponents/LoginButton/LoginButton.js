@@ -2,6 +2,7 @@
 import React, {Component} from 'react';
 import {Link} from "react-router-dom";
 import {connect} from 'react-redux';
+import {initTransfer} from '../../../../actions/historyActions';
 
 
 class LoginButton extends Component {
@@ -25,14 +26,15 @@ class LoginButton extends Component {
     handaleClick = (event) => {
         if(this.props.highlighted){
             let user = JSON.stringify({name : this.props.name, contact : this.props.contact})
-            localStorage.setItem('user', user)
+            localStorage.setItem('user', user);
+            this.props.transitTo('Главная', '/MainPage')
         }
     }
 
     render() {
-        const {name, contact} = this.props;
+        const {highlighted} = this.props;
         return(
-            <Link to = {(name&&contact)? '/MainPage' : '#'}>
+            <Link to = {highlighted? '/MainPage' : '#'}>
                 <input type="button" value="SIGN IN" onClick = {this.handaleClick}/>
             </Link>
         )
@@ -42,9 +44,11 @@ class LoginButton extends Component {
 const mapStatetoProps = (state) => {
     return {
         highlighted : Boolean(state.login.name && state.login.contact),
-        name : state.login.name,
-        contact : state.login.contact
     }
 }
 
-export default connect(mapStatetoProps)(LoginButton)
+const mapDispatchToProps = {
+    transitTo : initTransfer
+}
+
+export default connect(mapStatetoProps, mapDispatchToProps)(LoginButton)
