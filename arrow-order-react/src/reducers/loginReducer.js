@@ -1,3 +1,5 @@
+import { SET_NAME, SET_CONTACT} from '../actions/actionTypes';
+
 const initialState = {
     name : undefined,
     contact : undefined,
@@ -6,7 +8,6 @@ const initialState = {
 
 const validatePhone = (str = '') => {
     const reg = /\d/gi
-    console.log(str);
     let match = str.match(reg)
     if (match != null && match.length === 11 && (match[0] === '7' || match[0] === '8') && match[1] === '9'){
         return `${match[0]}(${match[1]}${match[2]}${match[3]}) ${match[4]}${match[5]}${match[6]}-${match[7]}${match[8]}-${match[9]}${match[10]}`
@@ -27,7 +28,7 @@ return false
 const loginReducer = (state = initialState, action) => {
     let value = action.value
     switch (action.type){
-        case 'SET_NAME':
+        case SET_NAME:
             if(value === ''){
                 return Object.assign({},state,{
                     name : undefined
@@ -36,7 +37,7 @@ const loginReducer = (state = initialState, action) => {
             return Object.assign({},state,{
                 name : value
             })
-        case 'SET_CONTACT':
+        case SET_CONTACT:
             if (value === '') {
                 return Object.assign({},state,{ 
                     contact : undefined,
