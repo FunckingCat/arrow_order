@@ -9,11 +9,6 @@ import Animator from '../Animator/Animator';
 import logo from './logo.svg';
 
 export default class Login extends Component {
-
-    componentDidMount () {
-        console.log(document.body.clientHeight);
-    }
-
     render() {
         return(
             <Animator type = 'rise'>

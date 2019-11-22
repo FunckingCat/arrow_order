@@ -19,8 +19,8 @@ class WikiPage extends Component {
 					right = {<BurgerButton />}/>
 					<section className='WikiPage'>
 					    <NavVidget />
-                        <Switch>
-                            <Route path = '/Wiki/Card' component = {WikiCard}/>
+					    <Switch>
+                            <Route exact path = '/Wiki/Card' component = {WikiCard}/>
                         </Switch>
 				    </section>			
 			</div>
@@ -29,4 +29,3 @@ class WikiPage extends Component {
 }
 
 export default connect()(WikiPage)
-
