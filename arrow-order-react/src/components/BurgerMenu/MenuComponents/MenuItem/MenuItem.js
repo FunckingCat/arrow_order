@@ -1,12 +1,19 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import React, {Component} from 'react';
+import {connect} from 'react-redux';
+import {initTransfer} from '../../../../actions/historyActions';
 import './MenuItem.scss';
 import {Link} from "react-router-dom";
 
-export default class MenuItem extends Component {
+class MenuItem extends Component {
+    
+    handaleClick = (event) => {
+        this.props.transfer(this.props.text, this.props.href)
+    }
+
     render(){
         return(
-            <Link to ={this.props.href}>
+            <Link to ={this.props.href} onClick = {this.handaleClick}>
                 <div className="menuitem">
                     {this.props.text}
                 </div>
@@ -14,3 +21,9 @@ export default class MenuItem extends Component {
         )
     }
 }
+
+const mapDispatchToProps = {
+    transfer : initTransfer
+}
+
+export default connect(null, mapDispatchToProps)(MenuItem)

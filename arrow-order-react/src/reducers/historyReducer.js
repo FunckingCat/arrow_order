@@ -1,31 +1,77 @@
 import {NEW_TRANSFER, BACK, GO_TO} from '../actions/actionTypes';
 
-const initialState = []
+const initialState = {
+    tree : [
+        {title : 'Главная', link : '/MainPage'}
+    ],
+    backLink : '/MainPage'
+}
 
 const historyReducer = (state = initialState, action) => {
-    let newState;
+    let tree;
+    let backLink;
     switch (action.type){
 
         case NEW_TRANSFER:
-            return [...state, {
+            tree = []
+            for (let item of state.tree){
+                if (item.title !== action.title){
+                    tree.push(item)
+                } else {
+                    break;
+                }
+            }
+            tree.push({
                 title : action.title,
                 link : action.link
-            }];
+            })
+
+            if (tree.length >= 2){
+                backLink = tree[tree.length - 2].link
+            } else if (tree.length === 1){
+                backLink = tree[0].link
+            } else {
+                backLink = '/MainPage'
+            }
+            return {
+                tree : tree,
+                backLink : backLink
+            }
 
         case BACK:
-            newState = state;
-            newState.pop();
-            return newState
+            tree = state.tree;
+            tree.pop();
+            if (tree.length >= 2){
+                backLink = tree[tree.length - 2].link
+            } else if (tree.length === 1){
+                backLink = tree[0].link
+            } else {
+                backLink = '/MainPage'
+            }
+            return {
+                tree : tree,
+                backLink : backLink
+            }
 
         case GO_TO:
-            newState = [];
-            for(let item of state){
-                newState.push(item);
+            tree = [];
+            for(let item of state.tree){
+                tree.push(item);
                 if (action.title === item.title){ 
                     break;
                  }
             }
-            return newState
+            if (tree.length >= 2){
+                backLink = tree[tree.length - 2].link
+            } else if (tree.length === 1){
+                backLink = tree[0].link
+            } else {
+                backLink = '/MainPage'
+            }
+            return {
+                tree : tree,
+                backLink : backLink
+            }
             
         default:
             return state

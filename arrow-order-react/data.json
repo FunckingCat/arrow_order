@@ -20,6 +20,10 @@
         ],
         "BurgerMenuItems" : [
         {
+            "text" : "Главная",
+            "href" : "/MainPage"
+        },
+        {
             "text" : "Вики",
             "href" : "/Wiki"
         },

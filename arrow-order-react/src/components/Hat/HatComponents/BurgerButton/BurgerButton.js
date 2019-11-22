@@ -1,12 +1,20 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import React, {Component} from 'react';
+import {connect} from 'react-redux';
+import {initTransfer} from '../../../../actions/historyActions';
+
 import './BurgerButton.scss';
 import {Link} from "react-router-dom";
 
-export default class BurgerButton extends Component {
+class BurgerButton extends Component {
+
+    handaleClick = (event) => {
+        this.props.transfer('Меню', '/Menu')
+    }
+
     render() {
         return(
-           <Link to ="/Menu">
+           <Link to ="/Menu" onClick = {this.handaleClick}>
                <div className="burger">
                    <div></div>
                    <div></div>
@@ -16,3 +24,9 @@ export default class BurgerButton extends Component {
         )
     }
 }
+
+const mapDispatchToProps = {
+    transfer : initTransfer
+}
+
+export default connect(null, mapDispatchToProps)(BurgerButton)

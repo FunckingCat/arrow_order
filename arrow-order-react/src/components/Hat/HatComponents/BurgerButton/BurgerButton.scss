@@ -36,14 +36,14 @@ body{
 
   .burger{
     //margin-left: 20px;
-    height: 17px;
+    height: 14px;
     width: 25px;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
     div{
       background-color: $BurgerColor;
-      height: 3px;
+      height: 2px;
       border-radius: 2px;
       &:first-child{
           animation: burgerIconAnimation  4s infinite linear;

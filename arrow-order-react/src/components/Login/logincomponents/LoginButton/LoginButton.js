@@ -44,6 +44,8 @@ class LoginButton extends Component {
 const mapStatetoProps = (state) => {
     return {
         highlighted : Boolean(state.login.name && state.login.contact),
+        name : state.login.name,
+        contact : state.login.contact
     }
 }
 

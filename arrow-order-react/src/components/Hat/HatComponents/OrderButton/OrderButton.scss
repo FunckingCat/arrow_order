@@ -38,7 +38,7 @@ body{
     @include center();
     $hatButtonHeight: 35px;
     flex-direction: row;
-    border: 2px solid $BurgerColor;
+    border: 1.2px solid $BurgerColor;
     box-sizing: border-box;
     width: 70vw;
     max-width: 290px;

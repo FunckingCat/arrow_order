@@ -1,17 +1,35 @@
 import React, {Component} from 'react';
-import {Link} from "react-router-dom";
+import {connect} from 'react-redux';
+import {back} from '../../actions/historyActions';
 import './CommingSoon.scss';
 import Robot from './Robot.svg';
+import backIcon from './back.svg';
+
+import Animator from '../Animator/Animator';
 
 
-export default class Error extends Component {
+class CommingSoon extends Component {
+
+    handaleClick = (event) => {
+        this.props.back();
+        window.history.back();
+    }
+
     render() {
         return(
-            <div className="CommingSoon">
-                <img src={Robot} alt=""/>
-                <h2>Пока здесь нет страницы</h2>
-                <p><Link to="/MainPage"> На главную </Link></p>
-            </div>
+            <Animator type = 'rise'>
+                <div className="CommingSoon">
+                    <img src={Robot} alt=""/>
+                    <h2>Пока здесь нет страницы</h2>
+                    <button onClick={this.handaleClick}> <img src={backIcon} alt=""/> Назад</button>
+                </div>
+            </Animator>
         )
     }
 }
+
+const mapDispatchToProps = {
+    back : back
+}
+
+export default connect (null, mapDispatchToProps)(CommingSoon)

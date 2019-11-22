@@ -47,12 +47,20 @@ body{
   h2{
     font-size: 1.4em;
     text-align: center;
-    text-decoration: underline;
     margin-bottom: 1em;
   }
 
-  p{
-    text-align: center;
-    font-size: 1.2em;
+  button{
+    margin-top: 5em;
+    border: none;
+    background-color: #fff;
+    font-family: $Comfortaa;
+    font-size: 1.4em;
+    img{
+      max-width: 1em;
+      padding: 0;
+      margin: 0;
+      transform: scale(1.2)
+    }
   }
 }
