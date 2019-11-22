@@ -21,6 +21,8 @@ $hatButtonHeight: 40px;
   .outBurger{
     display: flex;
     flex-direction: row-reverse;
+    align-items: center;
+    justify-content: center;
     .burger{
       height: 14px;
       width: 25px;
