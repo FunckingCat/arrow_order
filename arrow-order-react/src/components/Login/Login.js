@@ -10,10 +10,14 @@ import logo from './logo.svg';
 
 export default class Login extends Component {
 
+    componentDidMount () {
+        console.log(document.body.clientHeight);
+    }
+
     render() {
         return(
             <Animator type = 'rise'>
-                <div className="login">
+                <div className="login" >
                 <div className="logo"><img src={logo} alt="ArrowOrder"/></div>
                 
                 <Animator type = 'fade' timeout = '450'>

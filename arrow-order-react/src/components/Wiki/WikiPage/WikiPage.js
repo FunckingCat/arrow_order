@@ -10,6 +10,7 @@ class WikiPage extends Component {
 			<section>
 				<Hat 
 					left = {<BackButton />}
+					middle = {<div>Вики</div>}
 					right = {<BurgerButton />}/>
 			</section>
 		)

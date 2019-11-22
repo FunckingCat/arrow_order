@@ -1,49 +1,13 @@
-/*---GLOBAL VARIABLES---*/
-
-$Roboto: 'Roboto';
-$Comfortaa: 'Comfortaa';
-$BurgerColor: #505050;
-$hatButtonHeight: 40px;
-
-/*---MIXINES---*/
-
-@mixin fullscreen(){
-  width: 100vw;
-  height: 100vh;
-}
-
-@mixin center(){
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-/*---GLOBAL CLASSES---*/
-
-body{
-    font-family: $Roboto;
-  }
-  
-  a, a:focus{
-      text-decoration: none;
-      color: black;
-      outline: none;
-  }
-  
-  p{
-    font-size: 16px;
-  }
-
 /*--------------
     BURGER MENU
 ----------------*/
 .burgerMenu{
-    @include fullscreen();
+    width: 100vw;
+    height: 100vh;
     max-width: 400px;
     margin: 0 auto;
     display: flex;
     justify-content: space-between;
-    font-family: $Comfortaa;
     font-size: 1em;
     .arrow{
         margin-top: 5vh;

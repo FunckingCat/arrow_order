@@ -14,13 +14,15 @@ class BurgerButton extends Component {
 
     render() {
         return(
-           <Link to ="/Menu" onClick = {this.handaleClick}>
+          <div className='outBurger'>
+            <Link to ="/Menu" onClick = {this.handaleClick}>
                <div className="burger">
                    <div></div>
                    <div></div>
                    <div></div>
                </div>
            </Link>
+          </div>
         )
     }
 }
