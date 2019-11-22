@@ -1,6 +1,6 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import React, {Component} from 'react';
-import './Basement.css';
+import './Basement.scss';
 import Insta from './Insta.svg';
 
 export default class Basement extends Component {

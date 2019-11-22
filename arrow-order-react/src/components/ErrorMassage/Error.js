@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 
-import './Error.css';
+import './Error.scss';
 import ErrorImg from './ErrorImg.svg'
 import rebootArrow from "./rebootArrow.svg"
 

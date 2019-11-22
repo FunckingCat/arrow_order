@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import './Animator.css';
+import './Animator.scss';
 
 
 

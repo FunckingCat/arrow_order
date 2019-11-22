@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import './Hat.css';
+import './Hat.scss';
 
 
 export default class Hat extends Component {

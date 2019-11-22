@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import {Link} from "react-router-dom";
-import './CommingSoon.css';
+import './CommingSoon.scss';
 import Robot from './Robot.svg';
 
 

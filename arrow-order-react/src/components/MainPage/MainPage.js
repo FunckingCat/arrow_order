@@ -4,7 +4,7 @@ import Hat from '../Hat/Hat';
 import ContentBlock from './MainPageComponents/ContnetBlock/ContentBlock';
 import Image from './MainPageComponents/ParallaxImage/ParallaxImage'
 import Basement from './MainPageComponents/Basement/Basement';
-import './MainPage.css';
+import './MainPage.scss';
 import RequestService from '../../servises/requestService';
 import Error from '../ErrorMassage/Error';
 import Animator from '../Animator/Animator';

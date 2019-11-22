@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import MenuItem from './MenuComponents/MenuItem/MenuItem';
 import Cross from './MenuComponents/Cross/Cross';
 import Error from '../ErrorMassage/Error.js';
-import './BurgerMenu.css';
+import './BurgerMenu.scss';
 import RequestSevice from '../../servises/requestService';
 import arrow from './Arrow.svg';
 import logo from './ArrowCook.svg';

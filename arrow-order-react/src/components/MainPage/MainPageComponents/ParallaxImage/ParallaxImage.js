@@ -1,6 +1,6 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import React, {Component} from 'react';
-import './ParallaxImage.css'
+import './ParallaxImage.scss'
 
 export default class ParallaxImage extends Component {
     render() {

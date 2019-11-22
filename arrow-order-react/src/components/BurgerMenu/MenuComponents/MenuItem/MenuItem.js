@@ -1,6 +1,6 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import React, {Component} from 'react';
-import './MenuItem.css';
+import './MenuItem.scss';
 import {Link} from "react-router-dom";
 
 export default class MenuItem extends Component {
