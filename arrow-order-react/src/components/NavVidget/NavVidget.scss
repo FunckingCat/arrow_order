@@ -1,0 +1,13 @@
+.NavVidget{
+    line-height: 1em;
+    font-size: 0.8em;
+    padding-top: 0.6em;
+    padding-bottom: 0.6;
+    padding-left: 1em;
+    span{
+        margin-left: 0.4em;
+    }
+    & > span:last-child{
+        text-decoration: underline;
+    }
+}
