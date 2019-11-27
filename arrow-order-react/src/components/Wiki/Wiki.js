@@ -3,10 +3,10 @@ import {connect} from 'react-redux';
 import {Switch, Route} from 'react-router-dom';
 import './Wiki.scss';
 
-import Hat from '../Hat/Hat';
-import BurgerButton from '../Hat/HatComponents/BurgerButton/BurgerButton';
-import BackButton from '../Hat/HatComponents/BackButton/BackButton';
-import NavVidget from '../NavVidget/NavVidget';
+import Hat from '../ComCom/Hat/Hat';
+import BurgerButton from '../ComCom/Hat/HatComponents/BurgerButton/BurgerButton';
+import BackButton from '../ComCom/Hat/HatComponents/BackButton/BackButton';
+import NavVidget from '../ComCom/NavVidget/NavVidget';
 import WikiCard from './WikiCard/WikiCard.js';
 
 class WikiPage extends Component {

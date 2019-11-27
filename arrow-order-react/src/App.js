@@ -5,7 +5,7 @@ import './App.scss';
 
 import Login from './components/Login/Login';
 import MainPage from './components/MainPage/MainPage';
-import CommingSoon from './components/CommigSoon/CommingSoon';
+import CommingSoon from './components/ComCom/CommigSoon/CommingSoon';
 import BurgerMenu from './components/BurgerMenu/BurgerMenu';
 import Wiki from './components/Wiki/Wiki';
 

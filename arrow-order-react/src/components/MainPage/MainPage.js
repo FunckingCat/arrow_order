@@ -1,15 +1,15 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import React, {Component} from 'react';
-import Hat from '../Hat/Hat';
+import Hat from '../ComCom/Hat/Hat';
 import ContentBlock from './MainPageComponents/ContnetBlock/ContentBlock';
 import Image from './MainPageComponents/ParallaxImage/ParallaxImage'
 import Basement from './MainPageComponents/Basement/Basement';
 import './MainPage.scss';
 import RequestService from '../../servises/requestService';
-import Error from '../ErrorMassage/Error';
-import Animator from '../Animator/Animator';
-import BurgerButton from '../Hat/HatComponents/BurgerButton/BurgerButton';
-import OrderButton from '../Hat/HatComponents/OrderButton/OrderButton';
+import Error from '../ComCom/ErrorMassage/Error';
+import Animator from '../ComCom/Animator/Animator';
+import BurgerButton from '../ComCom/Hat/HatComponents/BurgerButton/BurgerButton';
+import OrderButton from '../ComCom/Hat/HatComponents/OrderButton/OrderButton';
 
 export default class MainPage extends Component {
     RequestService = new RequestService();

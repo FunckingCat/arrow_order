@@ -1,7 +1,7 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
-import {initTransfer} from '../../../../actions/historyActions';
+import {initTransfer} from '../../../../../actions/historyActions';
 import './OrderButton.scss';
 import arrow from './RightArrow.svg';
 import {Link} from "react-router-dom";
