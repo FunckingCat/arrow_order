@@ -5,7 +5,7 @@ import './Login.scss';
 
 import InputField from './logincomponents/InputField/InputField';
 import LoginButton from './logincomponents/LoginButton/LoginButton';
-import Animator from '../Animator/Animator';
+import Animator from '../ComCom/Animator/Animator';
 import logo from './logo.svg';
 
 export default class Login extends Component {

@@ -5,9 +5,10 @@ import './App.scss';
 
 import Login from './components/Login/Login';
 import MainPage from './components/MainPage/MainPage';
-import CommingSoon from './components/CommigSoon/CommingSoon';
+import CommingSoon from './components/ComCom/CommigSoon/CommingSoon';
 import BurgerMenu from './components/BurgerMenu/BurgerMenu';
 import Wiki from './components/Wiki/Wiki';
+import Image from './components/ComCom/ImageComp/Image';
 
 function App() {
   return (
@@ -22,6 +23,7 @@ function App() {
         <Route exact path = '/Contacts' component = {CommingSoon} />
         <Route exact path = '/WorkWithUs' component = {CommingSoon} />
         <Route exact path = '/Products' component = {CommingSoon} />
+        <Route exact path = '/Image' component = {() => {return <Image src = '/paralax/bg (0).png'/>}} />
       </div>
     </Router>
   );

@@ -1,12 +1,12 @@
 import React, {Component} from 'react';
 import MenuItem from './MenuComponents/MenuItem/MenuItem';
 import Cross from './MenuComponents/Cross/Cross';
-import Error from '../ErrorMassage/Error.js';
+import Error from '../ComCom/ErrorMassage/Error.js';
 import './BurgerMenu.scss';
 import RequestSevice from '../../servises/requestService';
 import arrow from './Arrow.svg';
 import logo from './ArrowCook.svg';
-import Animator from '../Animator/Animator';
+import Animator from '../ComCom/Animator/Animator';
 
 
 export default class BurgerMenu extends Component {
