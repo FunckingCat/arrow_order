@@ -8,6 +8,7 @@ import BurgerButton from '../Hat/HatComponents/BurgerButton/BurgerButton';
 import BackButton from '../Hat/HatComponents/BackButton/BackButton';
 import NavVidget from '../NavVidget/NavVidget';
 import WikiCard from './WikiCard/WikiCard.js';
+import WikiMenu from './WikiMenu/WikiMenu';
 
 class WikiPage extends Component {
 	render() {
@@ -20,6 +21,7 @@ class WikiPage extends Component {
 					<section className='WikiPage'>
 					    <NavVidget />
                         <Switch>
+							<Route path = '/Wiki' component = {WikiMenu}/>
                             <Route path = '/Wiki/Card' component = {WikiCard}/>
                         </Switch>
 				    </section>			
