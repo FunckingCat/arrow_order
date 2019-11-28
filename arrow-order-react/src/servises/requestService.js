@@ -29,8 +29,16 @@ export default class requestService {
         return res.BurgerMenuItems;
     }
 
-    getWiki = async () => {
+    getWiki = async (type) => {
         const res = await this.getGlobal();
-        return res.Wiki;
+        if (type === 'Вики'){
+            return res.Wiki.map((item) => {return {
+                title : item.title,
+                image : item.image
+            }});
+        } else {
+            return res.Wiki.filter(item => item.title === type)[0].subs
+        }
     }
+        
 }

@@ -50,110 +50,110 @@
         ],
         "Wiki" : [
             {
-                "tilte" : "Виды тортов",
-                "image" : "default",
+                "title" : "Виды тортов",
+                "image" : "./WikiImages/default.png",
                 "subs" : [
                     {
                         "title" : "Бисквитный",
-                        "image" : "default",
+                        "image" : "./WikiImages/default.png",
                         "href" : "#"
                     },
                     {
                         "title" : "Чизкейк",
-                        "image" : "default",
+                        "image" : "./WikiImages/default.png",
                         "href" : "#"
                     },
                     {
                         "title" : "Медовик",
-                        "image" : "default",
+                        "image" : "./WikiImages/default.png",
                         "href" : "#"
                     },
                     {
                         "title" : "Торт цифра",
-                        "image" : "default",
+                        "image" : "./WikiImages/default.png",
                         "href" : "#"
                     }
                 ]
             },
             {
-                "tilte" : "Начинки",
-                "image" : "default",
+                "title" : "Начинки",
+                "image" : "./WikiImages/default.png",
                 "subs" : [
                     {
                         "title" : "Ягодная",
-                        "image" : "default",
+                        "image" : "./WikiImages/default.png",
                         "href" : "#"
                     },
                     {
                         "title" : "Шоколадная",
-                        "image" : "default",
+                        "image" : "./WikiImages/default.png",
                         "href" : "#"
                     },
                     {
                         "title" : "Кокосовая",
-                        "image" : "default",
+                        "image" : "./WikiImages/default.png",
                         "href" : "#"
                     },
                     {
                         "title" : "Карамельная",
-                        "image" : "default",
+                        "image" : "./WikiImages/default.png",
                         "href" : "#"
                     }
                 ]
             },
             {
-                "tilte" : "Кремы",
-                "image" : "default",
+                "title" : "Кремы",
+                "image" : "./WikiImages/default.png",
                 "subs" : [
                     {
                         "title" : "Ванильный",
-                        "image" : "default",
+                        "image" : "./WikiImages/default.png",
                         "href" : "#"
                     },
                     {
                         "title" : "Ягодный",
-                        "image" : "default",
+                        "image" : "./WikiImages/default.png",
                         "href" : "#"
                     },
                     {
                         "title" : "Шоколадный",
-                        "image" : "default",
+                        "image" : "./WikiImages/default.png",
                         "href" : "#"
                     },
                     {
                         "title" : "Сметанно-сливочный",
-                        "image" : "default",
+                        "image" : "./WikiImages/default.png",
                         "href" : "#"
                     },
                     {
                         "title" : "Сливочный",
-                        "image" : "default",
+                        "image" : "./WikiImages/default.png",
                         "href" : "#"
                     }
                 ]
             },
             {
-                "tilte" : "Бисквиты",
-                "image" : "default",
+                "title" : "Бисквиты",
+                "image" : "./WikiImages/default.png",
                 "subs" : [
                     {
                         "title" : "Шоколадный",
-                        "image" : "default",
+                        "image" : "./WikiImages/default.png",
                         "href" : "#"
                     },
                     {
                         "title" : "Ванильный",
-                        "image" : "default",
+                        "image" : "./WikiImages/default.png",
                         "href" : "#"
                     },
                     {
                         "title" : "Кокосовый",
-                        "image" : "default",
+                        "image" : "./WikiImages/default.png",
                         "href" : "#"
                     },
                     {
                         "title" : "Банановый",
-                        "image" : "default",
+                        "image" : "./WikiImages/default.png",
                         "href" : "#"
                     }
                 ]

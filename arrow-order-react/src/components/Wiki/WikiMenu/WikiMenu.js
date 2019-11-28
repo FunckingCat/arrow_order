@@ -9,7 +9,7 @@ class WikMenu extends Component {
 	RequestService = new RequestService();
 
 	state = {
-		location : 'Wiki',
+		type : 'Вики',
 		menuItems : []
 	}
 
@@ -18,16 +18,31 @@ class WikMenu extends Component {
 	}
 
 	updateMenuItems = () => {
-		let items = this.RequestService.getWiki();
-		console.log(items);
+		this.RequestService.getWiki(this.state.type)
+		.then(this.onContentLoaded)
+		.catch()
+	}
+
+	onContentLoaded = (content) => {
+		console.log(content);
+		this.setState({
+			menuItems : content
+		})
 	}
 
 	renderMenuItems = () => {
-		let menuItems = []
-		for (let i = 0; i < 6; i++){
-			menuItems.push(<WikiItem key = {i} src = {`./MainPageImages/bg (${i}).png`} title = 'Бисквит'/>)
+		const menuItems = this.state.menuItems;
+		let renderedItems = [];
+		
+		for (let i=0; i < menuItems.length; i++){
+			renderedItems.push(<WikiItem
+				key = {i}
+				title = {menuItems[i].title}
+				src = {menuItems[i].image}
+				href = {menuItems[i].href || '#'}/>)
 		}
-		return menuItems
+
+		return renderedItems
 	}
 
 	render() {
@@ -37,10 +52,10 @@ class WikMenu extends Component {
 		return(
 			<section className = 'WikiMenu'> 
 				<h1>{this.props.title || 'Вики'}</h1>
-				<h2>{this.props.slogan || ''}</h2>
-				<li>
+				<h2>{this.props.slogan || 'Все что нужно знать'}</h2>
+				<ul>
 					{menuItems}
-				</li>
+				</ul>
 			</section>
 		)
 	}
