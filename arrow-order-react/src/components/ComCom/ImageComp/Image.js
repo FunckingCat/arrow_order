@@ -18,7 +18,7 @@ export default class Image extends Component {
     render() {
         let content = this.renderContent()
         return(
-            <div className="Image">
+            <div className="image">
                 {content}
             </div>
         )

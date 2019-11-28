@@ -1,15 +1,17 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import React, {Component} from 'react';
-import Hat from '../ComCom/Hat/Hat';
-import ContentBlock from './MainPageComponents/ContnetBlock/ContentBlock';
-import Image from './MainPageComponents/ParallaxImage/ParallaxImage'
-import Basement from './MainPageComponents/Basement/Basement';
 import './MainPage.scss';
 import RequestService from '../../servises/requestService';
+
+import Hat from '../ComCom/Hat/Hat';
+import Image from '../ComCom/ImageComp/Image';
 import Error from '../ComCom/ErrorMassage/Error';
 import Animator from '../ComCom/Animator/Animator';
 import BurgerButton from '../ComCom/Hat/HatComponents/BurgerButton/BurgerButton';
 import OrderButton from '../ComCom/Hat/HatComponents/OrderButton/OrderButton';
+
+import ContentBlock from './MainPageComponents/ContnetBlock/ContentBlock';
+import Basement from './MainPageComponents/Basement/Basement';
 
 export default class MainPage extends Component {
     RequestService = new RequestService();
@@ -47,14 +49,14 @@ export default class MainPage extends Component {
         let i =0;
 
         for (i; i < data.length; i++){
-            content.push(<Image key = {i} src = {`./paralax/bg (${i}).png`} />);
+            content.push(<Image key = {i} src = {`./MainPageImages/bg (${i}).png`} alt = 'Arrow Products'/>);
             content.push(<ContentBlock
             key = {i+0.5} 
             header = {data[i].header}
             text = {data[i].text}/>)
         }
 
-        content.push(<Image key = 'last' src = {`./paralax/bg (last).png`} />);
+        content.push(<Image key = 'last' src = {`./MainPageImages/bg (last).png`} alt = 'Arrow Products'/>);
 
         return content
     }

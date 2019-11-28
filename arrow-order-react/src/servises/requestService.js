@@ -28,4 +28,9 @@ export default class requestService {
         const res = await this.getGlobal();
         return res.BurgerMenuItems;
     }
+
+    getWiki = async () => {
+        const res = await this.getGlobal();
+        return res.Wiki;
+    }
 }
