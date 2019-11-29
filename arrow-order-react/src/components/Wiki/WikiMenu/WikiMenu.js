@@ -14,7 +14,6 @@ class WikMenu extends Component {
 	}
 
 	componentDidMount() {
-		console.log(this.state.type);
 		this.updateMenuItems();
 	}
 
@@ -25,7 +24,6 @@ class WikMenu extends Component {
 	}
 
 	onContentLoaded = (content) => {
-		console.log(content);
 		this.setState({
 			menuItems : content
 		})
