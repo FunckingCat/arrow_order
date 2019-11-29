@@ -7,7 +7,6 @@ import {goTo} from '../../../actions/historyActions';
 class NavVidget extends Component {
 
     handaleClick = (title) => {
-        console.log(title);
         this.props.goTo(title)
     }
 
