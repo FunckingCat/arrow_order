@@ -19,7 +19,9 @@ class NavVidget extends Component {
         })
 
         let result = [];
-        for (let i=0; i < links.length; i++){
+        let i;
+        i = links.length > 4? links.length - 4 : 0;
+        for (i; i < links.length; i++){
             if (i !== links.length-1){
                 result.push(links[i]);
                 result.push(<span key = {i}>></span>)
