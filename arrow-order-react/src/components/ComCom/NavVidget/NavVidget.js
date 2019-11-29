@@ -6,10 +6,17 @@ import {goTo} from '../../../actions/historyActions';
 
 class NavVidget extends Component {
 
-    renderCrumbs = () => {
+    handaleClick = (title) => {
+        console.log(title);
+        this.props.goTo(title)
+    }
+
+    renderCrumbs = (handaleClick) => {
         let links = this.props.tree.map((item) => {
             let {title, link} = item;
-            return <span key={title}><Link to={link}>{title}</Link></span>
+            return <span key={title} onClick = {
+                () => {handaleClick(title)}
+            }><Link to={link} >{title}</Link></span>
         })
 
         let result = [];
@@ -26,7 +33,7 @@ class NavVidget extends Component {
 
     render() {
 
-        let crumbs = this.renderCrumbs()
+        let crumbs = this.renderCrumbs(this.handaleClick)
         return(
             <section className="NavVidget">
                 {crumbs}
@@ -41,8 +48,8 @@ const mapStateToProps = function(state){
     }
 }
 
-const mapDispatchToPRops = {
+const mapDispatchToProps = {
     goTo : goTo
 }
 
-export default connect(mapStateToProps, mapDispatchToPRops)(NavVidget)
+export default connect(mapStateToProps, mapDispatchToProps)(NavVidget)
