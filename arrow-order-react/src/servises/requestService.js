@@ -34,10 +34,15 @@ export default class requestService {
         if (type === 'Вики'){
             return res.Wiki.map((item) => {return {
                 title : item.title,
-                image : item.image
+                image : item.image,
+                href : item.href
             }});
         } else {
-            return res.Wiki.filter(item => item.title === type)[0].subs
+            return res.Wiki.filter(item => item.title === type)[0].subs.map((item) => {return {
+                title : item.title,
+                image : item.image,
+                href : item.href
+            }});
         }
     }
         

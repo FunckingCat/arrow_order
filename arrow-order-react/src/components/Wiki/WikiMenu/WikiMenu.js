@@ -9,11 +9,12 @@ class WikMenu extends Component {
 	RequestService = new RequestService();
 
 	state = {
-		type : 'Вики',
+		type : this.props.type? this.props.type : "Вики",
 		menuItems : []
 	}
 
 	componentDidMount() {
+		console.log(this.state.type);
 		this.updateMenuItems();
 	}
 
@@ -36,7 +37,7 @@ class WikMenu extends Component {
 		
 		for (let i=0; i < menuItems.length; i++){
 			renderedItems.push(<WikiItem
-				key = {i}
+				key = {menuItems[i].title}
 				title = {menuItems[i].title}
 				src = {menuItems[i].image}
 				href = {menuItems[i].href || '#'}/>)
