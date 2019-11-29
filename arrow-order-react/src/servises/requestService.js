@@ -35,7 +35,7 @@ export default class requestService {
             return res.Wiki.map((item) => {return {
                 title : item.title,
                 image : item.image,
-                href : item.href
+                href : item.href,
             }});
         } else {
             return res.Wiki.filter(item => item.title === type)[0].subs.map((item) => {return {
@@ -44,6 +44,18 @@ export default class requestService {
                 href : item.href
             }});
         }
+    }
+
+    getWikiSlogan = async (type) => {
+        const res = await this.getGlobal();
+        let slogan;
+        try {
+            slogan = res.Wiki.filter(item => item.title === type)[0].slogan;
+        }
+        catch{
+            
+        }
+        return slogan;
     }
         
 }

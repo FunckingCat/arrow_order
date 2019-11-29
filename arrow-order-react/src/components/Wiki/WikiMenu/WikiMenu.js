@@ -3,6 +3,7 @@ import {connect} from 'react-redux';
 import './WikiMenu.scss';
 
 import RequestService from '../../../servises/requestService';
+import Animator from '../../ComCom/Animator/Animator';
 import WikiItem from '../MenuItem/MenuItem';
 
 class WikMenu extends Component {
@@ -10,11 +11,13 @@ class WikMenu extends Component {
 
 	state = {
 		type : this.props.type? this.props.type : "Вики",
-		menuItems : []
+		menuItems : [],
+		slogan : ''
 	}
 
 	componentDidMount() {
 		this.updateMenuItems();
+		this.getSlogan();
 	}
 
 	updateMenuItems = () => {
@@ -29,16 +32,33 @@ class WikMenu extends Component {
 		})
 	}
 
+	getSlogan = () => {
+		this.RequestService.getWikiSlogan(this.state.type)
+		.then((slogan) => {
+			this.setState({
+				slogan : slogan
+			})
+		})
+		.catch()
+	}
+
 	renderMenuItems = () => {
 		const menuItems = this.state.menuItems;
 		let renderedItems = [];
 		
 		for (let i=0; i < menuItems.length; i++){
-			renderedItems.push(<WikiItem
-				key = {menuItems[i].title}
-				title = {menuItems[i].title}
-				src = {menuItems[i].image}
-				href = {menuItems[i].href || '#'}/>)
+			renderedItems.push(
+				<Animator
+					key = {menuItems[i].title} 
+					type = 'fade'
+					timeout = {i * 30}>
+					<WikiItem
+						key = {menuItems[i].title}
+						title = {menuItems[i].title}
+						src = {menuItems[i].image}
+						href = {menuItems[i].href || '#'}/>
+				</Animator>
+			)
 		}
 
 		return renderedItems
@@ -50,8 +70,10 @@ class WikMenu extends Component {
 
 		return(
 			<section className = 'WikiMenu'> 
-				<h1>{this.props.title || 'Вики'}</h1>
-				<h2>{this.props.slogan || 'Все что нужно знать'}</h2>
+				<Animator type = 'fade'>
+					<h1>{this.props.type || 'Вики'}</h1>
+					<h2>{this.state.slogan || 'Все что нужно знать'}</h2>
+				</Animator>
 				<ul>
 					{menuItems}
 				</ul>

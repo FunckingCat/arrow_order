@@ -53,6 +53,7 @@
                 "title" : "Виды тортов",
                 "image" : "https://s1.1zoom.ru/b5050/615/350497-svetik_3840x2400.jpg",
                 "href" : "/Wiki/Виды тортов",
+                "slogan" : " ", 
                 "subs" : [
                     {
                         "title" : "Бисквитный",
@@ -80,6 +81,7 @@
                 "title" : "Начинки",
                 "image" : "./WikiImages/another.png",
                 "href" : "/Wiki/Начинки",
+                "slogan" : " ", 
                 "subs" : [
                     {
                         "title" : "Ягодная",
@@ -107,6 +109,7 @@
                 "title" : "Кремы",
                 "image" : "./WikiImages/default.png",
                 "href" : "/Wiki/Кремы",
+                "slogan" : " ", 
                 "subs" : [
                     {
                         "title" : "Ванильный",
@@ -139,6 +142,7 @@
                 "title" : "Бисквиты",
                 "image" : "./WikiImages/another.png",
                 "href" : "/Wiki/Бисквиты",
+                "slogan" : " - кондитерское тесто и кондитерский «хлеб», приготовленный из муки, сахара и яиц, причем яиц по весу (или объему) намного больше, чем муки", 
                 "subs" : [
                     {
                         "title" : "Шоколадный",

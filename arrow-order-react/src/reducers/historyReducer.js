@@ -39,7 +39,7 @@ const historyReducer = (state = initialState, action) => {
             }
 
         case BACK:
-            tree = state.tree;
+            tree = state.tree.map(item => {return item});
             tree.pop();
             if (tree.length >= 2){
                 backLink = tree[tree.length - 2].link

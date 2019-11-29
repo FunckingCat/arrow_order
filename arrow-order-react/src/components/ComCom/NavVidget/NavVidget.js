@@ -31,7 +31,6 @@ class NavVidget extends Component {
     }
 
     render() {
-
         let crumbs = this.renderCrumbs(this.handaleClick)
         return(
             <section className="NavVidget">
