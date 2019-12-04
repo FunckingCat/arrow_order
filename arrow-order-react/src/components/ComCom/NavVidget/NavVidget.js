@@ -13,6 +13,7 @@ class NavVidget extends Component {
     renderCrumbs = (handaleClick) => {
         let links = this.props.tree.map((item) => {
             let {title, link} = item;
+            if(title === 'Меню'){return NaN}
             return <span key={title} onClick = {
                 () => {handaleClick(title)}
             }><Link to={link} >{title}</Link></span>
