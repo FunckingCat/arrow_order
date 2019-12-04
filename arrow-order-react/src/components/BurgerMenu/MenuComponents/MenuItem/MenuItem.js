@@ -2,8 +2,8 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import {initTransfer} from '../../../../actions/historyActions';
-import './MenuItem.scss';
 import {Link} from "react-router-dom";
+import './MenuItem.scss';
 
 class MenuItem extends Component {
     
@@ -14,8 +14,21 @@ class MenuItem extends Component {
     render(){
         return(
             <Link to ={this.props.href} onClick = {this.handaleClick}>
-                <div className="menuitem">
-                    {this.props.text}
+                <div className="container">
+                    <ul>
+                        <li>
+                        <div className="animated-arrow">
+                            <span className="the-arrow -left">
+                            <span className="shaft"></span>
+                            </span>
+                            <span className="main">
+                            <span className="text">
+                                {this.props.text}
+                            </span>
+                            </span>
+                        </div>
+                        </li>
+                    </ul>
                 </div>
             </Link>            
         )
