@@ -15,7 +15,7 @@ const historyReducer = (state = initialState, action) => {
         case NEW_TRANSFER:
             tree = []
             for (let item of state.tree){
-                if (item.title !== action.title){
+                if (item.title !== action.title || action.title === 'Меню'){
                     tree.push(item)
                 } else {
                     break;
