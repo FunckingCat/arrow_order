@@ -7,7 +7,7 @@
         .line, .tip{
             position: absolute;
             background-color: #9A9A9A;
-            width: 2px;
+            width: 1px;
         }
         .line{
             height: 100%;
@@ -21,18 +21,27 @@
             transition: transform 1s;
         }
         .left{
-            transform: rotate(45deg);
+            animation: rotation  2s infinite linear;
+            animation-direction: alternate;
         }
         .right{
-            transform: rotate(-45deg);
+            animation: rotation 2s infinite linear;
+            animation-direction: alternate-reverse;
         }
-        &:hover{
-            .left{
-                transform: rotate(-45deg);
-            }
-            .right{
-                transform: rotate(45deg);
-            }
-        }
+    }
+}
+
+@keyframes rotation {
+    from{
+        transform: rotate(45deg)
+    }
+    30%{
+        transform: rotate(45deg)
+    }
+    70%{
+        transform: rotate(-45deg)
+    }
+    to {
+        transform: rotate(-45deg)
     }
 }
