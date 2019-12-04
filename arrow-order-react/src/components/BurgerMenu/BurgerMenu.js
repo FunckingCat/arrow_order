@@ -1,12 +1,13 @@
 import React, {Component} from 'react';
+import RequestSevice from '../../servises/requestService';
+import logo from './ArrowCook.svg';
+import './BurgerMenu.scss';
+
+import Animator from '../ComCom/Animator/Animator';
 import MenuItem from './MenuComponents/MenuItem/MenuItem';
 import Cross from './MenuComponents/Cross/Cross';
 import Error from '../ComCom/ErrorMassage/Error.js';
-import './BurgerMenu.scss';
-import RequestSevice from '../../servises/requestService';
-import arrow from './Arrow.svg';
-import logo from './ArrowCook.svg';
-import Animator from '../ComCom/Animator/Animator';
+import Arrow from './MenuComponents/VerticalArrow/VerticalArrow';
 
 
 export default class BurgerMenu extends Component {
@@ -63,7 +64,7 @@ export default class BurgerMenu extends Component {
         return(
            <Animator type = 'fade' >
                 <div className = 'burgerMenu'>
-                    <div className="arrow"><img src={arrow} alt="" className="logo"/></div>
+                    <Arrow />
                     <div className="wrapper">
                         <div className="logo"><img src={logo} alt=""/></div>
                         <nav>

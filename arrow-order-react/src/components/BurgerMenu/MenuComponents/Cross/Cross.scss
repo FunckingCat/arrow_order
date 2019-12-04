@@ -9,18 +9,21 @@
             width:30px;
             height: 30px;
             transform-origin: 15px 15px;
-            transition: transform 1s;
+            transition: 1s;
             &:hover{
                 transform-origin: 15px 15px;
                 transform: rotate(180deg);
                 transition: 1s;
+                .first, .second{
+                    background-color: #505050;
+                }
             }
             .first, .second{
                 top : 14px;
                 position: absolute;
                 height : 2px;
                 width : 100%;
-                background-color: #505050;
+                background-color: #9A9A9A;
                 padding: 0;
             }
             .first{

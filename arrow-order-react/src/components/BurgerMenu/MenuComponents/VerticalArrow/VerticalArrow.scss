@@ -1,0 +1,38 @@
+.verticalArrow{
+    width: 20%;
+    .arrowWrapper{
+        margin-top: 10vh;
+        height: 80vh;
+        position: relative;
+        .line, .tip{
+            position: absolute;
+            background-color: #9A9A9A;
+            width: 2px;
+        }
+        .line{
+            height: 100%;
+            left: calc(50% - 1px);
+        }
+        .tip{
+            height: 10px;
+            top: calc(100% - 10px);
+            left: calc(50% - 1px);
+            transform-origin: 1px 100%;
+            transition: transform 1s;
+        }
+        .left{
+            transform: rotate(45deg);
+        }
+        .right{
+            transform: rotate(-45deg);
+        }
+        &:hover{
+            .left{
+                transform: rotate(-45deg);
+            }
+            .right{
+                transform: rotate(45deg);
+            }
+        }
+    }
+}
