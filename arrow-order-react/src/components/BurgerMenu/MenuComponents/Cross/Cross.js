@@ -2,7 +2,6 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import './Cross.scss';
-import CrossIcon from './Cross.svg';
 import {Link} from "react-router-dom";
 import {back} from '../../../../actions/historyActions'
 
@@ -14,9 +13,14 @@ class Cross extends Component {
 
     render(){
         return(
-            <Link to ={this.props.href} className = 'exit' onClick = {this.handaleClick}>
-                <img src={CrossIcon} alt="" className="cross"/>
-            </Link>            
+            <div className="crossWrapper">
+                <Link to ={this.props.href} className = 'exit' onClick = {this.handaleClick}>
+                    <div className = 'cross'>
+                        <div className="first"></div>
+                        <div className="second"></div>
+                    </div>
+                </Link>   
+            </div>         
         )
     }
 }
