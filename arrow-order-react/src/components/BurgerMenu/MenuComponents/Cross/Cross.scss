@@ -1,9 +1,9 @@
 .crossWrapper{
     width: 100%;
-    margin-top: 7vh;
+    margin-top: 7vh; 
     a.exit{
         display:  block;
-        margin-left: calc(100% / 2 - 15px);
+        margin-left: calc(100%  / 2 - 15px);
         .cross{
             position : relative;
             width:30px;
@@ -35,5 +35,4 @@
             }
         }
       }
-
 }

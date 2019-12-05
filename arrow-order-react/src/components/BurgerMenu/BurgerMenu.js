@@ -5,9 +5,9 @@ import './BurgerMenu.scss';
 
 import Animator from '../ComCom/Animator/Animator';
 import MenuItem from './MenuComponents/MenuItem/MenuItem';
-import Cross from './MenuComponents/Cross/Cross';
-import Error from '../ComCom/ErrorMassage/Error.js';
-import Arrow from './MenuComponents/VerticalArrow/VerticalArrow';
+import Cross    from './MenuComponents/Cross/Cross';
+import Error    from '../ComCom/ErrorMassage/Error.js';
+import Arrow    from './MenuComponents/VerticalArrow/VerticalArrow';
 
 
 export default class BurgerMenu extends Component {
