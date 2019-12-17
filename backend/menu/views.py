@@ -1,10 +1,21 @@
 from django.shortcuts import render
-from django.http import HttpResponse
+from django.http import HttpResponse, JsonResponse
+from .models import MainPageContent, BurgerMenuItems
 # Create your views here.
 
+def renderToResponse(models):
+    response = {'values' : []}
+    for model in models:
+        response['values'].append(model.all())
+    return response
+
 def main(request):
-    return HttpResponse('Main')
+    models = MainPageContent.objects.all()
+    response = renderToResponse(models)
+    return JsonResponse(response)
 
 def burger(request):
-    return HttpResponse('Burger')
+    models = BurgerMenuItems.objects.all()
+    response = renderToResponse(models)
+    return JsonResponse(response)
 

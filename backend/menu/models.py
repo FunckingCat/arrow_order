@@ -24,7 +24,7 @@ class BurgerMenuItems(models.Model):
     href = models.CharField(max_length = 100, verbose_name = 'Ссылка')
 
     def __str__(self):
-        return '{}\n{}\n'.format(self.title,selt.href)
+        return '{}\n{}\n'.format(self.title,self.href)
 
     def all(self):
         return{
