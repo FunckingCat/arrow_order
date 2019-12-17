@@ -11,6 +11,13 @@ class MainPageContent(models.Model):
     def __str__(self):
         return '{}\n{}...\n{}\n'.format(self.title, self.text[0:80], self.image)
 
+    def all(self):
+        return {
+            'title' : self.title,
+            'text' : self.text,
+            'image' : self.image
+        }
+
 class BurgerMenuItems(models.Model):
 
     title = models.CharField(max_length = 100, verbose_name = 'Заголовок')
@@ -18,4 +25,10 @@ class BurgerMenuItems(models.Model):
 
     def __str__(self):
         return '{}\n{}\n'.format(self.title,selt.href)
+
+    def all(self):
+        return{
+            'title' : self.title,
+            'href' : self.href
+        }
     
