@@ -33,6 +33,7 @@ class WikiCategores(models.Model):
     
     def all(self):
         return {
+            'id'    : self.id,
             'title' : self.title,
             'image' : self.image,
             'href'  : self.href,
@@ -51,8 +52,8 @@ class WikiSubCategores(models.Model):
     
     def all(self):
         return {
+            'id'    : self.id,
             'title' : self.title,
             'image' : self.image,
             'href'  : self.href,
-            'category':self.category,
         }
