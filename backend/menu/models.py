@@ -9,7 +9,7 @@ class MainPageContent(models.Model):
     image = models.CharField(max_length = 500, verbose_name = 'Ссылка на изображение')
 
     def __str__(self):
-        return '{}\n{}...\n{}\n'.format(self.title, self.text[0:80], self.image)
+        return '{} --- {}...'.format(self.title, self.text[0:40])
 
     def all(self):
         return {
@@ -24,7 +24,7 @@ class BurgerMenuItems(models.Model):
     href = models.CharField(max_length = 100, verbose_name = 'Ссылка')
 
     def __str__(self):
-        return '{}\n{}\n'.format(self.title,self.href)
+        return '{} --- {}'.format(self.title,self.href)
 
     def all(self):
         return{

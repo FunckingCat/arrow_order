@@ -19,4 +19,5 @@ from django.urls import path, include, re_path
 urlpatterns = [
     path('admin/', admin.site.urls),
     re_path(r'^api/menu/', include('menu.urls')),
+    re_path(r'^api/wiki/', include('wiki.urls')),
 ]
