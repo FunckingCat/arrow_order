@@ -49,14 +49,14 @@ export default class MainPage extends Component {
         let i =0;
 
         for (i; i < data.length; i++){
-            content.push(<Image key = {i} src = {`./MainPageImages/bg (${i}).png`} alt = 'Arrow Products'/>);
+            content.push(<Image key = {i} src = {`/static/MainPageImages/bg (${i}).png`} alt = 'Arrow Products'/>);
             content.push(<ContentBlock
             key = {i+0.5} 
-            header = {data[i].header}
+            header = {data[i].title}
             text = {data[i].text}/>)
         }
 
-        content.push(<Image key = 'last' src = {`./MainPageImages/bg (last).png`} alt = 'Arrow Products'/>);
+        content.push(<Image key = 'last' src = {`/static/MainPageImages/bg(last).png`} alt = 'Arrow Products'/>);
 
         return content
     }

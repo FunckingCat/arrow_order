@@ -10,36 +10,27 @@ class WikMenu extends Component {
 	RequestService = new RequestService();
 
 	state = {
-		type : this.props.type? this.props.type : "Вики",
+		type : this.props.type? '' : "Вики",
 		menuItems : [],
 		slogan : ''
 	}
 
 	componentDidMount() {
 		this.updateMenuItems();
-		this.getSlogan();
 	}
 
 	updateMenuItems = () => {
-		this.RequestService.getWiki(this.state.type)
+		this.RequestService.getWiki(this.props.id)
 		.then(this.onContentLoaded)
 		.catch()
 	}
 
 	onContentLoaded = (content) => {
 		this.setState({
-			menuItems : content
+			menuItems : content,
+			type : content[0].category,
+			slogan : content[0].category? content[0].slogan : 'Все что нужно знать',
 		})
-	}
-
-	getSlogan = () => {
-		this.RequestService.getWikiSlogan(this.state.type)
-		.then((slogan) => {
-			this.setState({
-				slogan : slogan
-			})
-		})
-		.catch()
 	}
 
 	renderMenuItems = () => {
@@ -56,7 +47,7 @@ class WikMenu extends Component {
 						key = {menuItems[i].title}
 						title = {menuItems[i].title}
 						src = {menuItems[i].image}
-						href = {menuItems[i].href || '#'}/>
+						href = {`${menuItems[i].href}${menuItems[i].id}` || '#'}/>
 				</Animator>
 			)
 		}
@@ -71,8 +62,8 @@ class WikMenu extends Component {
 		return(
 			<section className = 'WikiMenu'> 
 				<Animator type = 'fade'>
-					<h1>{this.props.type || 'Вики'}</h1>
-					<h2>{this.state.slogan || 'Все что нужно знать'}</h2>
+					<h1>{this.state.type || 'Вики'}</h1>
+					<h2>{this.state.slogan || ''}</h2>
 				</Animator>
 				<ul>
 					{menuItems}

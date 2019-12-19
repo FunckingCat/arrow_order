@@ -47,7 +47,7 @@ export default class BurgerMenu extends Component {
         for (let i = 0; i < items.length; i++){
             result.push(<MenuItem
                 key = {i}
-                text = {items[i].text}
+                text = {items[i].title}
                 href = {items[i].href}/>);
             result.push(<hr key = {i + 0.1}></hr>)
         }

@@ -21,9 +21,24 @@ class WikiPage extends Component {
 					<section className='WikiPage'>
 					    <NavVidget />
                         <Switch>
-							<Route exact path = '/Wiki' component = {() => {return <WikiMenu type = {'Вики'}/>}}/>
-							<Route exact path = '/Wiki/Card' component = {WikiCard}/>
-							<Route exact path = '/Wiki/:type' component = {(info) => {return <WikiMenu type = {info.match.params.type}/>}}/>
+
+							<Route exact path = '/Wiki' component = {() => {
+								return <WikiMenu type = {'Вики'}/>
+								}}/>
+
+							<Route exact path = '/Wiki/Card/:hashtag/:id' component = {
+								(info) => {
+									return <WikiCard
+										hashtag = {info.match.params.hashtag}/>
+								}
+							}/>
+
+							<Route exact path = '/Wiki/:type/:id' component = {
+								(info) => {
+									return <WikiMenu 
+										type = {info.match.params.type}
+										id = {info.match.params.id}/>
+								}}/>
                         </Switch>
 				    </section>			
 			</div>

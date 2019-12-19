@@ -5,10 +5,24 @@
             font-size: 3em;
             padding-bottom: 0.5em;
             font-weight: 900;
-            margin-left: 10px;
+            margin-left: 5%;
         }
         div.content{
             width: 90%;
             margin: 1em auto;
+            margin-bottom: 0;
+        }
+        .cardImage{
+            position: relative;
+            background-size: cover;
+            background-position: center center;
+            background-color: grey;
+
+            width : 90%;
+            height : 25vh;
+            max-height: 180px;
+            border-radius: 20px;
+            margin-top: 1em;
+            margin-left: 5%;
         }
     }

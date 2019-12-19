@@ -1,61 +1,45 @@
 export default class requestService {
     constructor() {
-        this._apiBase = 'http://localhost:3000';
+        this._apiBase = 'http://localhost:8000';
     }
 
     getResource = async (url) => {
         const res = await fetch(`${this._apiBase}${url}`);
-
+        console.log(`Адрес: ${this._apiBase}${url}`);
         if (!res.ok){
             throw new Error(`Could not fetch ${url}; recived ${res.status}`)
         }
 
-        return await res.json();
+        let response = await res.json();
+        
+        return response.values;
 
-    }
-
-    getGlobal = async () => {
-        const res = await this.getResource('/global/');
-        return res;
     }
 
     getMainPageBlocksContents = async () => {
-        const res = await this.getGlobal();
-        return res.mainPageContents;
+       const res = await this.getResource('/api/menu/main/')
+       return res
     }
 
     getBurgerMenuContent = async () => {
-        const res = await this.getGlobal();
-        return res.BurgerMenuItems;
+        const res = await this.getResource('/api/menu/burger/')
+        return res
     }
 
-    getWiki = async (type) => {
-        const res = await this.getGlobal();
-        if (type === 'Вики'){
-            return res.Wiki.map((item) => {return {
-                title : item.title,
-                image : item.image,
-                href : item.href,
-            }});
+    getWiki = async (id) => {
+        let res
+        if (id){
+            res = await this.getResource(`/api/wiki/sub/${id}/`);
         } else {
-            return res.Wiki.filter(item => item.title === type)[0].subs.map((item) => {return {
-                title : item.title,
-                image : item.image,
-                href : item.href
-            }});
-        }
+            res = await this.getResource('/api/wiki/categories/');
+        }        
+        
+        return res
     }
 
-    getWikiSlogan = async (type) => {
-        const res = await this.getGlobal();
-        let slogan;
-        try {
-            slogan = res.Wiki.filter(item => item.title === type)[0].slogan;
-        }
-        catch{
-            
-        }
-        return slogan;
+    getWikiCard = async (hashtag) => {
+        const res = await this.getResource(`/api/wiki/card/${hashtag}/`);
+        return res
     }
         
 }

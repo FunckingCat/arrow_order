@@ -6,20 +6,20 @@ from .models import WikiCategores, WikiSubCategores, WikiObject
 def categories(request):
     if request.method == 'GET':
         items = WikiCategores.objects.all()
-        response = {'value' : []}
+        response = {'values' : []}
         for item in items:
-            response['value'].append(item.all())
+            response['values'].append(item.all())
         return JsonResponse(response)
 
 def subCategories(request, id):
     if request.method == 'GET':
         items = WikiSubCategores.objects.filter(category = id)
-        response = {'value' : []}
+        response = {'values' : []}
         for item in items:
-            response['value'].append(item.all())
+            response['values'].append(item.all())
         return JsonResponse(response)
 
 def searchCard(request, name):
     if request.method == 'GET':
         item = WikiObject.objects.get(hashtag = name)
-    return JsonResponse(item.all())
+    return JsonResponse({'values' : item.all()})

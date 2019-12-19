@@ -4,21 +4,54 @@ import './WikiCard.scss';
 
 import Cross from '../../BurgerMenu/MenuComponents/Cross/Cross';
 import Animator from '../../ComCom/Animator/Animator';
+import RequestService from '../../../servises/requestService';
+import Image from '../../ComCom/ImageComp/Image';
 
 class WikCard extends Component {
+
+	RequestService = new RequestService();
+
+	state = {
+		titile : '',
+		text   : '',
+		image  : '',
+	}
+
+	componentDidMount() {
+		this.update();
+	}
+
+	update = () => {
+		this.RequestService.getWikiCard(this.props.hashtag)
+		.then(res => {
+			this.setState({
+				title : res.title,
+				text   : res.text,
+				image  : res.image,
+			})
+		})
+	}
+
 	render() {
+		
+		let style = {
+			backgroundImage: `url(http://localhost:8000${this.state.image})`
+		}
+
 		return(
 			<div className='WikiCard'>
-				<Animator type = 'fade'><h1>Ванильный бисквит</h1></Animator>
+				<Animator type = 'fade'><h1>{this.state.title}</h1></Animator>
 				<Animator 
 					type = 'rise'
 					timeout = '100'>
-					<img src='https://zira.uz/wp-content/uploads/2019/04/biskvit-na-kipyatke2.jpg' alt="wikiPhoto"/>
+					<div className='cardImage' style = {style}>
+						
+					</div>
 				</Animator>
 				<Animator 
 					type = 'fade'
 					timeout = '50'>
-					<div className = 'content'> Разнообразный и богатый опыт говорит нам, что сложившаяся структура организации играет важную роль в формировании поэтапного и последовательного развития общества. Прежде всего, повышение уровня гражбованность глубокомысленных рассуждений. Значимость этих проблем настолько очевидна, что глубокий уровень погружения не даёт нам иного выбора, кроме определения дальнейших направлений развития.</div>
+					<div className = 'content'>{this.state.text}</div>
 					<Cross/>
 				</Animator>
 			</div>

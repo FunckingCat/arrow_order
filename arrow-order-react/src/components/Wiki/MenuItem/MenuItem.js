@@ -14,7 +14,7 @@ class WikiItem extends Component {
 		let {title} = this.props;
 
 		let style = {
-			backgroundImage: `url(${this.props.src})`
+			backgroundImage: `url(http://localhost:8000${this.props.src})`
 		}
 
 		return(
