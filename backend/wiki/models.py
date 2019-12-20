@@ -55,6 +55,4 @@ class WikiSubCategores(models.Model):
             'title' : self.title,
             'image' : self.image,
             'href'  : self.href,
-            'category' : self.category.title,
-            'slogan' : self.category.slogan, 
         }

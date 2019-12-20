@@ -11,7 +11,7 @@ export default class requestService {
         }
 
         let response = await res.json();
-        
+        console.log(response.values);
         return response.values;
 
     }
