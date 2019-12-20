@@ -1,11 +1,11 @@
 import React, {Component} from 'react';
-import {connect} from 'react-redux';
+import {connect}          from 'react-redux';
 import './WikiCard.scss';
 
-import Cross from '../../BurgerMenu/MenuComponents/Cross/Cross';
-import Animator from '../../ComCom/Animator/Animator';
+import Cross          from '../../BurgerMenu/MenuComponents/Cross/Cross';
+import Animator       from '../../ComCom/Animator/Animator';
 import RequestService from '../../../servises/requestService';
-import Bg from '../../ComCom/Bg/Bg';
+import Bg             from '../../ComCom/Bg/Bg';
 
 class WikCard extends Component {
 
@@ -22,10 +22,11 @@ class WikCard extends Component {
 	}
 
 	update = () => {
+		console.log(this.props.hashtag);
 		this.RequestService.getWikiCard(this.props.hashtag)
 		.then(res => {
 			this.setState({
-				title : res.title,
+				title  : res.title,
 				text   : res.text,
 				image  : res.image,
 			})
@@ -38,12 +39,12 @@ class WikCard extends Component {
 			<div className='WikiCard'>
 				<Animator type = 'fade'><h1>{this.state.title}</h1></Animator>
 				<Animator 
-					type = 'rise'
+					type    = 'rise'
 					timeout = '100'>
 					<Bg src = {this.state.image}></Bg>
 				</Animator>
 				<Animator 
-					type = 'fade'
+					type    = 'fade'
 					timeout = '50'>
 					<div className = 'content'>{this.state.text}</div>
 					<Cross/>

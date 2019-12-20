@@ -36,7 +36,7 @@ class WikiCategores(models.Model):
             'id'    : self.id,
             'title' : self.title,
             'image' : self.image,
-            'href'  : self.href,
+            'href'  : '/Wiki/' + str(self.id),
         }
 
 class WikiSubCategores(models.Model):

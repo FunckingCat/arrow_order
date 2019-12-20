@@ -47,7 +47,7 @@ class WikMenu extends Component {
 						key   = {menuItems[i].title}
 						title = {menuItems[i].title}
 						src   = {menuItems[i].image}
-						href  = {`${menuItems[i].href}${menuItems[i].id}` || '#'}/>
+						href  = {`${menuItems[i].href}` || '#'}/>
 				</Animator>
 			)
 		}
