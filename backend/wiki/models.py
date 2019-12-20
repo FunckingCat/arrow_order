@@ -43,7 +43,7 @@ class WikiSubCategores(models.Model):
 
     title  = models.CharField(max_length = 50)
     image  = models.CharField(max_length = 80)
-    href   = models.CharField(max_length = 120)
+    hashtag   = models.CharField(max_length = 50)
     category = models.ForeignKey(WikiCategores, on_delete=models.CASCADE)
 
     def __str__(self):
@@ -54,5 +54,5 @@ class WikiSubCategores(models.Model):
             'id'    : self.id,
             'title' : self.title,
             'image' : self.image,
-            'href'  : self.href,
+            'href'  : '/Wiki/Card/' + self.hashtag,
         }
