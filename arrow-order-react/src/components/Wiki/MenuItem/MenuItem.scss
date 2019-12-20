@@ -1,17 +1,19 @@
 li.WikiItem{
-	position: relative;
-	background-size: cover;
-	background-position: center center;
-	background-color: grey;
+	.bgWrapper{
+		position: relative;
+		background-size: cover;
+		background-position: center center;
+		background-color: grey;
 
-	width : 90%;
-	height : 25vh;
-	max-height: 140px;
-	border-radius: 20px;
-	margin-top: 1em;
-	margin-left: 5%;
+		width : 90%;
+		height : 25vh;
+		max-height: 140px;
+		border-radius: 20px;
+		margin-top: 1em;
+		margin-left: 5%;
+	}
 	
-	.title{
+	.text{
 		position: absolute;
 		top: 15%;
 		left: 5%;

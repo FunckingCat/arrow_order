@@ -1,15 +1,16 @@
 import React, {Component} from 'react';
+import {connect} from 'react-redux';
 
 import Spiner from '../Spiner/Spiner';
 import NotFound from './NotFound.svg';
 
-export default class Image extends Component {
+class Image extends Component {
 
     renderContent = () => {
         if (this.props.status === 102 || this.props.status === '102'){
             return <Spiner/>
         } else  if (this.props.src){
-            return <img src={'http://localhost:8000' + this.props.src || NotFound} alt={this.props.alt || 'Have a nice day'}/>
+            return <img src={this.props.domen + this.props.src || NotFound} alt={this.props.alt || 'Have a nice day'}/>
         } else {
             return <img src = {NotFound} alt = 'NotFound'/>
         }
@@ -24,3 +25,11 @@ export default class Image extends Component {
         )
     }
 }
+
+const mapStateTpProps = (state) => {
+    return {
+        domen : state.domen
+    }
+}
+
+export default connect(mapStateTpProps)(Image)

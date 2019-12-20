@@ -1,5 +1,5 @@
 export default class requestService {
-    constructor(domen) {
+    constructor(domen = '') {
         this._apiBase = domen;
     }
 

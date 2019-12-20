@@ -4,6 +4,8 @@ import {Link} from 'react-router-dom';
 import {initTransfer} from '../../../actions/historyActions';
 import './MenuItem.scss';
 
+import Bg from '../../ComCom/Bg/Bg';
+
 class WikiItem extends Component {
 
 	handaleClick = () => {
@@ -11,16 +13,11 @@ class WikiItem extends Component {
 	}
 
 	render() {
-		let {title} = this.props;
-
-		let style = {
-			backgroundImage: `url(http://localhost:8000${this.props.src})`
-		}
 
 		return(
 			<Link to = {this.props.href} onClick = {this.handaleClick}>
-			<li className="WikiItem" style = {style}>
-				<div className = 'title'>{title}</div>
+			<li className="WikiItem">
+				<Bg src = {this.props.src} text = {this.props.title}></Bg>
 			</li>
 			</Link>
 		)
