@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import {connect} from 'react-redux';
 import RequestSevice from '../../servises/requestService';
 import logo from './ArrowCook.svg';
 import './BurgerMenu.scss';
@@ -10,9 +11,9 @@ import Error    from '../ComCom/ErrorMassage/Error.js';
 import Arrow    from './MenuComponents/VerticalArrow/VerticalArrow';
 
 
-export default class BurgerMenu extends Component {
+class BurgerMenu extends Component {
 
-    RequestSevice = new RequestSevice();
+    RequestSevice = new RequestSevice(this.props.domen);
 
     state = {
         items : [],
@@ -76,3 +77,11 @@ export default class BurgerMenu extends Component {
         )
     }
 }
+
+const mapStateToProps = (state) => {
+	return {
+		domen : state.domen
+	}
+}
+
+export default connect(mapStateToProps)(BurgerMenu)

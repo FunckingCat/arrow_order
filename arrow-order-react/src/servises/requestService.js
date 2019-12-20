@@ -1,6 +1,6 @@
 export default class requestService {
-    constructor() {
-        this._apiBase = 'http://localhost:8000';
+    constructor(domen) {
+        this._apiBase = domen;
     }
 
     getResource = async (url) => {
@@ -33,7 +33,6 @@ export default class requestService {
         } else {
             res = await this.getResource('/api/wiki/categories/');
         }        
-        
         return res
     }
 

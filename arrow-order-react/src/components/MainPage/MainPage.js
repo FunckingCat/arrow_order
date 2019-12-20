@@ -1,5 +1,6 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import React, {Component} from 'react';
+import {connect} from 'react-redux';
 import './MainPage.scss';
 import RequestService from '../../servises/requestService';
 
@@ -13,8 +14,8 @@ import OrderButton from '../ComCom/Hat/HatComponents/OrderButton/OrderButton';
 import ContentBlock from './MainPageComponents/ContnetBlock/ContentBlock';
 import Basement from './MainPageComponents/Basement/Basement';
 
-export default class MainPage extends Component {
-    RequestService = new RequestService();
+class MainPage extends Component {
+    RequestService = new RequestService(this.props.domen);
 
     state = {
         contentBlocks : [],
@@ -87,3 +88,11 @@ export default class MainPage extends Component {
         )
     }
 }
+
+const mapStateToProps = (state) => {
+	return {
+		domen : state.domen
+	}
+}
+
+export default connect(mapStateToProps)(MainPage)

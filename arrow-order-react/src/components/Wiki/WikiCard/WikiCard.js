@@ -9,7 +9,7 @@ import Bg from '../../ComCom/Bg/Bg';
 
 class WikCard extends Component {
 
-	RequestService = new RequestService();
+	RequestService = new RequestService(this.props.domen);
 
 	state = {
 		titile : '',
@@ -53,4 +53,10 @@ class WikCard extends Component {
 	}
 }
 
-export default connect()(WikCard)
+const mapStateToProps = (state) => {
+	return {
+		domen : state.domen
+	}
+}
+
+export default connect(mapStateToProps)(WikCard)

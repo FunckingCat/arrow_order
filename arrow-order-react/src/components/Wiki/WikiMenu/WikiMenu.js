@@ -7,7 +7,7 @@ import Animator from '../../ComCom/Animator/Animator';
 import WikiItem from '../MenuItem/MenuItem';
 
 class WikMenu extends Component {
-	RequestService = new RequestService();
+	RequestService = new RequestService(this.props.domen);
 
 	state = {
 		type : this.props.type? '' : "Вики",
@@ -73,4 +73,10 @@ class WikMenu extends Component {
 	}
 }
 
-export default connect()(WikMenu)
+const mapStateToProps = (state) => {
+	return {
+		domen : state.domen
+	}
+}
+
+export default connect(mapStateToProps)(WikMenu)
