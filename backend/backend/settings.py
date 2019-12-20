@@ -25,7 +25,7 @@ SECRET_KEY = dj_settings.dj_settings('secret_key')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['192.168.1.65', 'localhost']
 
 CORS_ORIGIN_ALLOW_ALL = True
 
