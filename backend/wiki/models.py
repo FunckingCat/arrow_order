@@ -25,7 +25,6 @@ class WikiCategores(models.Model):
 
     title  = models.CharField(max_length = 50)
     image  = models.CharField(max_length = 80)
-    href   = models.CharField(max_length = 120)
     slogan = models.TextField(blank = True)
 
     def __str__(self):
