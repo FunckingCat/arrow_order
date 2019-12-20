@@ -5,7 +5,7 @@ import './WikiCard.scss';
 import Cross from '../../BurgerMenu/MenuComponents/Cross/Cross';
 import Animator from '../../ComCom/Animator/Animator';
 import RequestService from '../../../servises/requestService';
-import Image from '../../ComCom/ImageComp/Image';
+import Bg from '../../ComCom/Bg/Bg';
 
 class WikCard extends Component {
 
@@ -33,10 +33,6 @@ class WikCard extends Component {
 	}
 
 	render() {
-		
-		let style = {
-			backgroundImage: `url(http://localhost:8000${this.state.image})`
-		}
 
 		return(
 			<div className='WikiCard'>
@@ -44,9 +40,7 @@ class WikCard extends Component {
 				<Animator 
 					type = 'rise'
 					timeout = '100'>
-					<div className='cardImage' style = {style}>
-						
-					</div>
+					<Bg src = {this.state.image}></Bg>
 				</Animator>
 				<Animator 
 					type = 'fade'
