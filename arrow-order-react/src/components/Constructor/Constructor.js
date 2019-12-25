@@ -13,7 +13,7 @@ export default class Constructor extends Component {
 
  render(){
     return(
-        <div className = 'WikiWrapper'>
+        <div className = 'ConstructorWrapper'>
 				<Hat 
 					left   = {<BackButton />}
 					middle = {<div>Заказ</div>}
