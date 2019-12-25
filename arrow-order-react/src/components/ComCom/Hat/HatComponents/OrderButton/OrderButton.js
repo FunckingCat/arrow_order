@@ -10,12 +10,12 @@ import {Link} from "react-router-dom";
 class OrderButton extends Component {
 
     handaleClick = (event) => {
-        this.props.transfer('Продукция', '/Products')
+        this.props.transfer('Конструктор', '/Constructor/Cake')
     }
 
     render() {
         return(
-            <Link to ="/Products" onClick = {this.handaleClick}> 
+            <Link to ="/Constructor/Cake" onClick = {this.handaleClick}> 
                 <div className="button">
                     <div className="text">Заказать</div>
                     <div className="arrow"><img src={arrow} alt=""/></div>

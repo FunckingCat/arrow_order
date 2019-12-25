@@ -8,7 +8,7 @@ import MainPage from './components/MainPage/MainPage';
 import CommingSoon from './components/ComCom/CommigSoon/CommingSoon';
 import BurgerMenu from './components/BurgerMenu/BurgerMenu';
 import Wiki from './components/Wiki/Wiki';
-import Image from './components/ComCom/ImageComp/Image';
+import Constructor from './components/Constructor/Constructor'
 
 function App() {
   return (
@@ -18,12 +18,12 @@ function App() {
         <Route exact path = '/MainPage' component = {MainPage} />
         <Route exact path = '/Menu' component = {BurgerMenu} />
         <Route path = '/Wiki' component = {Wiki}/>
+        <Route path = '/Constructor' component = {Constructor} />
         <Route exact path = '/FreeDates' component = {CommingSoon} />
         <Route exact path = '/Rules' component = {CommingSoon} />
         <Route exact path = '/Contacts' component = {CommingSoon} />
         <Route exact path = '/WorkWithUs' component = {CommingSoon} />
         <Route exact path = '/Products' component = {CommingSoon} />
-        <Route exact path = '/Image' component = {() => {return <Image src = '/paralax/bg (0).png'/>}} />
       </div>
     </Router>
   );
