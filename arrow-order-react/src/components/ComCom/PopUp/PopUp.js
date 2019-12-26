@@ -1,16 +1,28 @@
 import React,{Component} from 'react';
 import './PopUp.scss'; 
 import {connect} from 'react-redux'; 
+import RequestService from '../../../servises/requestService';
 
 import {popUpActive} from '../../../actions/popUpActions';
 
+import RadioButton from '../../ComCom/RadioButton/RadioButton';
+import BlackButton from '../../ComCom/BlackButton/BlackButton';
+
 class PopUp extends Component {
+
+    RequestService = new RequestService(this.props.domen)
+
+    state = {
+        selected : '',
+        summary : 'Ванильный бисквит',
+    }
 
     bg = React.createRef();
     popup = React.createRef();
 
     closePopUp = (event) => {
-        if (event.target.hasAttribute('closeable')){
+        if (event.target.hasAttribute('closeable') 
+            && event.target.getAttribute('closeable') === 'true'){
             this.props.popUpActive(false);
         }
             
@@ -18,10 +30,15 @@ class PopUp extends Component {
 
     componentDidMount() {
         this.setStyle()
+        document.querySelector("html").style.overflow = 'hidden';
     }
 
     componentDidUpdate() {
         this.setStyle()
+    }
+
+    componentWillUnmount() {
+        document.querySelector("html").style.overflow = '';
     }
 
     setStyle = () => {
@@ -38,7 +55,16 @@ class PopUp extends Component {
         }
     }
 
+    renderRadio = () => {
+        return [
+            <RadioButton id = '1' name = 'RB' key = '1' text = 'Во так вот'/>,
+            <RadioButton id = '2' name = 'RB' key = '2' text = 'Как то так'/>,
+        ]
+    }
+
     render(){
+
+        let radioButtons = this.renderRadio();
 
         return(
             <>
@@ -50,7 +76,21 @@ class PopUp extends Component {
                  ref = {this.popup}>
                 <div className="line"></div>
                 <div className="content">
-                    <button onClick = {this.handaleClick}>Выключить</button>
+                    <div className="info">
+                        <h2>{this.props.content}</h2>
+                        <ul>
+                            {radioButtons}
+                        </ul>
+                    </div>
+                    <div className="add">
+                        <div className="summary">{this.state.summary}</div>
+                        <BlackButton 
+                            text = 'Добавить' 
+                            closeable='true'
+                            onClick = {
+                                () => {console.log(this.state.summary);}
+                            }/>
+                    </div>
                 </div>
             </div>
             </>
@@ -60,7 +100,9 @@ class PopUp extends Component {
 
 const mapStateToProps = (state) => {
     return({
+        domen : state.domen,
         active : state.popUp.active,
+        content : state.popUp.content,
     })
 } 
 

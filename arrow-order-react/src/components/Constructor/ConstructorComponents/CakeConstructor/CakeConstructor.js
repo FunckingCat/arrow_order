@@ -2,13 +2,14 @@ import React,{Component} from 'react';
 import './CakeConstructor.scss'; 
 import {connect} from 'react-redux';
 
-import {popUpActive} from '../../../../actions/popUpActions';
+import {popUpActive, popUpSetContent} from '../../../../actions/popUpActions';
 
 import PopUp from '../../../ComCom/PopUp/PopUp';
 
 class CakeConstructor extends Component {
 
-    handaleClick = () => {
+    handaleClick = (event) => {
+        this.props.popUpSetContent(event.target.innerHTML)
         this.props.popUpActive(true);
     }
 
@@ -18,8 +19,8 @@ class CakeConstructor extends Component {
             <>
                 <div className = "CakeConstructor">
                     <button onClick = {this.handaleClick}>Бисквит</button>
-                    <button>Крем</button>
-                    <button>Начинка</button>
+                    <button onClick = {this.handaleClick}>Крем</button>
+                    <button onClick = {this.handaleClick}>Начинка</button>
                 </div>
                 <PopUp/>
             </>
@@ -35,6 +36,7 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = {
     popUpActive : popUpActive,
+    popUpSetContent : popUpSetContent,
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(CakeConstructor)

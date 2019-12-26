@@ -1,6 +1,7 @@
 $Comfortaa: 'Comfortaa';
 
-.content{
+.mainPage{
+  .content{
     min-height: 170px;
     display: flex;
     flex-direction: column;
@@ -18,3 +19,4 @@ $Comfortaa: 'Comfortaa';
       line-height: 1.1em;
     }
   }
+}
