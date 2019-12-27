@@ -32,8 +32,12 @@ class Biscuit (models.Model):
         return self.name
 
     def all(self):
+        fillings = []
+        for filling in self.avalibleFillings.all():
+            fillings.append(filling.name)
         return {
             'name' : self.name,
+            'fillings' : fillings,
         }
 
 
@@ -45,6 +49,10 @@ class Cream (models.Model):
         return self.name
 
     def all(self):
+        fillings = []
+        for filling in self.avalibleFillings.all():
+            fillings.append(filling.name)
         return {
             'name' : self.name,
+            'fillings' : fillings,
         }
