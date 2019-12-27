@@ -5,8 +5,8 @@ urlpatterns = [
     path('', views.allInfo, name = 'allInfo'),
     path('filling/', views.getFillings, name = 'getFillings'),
     path('filling/<str:parametrs>/', views.getFillings, name = 'getFillings'),
-    path('biscuits/', views.getBiscuits, name = 'getBiscuits'),
-    path('biscuits/<str:filling>/', views.getBiscuits, name = 'getBiscuits'),
-    path('creams/', views.getCreams, name = 'getCreams'),
-    path('creams/<str:filling>/', views.getCreams, name = 'getCreams'),
+    path('biscuit/', views.getBiscuits, name = 'getBiscuits'),
+    path('biscuit/<str:filling>/', views.getBiscuits, name = 'getBiscuits'),
+    path('cream/', views.getCreams, name = 'getCreams'),
+    path('cream/<str:filling>/', views.getCreams, name = 'getCreams'),
 ]

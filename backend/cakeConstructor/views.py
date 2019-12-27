@@ -41,8 +41,22 @@ def getFillings(request, parametrs = False):
 
 def getBiscuits(request, filling = False):
     response = {'values' : []}
+    if not filling:
+        for item in Biscuit.objects.all():
+            response['values'].append(item.name)
+    else:
+        for item in Biscuit.objects.all():
+            if filling in item.all()['fillings']:
+                response['values'].append(item.name)
     return JsonResponse(response)
 
 def getCreams(request, filling = False):
     response = {'values' : []}
+    if not filling:
+        for item in Cream.objects.all():
+            response['values'].append(item.name)
+    else:
+        for item in Cream.objects.all():
+            if filling in item.all()['fillings']:
+                response['values'].append(item.name)
     return JsonResponse(response)
