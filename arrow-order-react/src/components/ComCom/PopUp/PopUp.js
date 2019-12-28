@@ -15,6 +15,7 @@ class PopUp extends Component {
     state = {
         selected : '',
         summary : 'Ванильный бисквит',
+        ulitems : [],
     }
 
     bg = React.createRef();
@@ -36,7 +37,7 @@ class PopUp extends Component {
 
     componentDidUpdate() {
         this.setStyle()
-        if (this.props.active) {
+        if (this.props.active && this.state.ulitems.length === 0) {
             this.updateCakeItems();
         }
     }
@@ -47,6 +48,11 @@ class PopUp extends Component {
 
     updateCakeItems = () => {
         this.RequestService.getCakeInfo(this.props.content)
+        .then((res) => {
+            this.setState({
+                ulitems : res,
+            })
+        })
     }
 
     setStyle = () => {
