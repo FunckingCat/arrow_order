@@ -17,6 +17,7 @@ class PopUp extends Component {
         summary : 'Ванильный бисквит',
         ulitems : [],
         prevContent : null,
+        buttonActive : 'true',
     }
 
     bg = React.createRef();
@@ -36,7 +37,7 @@ class PopUp extends Component {
         document.querySelector("html").style.overflow = '';
     }
 
-    closePopUp = (event) => {
+    closePopUp = (event, force = true) => {
         if (event.target.hasAttribute('closeable') 
             && event.target.getAttribute('closeable') === 'true'){
             this.props.popUpActive(false);
@@ -54,14 +55,15 @@ class PopUp extends Component {
     }
 
     updateUlItems = () => {
-        this.RequestService.getCakeInfo(this.props.content)
-        .then((res) => {
-            if (!(this.compare(res, this.state.ulitems))) {
+        if (this.props.content !== this.state.prevContent){
+            this.RequestService.getCakeInfo(this.props.content)
+            .then((res) => {
                 this.setState({
-                    ulitems : res
-                })
-            }            
-        })
+                    ulitems : res,
+                    prevContent : this.props.content,
+                })                           
+            })
+        } 
     }
 
     setStyle = () => {
@@ -113,9 +115,11 @@ class PopUp extends Component {
                         <div className="summary">{this.state.summary}</div>
                         <BlackButton 
                             text = 'Добавить' 
-                            closeable='true'
+                            closeable={this.state.buttonActive}
                             onClick = {
-                                () => {console.log(this.state.summary);}
+                                () => {this.setState({
+                                    buttonActive : 'false',
+                                })}
                             }/>
                     </div>
                 </div>
@@ -130,6 +134,11 @@ const mapStateToProps = (state) => {
         domen : state.domen,
         active : state.popUp.active,
         content : state.popUp.content,
+        parts : {
+            filling : state.cakeParts.filling,
+            biscuit : state.cakeParts.biscuit,
+            cream : state.cakeParts.cream,
+        }
     })
 } 
 
