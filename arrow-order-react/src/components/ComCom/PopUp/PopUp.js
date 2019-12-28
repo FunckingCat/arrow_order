@@ -22,24 +22,6 @@ class PopUp extends Component {
     bg = React.createRef();
     popup = React.createRef();
 
-    // static getDerivedStateFromProps = (nextProps, prevState) => {
-
-    //     if (nextProps.content !== '' && nextProps.content !== prevState.prevContent){
-    //         console.log('tutu');
-    //         return {
-    //             prevContent : nextProps.content
-    //         }
-    //     }
-    //     return null
-    //   }
-
-    closePopUp = (event) => {
-        if (event.target.hasAttribute('closeable') 
-            && event.target.getAttribute('closeable') === 'true'){
-            this.props.popUpActive(false);
-        }            
-    }
-
     componentDidMount() {
         this.setStyle();
         document.querySelector("html").style.overflow = 'hidden';
@@ -50,12 +32,21 @@ class PopUp extends Component {
         this.updateUlItems();
     }
 
+    componentWillUnmount() {
+        document.querySelector("html").style.overflow = '';
+    }
+
+    closePopUp = (event) => {
+        if (event.target.hasAttribute('closeable') 
+            && event.target.getAttribute('closeable') === 'true'){
+            this.props.popUpActive(false);
+        }            
+    }
+
     compare = (arr1, arr2) => {
         let flag = true;
         for (let item of arr1){
-            if (arr2.includes(item)){
-
-            } else {
+            if (!(arr2.includes(item))){
                 flag = false
             }
         }
@@ -73,10 +64,6 @@ class PopUp extends Component {
         })
     }
 
-    componentWillUnmount() {
-        document.querySelector("html").style.overflow = '';
-    }
-
     setStyle = () => {
         if (this.props.active) {
             this.bg.current.classList.remove('hide')
@@ -92,10 +79,14 @@ class PopUp extends Component {
     }
 
     renderRadio = () => {
-        return [
-            <RadioButton id = '1' name = 'RB' key = '1' text = 'Во так вот'/>,
-            <RadioButton id = '2' name = 'RB' key = '2' text = 'Как то так'/>,
-        ]
+        let radioButtons = []
+        let i = 1;
+        for (let item of this.state.ulitems){
+            radioButtons.push(
+                <RadioButton id = {i++} name = 'RB' key = {i++} text = {item}/>
+            )
+        }
+        return radioButtons
     }
 
     render(){
