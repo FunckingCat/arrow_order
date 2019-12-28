@@ -29,16 +29,24 @@ class PopUp extends Component {
     }
 
     componentDidMount() {
-        this.setStyle()
+        this.setStyle();
         document.querySelector("html").style.overflow = 'hidden';
+        this.updateCakeItems();
     }
 
     componentDidUpdate() {
         this.setStyle()
+        if (this.props.active) {
+            this.updateCakeItems();
+        }
     }
 
     componentWillUnmount() {
         document.querySelector("html").style.overflow = '';
+    }
+
+    updateCakeItems = () => {
+        this.RequestService.getCakeInfo(this.props.content)
     }
 
     setStyle = () => {

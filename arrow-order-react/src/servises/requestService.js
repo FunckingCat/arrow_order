@@ -40,5 +40,29 @@ export default class requestService {
         const res = await this.getResource(`/api/wiki/card/${hashtag}/`);
         return res
     }
-        
+
+    getCakeInfo = async (type = '', parametrs = {}) => {
+        let res;
+        let {filling = '', biscuit = '', cream = ''} = parametrs;
+        switch (type) {
+            case 'Начинка':
+            case 'filling':
+                res = await this.getResource(`/api/constructor/cake/filling/${biscuit}&${cream}${biscuit||cream? '/' : ''}`);
+                break;
+
+            case 'Бисквит':
+            case 'biscuit':
+                res = await this.getResource(`/api/constructor/cake/biscuit/${filling}${biscuit||cream? '/' : ''}`);
+                break;
+
+            case 'Крем':
+            case 'cream':
+                res = await this.getResource(`/api/constructor/cake/cream/${filling}${biscuit||cream? '/' : ''}`);
+                break;
+
+            default:
+                res = ['Unknown type in getCakeInfo']
+        }
+        return res
+    }      
 }
