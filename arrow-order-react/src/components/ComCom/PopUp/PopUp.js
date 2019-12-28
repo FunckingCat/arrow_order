@@ -1,58 +1,80 @@
 import React,{Component} from 'react';
 import './PopUp.scss'; 
 import {connect} from 'react-redux'; 
-import RequestService from '../../../servises/requestService';
 
 import {popUpActive} from '../../../actions/popUpActions';
 
 import RadioButton from '../../ComCom/RadioButton/RadioButton';
 import BlackButton from '../../ComCom/BlackButton/BlackButton';
+import requestService from '../../../servises/requestService';
 
 class PopUp extends Component {
 
-    RequestService = new RequestService(this.props.domen)
+    RequestService = new requestService(this.props.domen)
 
     state = {
         selected : '',
         summary : 'Ванильный бисквит',
         ulitems : [],
+        prevContent : null,
     }
 
     bg = React.createRef();
     popup = React.createRef();
 
+    // static getDerivedStateFromProps = (nextProps, prevState) => {
+
+    //     if (nextProps.content !== '' && nextProps.content !== prevState.prevContent){
+    //         console.log('tutu');
+    //         return {
+    //             prevContent : nextProps.content
+    //         }
+    //     }
+    //     return null
+    //   }
+
     closePopUp = (event) => {
         if (event.target.hasAttribute('closeable') 
             && event.target.getAttribute('closeable') === 'true'){
             this.props.popUpActive(false);
-        }
-            
+        }            
     }
 
     componentDidMount() {
         this.setStyle();
         document.querySelector("html").style.overflow = 'hidden';
-        this.updateCakeItems();
     }
 
     componentDidUpdate() {
         this.setStyle()
-        if (this.props.active && this.state.ulitems.length === 0) {
-            this.updateCakeItems();
+        this.updateUlItems();
+    }
+
+    compare = (arr1, arr2) => {
+        let flag = true;
+        for (let item of arr1){
+            if (arr2.includes(item)){
+
+            } else {
+                flag = false
+            }
         }
+        return flag
+    }
+
+    updateUlItems = () => {
+        this.RequestService.getCakeInfo(this.props.content)
+        .then((res) => {
+            if (!(this.compare(res, this.state.ulitems))) {
+                this.setState({
+                    ulitems : res
+                })
+            }            
+        })
     }
 
     componentWillUnmount() {
         document.querySelector("html").style.overflow = '';
-    }
-
-    updateCakeItems = () => {
-        this.RequestService.getCakeInfo(this.props.content)
-        .then((res) => {
-            this.setState({
-                ulitems : res,
-            })
-        })
     }
 
     setStyle = () => {

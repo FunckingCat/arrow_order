@@ -61,7 +61,7 @@ export default class requestService {
                 break;
 
             default:
-                res = ['Unknown type in getCakeInfo']
+                res = await ['Unknown type in getCakeInfo']
         }
         return res
     }      
