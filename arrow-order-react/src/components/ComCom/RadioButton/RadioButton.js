@@ -10,7 +10,8 @@ export default class RadioButton extends Component {
                 type="radio" 
                 name = {this.props.name}
                 onChange = {this.props.onChecked} 
-                className = 'radioButton' 
+                className = 'radioButton'
+                data-value = {this.props.text} 
                 id = {'radio' + this.props.id}/>
             <label htmlFor={'radio' + this.props.id}>
                 {this.props.text}

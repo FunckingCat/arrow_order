@@ -2,10 +2,11 @@ import React,{Component} from 'react';
 import './PopUp.scss'; 
 import {connect} from 'react-redux'; 
 
-import {popUpActive} from '../../../actions/popUpActions';
+import {popUpActive}  from '../../../actions/popUpActions';
+import {setCakeParts} from '../../../actions/cakeConstructorActions';
 
-import RadioButton from '../../ComCom/RadioButton/RadioButton';
-import BlackButton from '../../ComCom/BlackButton/BlackButton';
+import RadioButton    from '../../ComCom/RadioButton/RadioButton';
+import BlackButton    from '../../ComCom/BlackButton/BlackButton';
 import requestService from '../../../servises/requestService';
 
 class PopUp extends Component {
@@ -44,16 +45,6 @@ class PopUp extends Component {
         }            
     }
 
-    compare = (arr1, arr2) => {
-        let flag = true;
-        for (let item of arr1){
-            if (!(arr2.includes(item))){
-                flag = false
-            }
-        }
-        return flag
-    }
-
     updateUlItems = () => {
         if (this.props.content !== this.state.prevContent){
             this.RequestService.getCakeInfo(this.props.content)
@@ -80,12 +71,24 @@ class PopUp extends Component {
         }
     }
 
+    radioChecked = (event) => {
+        console.log(event.target.dataset.value);
+        this.setState({
+            selected : event.target.dataset.value
+        })
+    }
+
     renderRadio = () => {
         let radioButtons = []
         let i = 1;
         for (let item of this.state.ulitems){
             radioButtons.push(
-                <RadioButton id = {i++} name = 'RB' key = {i++} text = {item}/>
+                <RadioButton 
+                    id = {i++} 
+                    name = 'RB' 
+                    key = {i++} 
+                    text = {item}
+                    onChecked = {this.radioChecked}/>
             )
         }
         return radioButtons
@@ -144,6 +147,7 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = {
     popUpActive : popUpActive,
+    setCakeParts: setCakeParts,
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(PopUp)
