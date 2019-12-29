@@ -14,11 +14,12 @@ class PopUp extends Component {
     RequestService = new requestService(this.props.domen)
 
     state = {
-        selected : '',
-        summary : 'Ванильный бисквит',
         ulitems : [],
+        selected : '',
+        buttonActive : 'false',
+        summary : 'Ванильный бисквит',
+        constant : 0,
         prevContent : null,
-        buttonActive : 'true',
     }
 
     bg = React.createRef();
@@ -51,6 +52,8 @@ class PopUp extends Component {
             .then((res) => {
                 this.setState({
                     ulitems : res,
+                    selected : '',
+                    buttonActive : 'false',
                     prevContent : this.props.content,
                 })                           
             })
@@ -72,9 +75,9 @@ class PopUp extends Component {
     }
 
     radioChecked = (event) => {
-        console.log(event.target.dataset.value);
         this.setState({
-            selected : event.target.dataset.value
+            selected : event.target.dataset.value,
+            buttonActive : 'true',
         })
     }
 
@@ -86,12 +89,23 @@ class PopUp extends Component {
                 <RadioButton 
                     id = {i++} 
                     name = 'RB' 
-                    key = {i++} 
+                    key = {item + i + this.state.constant} 
                     text = {item}
                     onChecked = {this.radioChecked}/>
             )
         }
         return radioButtons
+    }
+
+    partSubmit = () => {
+        if (this.state.buttonActive === 'true'){
+            let now = new Date();
+            this.setState({
+                buttonActive : 'false',
+                selected : '',
+                constant : now.getMilliseconds(),
+            })
+        }            
     }
 
     render(){
@@ -119,11 +133,7 @@ class PopUp extends Component {
                         <BlackButton 
                             text = 'Добавить' 
                             closeable={this.state.buttonActive}
-                            onClick = {
-                                () => {this.setState({
-                                    buttonActive : 'false',
-                                })}
-                            }/>
+                            onClick = {this.partSubmit}/>
                     </div>
                 </div>
             </div>
