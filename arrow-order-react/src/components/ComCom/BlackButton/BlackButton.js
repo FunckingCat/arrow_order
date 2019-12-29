@@ -14,7 +14,7 @@ export default class BlackButton extends Component {
     }
     
     color = () => {
-        if (this.props.closeable === 'true'){
+        if (this.props.active === 'true'){
             this.button.current.style.backgroundColor = 'black'
         } else {
             this.button.current.style.backgroundColor = '#787878'
@@ -26,7 +26,8 @@ export default class BlackButton extends Component {
             <button 
                 ref = {this.button}
                 className = 'BlackButton'
-                closeable={this.props.closeable}
+                active = {this.props.active}
+                closeable={this.props.active}
                 onClick = {this.props.onClick}>
                 {this.props.text}
             </button>

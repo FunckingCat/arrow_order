@@ -38,7 +38,7 @@ class PopUp extends Component {
         document.querySelector("html").style.overflow = '';
     }
 
-    closePopUp = (event, force = true) => {
+    closePopUp = (event) => {
         if (event.target.hasAttribute('closeable') 
             && event.target.getAttribute('closeable') === 'true'){
             this.props.popUpActive(false);
@@ -46,6 +46,7 @@ class PopUp extends Component {
     }
 
     updateUlItems = () => {
+        //let {filling, biscuit, cream} = this.props.parts;
         if (this.props.content !== this.state.prevContent){
             this.RequestService.getCakeInfo(this.props.content, this.props.parts)
             .then((res) => {
@@ -140,7 +141,7 @@ class PopUp extends Component {
                         }</div>
                         <BlackButton 
                             text = 'Добавить' 
-                            closeable={this.state.buttonActive}
+                            active={this.state.buttonActive}
                             onClick = {this.partSubmit}/>
                     </div>
                 </div>
