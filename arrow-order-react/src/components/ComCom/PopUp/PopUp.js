@@ -69,7 +69,12 @@ class PopUp extends Component {
             this.bg.current.style.backgroundColor = 'rgba(115,115,115,0)';
             this.popup.current.classList.add('hide')
             setTimeout(() => {                
-                this.bg.current.classList.add('hide')
+                try{
+                    this.bg.current.classList.add('hide')
+                }
+                catch{
+                    console.log('Непонятная ошибка');
+                }
             }, 500);
         }
     }
