@@ -18,9 +18,17 @@ class CakeConstructor extends Component {
         return(
             <>
                 <div className = "CakeConstructor">
+                    <div>--------------------------------------------------</div>
                     <button onClick = {this.handaleClick}>Бисквит</button>
                     <button onClick = {this.handaleClick}>Крем</button>
                     <button onClick = {this.handaleClick}>Начинка</button>
+                    <div>
+                        --------------------------------------------------
+                        <div>Начинка: {this.props.cakeParts.filling}</div>
+                        <div>Бисквит: {this.props.cakeParts.biscuit}</div>
+                        <div>Крем:    {this.props.cakeParts.cream}</div>
+                        --------------------------------------------------
+                    </div>
                 </div>
                 <PopUp/>
             </>
@@ -31,6 +39,11 @@ class CakeConstructor extends Component {
 const mapStateToProps = (state) => {
     return {
         isPopUpActive : state.popUp.active,
+        cakeParts : {
+            filling : state.cakeParts.filling,
+            biscuit : state.cakeParts.biscuit,
+            cream : state.cakeParts.cream,
+        }
     }
 }
 

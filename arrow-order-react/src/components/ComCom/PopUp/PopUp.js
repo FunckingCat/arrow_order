@@ -17,7 +17,6 @@ class PopUp extends Component {
         ulitems : [],
         selected : '',
         buttonActive : 'false',
-        summary : 'Ванильный бисквит',
         constant : 0,
         prevContent : null,
     }
@@ -48,7 +47,7 @@ class PopUp extends Component {
 
     updateUlItems = () => {
         if (this.props.content !== this.state.prevContent){
-            this.RequestService.getCakeInfo(this.props.content)
+            this.RequestService.getCakeInfo(this.props.content, this.props.parts)
             .then((res) => {
                 this.setState({
                     ulitems : res,
@@ -99,6 +98,11 @@ class PopUp extends Component {
 
     partSubmit = () => {
         if (this.state.buttonActive === 'true'){
+            this.props.setCakeParts({
+                filling : this.props.content === 'Начинка'? this.state.selected : '',
+                biscuit : this.props.content === 'Бисквит'? this.state.selected : '',
+                cream   : this.props.content === 'Крем'? this.state.selected : '',
+            })
             let now = new Date();
             this.setState({
                 buttonActive : 'false',
@@ -129,7 +133,11 @@ class PopUp extends Component {
                         </ul>
                     </div>
                     <div className="add">
-                        <div className="summary">{this.state.summary}</div>
+                        <div className="summary">{
+                            this.state.selected
+                            ? this.state.selected + ' ' + this.props.content.toLowerCase()
+                            : null                            
+                        }</div>
                         <BlackButton 
                             text = 'Добавить' 
                             closeable={this.state.buttonActive}

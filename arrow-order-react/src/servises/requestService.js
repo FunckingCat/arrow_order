@@ -52,12 +52,12 @@ export default class requestService {
 
             case 'Бисквит':
             case 'biscuit':
-                res = await this.getResource(`/api/constructor/cake/biscuit/${filling}${biscuit||cream? '/' : ''}`);
+                res = await this.getResource(`/api/constructor/cake/biscuit/${filling}${filling? '/' : ''}`);
                 break;
 
             case 'Крем':
             case 'cream':
-                res = await this.getResource(`/api/constructor/cake/cream/${filling}${biscuit||cream? '/' : ''}`);
+                res = await this.getResource(`/api/constructor/cake/cream/${filling}${filling? '/' : ''}`);
                 break;
 
             default:
