@@ -57,7 +57,7 @@ def getBiscuits(request, filling = False):
     else:
         for item in Biscuit.objects.all():
             if filling in item.all()['fillings']:
-                response['values'].append(item.name)
+                response['values']['active'].append(item.name)
     return JsonResponse(response)
 
 def getCreams(request, filling = False):

@@ -14,7 +14,8 @@ class PopUp extends Component {
     RequestService = new requestService(this.props.domen)
 
     state = {
-        ulitems : [],
+        allUlitems : [],
+        activeUlitems : [],
         selected : '',
         buttonActive : 'false',
         constant : 0,
@@ -51,7 +52,8 @@ class PopUp extends Component {
             this.RequestService.getCakeInfo(this.props.content, this.props.parts)
             .then((res) => {
                 this.setState({
-                    ulitems : res,
+                    allUlitems : res.all || [],
+                    activeUlitems : res.active || [],
                     selected : '',
                     buttonActive : 'false',
                     prevContent : this.props.content,
@@ -89,13 +91,14 @@ class PopUp extends Component {
     renderRadio = () => {
         let radioButtons = []
         let i = 1;
-        for (let item of this.state.ulitems){
+        for (let item of this.state.allUlitems){
             radioButtons.push(
                 <RadioButton 
                     id = {i++} 
                     name = 'RB' 
                     key = {item + i + this.state.constant} 
                     text = {item}
+                    active = {this.state.activeUlitems.includes(item)}
                     onChecked = {this.radioChecked}/>
             )
         }
