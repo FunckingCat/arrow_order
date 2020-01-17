@@ -48,16 +48,19 @@ class MainPage extends Component {
 
         let content = [];
         let i =0;
+        
+        let mainImage = data.filter((item) => item.title === 'Главная картинка').map((item) => item.image)[0];
+        content.push(<Image key = 'first' src = {mainImage} alt = 'Arrow Products'/>);
+
+        data = data.filter(item => item.title !== 'Главная картинка').sort((a, b) => a.priority - b.priority)
 
         for (i; i < data.length; i++){
-            content.push(<Image key = {i} src = {data[i].image} alt = 'Arrow Products'/>);
             content.push(<ContentBlock
             key = {i+0.5} 
             header = {data[i].title}
-            text = {data[i].text}/>)
+            text = {data[i].text}/>);
+            content.push(<Image key = {i + data[i].title} src = {data[i].image} alt = 'Arrow Products'/>);
         }
-
-        content.push(<Image key = 'last' src = {`/static/stock/SaltCaramel.png`} alt = 'Arrow Products'/>);
 
         return content
     }

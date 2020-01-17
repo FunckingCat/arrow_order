@@ -24,26 +24,36 @@ def getFillings(request, parametrs = False):
             biscuit, cream = parametrs.split('&')
         except:
             biscuit = parametrs
-    response = {'values' : []}
+    response = {'values' : {
+        'all' : [],
+        'active' : [],
+    }}
+    for item in Filling.objects.all():
+        response['values']['all'].append(item.name)
     for item in Filling.objects.all():
         if biscuit and cream:
             if biscuit in item.all()['biscuits'] and cream in item.all()['creams']:
-                response['values'].append(item.name)
+                response['values']['active'].append(item.name)
         elif biscuit:
             if biscuit in item.all()['biscuits']:
-                response['values'].append(item.name)
+                response['values']['active'].append(item.name)
         elif cream:
             if cream in item.all()['creams']:
-                response['values'].append(item.name)
+                response['values']['active'].append(item.name)
         else:
-            response['values'].append(item.name)
+            response['values']['active'].append(item.name)
     return JsonResponse(response)
 
 def getBiscuits(request, filling = False):
-    response = {'values' : []}
+    response = {'values' : {
+        'all' : [],
+        'active' : [],
+    }}
+    for item in Biscuit.objects.all():
+        response['values']['all'].append(item.name)
     if not filling:
         for item in Biscuit.objects.all():
-            response['values'].append(item.name)
+            response['values']['active'].append(item.name)
     else:
         for item in Biscuit.objects.all():
             if filling in item.all()['fillings']:
@@ -51,12 +61,17 @@ def getBiscuits(request, filling = False):
     return JsonResponse(response)
 
 def getCreams(request, filling = False):
-    response = {'values' : []}
+    response = {'values' : {
+        'all' : [],
+        'active' : [],
+    }}
+    for item in Cream.objects.all():
+        response['values']['all'].append(item.name)
     if not filling:
         for item in Cream.objects.all():
-            response['values'].append(item.name)
+            response['values']['active'].append(item.name)
     else:
         for item in Cream.objects.all():
             if filling in item.all()['fillings']:
-                response['values'].append(item.name)
+                response['values']['active'].append(item.name)
     return JsonResponse(response)
