@@ -17,6 +17,12 @@ def allInfo (request):
         response['for-creams'].append(item.all())
     return JsonResponse(response)
 
+def  buildItem(item):
+    return {
+        'name'               : item.name,
+        'popUpIconSRC'       : item.popUpIcon,
+    }
+
 def getFillings(request, parametrs = False):
     biscuit, cream = False, False
     if parametrs:
@@ -29,19 +35,19 @@ def getFillings(request, parametrs = False):
         'active' : [],
     }}
     for item in Filling.objects.all():
-        response['values']['all'].append(item.name)
+        response['values']['all'].append(buildItem(item))
     for item in Filling.objects.all():
         if biscuit and cream:
             if biscuit in item.all()['biscuits'] and cream in item.all()['creams']:
-                response['values']['active'].append(item.name)
+                response['values']['active'].append(buildItem(item))
         elif biscuit:
             if biscuit in item.all()['biscuits']:
-                response['values']['active'].append(item.name)
+                response['values']['active'].append(buildItem(item))
         elif cream:
             if cream in item.all()['creams']:
-                response['values']['active'].append(item.name)
+                response['values']['active'].append(buildItem(item))
         else:
-            response['values']['active'].append(item.name)
+            response['values']['active'].append(buildItem(item))
     return JsonResponse(response)
 
 def getBiscuits(request, filling = False):
@@ -50,14 +56,14 @@ def getBiscuits(request, filling = False):
         'active' : [],
     }}
     for item in Biscuit.objects.all():
-        response['values']['all'].append(item.name)
+        response['values']['all'].append(buildItem(item))
     if not filling:
         for item in Biscuit.objects.all():
-            response['values']['active'].append(item.name)
+            response['values']['active'].append(buildItem(item))
     else:
         for item in Biscuit.objects.all():
             if filling in item.all()['fillings']:
-                response['values']['active'].append(item.name)
+                response['values']['active'].append(buildItem(item))
     return JsonResponse(response)
 
 def getCreams(request, filling = False):
@@ -66,12 +72,12 @@ def getCreams(request, filling = False):
         'active' : [],
     }}
     for item in Cream.objects.all():
-        response['values']['all'].append(item.name)
+        response['values']['all'].append(buildItem(item))
     if not filling:
         for item in Cream.objects.all():
-            response['values']['active'].append(item.name)
+            response['values']['active'].append(buildItem(item))
     else:
         for item in Cream.objects.all():
             if filling in item.all()['fillings']:
-                response['values']['active'].append(item.name)
+                response['values']['active'].append(buildItem(item))
     return JsonResponse(response)

@@ -51,9 +51,12 @@ class PopUp extends Component {
         if (this.props.content !== this.state.prevContent){
             this.RequestService.getCakeInfo(this.props.content, this.props.parts)
             .then((res) => {
+                let active = []
+                try{active = res.active.map(item => item.name)} // При сбросе вылетает исключение, ловим его
+                catch{}
                 this.setState({
-                    allUlitems : res.all || [],
-                    activeUlitems : res.active || [],
+                    allUlitems : res.all || [], // Так же ловим исключение про сбросе
+                    activeUlitems : active,
                     selected : '',
                     buttonActive : 'false',
                     prevContent : this.props.content,
@@ -96,9 +99,9 @@ class PopUp extends Component {
                 <RadioButton 
                     id = {i++} 
                     name = 'RB' 
-                    key = {item + i + this.state.constant} 
-                    text = {item}
-                    active = {this.state.activeUlitems.includes(item)}
+                    key = {item.name + i + this.state.constant} 
+                    text = {item.name}
+                    active = {this.state.activeUlitems.includes(item.name)}
                     onChecked = {this.radioChecked}/>
             )
         }
