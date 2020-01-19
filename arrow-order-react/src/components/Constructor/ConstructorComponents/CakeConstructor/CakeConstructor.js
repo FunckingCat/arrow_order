@@ -11,12 +11,32 @@ import BlackButton from '../../../ComCom/BlackButton/BlackButton';
 class CakeConstructor extends Component {
 
     state = {
-        resetActive : 'true',
-        confirmActive : 'true',
+        resetActive : 'false',
+        confirmActive : 'false',
+    }
+
+    componentDidUpdate() {
+        this.updateButtons();
+    }
+
+    updateButtons = () => {
+        let {filling, biscuit, cream} = this.props.cakeParts;
+        let reset = String(Boolean(filling || biscuit || cream))
+        let confirm = String(Boolean(filling && biscuit && cream))
+        if (reset !== this.state.resetActive){
+            this.setState({
+                resetActive : reset
+            })
+        } 
+        if (confirm !== this.state.confirmActive){
+            this.setState({
+                confirmActive : confirm
+            })
+        } 
     }
 
     handaleClick = (event) => {
-        this.props.popUpSetContent(event.target.innerHTML)
+        this.props.popUpSetContent(event.target.innerHTML);
         this.props.popUpActive(true);
     }
 
@@ -31,8 +51,8 @@ class CakeConstructor extends Component {
     }
 
     confirm = () => {
-        let {filling, biscuit, cream} = this.props.cakeParts;
-        console.log(filling, biscuit, cream);
+        //let {filling, biscuit, cream} = this.props.cakeParts;
+        console.log(String(Boolean(this.props.cakeParts.filling && this.props.cakeParts.biscuit && this.props.cakeParts.cream)));
     }
 
     render(){
@@ -58,6 +78,7 @@ class CakeConstructor extends Component {
                             onClick = {this.reset}/>
                         <BlackButton 
                             text='Далее'
+                            onClick={this.confirm}
                             active = {this.state.confirmActive}/>
                     </div>
                 </div>
