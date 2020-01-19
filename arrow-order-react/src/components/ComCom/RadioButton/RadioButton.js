@@ -25,7 +25,8 @@ export default class RadioButton extends Component {
                     data-value = {this.props.text} 
                     id = {'radio' + this.props.id}/>
                 <label htmlFor={'radio' + this.props.id}>
-                    {this.props.text}
+                    <div className = 'icon'><img src={this.props.icon} alt="icon"/></div>
+                    <div className = 'text'>{this.props.text}</div>
                 </label>
             </li>
         )

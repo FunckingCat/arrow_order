@@ -94,6 +94,7 @@ class PopUp extends Component {
     renderRadio = () => {
         let radioButtons = []
         let i = 1;
+        console.log();
         for (let item of this.state.allUlitems){
             radioButtons.push(
                 <RadioButton 
@@ -101,6 +102,7 @@ class PopUp extends Component {
                     name = 'RB' 
                     key = {item.name + i + this.state.constant} 
                     text = {item.name}
+                    icon = {this.props.domen + item.popUpIconSRC}
                     active = {this.state.activeUlitems.includes(item.name)}
                     onChecked = {this.radioChecked}/>
             )
