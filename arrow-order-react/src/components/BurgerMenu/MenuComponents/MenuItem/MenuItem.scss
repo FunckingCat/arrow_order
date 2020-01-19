@@ -40,30 +40,6 @@ $arrow-head-thickness: $shaft-thickness;
       }
     }
   }
-  
-  &.-right {
-    top: 3px;
-    
-    > .shaft {
-      width: $shaft-width;
-      transition-delay: 0.2s;
-
-      &:before,
-      &:after { 
-        width: $arrow-head-width;
-        transition-delay: 0.3s;
-        transition: all 0.5s;
-      }
-      
-      &:before {
-        transform: rotate(40deg);
-      }
-      
-      &:after {
-        transform: rotate(-40deg);
-      }
-    }
-  }
 
   > .shaft {
     background-color: $black;

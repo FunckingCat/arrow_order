@@ -15,6 +15,7 @@ export default class RadioButton extends Component {
         let style = {
             color : textColor,
         }
+
         return(
             <li className = 'radio' style = {style} onClick = {this.handaleClick}>
                 <input 
@@ -24,6 +25,9 @@ export default class RadioButton extends Component {
                     className = 'radioButton'
                     data-value = {this.props.text} 
                     id = {'radio' + this.props.id}/>
+                <span className="the-arrow -left">
+                    <span className="shaft"></span>
+                </span>
                 <label htmlFor={'radio' + this.props.id}>
                     <div className = 'icon'><img src={this.props.icon} alt="icon"/></div>
                     <div className = 'text'>{this.props.text}</div>

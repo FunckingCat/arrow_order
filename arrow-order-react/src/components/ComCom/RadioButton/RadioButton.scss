@@ -1,6 +1,21 @@
+
+$black: black;
+$white: white;
+$gray: #505050;
+
+$shaft-width: 1px;
+$newshaft-width: 24px;
+$shaft-thickness: 1px;
+$arrow-head-width: 10px;
+$arrow-head-thickness: $shaft-thickness;
+
 li.radio{
     font-size: 1.1em;
     margin-top: 0.5em;
+    display: inline-block;
+    color: $black;
+    position: relative;
+    transition: all 0.2s;
 
     .radioButton{
         position: absolute;
@@ -9,7 +24,7 @@ li.radio{
         margin: 10px 0 0 7px;
     }
 
-    .radioButton + label {
+    label{
         position: relative;
         padding: 0 0 0 35px;
         cursor: pointer;
@@ -23,31 +38,72 @@ li.radio{
         }
     }
 
-    .radioButton + label:before {
-        content: '';
-        position: absolute;
-        top: -3px;
-        left: 0;
-        width: 18px;
-        height: 18px;
-        border: 1px solid #CDD1DA;
-        border-radius: 50%;
-        background: #FFF;
+    .the-arrow {
+        width: $shaft-width;
+        transition: all 0.2s;
+        transition-delay: 0.2s;
+       
+        &.-left {
+          position: absolute;
+          top: 45%;
+      
+          > .shaft {
+            width: 0;
+            background-color: $gray;
+            
+            &:before,
+            &:after {
+              width: 0;
+              background-color: $gray;
+            }
+          }
+        }
+
+        > .shaft {
+            display: block;
+            height: $shaft-thickness;
+            position: relative;
+            transition: all 0.2s;
+            transition-delay: 0;
+            will-change: transform;
+        
+            &:before,
+            &:after {
+              content: '';
+              height: $arrow-head-thickness;
+              position: absolute;
+              top: 0;
+              right: 0;
+            }
+        
+            &:before {
+              transform-origin: top right;
+            }
+        
+            &:after {
+              transform-origin: bottom right;
+            }
+          }
     }
-    .radioButton + label:after {
-        content: '';
-        position: absolute;
-        top: 1px;
-        left: 4px;
-        width: 12px;
-        height: 12px;
-        border-radius: 50%;
-        background: #333;
-        box-shadow: inset 0 1px 1px rgba(0,0,0,.5);
-        opacity: 0;
-        transition: .2s;
-    }
-    .radioButton:checked + label:after {
-        opacity: 1;
+    
+    .radioButton:checked + .the-arrow {
+        > .shaft {
+            width: $newshaft-width;
+            transition-delay: 0.1s;
+    
+            &:before,
+            &:after {
+              width: $arrow-head-width;
+              transition-delay: 0.1s;
+            }
+    
+            &:before {
+              transform: rotate(40deg);
+            }
+    
+            &:after {
+              transform: rotate(-40deg);
+            }
+          }
     }
 }
