@@ -4,6 +4,7 @@ import {connect} from 'react-redux';
 
 import {popUpActive, popUpSetContent} from '../../../../actions/popUpActions';
 import {setCakeParts} from '../../../../actions/cakeConstructorActions';
+import Storage from '../../../../servises/StorageController';
 
 import PopUp from '../../../ComCom/PopUp/PopUp';
 import BlackButton from '../../../ComCom/BlackButton/BlackButton';
@@ -13,6 +14,26 @@ class CakeConstructor extends Component {
     state = {
         resetActive : 'false',
         confirmActive : 'false',
+    }
+
+    St = new Storage()
+
+    componentDidMount() {
+        this.checkSessionStorage();
+    }
+
+    checkSessionStorage = () => {
+        let ingredients = this.St.getSession('ingredients')
+        console.log(ingredients);
+        if  (ingredients !== null){
+            let {filling, biscuit, cream} = ingredients;
+            console.log('filling, biscuit, cream: ', filling, biscuit, cream);
+            this.props.setCakeParts({
+                filling : filling,
+                biscuit : biscuit,
+                cream   : cream,
+            })
+        }
     }
 
     componentDidUpdate() {
@@ -46,13 +67,25 @@ class CakeConstructor extends Component {
             filling : '',
             biscuit : '',
             cream   : '',
-        })
-        this.props.popUpSetContent('')
+        });
+        this.St.rmSession('ingredients');
+        this.props.popUpSetContent('');
     }
 
     confirm = () => {
-        //let {filling, biscuit, cream} = this.props.cakeParts;
-        console.log(String(Boolean(this.props.cakeParts.filling && this.props.cakeParts.biscuit && this.props.cakeParts.cream)));
+        if (this.state.confirmActive){
+            let {filling, biscuit, cream} = this.props.cakeParts;
+            this.St.setSession('ingredients', {
+                filling : filling,
+                biscuit : biscuit,
+                cream   : cream,
+            })
+            console.log(`Wrote ${{
+                filling : filling,
+                biscuit : biscuit,
+                cream   : cream,
+            }}`);
+        }
     }
 
     render(){
