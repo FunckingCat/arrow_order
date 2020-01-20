@@ -126,9 +126,22 @@ class PopUp extends Component {
         }            
     }
 
+    defSummary = () => {
+        let summary = '';
+        if (this.state.selected){
+            summary = this.state.selected + ' ' + this.props.content.toLowerCase();
+        }
+        if (this.state.activeUlitems.length === 0) {
+            summary = 'Нет подходящих вариантов, измените состав';
+        }
+        return summary
+    }
+
     render(){
 
         let radioButtons = this.renderRadio();
+
+        let summary = this.defSummary();
 
         return(
             <>
@@ -147,11 +160,7 @@ class PopUp extends Component {
                         </ul>
                     </div>
                     <div className="add">
-                        <div className="summary">{
-                            this.state.selected
-                            ? this.state.selected + ' ' + this.props.content.toLowerCase()
-                            : null                            
-                        }</div>
+                        <div className="summary">{summary}</div>
                         <BlackButton 
                             text = 'Добавить' 
                             active={this.state.buttonActive}

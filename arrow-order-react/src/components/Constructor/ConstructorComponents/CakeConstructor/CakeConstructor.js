@@ -24,7 +24,6 @@ class CakeConstructor extends Component {
 
     checkSessionStorage = () => {
         let ingredients = this.St.getSession('ingredients')
-        console.log(ingredients);
         if  (ingredients !== null){
             let {filling, biscuit, cream} = ingredients;
             console.log('filling, biscuit, cream: ', filling, biscuit, cream);
@@ -79,12 +78,8 @@ class CakeConstructor extends Component {
                 filling : filling,
                 biscuit : biscuit,
                 cream   : cream,
-            })
-            console.log(`Wrote ${{
-                filling : filling,
-                biscuit : biscuit,
-                cream   : cream,
-            }}`);
+            });
+            console.log(`Wrote ${filling +  biscuit + cream}`);
         }
     }
 
