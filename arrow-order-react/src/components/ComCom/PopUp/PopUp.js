@@ -8,6 +8,7 @@ import {setCakeParts} from '../../../actions/cakeConstructorActions';
 import RadioButton    from '../../ComCom/RadioButton/RadioButton';
 import BlackButton    from '../../ComCom/BlackButton/BlackButton';
 import requestService from '../../../servises/requestService';
+import Textarea       from '../../ComCom/Textarea/Textarea';
 
 class PopUp extends Component {
 
@@ -164,13 +165,11 @@ class PopUp extends Component {
                     <div className="add">
                         <div className="summary">
                                 <h2>{summary}</h2>
-                                <p style = {
-                                    this.state.selected?{
-                                        'maxHeight' : '24vh'
-                                    }:{
-                                        'maxHeight' : '0'
-                                    }
-                                }>{description}</p>
+                                <Textarea 
+                                    active = {Boolean(this.state.selected)}
+                                    height = {'24vh'}>
+                                    {description}
+                                </Textarea>
                         </div>
                         <BlackButton 
                             text = 'Добавить' 
