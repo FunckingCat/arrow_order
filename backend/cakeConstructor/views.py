@@ -20,6 +20,7 @@ def allInfo (request):
 def  buildItem(item):
     return {
         'name'               : item.name,
+        'hashtag'            : item.hashtag,
         'popUpIconSRC'       : item.popUpIcon,
     }
 

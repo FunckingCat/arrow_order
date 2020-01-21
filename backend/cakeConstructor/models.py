@@ -5,6 +5,7 @@ from django.db import models
 class Filling (models.Model):
 
     name = models.CharField(max_length = 60, verbose_name = 'Название')
+    hashtag = models.CharField(max_length = 60, verbose_name = 'Hashtag')
     avalibleBiscuits = models.ManyToManyField('Biscuit', blank=True, related_name='avalibleFillings', verbose_name = 'Доступные бисквиты')
     avalibleCreams = models.ManyToManyField('Cream', blank=True, related_name='avalibleFillings', verbose_name = 'Доступные кремы')
     constructorIcon = models.CharField(max_length = 120, verbose_name = 'Иконка в конструкторе', default = '/static/icons/constructor/filling/default.svg')
@@ -22,6 +23,7 @@ class Filling (models.Model):
             biscuits.append(biscuit.name)
         return {
             'name'               : self.name,
+            'hashtag'            : self.hashtag,
             'constructorIconSRC' : self.constructorIcon,
             'popUpIconSRC'       : self.popUpIcon,
             'biscuits'           : biscuits,
@@ -31,6 +33,7 @@ class Filling (models.Model):
 class Biscuit (models.Model):
 
     name = models.CharField(max_length = 60, verbose_name = 'Название')
+    hashtag = models.CharField(max_length = 60, verbose_name = 'Hashtag')
     constructorIcon = models.CharField(max_length = 120, verbose_name = 'Иконка в конструкторе', default = '/static/icons/constructor/biscuit/default.svg')
     popUpIcon = models.CharField(max_length = 120, verbose_name = 'Иконка в всплывающем меню', default = '/static/icons/popup/biscuit/default.svg')
 
@@ -43,6 +46,7 @@ class Biscuit (models.Model):
             fillings.append(filling.name)
         return {
             'name'               : self.name,
+            'hashtag'            : self.hashtag,
             'constructorIconSRC' : self.constructorIcon,
             'popUpIconSRC'       : self.popUpIcon,
             'fillings'           : fillings,
@@ -52,6 +56,7 @@ class Biscuit (models.Model):
 class Cream (models.Model):
 
     name = models.CharField(max_length = 60, verbose_name = 'Название')
+    hashtag = models.CharField(max_length = 60, verbose_name = 'Hashtag')
     constructorIcon = models.CharField(max_length = 120, verbose_name = 'Иконка в конструкторе', default = '/static/icons/constructor/cream/default.svg')
     popUpIcon = models.CharField(max_length = 120, verbose_name = 'Иконка в всплывающем меню', default = '/static/icons/popup/cream/default.svg')
 
@@ -64,6 +69,7 @@ class Cream (models.Model):
             fillings.append(filling.name)
         return {
             'name'               : self.name,
+            'hashtag'            : self.hashtag,
             'constructorIconSRC' : self.constructorIcon,
             'popUpIconSRC'       : self.popUpIcon,
             'fillings'           : fillings,

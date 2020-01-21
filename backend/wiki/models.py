@@ -4,7 +4,7 @@ from django.db import models
 
 class WikiObject(models.Model):
 
-    defaultText = 'Hashtag должен сооствтсвовать последнему сегменту URL страницы, что бы был возможен поиск по карточкам. URL карточки из вики раздела должен имет вид "/Wiki/Card/<hashtag>/. Таким образом необходимо проследить за равенством hashtag в таблицах wiki_subcategores и самом элементе Вики."'
+    defaultText = 'Hashtag должен сооствтсвовать хэштэгу из Wiki Subcategores и CakeConstructor объектов, что бы все работало правильно'
 
     title = models.CharField(max_length = 60, verbose_name = 'Заголовок')
     hashtag = models.CharField(max_length = 50)
