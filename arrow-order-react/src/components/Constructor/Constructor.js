@@ -13,18 +13,18 @@ export default class Constructor extends Component {
 
  render(){
     return(
-        <div className = 'ConstructorWrapper'>
-				<Hat 
-					left   = {<BackButton />}
-					middle = {<div>Заказ</div>}
-					right  = {<BurgerButton />}/>
-                <section className = 'ConstructorPage'>
-                    <NavVidget />
-                    <Switch>
-                        <Route exact path = '/Constructor/Cake/' component = {CakeConstructor} />
-                    </Switch>
-                </section>			
-			</div>
+        <>
+            <Hat 
+                left   = {<BackButton />}
+                middle = {<div>Заказ</div>}
+                right  = {<BurgerButton />}/>
+            <section className = 'Constructor'>
+                <NavVidget />
+                <Switch>
+                    <Route exact path = '/Constructor/Cake/' component = {CakeConstructor} />
+                </Switch>
+            </section>			
+		</>
     )
  }
 }

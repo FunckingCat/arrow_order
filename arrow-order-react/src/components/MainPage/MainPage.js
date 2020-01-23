@@ -55,7 +55,6 @@ class MainPage extends Component {
         data = data.filter(item => item.title !== 'Главная картинка').sort((a, b) => a.priority - b.priority)
 
         for (i; i < data.length; i++){
-            console.log(data[i].text);
             content.push(<ContentBlock
             key = {i+0.5} 
             header = {data[i].title}
