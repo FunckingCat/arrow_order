@@ -8,7 +8,7 @@ import {setCakeParts} from '../../../actions/cakeConstructorActions';
 import RadioButton    from '../../ComCom/RadioButton/RadioButton';
 import BlackButton    from '../../ComCom/BlackButton/BlackButton';
 import requestService from '../../../servises/requestService';
-import Textarea       from '../../ComCom/Textarea/Textarea';
+import Details        from '../../ComCom/Details/Details';
 
 class PopUp extends Component {
 
@@ -48,7 +48,6 @@ class PopUp extends Component {
     }
 
     updateUlItems = () => {
-        //let {filling, biscuit, cream} = this.props.parts;
         if (this.props.content !== this.state.prevContent){
             this.RequestService.getCakeInfo(this.props.content, this.props.parts)
             .then((res) => {
@@ -163,14 +162,11 @@ class PopUp extends Component {
                         </ul>
                     </div>
                     <div className="add">
-                        <div className="summary">
-                                <h2>{summary}</h2>
-                                <Textarea 
-                                    active = {Boolean(this.state.selected)}
-                                    height = {'24vh'}>
-                                    {description}
-                                </Textarea>
-                        </div>
+                        <Details
+                            summary = {summary}
+                            height = {'24vh'}>
+                                {description}
+                        </Details>
                         <BlackButton 
                             text = 'Добавить' 
                             active={this.state.buttonActive}
