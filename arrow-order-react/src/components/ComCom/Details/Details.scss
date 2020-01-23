@@ -9,7 +9,31 @@
         display: flex;
         flex-direction: row;
         h2{
-            margin-right: 20px;
+            margin-right: 10px;
         }
+        .arrow{
+            position: relative;
+            min-height: 1em;
+            min-width: 0.5em;
+            transform-origin: center center;
+            transition: transform 0.5s;
+            .left, .right{
+                position: absolute;
+                transform-origin: right center;
+                top: 45%;
+                width: 100%;
+                height: 1.5px;
+                background-color: black;
+            }
+            .left{
+                transform: rotate(45deg);
+            }
+            .right{
+                transform: rotate(-45deg)
+            }
+        }
+    }
+    .rotate{
+        transform: rotate(90deg);
     }
 }

@@ -17,11 +17,16 @@ export default class Details extends Component {
 
     render(){
 
+        let rotate = this.state.active? 'rotate' : '';
+        console.log(rotate);
         let details = 
             <>
-            <div className="summary">
+            <div className={'summary'}>
                 <h2>{this.props.summary}</h2>
-                <button onClick = {this.toggle}/>
+                <div className={'arrow ' + rotate}>
+                    <div className="left"></div>
+                    <div className='right'></div>
+                </div>
             </div>
             <div className="content">
                 <Textarea
@@ -33,7 +38,7 @@ export default class Details extends Component {
             </>
 
         return(
-            <div className="details">
+            <div className="details" onClick = {this.toggle}>
                {this.props.summary? details : ''}
             </div>
         )
