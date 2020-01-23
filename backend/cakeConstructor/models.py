@@ -12,7 +12,7 @@ class Filling (models.Model):
     popUpIcon = models.CharField(max_length = 120, verbose_name = 'Иконка в всплывающем меню', default = '/static/icons/popup/filling/default.svg')
 
     def __str__ (self):
-        return self.name
+        return '{} --- {}'.format(self.name, self.hashtag)
 
     def all(self):
         creams = []
@@ -38,7 +38,7 @@ class Biscuit (models.Model):
     popUpIcon = models.CharField(max_length = 120, verbose_name = 'Иконка в всплывающем меню', default = '/static/icons/popup/biscuit/default.svg')
 
     def __str__ (self):
-        return self.name
+        return '{} --- {}'.format(self.name, self.hashtag)
 
     def all(self):
         fillings = []
@@ -61,7 +61,7 @@ class Cream (models.Model):
     popUpIcon = models.CharField(max_length = 120, verbose_name = 'Иконка в всплывающем меню', default = '/static/icons/popup/cream/default.svg')
 
     def __str__ (self):
-        return self.name
+        return '{} --- {}'.format(self.name, self.hashtag)
 
     def all(self):
         fillings = []
