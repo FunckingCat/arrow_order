@@ -16,18 +16,19 @@ import RadioButton    from '../../ComCom/RadioButton/RadioButton';
 export default class List extends Component {
 
     renderRadio = () => {
+        let {items, activeItems, constant, domen, radioChecked} = this.props
         let radioButtons = []
         let i = 1;
-        for (let item of this.props.items){
+        for (let item of items){
             radioButtons.push(
                 <RadioButton 
                     id = {i++} 
                     name = 'RB' 
-                    key = {item.name + i + this.props.constant} 
+                    key = {item.name + i + constant} 
                     text = {item.name}
-                    icon = {this.props.domen + item.popUpIconSRC}
-                    active = {this.props.activeItems.includes(item.name)}
-                    onChecked = {this.props.radioChecked}
+                    icon = {domen + item.popUpIconSRC}
+                    active = {activeItems.includes(item.name)}
+                    onChecked = {radioChecked}
                     />
             )
         }

@@ -5,7 +5,6 @@ import {connect} from 'react-redux';
 import {popUpActive}  from '../../../actions/popUpActions';
 import {setCakeParts} from '../../../actions/cakeConstructorActions';
 
-import RadioButton    from '../../ComCom/RadioButton/RadioButton';
 import BlackButton    from '../../ComCom/BlackButton/BlackButton';
 import requestService from '../../../servises/requestService';
 import Details        from '../../ComCom/Details/Details';
@@ -93,25 +92,6 @@ class PopUp extends Component {
         })
     }
 
-    renderRadio = () => {
-        let radioButtons = []
-        let i = 1;
-        console.log();
-        for (let item of this.state.allUlitems){
-            radioButtons.push(
-                <RadioButton 
-                    id = {i++} 
-                    name = 'RB' 
-                    key = {item.name + i + this.state.constant} 
-                    text = {item.name}
-                    icon = {this.props.domen + item.popUpIconSRC}
-                    active = {this.state.activeUlitems.includes(item.name)}
-                    onChecked = {this.radioChecked}/>
-            )
-        }
-        return radioButtons
-    }
-
     partSubmit = () => {
         if (this.state.buttonActive === 'true'){
             this.props.setCakeParts({
@@ -156,8 +136,6 @@ class PopUp extends Component {
     }
 
     render(){
-
-        //let radioButtons = this.renderRadio();
 
         let summary = this.defSummary();
 
