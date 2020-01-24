@@ -9,6 +9,7 @@ import RadioButton    from '../../ComCom/RadioButton/RadioButton';
 import BlackButton    from '../../ComCom/BlackButton/BlackButton';
 import requestService from '../../../servises/requestService';
 import Details        from '../../ComCom/Details/Details';
+import List           from '../../ComCom/List/List';
 
 class PopUp extends Component {
 
@@ -156,7 +157,7 @@ class PopUp extends Component {
 
     render(){
 
-        let radioButtons = this.renderRadio();
+        //let radioButtons = this.renderRadio();
 
         let summary = this.defSummary();
 
@@ -172,12 +173,13 @@ class PopUp extends Component {
                  ref = {this.popup}>
                 <div className="line"></div>
                 <div className="content">
-                    <div className="info">
-                        <h2>{this.props.content}</h2>
-                        <ul>
-                            {radioButtons}
-                        </ul>
-                    </div>
+                    <List 
+                        title = {this.props.content}
+                        items = {this.state.allUlitems}
+                        activeItems = {this.state.activeUlitems}
+                        domen = {this.props.domen}
+                        radioChecked = {this.radioChecked}
+                        constant = {this.state.constant}/>
                     <div className="add">
                         <Details
                             summary = {summary}
