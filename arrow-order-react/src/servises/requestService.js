@@ -7,7 +7,7 @@ export default class requestService {
         const res = await fetch(`${this._apiBase}${url}`);
         console.log(`Адрес: ${this._apiBase}${url}`);
         if (!res.ok){
-            throw new Error(`Could not fetch ${url}; recived ${res.status}`)
+            //throw new Error(`Could not fetch ${url}; recived ${res.status}`)
         }
 
         let response = await res.json();
@@ -37,7 +37,11 @@ export default class requestService {
     }
 
     getWikiCard = async (hashtag) => {
-        const res = await this.getResource(`/api/wiki/card/${hashtag}/`);
+        let res = {values : []}
+        try{
+            res = await this.getResource(`/api/wiki/card/${hashtag}/`)
+            .catch(error => console.log('Got Error', error));
+        } catch {}
         return res
     }
 

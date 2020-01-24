@@ -21,6 +21,7 @@ class PopUp extends Component {
         buttonActive : 'false',
         constant : 0,
         prevContent : null,
+        description : '',
     }
 
     bg = React.createRef();
@@ -137,13 +138,29 @@ class PopUp extends Component {
         return summary
     }
 
+    getDescription = async () => {
+        if (this.state.selected){
+            let hashtag = this.state.allUlitems
+            .filter(item => item.name === this.state.selected)
+            .map(item => item.hashtag)[0];
+            this.RequestService.getWikiCard(hashtag)
+            .then(res => {
+                if (this.state.description !== res.text){
+                    this.setState({
+                        description : res.text,
+                    })
+                }                
+            });
+        }        
+    }
+
     render(){
 
         let radioButtons = this.renderRadio();
 
         let summary = this.defSummary();
 
-        let description = this.state.selected? 'Именно аромат домашней выпечки (пирожков, булочек, домашней пиццы, печенья) делает наш дом по-настоящему уютным. В этом разделе каждый, даже начинающий кулинар, найдёт не только простые и доступные рецепты выпечки с фото, мы поделимся рецептами вкуснейших пирогов, тортов, пирожных, кексов, печенья, словом, самой разнообразной выпечки, ко рецепты выпечки с фото, мы поделимся рецептами вкуснейших пирогов, тортов, пирожных, кексов, печенья, словом, самой разнообразной выпечки, которая уж точно никого не сможет оставитторая уж точно никого не сможет оставить равнодушным, но и не забудем про рецепты теста, которые помогут снова и снова создавать на кухне просто восхитительные лакомства.' : ''
+        this.getDescription();
 
         return(
             <>
@@ -165,7 +182,7 @@ class PopUp extends Component {
                         <Details
                             summary = {summary}
                             height = {'24vh'}>
-                                {description}
+                                {this.state.description}
                         </Details>
                         <BlackButton 
                             text = 'Добавить' 

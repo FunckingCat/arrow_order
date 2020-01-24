@@ -18,7 +18,6 @@ export default class Details extends Component {
     render(){
 
         let rotate = this.state.active? 'rotate' : '';
-        console.log(rotate);
         let details = 
             <>
             <div className={'summary'}>
