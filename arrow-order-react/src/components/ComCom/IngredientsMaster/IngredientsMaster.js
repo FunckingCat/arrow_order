@@ -3,6 +3,7 @@ import './IngredientsMaster.scss';
 import {connect} from 'react-redux'; 
 
 import {setSelected, setConstant} from '../../../actions/ingredietsMasterActions';
+import {setCakeParts} from '../../../actions/cakeConstructorActions';
 
 import requestService from '../../../servises/requestService';
 import BlackButton    from '../../ComCom/BlackButton/BlackButton';
@@ -96,6 +97,7 @@ class IngredientsMaster extends Component {
     }
 
     render(){
+        let summary = this.defSummary();
         this.getDescription();
         return(
             <div className="ingredientsMaster">
@@ -108,7 +110,7 @@ class IngredientsMaster extends Component {
                         constant = {this.state.constant}/>
                 <div className="add">
                     <Details
-                        summary = {''}
+                        summary = {summary}
                         height = {'24vh'}>
                             {this.state.description}
                     </Details>
@@ -139,6 +141,7 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = {
     setSelected : setSelected,
     setConstant : setConstant,
+    setCakeParts : setCakeParts, 
 } 
 
 export default connect(mapStateToProps, mapDispatchToProps)(IngredientsMaster)
