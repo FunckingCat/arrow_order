@@ -1,4 +1,4 @@
-import {SET_SELECTED, SET_CONSTANT} from '../actions/actionTypes';
+import {SET_SELECTED, SET_CONSTANT, SET_CONTENT} from '../actions/actionTypes';
 
 const initialState = {
     selected : '',
@@ -7,6 +7,10 @@ const initialState = {
 
 const ingredientsMasterReducer = (state = initialState, action) => {
     switch (action.type){
+        case SET_CONTENT:
+            return Object.assign({}, state, {
+                content : action.value
+            }) 
         case SET_SELECTED:
             return Object.assign({}, state, {
                 selected : action.name,

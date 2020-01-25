@@ -1,4 +1,4 @@
-import {SET_SELECTED, SET_CONSTANT} from './actionTypes';
+import {SET_SELECTED, SET_CONSTANT, SET_CONTENT} from './actionTypes';
 
 export function setSelected (name, hashtag){
     return {
@@ -12,5 +12,12 @@ export function setConstant(numb) {
     return {
         type : SET_CONSTANT,
         constant : numb,
+    }
+}
+
+export function setContent (value){
+    return {
+        type : SET_CONTENT,
+        value : value,
     }
 }

@@ -2,7 +2,8 @@ import React,{Component} from 'react';
 import './CakeConstructor.scss'; 
 import {connect} from 'react-redux';
 
-import {popUpActive, popUpSetContent} from '../../../../actions/popUpActions';
+import {popUpActive} from '../../../../actions/popUpActions';
+import {setContent} from '../../../../actions/ingredietsMasterActions';
 import {setCakeParts} from '../../../../actions/cakeConstructorActions';
 import Storage from '../../../../servises/StorageController';
 
@@ -56,7 +57,7 @@ class CakeConstructor extends Component {
     }
 
     handaleClick = (event) => {
-        this.props.popUpSetContent(event.target.innerHTML);
+        this.props.setContent(event.target.innerHTML);
         this.props.popUpActive(true);
     }
 
@@ -68,7 +69,7 @@ class CakeConstructor extends Component {
             cream   : '',
         });
         this.St.rmSession('ingredients');
-        this.props.popUpSetContent('');
+        this.props.setContent('');
     }
 
     confirm = () => {
@@ -129,7 +130,7 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = {
     popUpActive : popUpActive,
-    popUpSetContent : popUpSetContent,
+    setContent : setContent,
     setCakeParts : setCakeParts,
 }
 

@@ -1,4 +1,4 @@
-import {POP_UP_ACTIVE, POP_UP_CONTENT} from '../actions/actionTypes';
+import {POP_UP_ACTIVE} from '../actions/actionTypes';
 
 const initialState = {
     active : false,
@@ -12,10 +12,6 @@ const PopUpReducer = (state = initialState, action) => {
             return Object.assign({}, state, {
                 active : value
             })
-        case POP_UP_CONTENT:
-            return Object.assign({}, state, {
-                content : value
-            }) 
         default:
             return state
     }

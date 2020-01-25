@@ -98,7 +98,7 @@ class IngredientsMaster extends Component {
 
     calcMaxHeight = () => {
         let windowHeight = document.documentElement.clientHeight;
-        let popUpRatio = 0.8;
+        let popUpRatio = 0.9;
         let radioItemHeight = 30;
         let listTitleHeight = 32 + 19.2;
         let listHeight = listTitleHeight + radioItemHeight * this.state.items.length + 40;
@@ -110,7 +110,6 @@ class IngredientsMaster extends Component {
 
     render(){
         let summary = this.defSummary();
-        console.log(this.calcMaxHeight());
         this.getDescription();
         return(
             <div className="ingredientsMaster">
@@ -140,7 +139,7 @@ class IngredientsMaster extends Component {
 const mapStateToProps = (state) => {
     return({
         domen : state.domen,
-        content : state.popUp.content,
+        content : state.ingredientsMaster.content,
         selected : state.ingredientsMaster.selected,
         constant : state.ingredientsMaster.constant,
         parts : {
