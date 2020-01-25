@@ -10,3 +10,7 @@ export const POP_UP_ACTIVE = 'POP_UP_ACTIVE';
 export const POP_UP_CONTENT = 'POP_UP_CONTENT';
 //CakeConstructor actions
 export const SET_CAKE_PARTS = 'SET_CAKE_PARTS';
+//IngredientsMaster actions
+export const SET_ITEMS = 'SET_ITEMS';
+export const SET_SELECTED = 'SET_SELECTED';
+export const SET_CONSTANT = 'SET_CONSTANT';

@@ -1,24 +1,21 @@
 import React,{Component} from 'react';
-import './PopUp.scss'; 
+import './IngredientsMaster.scss'; 
 import {connect} from 'react-redux'; 
 
-import {popUpActive}  from '../../../actions/popUpActions';
-import {setCakeParts} from '../../../actions/cakeConstructorActions';
+import {setSelected, setConstant} from '../../../actions/ingredietsMasterActions';
 
-import BlackButton    from '../../ComCom/BlackButton/BlackButton';
 import requestService from '../../../servises/requestService';
+import BlackButton    from '../../ComCom/BlackButton/BlackButton';
 import Details        from '../../ComCom/Details/Details';
 import List           from '../../ComCom/List/List';
 
-import IndredientsMaster from '../IngredientsMaster/IngredientsMaster';
-
-class PopUp extends Component {
+class IngredientsMaster extends Component {
 
     RequestService = new requestService(this.props.domen)
 
     state = {
-        allUlitems : [],
-        activeUlitems : [],
+        items : [],
+        active : [],
         selected : '',
         buttonActive : 'false',
         constant : 0,
@@ -26,67 +23,26 @@ class PopUp extends Component {
         description : '',
     }
 
-    bg = React.createRef();
-    popup = React.createRef();
-
-    componentDidMount() {
-        this.setStyle();
-        document.querySelector("html").style.overflow = 'hidden';
-    }
-
     componentDidUpdate() {
-        this.setStyle()
-        this.updateUlItems();
+        this.updateItems();
     }
 
-    componentWillUnmount() {
-        document.querySelector("html").style.overflow = '';
-    }
-
-    closePopUp = (event) => {
-        if (event.target.hasAttribute('closeable') 
-            && event.target.getAttribute('closeable') === 'true'){
-            this.props.popUpActive(false);
-        }            
-    }
-
-    updateUlItems = () => {
+    updateItems = () => {
         if (this.props.content !== this.state.prevContent){
-            console.log(this.props.content);
-            console.log(this.props.parts);
             this.RequestService.getCakeInfo(this.props.content, this.props.parts)
             .then((res) => {
                 let active = []
                 try{active = res.active.map(item => item.name)} // При сбросе вылетает исключение, ловим его
                 catch{}
                 this.setState({
-                    allUlitems : res.all || [], // Так же ловим исключение про сбросе
-                    activeUlitems : active,
+                    items : res.all || [], // Так же ловим исключение про сбросе
+                    active : active,
                     selected : '',
                     buttonActive : 'false',
                     prevContent : this.props.content,
                 })                           
             })
         } 
-    }
-
-    setStyle = () => {
-        if (this.props.active) {
-            this.bg.current.classList.remove('hide')
-            this.bg.current.style.backgroundColor = 'rgba(115,115,115,0.5)';
-            this.popup.current.classList.remove('hide')
-        } else {
-            this.bg.current.style.backgroundColor = 'rgba(115,115,115,0)';
-            this.popup.current.classList.add('hide')
-            setTimeout(() => {                
-                try{
-                    this.bg.current.classList.add('hide')
-                }
-                catch{
-                    console.log('Непонятная ошибка');
-                }
-            }, 500);
-        }
     }
 
     radioChecked = (event) => {
@@ -117,7 +73,7 @@ class PopUp extends Component {
         if (this.state.selected){
             summary = this.state.selected + ' ' + this.props.content.toLowerCase();
         }
-        if (this.state.activeUlitems.length === 0) {
+        if (this.state.active.length === 0) {
             summary = 'Нет подходящих вариантов, измените состав';
         }
         return summary
@@ -125,7 +81,7 @@ class PopUp extends Component {
 
     getDescription = async () => {
         if (this.state.selected){
-            let hashtag = this.state.allUlitems
+            let hashtag = this.state.items
             .filter(item => item.name === this.state.selected)
             .map(item => item.hashtag)[0];
             this.RequestService.getWikiCard(hashtag)
@@ -140,43 +96,28 @@ class PopUp extends Component {
     }
 
     render(){
-
-        let summary = this.defSummary();
-
         this.getDescription();
-
         return(
-            <>
-            <div className="background" 
-                 ref = {this.bg}></div>
-            <div className="popup"
-                 closeable='true'
-                 onClick = {this.closePopUp}  
-                 ref = {this.popup}>
-                <div className="line"></div>
-                <div className="content">
-                    <IndredientsMaster/>
-                    <List 
+            <div className="ingredientsMaster">
+                <List 
                         title = {this.props.content}
-                        items = {this.state.allUlitems}
-                        activeItems = {this.state.activeUlitems}
+                        items = {this.state.items}
+                        activeItems = {this.state.active}
                         domen = {this.props.domen}
                         radioChecked = {this.radioChecked}
                         constant = {this.state.constant}/>
-                    <div className="add">
-                        <Details
-                            summary = {summary}
-                            height = {'24vh'}>
-                                {this.state.description}
-                        </Details>
-                        <BlackButton 
-                            text = 'Добавить' 
-                            active={this.state.buttonActive}
-                            onClick = {this.partSubmit}/>
-                    </div>
+                <div className="add">
+                    <Details
+                        summary = {''}
+                        height = {'24vh'}>
+                            {this.state.description}
+                    </Details>
+                    <BlackButton 
+                        text = 'Добавить' 
+                        active={this.state.buttonActive}
+                        onClick = {this.partSubmit}/>
                 </div>
             </div>
-            </>
         )
     }
 } 
@@ -184,8 +125,9 @@ class PopUp extends Component {
 const mapStateToProps = (state) => {
     return({
         domen : state.domen,
-        active : state.popUp.active,
         content : state.popUp.content,
+        selected : state.ingredientsMaster.selected,
+        constant : state.ingredientsMaster.constant,
         parts : {
             filling : state.cakeParts.filling,
             biscuit : state.cakeParts.biscuit,
@@ -195,8 +137,8 @@ const mapStateToProps = (state) => {
 } 
 
 const mapDispatchToProps = {
-    popUpActive : popUpActive,
-    setCakeParts: setCakeParts,
-}
+    setSelected : setSelected,
+    setConstant : setConstant,
+} 
 
-export default connect(mapStateToProps, mapDispatchToProps)(PopUp)
+export default connect(mapStateToProps, mapDispatchToProps)(IngredientsMaster)
