@@ -96,8 +96,21 @@ class IngredientsMaster extends Component {
         }        
     }
 
+    calcMaxHeight = () => {
+        let windowHeight = document.documentElement.clientHeight;
+        let popUpRatio = 0.8;
+        let radioItemHeight = 30;
+        let listTitleHeight = 32 + 19.2;
+        let listHeight = listTitleHeight + radioItemHeight * this.state.items.length + 40;
+        let addHeight = 100;
+        let avalibleHeight = popUpRatio * windowHeight - listHeight - addHeight;
+        if (avalibleHeight < 0) {avalibleHeight = 0}
+        return Math.floor(avalibleHeight)
+    }
+
     render(){
         let summary = this.defSummary();
+        console.log(this.calcMaxHeight());
         this.getDescription();
         return(
             <div className="ingredientsMaster">
@@ -111,7 +124,7 @@ class IngredientsMaster extends Component {
                 <div className="add">
                     <Details
                         summary = {summary}
-                        height = {'24vh'}>
+                        height = {this.calcMaxHeight() + 'px'}>
                             {this.state.description}
                     </Details>
                     <BlackButton 
