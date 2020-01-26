@@ -48,6 +48,9 @@ class CakeView extends Component {
         console.log('Offsets', offsets);
         this.setState({offsets : offsets})
         this.setOffsets(offsets)
+
+        let height = BH * 3 + FH * 2 + expantion * 5;
+        console.log(height);
     }
 
     setOffsets = (offsets) => {
