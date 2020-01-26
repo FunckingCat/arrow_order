@@ -11,7 +11,7 @@
     .cake{
         position: relative;
         width: 60%;
-        height: 50%; //Заменить c JS на вычислимое по длинне крема
+        height: 100%;
         .scelet, .biscuit, .filling, .cream{
             position: absolute;
             width: 100%;
@@ -37,7 +37,7 @@
         }
         #C{
             z-index: 8;
-            opacity: 1;
+            opacity: 0.8;
         }
         
     }
