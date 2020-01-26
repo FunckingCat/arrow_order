@@ -16,9 +16,9 @@ class CakeView extends Component {
     C  = React.createRef();
 
     state = {
-        biscuitIcon: this.props.domen + '/static/icons/constructor/biscuit/default.svg',
-        fillingIcon: this.props.domen + '/static/icons/constructor/filling/default.svg',
-        creamIcon  : this.props.domen + '/static/icons/constructor/cream/default.svg',
+        biscuitIcon: this.props.domen + (this.props.biscuitIcon || '/static/icons/constructor/biscuit/default.svg'),
+        fillingIcon: this.props.domen + (this.props.fillingIcon || '/static/icons/constructor/filling/default.svg'),
+        creamIcon  : this.props.domen + (this.props.creamIcon || '/static/icons/constructor/cream/default.svg'),
         offsets : [],
     }
 
@@ -39,9 +39,9 @@ class CakeView extends Component {
         let currentOffset = 0
         for (let i = 1; i < factors.length; i++){
             if (factors[i-1] === BH){
-                currentOffset += BH * factors[i-1];
+                currentOffset += BH * factors[i-1] + expantion;
             } else {
-                currentOffset += FH * factors[i-1];
+                currentOffset += FH * factors[i-1] + expantion;
             }
             offsets.push(currentOffset);
         }
