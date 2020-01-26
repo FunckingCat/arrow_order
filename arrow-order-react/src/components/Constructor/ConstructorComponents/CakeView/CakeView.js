@@ -24,52 +24,62 @@ class CakeView extends Component {
 
 
     componentDidMount() {
-        this.defDimensions(true);
+        this.defDimensions(this.props.expantion);
     }
 
     defDimensions = (smash = false) => {
+        const CF = 0; //Условно высота крема
         const BH = this.B1.current.offsetHeight;//Высота бисквита
         const FH = this.F1.current.offsetHeight;//Выстота начинки
-        const BF = 0.34; //Оношение высоты и грани бисквита
+        const BF = 0.32; //Оношение высоты и грани бисквита
         const FF = 0.20; //Отношение выстоты и грани начинки
         const avalibleHeight = this.CakeView.current.offsetHeight;
         const height = BH*BF*2 + BH + FH*FF*2 + 20;//Выстота всей сборки
 
-        let commonOffset = 20 + (avalibleHeight - height)/2
+        //Просто функция округляющая до сотых
+        let round = (num) => Math.floor(num * 100) / 100
 
-        const expantion = smash? (avalibleHeight - height)/6 : 0
+        //Список показывает в каком порядке идут коэффициенты удаления
+        //(размер стенки конеретной SVG шки)
+        let factors = [CF, BF, FF, BF, FF, BF]
 
-        let factors = [BF, FF, BF, FF, BF]
-        let offsets = [0, ]
+        //Сами смещения
+        let offsets = [0,]
         let currentOffset = 0
         for (let i = 1; i < factors.length; i++){
-            if (factors[i-1] === BH){
-                currentOffset += BH * factors[i-1] + expantion;
-            } else {
-                currentOffset += FH * factors[i-1] + expantion;
+            if (factors[i-1] === BF){
+                currentOffset += round(BH * factors[i-1]);
+            } else if (factors[i-1] === FF) {
+                currentOffset += round(FH * factors[i-1]);
+            } else if (factors[i-1] === CF){
+                currentOffset += 20;
             }
             offsets.push(currentOffset);
         }
-        offsets = offsets.map(item => item + commonOffset - expantion*2 + 20)
 
-        console.log(
-            'BH: ', BH,
-            '\nFH: ', FH,
-            '\nH - ',height,
-            '\nAH - ',avalibleHeight,
-            '\nCommonOffset', commonOffset,
-            '\nExpantion', expantion,
-            '\nOffsets', offsets);
-        this.setOffsets(offsets, expantion, commonOffset)
+        if (smash){ // Есть 2 варианта рендера
+            //Рендер разнесенной сборки
+            let expantion = (avalibleHeight-height) / 8;
+            for (let i=0; i < offsets.length; i++){
+                offsets[i] += expantion * (i + 1)
+            }
+        } else {
+            //Рендер сборки 
+            let commonOffset = (avalibleHeight - height) / 2;//Вычисляем отступ           
+            offsets = offsets.map(item => item + commonOffset)
+        }
+
+        this.setOffsets(offsets)
     }
 
-    setOffsets = (offsets, expantion = 0, commonOffset = 0) => {
+    //Применяем вычисленные отступы к элементам сборки
+    setOffsets = (offsets) => {
         let {B1, B2, B3, F1, F2, C} = this;
-        let sequence = [B3, F2, B2, F1, B1];
+        //Последовательность элементов в торте
+        let sequence = [C, B3, F2, B2, F1, B1];
         for (let i = 0; i < sequence.length; i++){
             sequence[i].current.style.top = offsets[i] + 'px';
         }
-        C.current.style.top = commonOffset - expantion + 'px';
     }
 
     renderBiscuits = () => {
