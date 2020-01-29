@@ -6,7 +6,7 @@ import {popUpActive} from '../../../../actions/popUpActions';
 import {setContent} from '../../../../actions/ingredietsMasterActions';
 import {setCakeParts} from '../../../../actions/cakeConstructorActions';
 import Storage from '../../../../servises/StorageController';
-import CakeView from '../CakeView/CakeView';
+import CakeController from '../CakeController/CakeController';
 
 import PopUp from '../../../ComCom/PopUp/PopUp';
 import BlackButton from '../../../ComCom/BlackButton/BlackButton';
@@ -90,7 +90,7 @@ class CakeConstructor extends Component {
         return(
             <>
                 <div className = "CakeConstructor">
-                    <CakeView/>
+                    <CakeController/>
                     <div>--------------------------------------------------</div>
                     <button onClick = {this.handaleClick}>Бисквит</button>
                     <button onClick = {this.handaleClick}>Крем</button>

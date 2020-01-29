@@ -82,3 +82,25 @@ def getCreams(request, filling = False):
             if filling in item.all()['fillings']:
                 response['values']['active'].append(buildItem(item))
     return JsonResponse(response)
+
+def getCakeIcons(request, parts = False):
+    if not parts: 
+        return JsonResponse({})
+    print(request)
+    response = {'values' : { }}
+    biscuits = {}
+    creams = {}
+    fillings = {}
+    for item in Filling.objects.all():
+        fillings[item.name] = item.constructorIcon
+    for item in Biscuit.objects.all():
+        biscuits[item.name] = item.constructorIcon
+    for item in Cream.objects.all():
+        creams[item.name] = item.constructorIcon
+    for item in biscuits, fillings,creams:
+        print(item)
+    return JsonResponse({
+        'biscuits' : biscuits,
+        'fillings' : fillings,
+        'creams'   : creams,
+    })
