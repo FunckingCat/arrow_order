@@ -66,5 +66,12 @@ export default class requestService {
                 res = ['Unknown type in getCakeInfo']
         }
         return res
-    }      
+    }
+    
+    getCakeIcons = async (parts) => {
+        console.log('R: ',parts);
+        let {filling, biscuit, cream} = parts;
+        let res = await this.getResource(`/api/constructor/cake/getCakeIcons/${filling}&&${biscuit}$$${cream}/`)
+        return res
+    }
 }

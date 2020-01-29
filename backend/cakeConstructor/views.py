@@ -100,7 +100,9 @@ def getCakeIcons(request, parts = False):
     for item in biscuits, fillings,creams:
         print(item)
     return JsonResponse({
-        'biscuits' : biscuits,
-        'fillings' : fillings,
-        'creams'   : creams,
+        'values' : {
+            'biscuits' : biscuits,
+            'fillings' : fillings,
+            'creams'   : creams,
+        }
     })
