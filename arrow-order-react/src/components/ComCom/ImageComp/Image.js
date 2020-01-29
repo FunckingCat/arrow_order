@@ -12,7 +12,7 @@ class Image extends Component {
         } else  if (this.props.src){
             return <img src={this.props.domen + this.props.src || NotFound} alt={this.props.alt || 'Have a nice day'}/>
         } else {
-            return <img src = {NotFound} alt = 'NotFound'/>
+            return <Spiner/>
         }
     }
 

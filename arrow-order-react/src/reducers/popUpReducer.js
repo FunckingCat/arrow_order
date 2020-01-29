@@ -2,7 +2,6 @@ import {POP_UP_ACTIVE} from '../actions/actionTypes';
 
 const initialState = {
     active : false,
-    content : ''
 }
 
 const PopUpReducer = (state = initialState, action) => {
