@@ -32,15 +32,44 @@ class CakeView extends Component {
             return BH*BF*2 + BH + FH*FF*2 + 20
         }// Функция вычисления высоты сборки
 
-        const CH = this.CakeView.current.offsetHeight;//ContainerHeight
-        const W = this.cake.current.offsetWidth;
+        const calcOptimalHeight = (AH, AW, BS, FS, BF, FF) => {
+            let ratio = 0.7;
+            let inSize = false;
+
+            while (!inSize && ratio !== 0){
+                let W = ratio * AW;
+                let BH = W * BS;
+                let FH = W * FS;
+                let tempHeight = calcHeight(BH, BF, FH, FF);
+                if (AH - tempHeight > 0){
+                    inSize = true;
+                    console.log(
+                        'ratio', Math.round(ratio * 100) + '%',
+                        '\ntempHeight', tempHeight,
+                        '\nAH', AH,
+                    );
+                }
+                ratio -= 0.1;
+            }
+
+            return Math.round(ratio * 100) + '%'
+        }
+
+        const CH = this.CakeView.current.offsetHeight;//Доступная высота
+        const CW = this.CakeView.current.offsetWidth;// Вся ширина
         const BS = 118/160; // Высота к ширине бисквита
         const FS = 102/160; // Высота к ширине начинки
+        const BF = 0.32; //Оношение высоты и грани бисквита
+        const FF = 0.20; //Отношение выстоты и грани начинки
+
+        //СЧитаем доступный процент ширины
+        const ratio = calcOptimalHeight(CH, CW, BS, FS, BF, FF);
+        //Задаем гирину равной вычисленной
+        this.cake.current.style.width = ratio;
+        const W = this.cake.current.offsetWidth;// Ширина контейнера сборки в пискселях
         const BH = W * BS; // Высота бисквита при конкретной ширине блока контейнера
         const FH = W * FS; // Высота начинки 
         const CF = 0; //Условно высота крема
-        const BF = 0.32; //Оношение высоты и грани бисквита
-        const FF = 0.20; //Отношение выстоты и грани начинки
         const height = calcHeight(BH, BF, FH, FF);
 
         //Просто функция округляющая до сотых
