@@ -19,22 +19,29 @@ class CakeView extends Component {
         biscuitIcon: this.props.domen + (this.props.biscuitIcon || '/static/icons/constructor/biscuit/default.svg'),
         fillingIcon: this.props.domen + (this.props.fillingIcon || '/static/icons/constructor/filling/default.svg'),
         creamIcon  : this.props.domen + (this.props.creamIcon || '/static/icons/constructor/cream/default.svg'),
-        offsets : [],
+        offsets : [0, 0, 0, 0, 0, 0],
     }
-
 
     componentDidMount() {
-        this.defDimensions(this.props.expantion);
+        this.defDimensions();
     }
 
-    defDimensions = (smash = false) => {
+    defDimensions = () => {
+
+        const calcHeight = (BH, BF, FH, FF) => {
+            return BH*BF*2 + BH + FH*FF*2 + 20
+        }// Функция вычисления высоты сборки
+
+        const CH = this.CakeView.current.offsetHeight;//ContainerHeight
+        const W = this.cake.current.offsetWidth;
+        const BS = 118/160; // Высота к ширине бисквита
+        const FS = 102/160; // Высота к ширине начинки
+        const BH = W * BS; // Высота бисквита при конкретной ширине блока контейнера
+        const FH = W * FS; // Высота начинки 
         const CF = 0; //Условно высота крема
-        const BH = this.B1.current.offsetHeight;//Высота бисквита
-        const FH = this.F1.current.offsetHeight;//Выстота начинки
         const BF = 0.32; //Оношение высоты и грани бисквита
         const FF = 0.20; //Отношение выстоты и грани начинки
-        const avalibleHeight = this.CakeView.current.offsetHeight;
-        const height = BH*BF*2 + BH + FH*FF*2 + 20;//Выстота всей сборки
+        const height = calcHeight(BH, BF, FH, FF);
 
         //Просто функция округляющая до сотых
         let round = (num) => Math.floor(num * 100) / 100
@@ -57,37 +64,35 @@ class CakeView extends Component {
             offsets.push(currentOffset);
         }
 
-        if (smash){ // Есть 2 варианта рендера
-            //Рендер разнесенной сборки
-            let expantion = (avalibleHeight-height) / 8;
-            for (let i=0; i < offsets.length; i++){
-                offsets[i] += expantion * (i + 1)
-            }
-        } else {
-            //Рендер сборки 
-            let commonOffset = (avalibleHeight - height) / 2;//Вычисляем отступ           
-            offsets = offsets.map(item => item + commonOffset)
-        }
+        let commonOffset = (CH - height) / 2;
+        offsets = offsets.map(item => item + commonOffset)
 
-        this.setOffsets(offsets)
-    }
-
-    //Применяем вычисленные отступы к элементам сборки
-    setOffsets = (offsets) => {
-        let {B1, B2, B3, F1, F2, C} = this;
-        //Последовательность элементов в торте
-        let sequence = [C, B3, F2, B2, F1, B1];
-        for (let i = 0; i < sequence.length; i++){
-            sequence[i].current.style.top = offsets[i] + 'px';
+        console.log(
+        'offsets', offsets,
+        '\nBiscuitHeight', BH,
+        '\nAllHeight', height,
+        '\ncommon oofset', commonOffset);
+        if (this.state.offsets[0] !== offsets[0] && this.state.offsets[3] !== offsets[3]){
+            this.setState({
+                offsets : offsets
+            })
         }
     }
 
     renderBiscuits = () => {
         let biscuits = [];
+        let positions = [5, 3, 1];
         let refs = [this.B1, this.B2,this.B3];
         for (let i=0; i < 3; i++){
             biscuits.push(
-                <div key = {'B'+i} ref = {refs[i]} className="biscuit" id = {'B'+(i+1)}>
+                <div 
+                    key = {'B'+i} 
+                    ref = {refs[i]} 
+                    className="biscuit" 
+                    id = {'B'+(i+1)}
+                    style = {
+                        {'top' : this.state.offsets[positions[i]],}
+                    }>
                     <img src={this.state.biscuitIcon} alt=""/>
                 </div>
             )
@@ -97,10 +102,18 @@ class CakeView extends Component {
 
     renderFillings = () => {
         let fillings = [];
+        let positions = [4, 2]
         let refs = [this.F1, this.F2];
         for (let i=0; i < 2; i++){
             fillings.push(
-                <div key = {'F'+i} ref = {refs[i]} className="filling" id = {'F' +(i+1)}>
+                <div 
+                    key = {'F'+i} 
+                    ref = {refs[i]} 
+                    className="filling" 
+                    id = {'F' +(i+1)}
+                    style = {
+                        {'top' : this.state.offsets[positions[i]]}
+                    }>
                     <img src={this.state.fillingIcon} alt=""/>
                 </div>
             )
@@ -110,7 +123,13 @@ class CakeView extends Component {
     
     renderCream = () => {
         return (
-            <div ref = {this.C} className="cream" id="C">
+            <div 
+                ref = {this.C} 
+                className="cream" 
+                id="C"
+                style = {
+                    {'top' : this.state.offsets[0]}
+                }>
                 <img src={this.state.creamIcon} alt=""/>
             </div>
         )
