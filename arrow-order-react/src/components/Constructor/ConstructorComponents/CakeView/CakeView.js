@@ -2,18 +2,16 @@ import React,{Component} from 'react';
 import './CakeView.scss'; 
 import {connect} from 'react-redux';
 
-//соотношение высот иконок
+
+//Props: 
+//bicuitIcon
+//fillingIcon
+//creamIcon
 
 
 class CakeView extends Component {
     CakeView = React.createRef();
     cake     = React.createRef();
-    B1 = React.createRef();
-    B2 = React.createRef();
-    B3 = React.createRef();
-    F1 = React.createRef();
-    F2 = React.createRef();
-    C  = React.createRef();
 
     state = {
         biscuitIcon: this.props.domen + (this.props.biscuitIcon || '/static/icons/constructor/biscuit/default.svg'),
@@ -32,7 +30,7 @@ class CakeView extends Component {
             return BH*BF*2 + BH + FH*FF*2 + 20
         }// Функция вычисления высоты сборки
 
-        const calcOptimalHeight = (AH, AW, BS, FS, BF, FF) => {
+        const calcOptimalWidth = (AH, AW, BS, FS, BF, FF) => {
             let ratio = 0.7;
             let inSize = false;
 
@@ -43,11 +41,6 @@ class CakeView extends Component {
                 let tempHeight = calcHeight(BH, BF, FH, FF);
                 if (AH - tempHeight > 0){
                     inSize = true;
-                    console.log(
-                        'ratio', Math.round(ratio * 100) + '%',
-                        '\ntempHeight', tempHeight,
-                        '\nAH', AH,
-                    );
                 }
                 ratio -= 0.1;
             }
@@ -63,7 +56,7 @@ class CakeView extends Component {
         const FF = 0.20; //Отношение выстоты и грани начинки
 
         //СЧитаем доступный процент ширины
-        const ratio = calcOptimalHeight(CH, CW, BS, FS, BF, FF);
+        const ratio = calcOptimalWidth(CH, CW, BS, FS, BF, FF);
         //Задаем гирину равной вычисленной
         this.cake.current.style.width = ratio;
         const W = this.cake.current.offsetWidth;// Ширина контейнера сборки в пискселях
@@ -96,11 +89,11 @@ class CakeView extends Component {
         let commonOffset = (CH - height) / 2;
         offsets = offsets.map(item => item + commonOffset)
 
-        console.log(
-        'offsets', offsets,
-        '\nBiscuitHeight', BH,
-        '\nAllHeight', height,
-        '\ncommon oofset', commonOffset);
+        // console.log(
+        // 'offsets', offsets,
+        // '\nratio', ratio,
+        // '\ncakeHeight', height,
+        // '\ncommon offset', commonOffset);
         if (this.state.offsets[0] !== offsets[0] && this.state.offsets[3] !== offsets[3]){
             this.setState({
                 offsets : offsets
@@ -111,12 +104,10 @@ class CakeView extends Component {
     renderBiscuits = () => {
         let biscuits = [];
         let positions = [5, 3, 1];
-        let refs = [this.B1, this.B2,this.B3];
         for (let i=0; i < 3; i++){
             biscuits.push(
                 <div 
                     key = {'B'+i} 
-                    ref = {refs[i]} 
                     className="biscuit" 
                     id = {'B'+(i+1)}
                     style = {
@@ -132,12 +123,10 @@ class CakeView extends Component {
     renderFillings = () => {
         let fillings = [];
         let positions = [4, 2]
-        let refs = [this.F1, this.F2];
         for (let i=0; i < 2; i++){
             fillings.push(
                 <div 
                     key = {'F'+i} 
-                    ref = {refs[i]} 
                     className="filling" 
                     id = {'F' +(i+1)}
                     style = {
@@ -153,7 +142,6 @@ class CakeView extends Component {
     renderCream = () => {
         return (
             <div 
-                ref = {this.C} 
                 className="cream" 
                 id="C"
                 style = {
