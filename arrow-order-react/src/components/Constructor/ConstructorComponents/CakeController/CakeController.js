@@ -12,6 +12,7 @@ class CakeController extends Component {
     requestService = new RecuestService(this.props.domen);
 
     state = {
+        prevParts : this.props.parts,
         biscuitIcon : '',
         fillingIcon : '',
         creamIcon   : '',
@@ -22,16 +23,32 @@ class CakeController extends Component {
     }
 
     componentDidUpdate() {
-        this.getIcons();
+        if (this.props.parts.biscuit !== this.state.prevParts.biscuit ||
+            this.props.parts.filling !== this.state.prevParts.filling ||
+            this.props.parts.cream !== this.state.prevParts.cream){
+                this.getIcons();
+            }
     }
 
     getIcons = () => {
         this.requestService.getCakeIcons(this.props.parts)
+        .then((res) => {
+            console.log(res);
+            this.setState({
+                biscuitIcon : res.biscuitIcon,
+                fillingIcon : res.fillingIcon,
+                creamIcon : res.creamIcon,
+                prevParts : this.props.parts,
+            })
+        })
     }
 
     render(){
         return(
-            <CakeView/>
+            <CakeView
+                biscuitIcon = {this.state.biscuitIcon}
+                fillingIcon = {this.state.fillingIcon}
+                creamIcon = {this.state.creamIcon}/>
         )
     }
 } 

@@ -86,8 +86,12 @@ def getCreams(request, filling = False):
 def getCakeIcons(request, parts = False):
     if not parts: 
         return JsonResponse({})
-    print(request)
-    response = {'values' : { }}
+
+    temp = parts.split('&&')    
+    filling = temp[0]
+    biscuit = temp[1]
+    cream = temp[2] 
+    
     biscuits = {}
     creams = {}
     fillings = {}
@@ -97,12 +101,24 @@ def getCakeIcons(request, parts = False):
         biscuits[item.name] = item.constructorIcon
     for item in Cream.objects.all():
         creams[item.name] = item.constructorIcon
-    for item in biscuits, fillings,creams:
-        print(item)
-    return JsonResponse({
-        'values' : {
-            'biscuits' : biscuits,
-            'fillings' : fillings,
-            'creams'   : creams,
+    try:
+        fillingIcon = fillings[filling]
+    except:
+        fillingIcon = ''
+    try:
+        biscuitIcon = biscuits[biscuit]
+    except:
+        biscuitIcon = ''
+    try:
+        creamIcon = creams[cream] 
+    except:
+        creamIcon = ''
+
+    response = {'values' : {
+        'fillingIcon' : fillingIcon,
+        'biscuitIcon' : biscuitIcon,
+        'creamIcon' : creamIcon,
         }
-    })
+    }
+    
+    return JsonResponse(response)

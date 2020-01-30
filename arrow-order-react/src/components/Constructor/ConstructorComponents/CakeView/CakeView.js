@@ -14,6 +14,7 @@ class CakeView extends Component {
     cake     = React.createRef();
 
     state = {
+        prevProps : {},
         biscuitIcon: this.props.domen + (this.props.biscuitIcon || '/static/icons/constructor/biscuit/default.svg'),
         fillingIcon: this.props.domen + (this.props.fillingIcon || '/static/icons/constructor/filling/default.svg'),
         creamIcon  : this.props.domen + (this.props.creamIcon || '/static/icons/constructor/cream/default.svg'),
@@ -22,6 +23,24 @@ class CakeView extends Component {
 
     componentDidMount() {
         this.defDimensions();
+    }
+
+    componentDidUpdate() {
+        let {biscuitIcon: b1, fillingIcon: f1, creamIcon: c1} = this.props;
+        let {biscuitIcon: b2, fillingIcon: f2, creamIcon: c2} = this.state.prevProps;
+        if (b1 !== b2 || f1 !== f2 || c1 !== c2){
+            console.log('UPDATING');
+            this.setState({
+                biscuitIcon: this.props.domen + (this.props.biscuitIcon || '/static/icons/constructor/biscuit/default.svg'),
+                fillingIcon: this.props.domen + (this.props.fillingIcon || '/static/icons/constructor/filling/default.svg'),
+                creamIcon  : this.props.domen + (this.props.creamIcon || '/static/icons/constructor/cream/default.svg'),
+                prevProps : {
+                    biscuitIcon : b1,
+                    fillingIcon : f1,
+                    creamIcon : c1,
+                }
+            })
+        }
     }
 
     defDimensions = () => {
