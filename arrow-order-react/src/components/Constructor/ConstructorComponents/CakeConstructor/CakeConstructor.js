@@ -91,16 +91,15 @@ class CakeConstructor extends Component {
             <>
                 <div className = "CakeConstructor">
                     <CakeController/>
-                    <div>--------------------------------------------------</div>
-                    <button onClick = {this.handaleClick}>Бисквит</button>
-                    <button onClick = {this.handaleClick}>Крем</button>
-                    <button onClick = {this.handaleClick}>Начинка</button>
                     <div className = 'output'>
-                        --------------------------------------------------
                         <div>Начинка: {this.props.cakeParts.filling}</div>
                         <div>Бисквит: {this.props.cakeParts.biscuit}</div>
                         <div>Крем:    {this.props.cakeParts.cream}</div>
-                        --------------------------------------------------
+                    </div>
+                    <div className="buttonsBlock">
+                        <button onClick = {this.handaleClick}>Бисквит</button>
+                        <button onClick = {this.handaleClick}>Крем</button>
+                        <button onClick = {this.handaleClick}>Начинка</button>
                     </div>
                     <div className="buttonsBlock">
                         <BlackButton 
