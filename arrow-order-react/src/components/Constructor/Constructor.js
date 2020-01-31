@@ -6,7 +6,8 @@ import Hat from '../ComCom/Hat/Hat';
 import BurgerButton from '../ComCom/Hat/HatComponents/BurgerButton/BurgerButton';
 import BackButton from '../ComCom/Hat/HatComponents/BackButton/BackButton';
 import NavVidget from '../ComCom/NavVidget/NavVidget';
-import CakeConstructor from './ConstructorComponents/CakeConstructor/CakeConstructor'
+import CakeConstructor from './ConstructorComponents/CakeConstructor/CakeConstructor';
+import PopUp from '../ComCom/PopUp/PopUp';
 
 
 export default class Constructor extends Component {
@@ -25,9 +26,16 @@ scroll = () => {
             <section className = 'Constructor' onScroll = {this.scroll}>
                 <NavVidget />
                 <Switch>
-                    <Route exact path = '/Constructor/Cake/' component = {CakeConstructor} />
+                    <Route exact path = '/Constructor/Cake/' component = {() => {
+                        return(
+                            <>
+                                <CakeConstructor/>
+                                <PopUp/>	
+                            </>
+                        )
+                    }} />
                 </Switch>
-            </section>			
+            </section>		
 		</>
     )
  }

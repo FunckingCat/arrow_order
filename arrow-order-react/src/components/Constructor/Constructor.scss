@@ -1,6 +1,9 @@
 .Constructor{
+    //position: fixed;
     box-sizing: border-box;
-    height: 100vh;
+    width: 100vw;
+    max-width: 400px;
+    height: 100%;
     padding-top: 50px;
     padding-bottom: 20px;
 }

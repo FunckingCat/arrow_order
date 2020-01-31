@@ -8,7 +8,6 @@ import {setCakeParts} from '../../../../actions/cakeConstructorActions';
 import Storage from '../../../../servises/StorageController';
 import CakeController from '../CakeController/CakeController';
 
-import PopUp from '../../../ComCom/PopUp/PopUp';
 import BlackButton from '../../../ComCom/BlackButton/BlackButton';
 import RoundButton from '../../../ComCom/RoundButton/RoundButton';
 
@@ -99,7 +98,7 @@ class CakeConstructor extends Component {
                         <div>Бисквит: {this.props.cakeParts.biscuit}</div>
                         <div>Крем:    {this.props.cakeParts.cream}</div>
                     </div>
-                    <div className="buttonsBlock">
+                    <div className="buttonsBlock popTriggers">
                         <RoundButton 
                             src = {this.props.domen + '/static/icons/constructor/filling/default.svg'}
                             onClick = {this.handaleClick}>
@@ -118,7 +117,7 @@ class CakeConstructor extends Component {
                         </RoundButton>
                         
                     </div>
-                    <div className="buttonsBlock">
+                    <div className="buttonsBlock resetComfirm">
                         <BlackButton 
                             text='Сброcить'
                             active = {this.state.resetActive}
@@ -129,7 +128,6 @@ class CakeConstructor extends Component {
                             active = {this.state.confirmActive}/>
                     </div>
                 </div>
-                <PopUp/>
             </>
         )
     }
