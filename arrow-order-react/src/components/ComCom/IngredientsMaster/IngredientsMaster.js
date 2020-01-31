@@ -76,6 +76,12 @@ class IngredientsMaster extends Component {
         }
         if (this.state.active.length === 0) {
             summary = 'Нет подходящих вариантов, измените состав';
+            let description = 'Похоже вы выбрали несочетаемые ингредиенты, попробуйте начать с начинки, тогда вы точно сможете собратьт самый вкусный торт!';
+            if (this.state.description !== description){
+                this.setState({
+                    description : description,
+                })
+            }
         }
         return summary
     }
