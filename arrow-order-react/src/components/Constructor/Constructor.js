@@ -11,6 +11,10 @@ import CakeConstructor from './ConstructorComponents/CakeConstructor/CakeConstru
 
 export default class Constructor extends Component {
 
+scroll = () => {
+    
+}
+
  render(){
     return(
         <>
@@ -18,7 +22,7 @@ export default class Constructor extends Component {
                 left   = {<BackButton />}
                 middle = {<div>Заказ</div>}
                 right  = {<BurgerButton />}/>
-            <section className = 'Constructor'>
+            <section className = 'Constructor' onScroll = {this.scroll}>
                 <NavVidget />
                 <Switch>
                     <Route exact path = '/Constructor/Cake/' component = {CakeConstructor} />

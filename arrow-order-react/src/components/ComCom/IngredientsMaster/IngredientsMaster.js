@@ -26,6 +26,7 @@ class IngredientsMaster extends Component {
 
     componentDidUpdate() {
         this.updateItems();
+        this.getDescription();
     }
 
     updateItems = () => {
@@ -35,12 +36,14 @@ class IngredientsMaster extends Component {
                 let active = []
                 try{active = res.active.map(item => item.name)} // При сбросе вылетает исключение, ловим его
                 catch{}
+                let description = 'Похоже вы выбрали несочетаемые ингредиенты, попробуйте начать с начинки, тогда вы точно сможете собратьт самый вкусный торт!';
                 this.setState({
                     items : res.all || [], // Так же ловим исключение про сбросе
                     active : active,
                     selected : '',
                     buttonActive : 'false',
                     prevContent : this.props.content,
+                    description : active.length === 0? description : '',
                 })                           
             })
         } 
@@ -76,12 +79,7 @@ class IngredientsMaster extends Component {
         }
         if (this.state.active.length === 0) {
             summary = 'Нет подходящих вариантов, измените состав';
-            let description = 'Похоже вы выбрали несочетаемые ингредиенты, попробуйте начать с начинки, тогда вы точно сможете собратьт самый вкусный торт!';
-            if (this.state.description !== description){
-                this.setState({
-                    description : description,
-                })
-            }
+            
         }
         return summary
     }
@@ -116,7 +114,6 @@ class IngredientsMaster extends Component {
 
     render(){
         let summary = this.defSummary();
-        this.getDescription();
         return(
             <div className="ingredientsMaster">
                 <List 

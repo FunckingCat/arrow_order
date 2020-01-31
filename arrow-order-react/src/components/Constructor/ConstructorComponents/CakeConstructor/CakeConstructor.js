@@ -10,6 +10,7 @@ import CakeController from '../CakeController/CakeController';
 
 import PopUp from '../../../ComCom/PopUp/PopUp';
 import BlackButton from '../../../ComCom/BlackButton/BlackButton';
+import RoundButton from '../../../ComCom/RoundButton/RoundButton';
 
 class CakeConstructor extends Component {
 
@@ -58,7 +59,9 @@ class CakeConstructor extends Component {
     }
 
     handaleClick = (event) => {
-        this.props.setContent(event.target.innerHTML);
+        console.log(event.target.closest('.RoundButton').childNodes[1].innerHTML);
+        let content = event.target.closest('.RoundButton').childNodes[1].innerHTML;
+        this.props.setContent(content);
         this.props.popUpActive(true);
     }
 
@@ -97,9 +100,23 @@ class CakeConstructor extends Component {
                         <div>Крем:    {this.props.cakeParts.cream}</div>
                     </div>
                     <div className="buttonsBlock">
-                        <button onClick = {this.handaleClick}>Бисквит</button>
-                        <button onClick = {this.handaleClick}>Крем</button>
-                        <button onClick = {this.handaleClick}>Начинка</button>
+                        <RoundButton 
+                            src = {this.props.domen + '/static/icons/constructor/filling/default.svg'}
+                            onClick = {this.handaleClick}>
+                                Начинка
+                        </RoundButton>
+                        <RoundButton 
+                            src = {this.props.domen + '/static/icons/constructor/biscuit/default.svg'}
+                            onClick = {this.handaleClick}>
+                                Бисквит
+                        </RoundButton>
+                        <RoundButton
+                            scale = 'true' 
+                            src = {this.props.domen + '/static/icons/constructor/cream/default.svg'}
+                            onClick = {this.handaleClick}>
+                                Крем
+                        </RoundButton>
+                        
                     </div>
                     <div className="buttonsBlock">
                         <BlackButton 
@@ -120,6 +137,7 @@ class CakeConstructor extends Component {
 
 const mapStateToProps = (state) => {
     return {
+        domen : state.domen,
         isPopUpActive : state.popUp.active,
         cakeParts : {
             filling : state.cakeParts.filling,
