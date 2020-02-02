@@ -12,18 +12,14 @@ import PopUp from '../ComCom/PopUp/PopUp';
 
 export default class Constructor extends Component {
 
-scroll = () => {
-    
-}
-
  render(){
     return(
         <>
-            <Hat 
-                left   = {<BackButton />}
-                middle = {<div>Заказ</div>}
-                right  = {<BurgerButton />}/>
-            <section className = 'Constructor' onScroll = {this.scroll}>
+            <section className = 'Constructor'>
+                <Hat 
+                        left   = {<BackButton />}
+                        middle = {<div>Заказ</div>}
+                        right  = {<BurgerButton />}/>	
                 <NavVidget />
                 <Switch>
                     <Route exact path = '/Constructor/Cake/' component = {() => {
@@ -35,7 +31,7 @@ scroll = () => {
                         )
                     }} />
                 </Switch>
-            </section>		
+            </section>	
 		</>
     )
  }
