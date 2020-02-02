@@ -1,37 +1,8 @@
-/*---GLOBAL VARIABLES---*/
-
-$Roboto: 'Roboto';
-$Comfortaa: 'Comfortaa';
-$BurgerColor: #505050;
-$hatButtonHeight: 40px;
-
-/*---MIXINES---*/
-
-@mixin fullscreen(){
-  width: 100vw;
-  height: 100vh;
-}
-
-@mixin center(){
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-/*---GLOBAL CLASSES---*/
-
-body{
-    font-family: $Roboto;
-  }
-  
+ 
   a, a:focus{
       text-decoration: none;
       color: black;
       outline: none;
-  }
-  
-  p{
-    font-size: 16px;
   }
 
 #underHat{
@@ -40,7 +11,7 @@ body{
 }
 
   .mainPage{
-    
+    max-width: 400px;
     .parallax-container{
         width: 100%;
         
