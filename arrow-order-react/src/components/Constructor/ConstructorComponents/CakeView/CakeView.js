@@ -50,18 +50,18 @@ class CakeView extends Component {
         }// Функция вычисления высоты сборки
 
         const calcOptimalWidth = (AH, AW, BS, FS, BF, FF) => {
-            let ratio = 0.7;
+            let ratio = 0.9;
             let inSize = false;
 
             while (!inSize && ratio !== 0){
+                ratio -= 0.05
                 let W = ratio * AW;
                 let BH = W * BS;
                 let FH = W * FS;
-                let tempHeight = calcHeight(BH, BF, FH, FF);
+                let tempHeight = calcHeight(BH, BF, FH, FF) + 20;
                 if (AH - tempHeight > 0){
                     inSize = true;
                 }
-                ratio -= 0.1;
             }
 
             return Math.round(ratio * 100) + '%'
