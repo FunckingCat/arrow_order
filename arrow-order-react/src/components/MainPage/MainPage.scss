@@ -1,19 +1,17 @@
- 
-  a, a:focus{
-      text-decoration: none;
-      color: black;
-      outline: none;
-  }
-
 #underHat{
   text-align: center; 
   height: 50px;   
 }
 
   .mainPage{
+    width: 100%;
     max-width: 400px;
-    .parallax-container{
+    .parallaxContainer{
         width: 100%;
-        
+        scroll-behavior: smooth;
         }
+    
+    img{
+      width: 100%;
+    }
   }

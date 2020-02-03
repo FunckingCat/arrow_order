@@ -16,8 +16,14 @@ p{
 .App{
     font-family: Comfortaa;
     outline: none;
-    width: 100vw;
+    width: 100%;
     display: flex;
     justify-content: center;
 }
+
+// @media screen and (max-width: 500px) {
+//     .App * {
+//         font-size: 12px;
+//     }
+// }
 

@@ -27,7 +27,8 @@ export default class Login extends Component {
                     <LoginButton />
 
                     <div className="copyright">
-                        <Link to = '/Contacts'>by @arrowcook</Link>
+                        pre-alpha <br/>
+                        <Link to = '/Contacts'>v0.1</Link>
                     </div>
 
                 </form>

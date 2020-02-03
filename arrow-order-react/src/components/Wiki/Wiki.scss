@@ -1,4 +1,8 @@
-.WikiPage{
-    min-height: calc(100vh - 50px);
-    padding-top: 50px;
+.WikiWrapper {
+    width: 100%;
+    max-width: 400px;
+    .WikiPage{
+        min-height: calc(100vh - 50px);
+        padding-top: 50px;
+    }
 }

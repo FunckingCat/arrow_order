@@ -1,40 +1,11 @@
-/*---GLOBAL VARIABLES---*/
-
-$Roboto: 'Roboto';
-$Comfortaa: 'Comfortaa';
-$BurgerColor: #505050;
-$hatButtonHeight: 40px;
-
-/*---MIXINES---*/
-
-@mixin fullscreen(){
-  width: 100vw;
-  height: 100vh;
-}
-
 @mixin center(){
   display: flex;
   justify-content: center;
   align-items: center;
 }
 
-/*---GLOBAL CLASSES---*/
-
-body{
-    font-family: $Roboto;
-  }
-  
-  a, a:focus{
-      text-decoration: none;
-      color: black;
-      outline: none;
-  }
-  
-  p{
-    font-size: 16px;
-  }
-
 .basement{
+  width: 100%;
   @include center();
   padding-top: 20px;
   padding-bottom: 20px;
@@ -43,7 +14,7 @@ body{
   min-height: 120px;
   background-color: #494949;
   color: white;
-  font-family: $Comfortaa;
+  font-family: Comfortaa;
   h2{
     font-size: 1.2em;
   }
@@ -54,8 +25,4 @@ body{
     height: 30px;
     width: 30px;
   }
-}
-
-img{
-  width: 100%;
 }
