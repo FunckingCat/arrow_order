@@ -1,7 +1,7 @@
 import React,{Component} from 'react';
 import './List.scss';
 
-import RadioButton    from '../../ComCom/RadioButton/RadioButton';
+import RadioButton    from '../../Buttons/RadioButton/RadioButton';
 
 //Для работы этосу компоненту нужно:
 // title - заголовок

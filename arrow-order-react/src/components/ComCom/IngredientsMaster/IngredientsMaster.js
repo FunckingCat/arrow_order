@@ -6,9 +6,9 @@ import {setSelected, setConstant} from '../../../actions/ingredietsMasterActions
 import {setCakeParts} from '../../../actions/cakeConstructorActions';
 
 import requestService from '../../../servises/requestService';
-import BlackButton    from '../../ComCom/BlackButton/BlackButton';
-import Details        from '../../ComCom/Details/Details';
-import List           from '../../ComCom/List/List';
+import BlackButton    from '../../ComCom/Buttons/BlackButton/BlackButton';
+import Details        from '../../ComCom/InfoView/Details/Details';
+import List           from '../../ComCom/InfoView/List/List';
 
 class IngredientsMaster extends Component {
 

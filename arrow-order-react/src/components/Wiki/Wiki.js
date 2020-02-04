@@ -4,8 +4,8 @@ import {Switch, Route}    from 'react-router-dom';
 import './Wiki.scss';
 
 import Hat          from '../ComCom/Hat/Hat';
-import BurgerButton from '../ComCom/Hat/HatComponents/BurgerButton/BurgerButton';
-import BackButton   from '../ComCom/Hat/HatComponents/BackButton/BackButton';
+import BurgerButton from '../ComCom/Buttons/BurgerButton/BurgerButton';
+import BackButton   from '../ComCom/Buttons/BackButton/BackButton';
 import NavVidget    from '../ComCom/NavVidget/NavVidget';
 import WikiCard     from './WikiCard/WikiCard.js';
 import WikiMenu     from './WikiMenu/WikiMenu';

@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
-import {back} from '../../../../../actions/historyActions';
+import {back} from '../../../../actions/historyActions';
 import backIcon from './back.svg';
 import './BackButton.scss';
 

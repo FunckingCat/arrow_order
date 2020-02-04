@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import {connect}          from 'react-redux';
 import './WikiCard.scss';
 
-import Cross          from '../../BurgerMenu/MenuComponents/Cross/Cross';
+import Cross          from '../../ComCom/Buttons/Cross/Cross';
 import Animator       from '../../ComCom/Animator/Animator';
 import RequestService from '../../../servises/requestService';
 import Bg             from '../../ComCom/Bg/Bg';

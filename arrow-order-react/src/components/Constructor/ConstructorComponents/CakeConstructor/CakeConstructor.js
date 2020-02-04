@@ -8,8 +8,8 @@ import {setCakeParts} from '../../../../actions/cakeConstructorActions';
 import Storage from '../../../../servises/StorageController';
 import CakeController from '../CakeController/CakeController';
 
-import BlackButton from '../../../ComCom/BlackButton/BlackButton';
-import RoundButton from '../../../ComCom/RoundButton/RoundButton';
+import BlackButton from '../../../ComCom/Buttons/BlackButton/BlackButton';
+import RoundButton from '../../../ComCom/Buttons/RoundButton/RoundButton';
 
 class CakeConstructor extends Component {
 

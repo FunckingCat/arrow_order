@@ -4,15 +4,15 @@ import {connect} from 'react-redux';
 import './MainPage.scss';
 import RequestService from '../../servises/requestService';
 
-import Hat from '../ComCom/Hat/Hat';
-import Image from '../ComCom/ImageComp/Image';
-import Error from '../ComCom/ErrorMassage/Error';
-import Animator from '../ComCom/Animator/Animator';
-import BurgerButton from '../ComCom/Hat/HatComponents/BurgerButton/BurgerButton';
-import OrderButton from '../ComCom/Hat/HatComponents/OrderButton/OrderButton';
+import Hat          from '../ComCom/Hat/Hat';
+import Image        from '../ComCom/ImageComp/Image';
+import Error        from '../ComCom/ErrorMassage/Error';
+import Animator     from '../ComCom/Animator/Animator';
+import BurgerButton from '../ComCom/Buttons/BurgerButton/BurgerButton';
+import OrderButton  from '../ComCom/Buttons/OrderButton/OrderButton';
 
 import ContentBlock from './MainPageComponents/ContnetBlock/ContentBlock';
-import Basement from './MainPageComponents/Basement/Basement';
+import Basement     from './MainPageComponents/Basement/Basement';
 
 class MainPage extends Component {
     RequestService = new RequestService(this.props.domen);
