@@ -6,7 +6,7 @@ import {popUpActive}  from '../../../actions/popUpActions';
 
 import requestService from '../../../servises/requestService';
 
-import IndredientsMaster from '../IngredientsMaster/IngredientsMaster';
+import IndredientsMaster from '../../Constructor/ConstructorComponents/IngredientsMaster/IngredientsMaster';
 
 class PopUp extends Component {
 
