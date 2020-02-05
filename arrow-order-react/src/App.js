@@ -7,7 +7,7 @@ import Login from './components/Login/Login';
 import MainPage from './components/MainPage/MainPage';
 import CommingSoon from './components/ComCom/CommigSoon/CommingSoon';
 import BurgerMenu from './components/BurgerMenu/BurgerMenu';
-import Wiki from './components/Wiki/Wiki';
+import WikiRouter from './components/Wiki/WikiRouter';
 import Constructor from './components/Constructor/Constructor'
 
 function App() {
@@ -17,7 +17,7 @@ function App() {
         <Route exact path = '/' component = {Login} /> 
         <Route exact path = '/MainPage' component = {MainPage} />
         <Route exact path = '/Menu' component = {BurgerMenu} />
-        <Route path = '/Wiki' component = {Wiki}/>
+        <Route path = '/Wiki' component = {WikiRouter}/>
         <Route path = '/Constructor' component = {Constructor} />
         <Route exact path = '/FreeDates' component = {CommingSoon} />
         <Route exact path = '/Rules' component = {CommingSoon} />

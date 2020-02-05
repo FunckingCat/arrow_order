@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import {connect}          from 'react-redux';
 import {Switch, Route}    from 'react-router-dom';
-import './Wiki.scss';
+import './WikiRouter.scss';
 
 import Hat          from '../ComCom/Hat/Hat';
 import BurgerButton from '../ComCom/Buttons/BurgerButton/BurgerButton';
@@ -13,12 +13,12 @@ import WikiMenu     from './WikiMenu/WikiMenu';
 class WikiPage extends Component {
 	render() {
 		return(
-			<div className = 'WikiWrapper'>
+			<div className = 'WikiRouter'>
 				<Hat 
 					left   = {<BackButton />}
 					middle = {<div>Вики</div>}
 					right  = {<BurgerButton />}/>
-					<section className = 'WikiPage'>
+					<section className = 'Wiki'>
 					    <NavVidget />
                         <Switch>
 
