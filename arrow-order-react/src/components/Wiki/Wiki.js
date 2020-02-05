@@ -23,7 +23,7 @@ class WikiPage extends Component {
                         <Switch>
 
 							<Route exact path = '/Wiki' component = {() => {
-								return <WikiMenu type = {'Вики'}/>
+								return <WikiMenu/>
 								}}/>
 
 
