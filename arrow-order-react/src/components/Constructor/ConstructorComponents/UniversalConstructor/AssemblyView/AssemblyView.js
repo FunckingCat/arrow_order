@@ -1,5 +1,5 @@
 import React,{Component} from 'react';
-import './CakeView.scss'; 
+import './AssemblyView.scss'; 
 import {connect} from 'react-redux';
 
 

@@ -1,12 +1,12 @@
 import React,{Component} from 'react';
-import './CakeConstructor.scss'; 
+import './UniversalConstructor.scss'; 
 import {connect} from 'react-redux';
 
-import {popUpActive} from '../../../../actions/popUpActions';
-import {setContent} from '../../../../actions/ingredietsMasterActions';
+import {popUpActive}  from '../../../../actions/popUpActions';
+import {setContent}   from '../../../../actions/ingredietsMasterActions';
 import {setCakeParts} from '../../../../actions/cakeConstructorActions';
-import Storage from '../../../../servises/StorageController';
-import CakeController from '../CakeController/CakeController';
+import Storage        from '../../../../servises/StorageController';
+import CakeController from './AsseblyController/AssemblyController';
 
 import BlackButton from '../../../ComCom/Buttons/BlackButton/BlackButton';
 import RoundButton from '../../../ComCom/Buttons/RoundButton/RoundButton';

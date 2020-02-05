@@ -1,11 +1,10 @@
-import React,{Component} from 'react';
-import './CakeController.scss'; 
+import React,{Component} from 'react'; 
 import {connect} from 'react-redux';
-import RecuestService from '../../../../servises/requestService';
+import RecuestService from '../../../../../servises/requestService';
 
-import CakeView from '../CakeView/CakeView';
+import CakeView from '../AssemblyView/AssemblyView';
 
-import {popUpActive} from '../../../../actions/popUpActions';
+import {popUpActive} from '../../../../../actions/popUpActions';
 
 class CakeController extends Component {
 

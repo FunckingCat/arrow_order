@@ -6,7 +6,7 @@ import Hat             from '../ComCom/Hat/Hat';
 import BurgerButton    from '../ComCom/Buttons/BurgerButton/BurgerButton';
 import BackButton      from '../ComCom/Buttons/BackButton/BackButton';
 import NavVidget       from '../ComCom/NavVidget/NavVidget';
-import CakeConstructor from './ConstructorComponents/CakeConstructor/CakeConstructor';
+import CakeConstructor from './ConstructorComponents/UniversalConstructor/UniversalConstructor';
 import PopUp           from '../ComCom/PopUp/PopUp';
 
 
