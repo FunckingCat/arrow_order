@@ -2,7 +2,7 @@ import React,{Component} from 'react';
 import {connect} from 'react-redux';
 import RecuestService from '../../../../../servises/requestService';
 
-import CakeView from '../AssemblyView/AssemblyView';
+import AssemblyView from '../AssemblyView/AssemblyView';
 
 import {popUpActive} from '../../../../../actions/popUpActions';
 
@@ -44,7 +44,7 @@ class CakeController extends Component {
 
     render(){
         return(
-            <CakeView
+            <AssemblyView
                 biscuitIcon = {this.state.biscuitIcon}
                 fillingIcon = {this.state.fillingIcon}
                 creamIcon = {this.state.creamIcon}/>

@@ -9,9 +9,9 @@ import {connect} from 'react-redux';
 //creamIcon
 
 
-class CakeView extends Component {
-    CakeView = React.createRef();
-    cake     = React.createRef();
+class AssemblyView extends Component {
+    AssemblyView = React.createRef();
+    assembly     = React.createRef();
 
     state = {
         prevProps : {},
@@ -67,8 +67,8 @@ class CakeView extends Component {
             return Math.round(ratio * 100) + '%'
         }
 
-        const CH = this.CakeView.current.offsetHeight;//Доступная высота
-        const CW = this.CakeView.current.offsetWidth;// Вся ширина
+        const CH = this.AssemblyView.current.offsetHeight;//Доступная высота
+        const CW = this.AssemblyView.current.offsetWidth;// Вся ширина
         const BS = 118/160; // Высота к ширине бисквита
         const FS = 102/160; // Высота к ширине начинки
         const BF = 0.32; //Оношение высоты и грани бисквита
@@ -77,8 +77,8 @@ class CakeView extends Component {
         //СЧитаем доступный процент ширины
         const ratio = calcOptimalWidth(CH, CW, BS, FS, BF, FF);
         //Задаем гирину равной вычисленной
-        this.cake.current.style.width = ratio;
-        const W = this.cake.current.offsetWidth;// Ширина контейнера сборки в пискселях
+        this.assembly.current.style.width = ratio;
+        const W = this.assembly.current.offsetWidth;// Ширина контейнера сборки в пискселях
         const BH = W * BS; // Высота бисквита при конкретной ширине блока контейнера
         const FH = W * FS; // Высота начинки 
         const CF = 0; //Условно высота крема
@@ -111,7 +111,7 @@ class CakeView extends Component {
         // console.log(
         // 'offsets', offsets,
         // '\nratio', ratio,
-        // '\ncakeHeight', height,
+        // '\nassemblyHeight', height,
         // '\ncommon offset', commonOffset);
         if (this.state.offsets[0] !== offsets[0] && this.state.offsets[3] !== offsets[3]){
             this.setState({
@@ -176,8 +176,8 @@ class CakeView extends Component {
         let fillings = this.renderFillings();
         let cream = this.renderCream();
         return(
-            <div className = 'CakeView' ref = {this.CakeView}>
-                <div className="cake" ref= {this.cake}>
+            <div className = 'AssemblyView' ref = {this.AssemblyView}>
+                <div className="assembly" ref= {this.assembly}>
                    {biscuits}
                    {fillings}
                    {cream}
@@ -193,4 +193,4 @@ const mapStatetoProps = (state) => {
     }
 }
 
-export default connect(mapStatetoProps)(CakeView)
+export default connect(mapStatetoProps)(AssemblyView)

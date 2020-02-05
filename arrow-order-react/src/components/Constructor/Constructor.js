@@ -6,7 +6,7 @@ import Hat             from '../ComCom/Hat/Hat';
 import BurgerButton    from '../ComCom/Buttons/BurgerButton/BurgerButton';
 import BackButton      from '../ComCom/Buttons/BackButton/BackButton';
 import NavVidget       from '../ComCom/NavVidget/NavVidget';
-import CakeConstructor from './ConstructorComponents/UniversalConstructor/UniversalConstructor';
+import UniversalConstructor from './ConstructorComponents/UniversalConstructor/UniversalConstructor';
 import PopUp           from '../ComCom/PopUp/PopUp';
 
 
@@ -25,7 +25,7 @@ export default class Constructor extends Component {
                     <Route exact path = '/Constructor/Cake/' component = {() => {
                         return(
                             <>
-                                <CakeConstructor/>
+                                <UniversalConstructor/>
                                 <PopUp/>	
                             </>
                         )

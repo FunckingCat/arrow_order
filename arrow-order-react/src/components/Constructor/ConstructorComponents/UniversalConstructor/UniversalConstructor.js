@@ -11,7 +11,7 @@ import CakeController from './AsseblyController/AssemblyController';
 import BlackButton from '../../../ComCom/Buttons/BlackButton/BlackButton';
 import RoundButton from '../../../ComCom/Buttons/RoundButton/RoundButton';
 
-class CakeConstructor extends Component {
+class UniversalConstructor extends Component {
 
     state = {
         resetActive : 'false',
@@ -91,7 +91,7 @@ class CakeConstructor extends Component {
                 
         return(
             <>
-                <div className = "CakeConstructor">
+                <div className = "UniversalConstructor">
                     <CakeController/>
                     <div className = 'output'>
                         <div>Начинка: {this.props.cakeParts.filling}</div>
@@ -151,4 +151,4 @@ const mapDispatchToProps = {
     setCakeParts : setCakeParts,
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(CakeConstructor)
+export default connect(mapStateToProps, mapDispatchToProps)(UniversalConstructor)

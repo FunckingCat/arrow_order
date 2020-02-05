@@ -1,4 +1,4 @@
-.CakeView{
+.AssemblyView{
     > * {
         box-sizing: border-box;
     }
@@ -6,7 +6,7 @@
     align-items: center;
     flex-direction: column;
     justify-content: center;
-    .cake{
+    .assembly{
         position: relative;
         height: 100%;
         .biscuit, .filling, .cream{
