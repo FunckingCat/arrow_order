@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     'menu',
     'wiki',
     'constructor',
+    'products',
 ]
 
 MIDDLEWARE = [
