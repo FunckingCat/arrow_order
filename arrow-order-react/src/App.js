@@ -24,7 +24,7 @@ function App() {
         <Route exact path = '/Rules' component = {CommingSoon} />
         <Route exact path = '/Contacts' component = {CommingSoon} />
         <Route exact path = '/WorkWithUs' component = {CommingSoon} />
-        <Route exact path = '/Products' component = {Products} />
+        <Route path = '/Products' component = {Products} />
       </div>
     </Router>
   );

@@ -78,7 +78,7 @@ class MainPage extends Component {
                 <Animator type = 'fade'>
                     <Hat
                         left = {<BurgerButton/>}
-                        right = {<OrderButton link = '/Products/'/>} />
+                        right = {<OrderButton link = '/Products'/>} />
                 </Animator>
                 <Animator type = 'fade' timeout = '300'>
                     <div className="parallaxContainer">

@@ -20,9 +20,15 @@ export default class ProductsRouter extends Component {
                 <section className="products">
                     <NavVidget />
                     <Switch>
-                        <Route exact path = '' component = {Products}/>
-                        <Route exact path = ':name' component = {(info) => {
-                            return {{}}
+                        <Route exact path = '/Products/' component = {(info) => {
+                            console.log(info);
+                            return <Products
+                                        cat = {info.match.params.cat}/>
+                        }}/>
+                        <Route exact path = '/Products/:cat' component = {(info) => {
+                            console.log(info);
+                            return <Products
+                                        cat = {info.match.params.cat}/>
                         }}/>
                     </Switch>
                 </section>

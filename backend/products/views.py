@@ -8,7 +8,7 @@ def categories(request):
     if request.method == 'GET':
         items = Product.objects.all()
         response = {'values' : {
-                'title'  : 'Заказ',
+                'title'  : 'Продукция',
                 'slogan' : '',
                 'items'  : [],
             }

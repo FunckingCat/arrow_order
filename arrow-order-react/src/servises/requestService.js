@@ -73,4 +73,9 @@ export default class requestService {
         let res = await this.getResource(`/api/constructor/cake/getCakeIcons/${filling}&&${biscuit}&&${cream}/`)
         return res
     }
+
+    getProducts = async (cat = '') => {
+        let res = await this.getResource(`/api/products/${cat}`)
+        return res
+    }
 }

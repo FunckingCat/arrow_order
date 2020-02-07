@@ -10,7 +10,7 @@ import {Link} from "react-router-dom";
 class OrderButton extends Component {
 
     handaleClick = (event) => {
-        this.props.transfer('Конструктор', '/Constructor/Cake')
+        this.props.transfer('Продукция', this.props.link)
     }
 
     render() {
