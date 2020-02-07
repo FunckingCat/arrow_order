@@ -1,5 +1,4 @@
 import React, {Component} from 'react';
-import {connect}          from 'react-redux';
 import {Switch, Route}    from 'react-router-dom';
 import './WikiRouter.scss';
 
@@ -10,7 +9,7 @@ import NavVidget    from '../ComCom/NavVidget/NavVidget';
 import WikiCard     from './WikiCard/WikiCard.js';
 import WikiMenu     from './WikiMenu/WikiMenu';
 
-class WikiPage extends Component {
+export default class WikiPage extends Component {
 	render() {
 		return(
 			<div className = 'WikiRouter'>
@@ -45,6 +44,4 @@ class WikiPage extends Component {
 		)
 	}
 }
-
-export default connect()(WikiPage)
 

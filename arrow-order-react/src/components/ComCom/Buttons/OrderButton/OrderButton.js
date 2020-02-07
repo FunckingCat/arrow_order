@@ -15,7 +15,7 @@ class OrderButton extends Component {
 
     render() {
         return(
-            <Link to ="/Constructor/Cake" onClick = {this.handaleClick}> 
+            <Link to = {this.props.link} onClick = {this.handaleClick}> 
                 <div className="button">
                     <div className="text">Заказать</div>
                     <div className="arrow"><img src={arrow} alt=""/></div>

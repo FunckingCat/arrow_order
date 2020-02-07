@@ -3,11 +3,12 @@ import {BrowserRouter as Router, Route} from 'react-router-dom';
 import './css_reset.css';
 import './App.scss';
 
-import Login from './components/Login/Login';
-import MainPage from './components/MainPage/MainPage';
+import Login       from './components/Login/Login';
+import MainPage    from './components/MainPage/MainPage';
 import CommingSoon from './components/ComCom/CommigSoon/CommingSoon';
-import BurgerMenu from './components/BurgerMenu/BurgerMenu';
-import WikiRouter from './components/Wiki/WikiRouter';
+import BurgerMenu  from './components/BurgerMenu/BurgerMenu';
+import WikiRouter  from './components/Wiki/WikiRouter';
+import Products    from './components/Products/ProductsRouter';
 import Constructor from './components/Constructor/Constructor'
 
 function App() {
@@ -23,7 +24,7 @@ function App() {
         <Route exact path = '/Rules' component = {CommingSoon} />
         <Route exact path = '/Contacts' component = {CommingSoon} />
         <Route exact path = '/WorkWithUs' component = {CommingSoon} />
-        <Route exact path = '/Products' component = {CommingSoon} />
+        <Route exact path = '/Products' component = {Products} />
       </div>
     </Router>
   );

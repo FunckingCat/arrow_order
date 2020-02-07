@@ -3,8 +3,6 @@ from django.http import JsonResponse
 from .models import Product, Products_sub
 
 # Create your views here.
-def main(request):
-    return JsonResponse({"It" : 'works'})
 
 def categories(request):
     if request.method == 'GET':
