@@ -6,7 +6,7 @@ export default class Textarea extends Component {
     render(){
 
         let style = this.props.active? {
-            'maxHeight' : this.props.height
+            'maxHeight' : this.props.height || '50%'
         } : {
             'maxHeight' : '0'
         }
