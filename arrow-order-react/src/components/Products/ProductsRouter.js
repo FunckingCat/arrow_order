@@ -21,7 +21,6 @@ export default class ProductsRouter extends Component {
                     <NavVidget />
                     <Switch>
                         <Route exact path = '/Products/' component = {(info) => {
-                            console.log(info);
                             return <Products
                                         cat = {info.match.params.cat}/>
                         }}/>

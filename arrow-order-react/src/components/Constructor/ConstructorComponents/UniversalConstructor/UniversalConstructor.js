@@ -10,6 +10,7 @@ import CakeController from './AsseblyController/AssemblyController';
 
 import BlackButton from '../../../ComCom/Buttons/BlackButton/BlackButton';
 import RoundButton from '../../../ComCom/Buttons/RoundButton/RoundButton';
+import TransLink   from '../../../ComCom/Buttons/TransLink/TransLink';
 
 class UniversalConstructor extends Component {
 
@@ -122,8 +123,10 @@ class UniversalConstructor extends Component {
                             text='Сброcить'
                             active = {this.state.resetActive}
                             onClick = {this.reset}/>
-                        <BlackButton 
+                        <TransLink
                             text='Далее'
+                            transferTo = 'Продукция'
+                            to = '/Products'
                             onClick={this.confirm}
                             active = {this.state.confirmActive}/>
                     </div>

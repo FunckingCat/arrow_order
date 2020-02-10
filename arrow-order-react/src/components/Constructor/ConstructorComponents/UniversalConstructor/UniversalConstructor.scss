@@ -30,5 +30,8 @@
         flex-direction: row;
         justify-content: space-around;
         margin-bottom: 20px;
+        .BlackButton, .TransLink{
+            width: 40%;
+        }
     }
 }

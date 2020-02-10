@@ -1,5 +1,8 @@
 import React,{Component} from 'react';
-import './InputRange.scss'; 
+import './InputRange.scss';
+
+//Props
+//min, max, step, dimension, default
 
 export default class InputRange extends Component {
 
@@ -22,7 +25,7 @@ export default class InputRange extends Component {
     }
 
     render(){
-        let {min, max} = this.props;
+        let {min, max, step, dimension} = this.props;
         return(
             <div className="InputRange">
                 <div className="range-slider">
@@ -31,7 +34,7 @@ export default class InputRange extends Component {
                         className="rs-label">
                             <div ref = {this.output} className="output"></div>
                             <div className="dimension">
-                                {this.props.dimension}
+                                {dimension}
                             </div>
                     </span>
                     <input 
@@ -40,7 +43,7 @@ export default class InputRange extends Component {
                         className="rs-range" 
                         type="range"
                         defaultValue = {this.props.default || (max - min)/2}
-                        step={this.props.step}  
+                        step={step}  
                         min={min} 
                         max={max}/>
                 </div>
