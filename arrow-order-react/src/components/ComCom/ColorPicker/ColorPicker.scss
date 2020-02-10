@@ -1,0 +1,9 @@
+.colorPicker{
+    max-width: 400px;
+    width : 100%;
+    .colors{
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+    }
+}

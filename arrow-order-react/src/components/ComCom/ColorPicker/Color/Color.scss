@@ -1,0 +1,45 @@
+.color{
+    box-sizing: border-box;
+    list-style-type: none;
+    margin: 0.3em;
+    transition: transform 0.2s;
+
+    .colorInput{
+        position: absolute;
+        z-index: -1;
+        opacity: 0;
+        margin: 10px 0 0 7px;
+    }
+    .checkarrow{
+        position: absolute;
+        z-index: -1;
+        opacity: 0;
+        width: 5em;
+        height: 5em;
+        transition: opacity 0.2s;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        & > svg{
+            width: 50%;
+            height: 50%;
+        }
+    }
+
+    .colorLabel{
+        display: block;
+        box-sizing: border-box;
+        width : 5em;
+        height: 5em;
+        border-radius: 0.5em;
+    }
+
+    &:hover{
+        transform: scale(1.08);
+    }
+
+    .colorInput:checked + .checkarrow{
+        z-index: 1;
+        opacity: 1;
+    }
+}
