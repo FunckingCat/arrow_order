@@ -14,8 +14,8 @@
         position: absolute;
         z-index: -1;
         opacity: 0;
-        width: 5em;
-        height: 5em;
+        width: 4em;
+        height: 4em;
         transition: opacity 0.2s;
         display: flex;
         align-items: center;
@@ -29,8 +29,8 @@
     .colorLabel{
         display: block;
         box-sizing: border-box;
-        width : 5em;
-        height: 5em;
+        width : 4em;
+        height: 4em;
         border-radius: 0.5em;
     }
 
@@ -41,5 +41,6 @@
     .colorInput:checked + .checkarrow{
         z-index: 1;
         opacity: 1;
+        transition: 0.8s;
     }
 }

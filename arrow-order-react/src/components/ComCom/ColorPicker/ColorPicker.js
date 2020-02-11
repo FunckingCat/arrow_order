@@ -7,15 +7,22 @@ import Color from './Color/Color'
 class ColorPicker extends Component {
 
     state = {
-        colors : ['#eb6e34', '#448b9e', '#e090d4', '#113b14', '#9c982c', '#405246', '#46748c', '#c96865']
+        colors : ['#eb6e34', '#448b9e', '#e090d4', '#113b14', '#9c982c', '#405246', '#46748c', '#c96865', '#ffffff', '#000']
+    }
+
+    onChange = (event) => {
+        this.setState({
+            selected : event.target.dataset.value,
+        })
     }
 
     renderColors = () => {
-        let colors = this.state.colors
+        let colors = this.state.colors.sort();
         let render = []
         for (let i=0; i < colors.length; i++) {
             render.push(
                 <Color
+                    onChange = {this.onChange}
                     key = {i + colors[i]} 
                     color ={colors[i]}/>);
         }
@@ -29,7 +36,7 @@ class ColorPicker extends Component {
         return(
             <div className="colorPicker">
                 <div className="title">
-                    Выберите цвет:
+                    Выберите основной цвет: {this.state.selected}
                 </div>
                 <div className="colors">
                     {colors}

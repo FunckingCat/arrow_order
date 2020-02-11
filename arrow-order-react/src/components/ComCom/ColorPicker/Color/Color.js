@@ -3,9 +3,38 @@ import './Color.scss';
 
 export default class Color extends Component {
 
+    to16 = (number) => {
+        if (number < 0) {
+            return '#000000'
+        } else if (number > 16777215){
+            return '#ffffff'
+        }
+        const shift = ['0','1','2','3','4','5','6','7','8','9','a','b','c','d','e','f']
+        let res = '';
+        let temp = number;
+        while (temp > 0){
+            let rest = temp % 16;
+            temp = Math.floor(temp/16);
+            res += shift[rest];
+        }
+        while (res.length < 6){
+            res = res + '0'
+        }
+        return '#' + res.split("").reverse().join("")
+    }
+
+    makeGradient = (color, shift = 10000) => {
+        color = parseInt(color.slice(1), 16);        
+        let col1 = this.to16(color - shift);
+        let col2 = this.to16(color + shift);
+        console.log(col1, col2);
+        //return this.to16(color - shift)
+        return `linear-gradient(45deg, ${col1}, ${col2})`
+    }
+
     render(){
         let style = {
-            backgroundColor : this.props.color,
+            background : this.makeGradient(this.props.color, this.props.shift),
         }
         return(
             <li className = 'color' onClick = {this.handaleClick}>

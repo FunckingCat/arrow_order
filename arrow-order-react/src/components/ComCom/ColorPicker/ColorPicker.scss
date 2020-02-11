@@ -1,9 +1,15 @@
 .colorPicker{
     max-width: 400px;
     width : 100%;
+    .title{
+        font-size: 1.2em;
+        margin: 0.5em 1em;
+    }
     .colors{
         display: flex;
         flex-direction: row;
         flex-wrap: wrap;
+        display: flex;
+        justify-content: center;
     }
 }

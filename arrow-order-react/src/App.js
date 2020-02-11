@@ -1,15 +1,15 @@
 import React from 'react';
-import {BrowserRouter as Router, Route} from 'react-router-dom';
+//import {BrowserRouter as Router, Route} from 'react-router-dom';
 import './css_reset.css';
 import './App.scss';
 
-import Login       from './components/Login/Login';
-import MainPage    from './components/MainPage/MainPage';
-import CommingSoon from './components/ComCom/CommigSoon/CommingSoon';
-import BurgerMenu  from './components/BurgerMenu/BurgerMenu';
-import WikiRouter  from './components/Wiki/WikiRouter';
-import Products    from './components/Products/ProductsRouter';
-import Constructor from './components/Constructor/Constructor';
+// import Login       from './components/Login/Login';
+// import MainPage    from './components/MainPage/MainPage';
+// import CommingSoon from './components/ComCom/CommigSoon/CommingSoon';
+// import BurgerMenu  from './components/BurgerMenu/BurgerMenu';
+// import WikiRouter  from './components/Wiki/WikiRouter';
+// import Products    from './components/Products/ProductsRouter';
+// import Constructor from './components/Constructor/Constructor';
 
 import ColorPicker from './components/ComCom/ColorPicker/ColorPicker'
 
