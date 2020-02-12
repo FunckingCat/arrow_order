@@ -6,8 +6,38 @@ import Color from './Color/Color'
 
 class ColorPicker extends Component {
 
+    genColors = () => {
+        let render = []
+        let per = 40, glob = 0, col = 0;
+        let toHsl = (col) => {
+            return `hsl(${col[0]},${col[1]}%,${col[2]}%)`
+        }
+        while (col<360){
+            while (glob < 100){
+                let color = toHsl([col, glob, per])
+                console.log(color);
+                render.push(color);
+                glob += 10;
+            }
+            glob = 50;
+            col += 1;
+        }
+        return render 
+
+    }
+
     state = {
-        colors : ['#eb6e34', '#448b9e', '#e090d4', '#113b14', '#9c982c', '#405246', '#46748c', '#c96865', '#ffffff', '#000']
+        split : this.props.split || 30,
+        colors : [
+            'hsl(13, 50%, 50%)', 
+            'hsl(234, 50%, 50%)', 
+            'hsl(123, 50%, 50%)', 
+            'hsl(345, 50%, 50%)', 
+            'hsl(143, 50%, 50%)', 
+            'hsl(254, 50%, 50%)', 
+            'hsl(235, 50%, 50%)', 
+            'hsl(135, 50%, 50%)', 
+            'hsl(78, 50%, 50%)',]
     }
 
     onChange = (event) => {
@@ -16,15 +46,30 @@ class ColorPicker extends Component {
         })
     }
 
+    hslSplit = (color) => {
+        let reg = /\d{1,3}/g
+        let res = color.match(reg);
+        return res.map(item => +item)
+    }
+
+    hslSort = (a, b) => {
+        let col1 = this.hslSplit(a);
+        let col2 = this.hslSplit(b);
+        let res = col1[0] - col2[0];
+        return res
+    }
+
     renderColors = () => {
-        let colors = this.state.colors.sort();
+        let colors = this.state.colors.sort(this.hslSort);
         let render = []
         for (let i=0; i < colors.length; i++) {
             render.push(
                 <Color
+                    split = {this.state.split}
                     onChange = {this.onChange}
                     key = {i + colors[i]} 
-                    color ={colors[i]}/>);
+                    color ={colors[i]}
+                    hsl = {this.hslSplit(colors[i])}/>);
         }
         return render
     }
@@ -36,7 +81,7 @@ class ColorPicker extends Component {
         return(
             <div className="colorPicker">
                 <div className="title">
-                    Выберите основной цвет: {this.state.selected}
+                    Выберите основной цвет:
                 </div>
                 <div className="colors">
                     {colors}
