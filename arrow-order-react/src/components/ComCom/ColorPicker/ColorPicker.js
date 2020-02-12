@@ -6,26 +6,6 @@ import Color from './Color/Color'
 
 class ColorPicker extends Component {
 
-    genColors = () => {
-        let render = []
-        let per = 40, glob = 0, col = 0;
-        let toHsl = (col) => {
-            return `hsl(${col[0]},${col[1]}%,${col[2]}%)`
-        }
-        while (col<360){
-            while (glob < 100){
-                let color = toHsl([col, glob, per])
-                console.log(color);
-                render.push(color);
-                glob += 10;
-            }
-            glob = 50;
-            col += 1;
-        }
-        return render 
-
-    }
-
     state = {
         split : this.props.split || 30,
         colors : [
