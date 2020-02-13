@@ -12,25 +12,43 @@ export default class Day extends Component {
     }
 
     render(){
+        let colorDesigion = () => {
+            let {red, active} = this.props;
+            let color = 'black'
+            if (red === 'true') color = '#b43131';
+            if (active !== 'true') color = '#808080';
+            return color
+        }
 
         let style = {
             height : this.props.width,
             width : this.props.width,
-            color : this.props.active === 'true'? 'black' : 'grey'
+            color : colorDesigion(),
         }
 
-        return(
-            <li  style = {style} className = 'day' onClick = {this.handaleClick}>
+        let inner = (
+            <>
                 <input 
-                    type="radio"
-                    name = {this.props.name}
-                    onChange = {this.handaleChange} 
-                    className = 'radioButton'
-                    data-value = {this.props.date} 
-                    id = {'radio' + this.props.id}/>
+                        type="radio"
+                        name = {this.props.name}
+                        onChange = {this.handaleChange} 
+                        className = 'radioButton'
+                        data-value = {this.props.date} 
+                        id = {'radio' + this.props.id}/>
                 <label htmlFor={'radio' + this.props.id}>
                     {this.props.date}
                 </label>
+            </>
+        )
+
+        if (this.props.active === 'false'){
+            inner = this.props.date;
+        }
+
+        return(
+
+            <li  style = {style} className = 'day' onClick = {this.handaleClick}>
+                {inner}
             </li>
         )
     }
