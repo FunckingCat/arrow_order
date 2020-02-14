@@ -4,7 +4,7 @@ import {connect} from 'react-redux';
 import './MainPage.scss';
 import RequestService from '../../servises/requestService';
 
-import Hat          from '../ComCom/Hat/Hat';
+import Hat          from '../ComCom/HatAndNav/Hat/Hat';
 import Image        from '../ComCom/ImageComp/Image';
 import Error        from '../ComCom/ErrorMassage/Error';
 import Animator     from '../ComCom/Animator/Animator';

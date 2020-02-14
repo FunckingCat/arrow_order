@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import {Link} from 'react-router-dom';
 import './NavVidget.scss';
-import {goTo} from '../../../actions/historyActions';
+import {goTo} from '../../../../actions/historyActions';
 
 class NavVidget extends Component {
 
