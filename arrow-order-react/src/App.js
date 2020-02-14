@@ -23,7 +23,7 @@ function App() {
         <Route exact path = '/MainPage' component = {MainPage} />
         <Route exact path = '/Menu' component = {BurgerMenu} />
         <Route path = '/Wiki' component = {() => toHat('Вики', <WikiRouter/>)}/>
-        <Route path = '/Constructor' component = {() => toHat('Заказ', <Constructor/>)}/>
+        <Route path = '/Constructor' component = {Constructor}/>
         <Route exact path = '/FreeDates' component = {CommingSoon} />
         <Route exact path = '/Rules' component = {CommingSoon} />
         <Route exact path = '/Contacts' component = {CommingSoon} />
