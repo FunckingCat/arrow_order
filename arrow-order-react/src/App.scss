@@ -21,9 +21,13 @@ p{
     display: flex;
     justify-content: center;
 
-    & > *:not([class = 'Constructor']){
+    & > *:not([class = 'Constructor']):not([class = 'datePicker']){
         width: 100%;
         max-width: 400px;
+    }
+
+    & > .datePicker{
+        margin-top: 6em;
     }
 }
 

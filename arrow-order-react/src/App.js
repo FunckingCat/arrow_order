@@ -11,6 +11,7 @@ import BurgerMenu  from './components/BurgerMenu/BurgerMenu';
 import WikiRouter  from './components/Wiki/WikiRouter';
 import Products    from './components/Products/ProductsRouter';
 import Constructor from './components/Constructor/Constructor';
+import DatePicker  from './components/ComCom/DatePicker/DatePicker';
 
 function App() {
 
@@ -24,7 +25,7 @@ function App() {
         <Route exact path = '/Menu' component = {BurgerMenu} />
         <Route path = '/Wiki' component = {() => toHat('Вики', <WikiRouter/>)}/>
         <Route path = '/Constructor' component = {Constructor}/>
-        <Route exact path = '/FreeDates' component = {CommingSoon} />
+        <Route exact path = '/FreeDates' component = {() => toHat('Свободные даты', <DatePicker/>)} />
         <Route exact path = '/Rules' component = {CommingSoon} />
         <Route exact path = '/Contacts' component = {CommingSoon} />
         <Route exact path = '/WorkWithUs' component = {CommingSoon} />
