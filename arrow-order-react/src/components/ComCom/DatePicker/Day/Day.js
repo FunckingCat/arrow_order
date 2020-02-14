@@ -46,7 +46,6 @@ export default class Day extends Component {
         }
 
         return(
-
             <li  style = {style} className = 'day' onClick = {this.handaleClick}>
                 {inner}
             </li>

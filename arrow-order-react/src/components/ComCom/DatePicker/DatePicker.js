@@ -34,6 +34,7 @@ export default class DatePicker extends Component {
         }
     }
 
+    //Создаем шапочку с днями недели
     renderWeek = () => {
         let weekDays = [];
         let week = ['Пн', 'Вт', 'Ср', 'Чт', 'Пт', 'Сб', 'Вс'];
@@ -55,6 +56,7 @@ export default class DatePicker extends Component {
         })
     }
 
+    //Определяет сколько дней в текущем месяце
     defDaysAmmount = () => {
         let daysAmmount;
         let {month, year} = this.state;
@@ -76,6 +78,7 @@ export default class DatePicker extends Component {
         let days = [];
         let {month, year} = this.state;
         let firstDay = new Date(year, month, 1);
+        //Создвем пустые ячейки что бы первый день месяца соответсятвовал своему дню недели
         for (let i = 0; i < firstDay.getDay() - 1; i++){
            days.push(
             <div
@@ -87,17 +90,18 @@ export default class DatePicker extends Component {
                 }}></div>
            )
         }
+        //Дальше создаем все дни месяца
         let daysAmmount = this.defDaysAmmount();
         for( let i = 0; i < daysAmmount; i++){
             let dayActive = i <= this.today.getDate() + 1 && month === this.today.getMonth()? 'false' : 'true';
             days.push(
                 <Day
                     id = {i}
-                    name = 'day'   
+                    name = {'day'}   
                     width = {this.daysRef.current.offsetWidth/7}
                     date = {i + 1}
                     active = {dayActive}
-                    key = {i}
+                    key = {String(i) + String(this.state.month)}
                     red = {days.length%7 === 5 || days.length%7 === 6? 'true' : 'false'}
                     onChange = {this.daySelected}/>
             )
@@ -107,7 +111,7 @@ export default class DatePicker extends Component {
         })
     }
 
-
+    //При выборе дня создает красивую строку с датой
     daySelected = (event) => {
         let {month, year} = this.state;
         let day = event.target.dataset.value;
@@ -120,7 +124,7 @@ export default class DatePicker extends Component {
         })
     }
 
-    forward = () => {
+    forward = () => {//Обработчик переключения месяца вперед
         let month = this.state.month;
         if (month === this.today.getMonth()){
             this.setState({
@@ -129,7 +133,7 @@ export default class DatePicker extends Component {
         }
     }
 
-    back =() => {
+    back =() => {// Обрабочик переключения месяца назад
         let month = this.state.month;
         if (month === this.today.getMonth() + 1){
             this.setState({
@@ -143,15 +147,15 @@ export default class DatePicker extends Component {
 
         let{selected, month} = this.state;
         let{today, months} = this;
-
+        //Проверка месяца, так как доступны только два месяца то есть только 2 состояния
         let isEqual = today.getMonth() === month
 
-        let prevStyle = {
+        let prevStyle = { //Выключение левой стрелки
             color : isEqual? '#b0b0b0' : 'black',
             pointerEvents : isEqual? 'none' : '',
         }
 
-        let nextStyle = {
+        let nextStyle = {//Выключение правой стрелки
             color : isEqual? 'black' : '#b0b0b0',
             pointerEvents : isEqual? '' : 'none',
         }
