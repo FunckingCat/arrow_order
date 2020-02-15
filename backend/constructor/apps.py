@@ -1,5 +1,5 @@
 from django.apps import AppConfig
 
 
-class CakeconstructorConfig(AppConfig):
-    name = 'cakeConstructor'
+class ConstructorConfig(AppConfig):
+    name = 'constructor'

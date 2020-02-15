@@ -42,7 +42,6 @@ INSTALLED_APPS = [
     'corsheaders',
     'menu',
     'wiki',
-    'constructor',
     'products',
 ]
 
