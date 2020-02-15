@@ -30,22 +30,22 @@ class Ingredient(models.Model):
     biscuit_icon = models.CharField(
         max_length = 120, 
         verbose_name = 'Иконка в конструкторе', 
-        default = '/static/icons/constructor/BiscuitCake/.svg',
+        default = '/static/icons/constructor/BiscuitCake/',
         help_text = 'Иконка в конструкторе бисквитного торта')
     honey_icon = models.CharField(
         max_length = 120, 
         verbose_name = 'Иконка в конструкторе', 
-        default = '/static/icons/constructor/HoneyCake/.svg',
+        default = '/static/icons/constructor/HoneyCake/',
         help_text = 'Иконка в конструкторе откытого медовика')
     cup_icon = models.CharField(
         max_length = 120, 
         verbose_name = 'Иконка в конструкторе', 
-        default = '/static/icons/constructor/CupCake/.svg',
+        default = '/static/icons/constructor/CupCake/',
         help_text = 'Иконка в конструкторе капкейка')
     pop_up_icon = models.CharField(
         max_length = 120, 
         verbose_name = 'Иконка в всплывающем меню', 
-        default = '/static/icons/popup/.svg',
+        default = '/static/icons/popup/',
         help_text = 'Иконка в Pop Up, одинаковая для всех конструкторов')
 
 class Filling(Ingredient):
@@ -84,18 +84,33 @@ class Filling(Ingredient):
         blank=True, 
         related_name='avalibleCupFillings', 
         verbose_name = 'Доступные кремы в капкейке')
+    
+    def __str__ (self):
+        return '{} --- {}'.format(self.name, self.hashtag)
 
 class Biscuit(Ingredient):
 
     class Meta:
         verbose_name = 'Бисквит'
         verbose_name_plural = 'Бисквиты'
+    
+    def __str__ (self):
+        return '{} --- {}'.format(self.name, self.hashtag)
 
 class Cream(Ingredient):
 
     class Meta:
         verbose_name = 'Крем'
         verbose_name_plural = 'Кремы'
+    
+    honey_cream_second_icon = models.CharField(
+        max_length = 120, 
+        verbose_name = 'Иконка в конструкторе', 
+        default = '/static/icons/constructor/HoneyCake/',
+        help_text = 'Иконка в конструкторе медовика с нижними слоями')
+    
+    def __str__ (self):
+        return '{} --- {}'.format(self.name, self.hashtag)
 
 
 
