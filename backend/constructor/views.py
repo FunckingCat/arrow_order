@@ -1,5 +1,6 @@
 from django.shortcuts import render
 from django.http import JsonResponse
+from .models import Filling, Biscuit, Cream
 # Create your views here.
 
 def allInfo(request):
