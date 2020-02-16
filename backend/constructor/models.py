@@ -47,6 +47,19 @@ class Ingredient(models.Model):
         verbose_name = 'Иконка в всплывающем меню', 
         default = '/static/icons/popup/',
         help_text = 'Иконка в Pop Up, одинаковая для всех конструкторов')
+    
+    def all(self):
+        return {
+            'name' : self.name,
+            'hashtag' : self.hashtag,
+            'usedInBiscuit' : self.used_in_biscuit,
+            'usedInHoney' : self.used_in_honey,
+            'usedInCup' : self.used_in_cup,
+            'biscuitIcon': self.biscuit_icon,
+            'honeyIcon' : self.honey_icon,
+            'cupIcon' : self.cup_icon,
+            'popUpIcon' : self.pop_up_icon,
+        }
 
 class Filling(Ingredient):
 
@@ -57,36 +70,71 @@ class Filling(Ingredient):
     avalible_biscuits_in_biscuit = models.ManyToManyField(
         'Biscuit', 
         blank=True, 
-        related_name='avalibleBiscuitFillings', 
+        related_name='avalible_biscuit_fillings', 
         verbose_name = 'Доступные бисквиты в бисквитном торте')
     avalible_creams_in_biscuit = models.ManyToManyField(
         'Cream', 
         blank=True, 
-        related_name='avalibleBiscuitFillings', 
+        related_name='avalible_biscuit_fillings', 
         verbose_name = 'Доступные кремы в бисквитном торте')
     avalible_biscuits_in_honey = models.ManyToManyField(
         'Biscuit', 
         blank=True, 
-        related_name='avalibleHoneyFillings', 
+        related_name='avalible_honey_fillings', 
         verbose_name = 'Доступные бисквиты в открытом медовике')
     avalible_creams_in_honey = models.ManyToManyField(
         'Cream', 
         blank=True, 
-        related_name='avalibleHoneyFillings', 
+        related_name='avalible_honey_fillings', 
         verbose_name = 'Доступные кремы в открытом медовике')
     avalible_biscuits_in_cup = models.ManyToManyField(
         'Biscuit', 
         blank=True, 
-        related_name='avalibleCupFillings', 
+        related_name='avalible_cup_fillings', 
         verbose_name = 'Доступные бисквиты в капкейке')
     avalible_creams_in_cup = models.ManyToManyField(
         'Cream', 
         blank=True, 
-        related_name='avalibleCupFillings', 
+        related_name='avalible_cup_fillings', 
         verbose_name = 'Доступные кремы в капкейке')
     
     def __str__ (self):
         return '{} --- {}'.format(self.name, self.hashtag)
+
+    def all(self):
+        biscuits_biscuit = []
+        creams_biscuit   = []
+        biscuits_honey   = []
+        creams_honey     = []
+        biscuits_cup     = []
+        creams_cup       = []
+
+        for item in self.avalible_biscuits_in_biscuit.all():
+            biscuits_biscuit.append(item.name)
+        
+        for item in self.avalible_creams_in_biscuit.all():
+            creams_biscuit.append(item.name)
+        
+        for item in self.avalible_biscuits_in_honey.all():
+            biscuits_honey.append(item.name)
+
+        for item in self.avalible_creams_in_honey.all():
+            creams_honey.append(item.name)
+
+        for item in self.avalible_biscuits_in_cup.all():
+            biscuits_cup.append(item.name)
+        
+        for item in self.avalible_creams_in_cup.all():
+            creams_cup.append(item.name)     
+        
+        res = super().all()
+        res['biscuitsInBiscuit'] = biscuits_biscuit
+        res['creamsInBiscuit'] = creams_biscuit
+        res['biscuitsInHoney'] = biscuits_honey 
+        res['creamsInHoney'] = creams_honey
+        res['biscuitsInCup'] = biscuits_cup
+        res['creamsInCup'] = creams_cup
+        return res
 
 class Biscuit(Ingredient):
 
@@ -96,6 +144,28 @@ class Biscuit(Ingredient):
     
     def __str__ (self):
         return '{} --- {}'.format(self.name, self.hashtag)
+
+    def all(self):
+        fillings_biscuit = []
+        fillings_honey   = []
+        fillings_cup     = []
+
+        for item in self.avalible_biscuit_fillings.all():
+            fillings_biscuit.append(item.name)
+
+        for item in self.avalible_honey_fillings.all():
+            fillings_honey.append(item.name)
+        
+        for item in self.avalible_cup_fillings.all():
+            fillings_cup.append(item.name)
+
+        res = super().all()
+        res['fillingsInBiscuit'] = fillings_biscuit
+        res['fillingsInHoney'] = fillings_honey
+        res['fillingsInCup'] = fillings_cup 
+        return res      
+
+
 
 class Cream(Ingredient):
 
@@ -112,7 +182,23 @@ class Cream(Ingredient):
     def __str__ (self):
         return '{} --- {}'.format(self.name, self.hashtag)
 
+    def all(self):
+        fillings_biscuit = []
+        fillings_honey   = []
+        fillings_cup     = []
 
+        for item in self.avalible_biscuit_fillings.all():
+            fillings_biscuit.append(item.name)
 
+        for item in self.avalible_honey_fillings.all():
+            fillings_honey.append(item.name)
+        
+        for item in self.avalible_cup_fillings.all():
+            fillings_cup.append(item.name)
 
-    
+        res = super().all()
+        res['honeyCreamSecondIcon'] = self.honey_cream_second_icon
+        res['fillingsInBiscuit'] = fillings_biscuit
+        res['fillingsInHoney'] = fillings_honey
+        res['fillingsInCup'] = fillings_cup  
+        return res

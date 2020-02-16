@@ -9,6 +9,6 @@ urlpatterns = [
     path('biscuit/<str:filling>/', views.getBiscuits),
     path('cream/', views.getCreams),
     path('cream/<str:filling>/', views.getCreams),
-    path('getCakeIcons/', views.getIcons),
-    path('getCakeIcons/<str:parts>/', views.getIcons),
+    path('getIcons/', views.getIcons),
+    path('getIcons/<str:parts>/', views.getIcons),
 ]
