@@ -27,21 +27,112 @@ def handaleRequest(request, con_type, ingredient, params = False):
         return getCream(con_type, params)
 
     return JsonResponse({'values' : {
-        'Error' : 'Что то не так с запросом, проверь ингрежиент по которому ищещь'
+        'Error' : 'Что то не так с запросом, проверь ингредиент по которому ищешь'
     }})
 
 def  buildItem(item):
     return {
         'name'               : item.name,
         'hashtag'            : item.hashtag,
-        'popUpIconSRC'       : item.popUpIcon,
+        'popUpIconSRC'       : item.pop_up_icon,
     }
 
+def fbcList(fbc, con_type, item):
+    if fbc == 'filling':
+        if con_type == 'biscuit':
+            return item.all()['fillingsInBiscuit']
+        elif con_type == 'honey':
+            return item.all()['fillingsInHoney']
+        elif con_type == 'cup':
+            return item.all()['fillingsInCup']
+    if fbc == 'biscuit':
+        if con_type == 'biscuit':
+            return item.all()['biscuitsInBiscuit']
+        elif con_type == 'honey':
+            return item.all()['biscuitsInHoney']
+        elif con_type == 'cup':
+            return item.all()['biscuitsInCup']
+    if fbc == 'cream':
+        if con_type == 'biscuit':
+            return item.all()['creamsInBiscuit']
+        elif con_type == 'honey':
+            return item.all()['creamsInHoney']
+        elif con_type == 'cup':
+            return item.all()['creamsInCup']
+
+
+def activeForFilling(params, con_type, fillings):
+    biscuit, cream = False, False
+    if params:
+        try:
+            biscuit, cream = parametrs.split('&')
+        except:
+            biscuit = params
+
+    res = []
+
+    for item in fillings:
+        if biscuit and cream:
+            if biscuit in fbcList('biscuit', con_type, item) and cream in fbcList('cream', con_type, item):
+                res.append(buildItem(item))
+        elif biscuit:
+            if biscuit in fbcList('biscuit', con_type, item):
+                res.append(buildItem(item))
+        elif cream:
+            if cream in fbcList('cream', con_type, item):
+                res.append(buildItem(item))
+        else:
+            res.append(buildItem(item))
+    return res
+
 def getFilling(con_type, params):
-    return JsonResponse({'get' : 'filling'})
+
+    response = {'values' : {
+        'all' : [],
+        'active' : [],
+    }}
+
+    if con_type == 'biscuit':
+        fillings = Filling.objects.filter(used_in_biscuit = True)
+    elif con_type == 'honey':
+        fillings = Filling.objects.filter(used_in_honey = True)
+    elif con_type == 'cup':
+        fillings = Filling.objects.filter(used_in_cup = True)
+    else:
+        return JsonResponse({'values' : {
+        'Error' : 'Что то не так с запросом, проверь тип конструктора'
+    }})
+
+    for item in fillings:
+        response['values']['all'].append(buildItem(item))
+    response['values']['active'] = activeForFilling(params, con_type, fillings)
+
+    return JsonResponse(response)
+
+def activeForBiscuit(params, con_type, biscuits)
 
 def getBiscuit(con_type, params):
-    return JsonResponse({'get' : 'biscuit'})
+    response = {'values' : {
+        'all' : [],
+        'active' : [],
+    }}
+
+    # if con_type == 'biscuit':
+    #     biscuits = Biscuit.objects.filter(used_in_biscuit = True)
+    # elif con_type == 'honey':
+    #     biscuits = Biscuit.objects.filter(used_in_honey = True)
+    # elif con_type == 'cup':
+    #     biscuits = Biscuit.objects.filter(used_in_cup = True)
+    # else:
+    #     return JsonResponse({'values' : {
+    #     'Error' : 'Что то не так с запросом, проверь тип конструктора'
+    # }})
+
+    # for item in fillings:
+    #     response['values']['all'].append(buildItem(item))
+    # response['values']['active'] = activeForBiscuit(params, con_type, biscuits)
+
+    return JsonResponse(response)
 
 def getCream(con_type, params):
     return JsonResponse({'get' : 'cream'})
