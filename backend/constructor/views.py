@@ -193,60 +193,56 @@ def getIcons(request, con_type, parts = False):
     cream = temp[2] 
 
     if con_type == 'biscuit':
+        fillingIcon = '/static/icons/constructor/BiscuitCake/filling/default.svg'
+        biscuitIcon = '/static/icons/constructor/BiscuitCake/biscuit/default.svg'
+        creamIcon = '/static/icons/constructor/BiscuitCake/cream/default.svg'
+        creamSecondIcon = '/static/icons/constructor/HoneyCake/cream/default2.svg'
         for item in Filling.objects.all():
             if item.name == filling:
                 fillingIcon = item.biscuit_icon
-            else:
-                fillingIcon = '/static/icons/constructor/BiscuitCake/filling/default.svg'
         for item in Biscuit.objects.all():
             if item.name == biscuit:
                 biscuitIcon = item.biscuit_icon
-            else:
-                biscuitIcon = '/static/icons/constructor/BiscuitCake/biscuit/default.svg'
         for item in Cream.objects.all():
             if item.name == cream:
                 creamIcon = item.biscuit_icon
-            else:
-                creamIcon = '/static/icons/constructor/BiscuitCake/cream/default.svg'
 
     elif con_type == 'cup':
+        fillingIcon = '/static/icons/constructor/CupCake/filling/default.svg'
+        biscuitIcon = '/static/icons/constructor/CupCake/biscuit/default.svg'
+        creamIcon = '/static/icons/constructor/CupCake/cream/default.svg'
+        creamSecondIcon = '/static/icons/constructor/HoneyCake/cream/default2.svg'
         for item in Filling.objects.all():
             if item.name == filling:
                 fillingIcon = item.cup_icon
-            else:
-                fillingIcon = '/static/icons/constructor/CupCake/filling/default.svg'
         for item in Biscuit.objects.all():
             if item.name == biscuit:
                 biscuitIcon = item.cup_icon
-            else:
-                biscuitIcon = '/static/icons/constructor/CupCake/biscuit/default.svg'
         for item in Cream.objects.all():
             if item.name == cream:
                 creamIcon = item.cup_icon
-            else:
-                creamIcon = '/static/icons/constructor/CupCake/cream/default.svg'
 
     elif con_type == 'honey':
+        fillingIcon = '/static/icons/constructor/HoneyCake/filling/default.svg'
+        biscuitIcon = '/static/icons/constructor/HoneyCake/biscuit/honey-biscuit.svg'
+        creamIcon = '/static/icons/constructor/HoneyCake/cream/default.svg'
+        creamSecondIcon = '/static/icons/constructor/HoneyCake/cream/default2.svg'
         for item in Filling.objects.all():
             if item.name == filling:
                 fillingIcon = item.honey_icon
-            else:
-                fillingIcon = '/static/icons/constructor/HoneyCake/filling/default.svg'
         for item in Biscuit.objects.all():
             if item.name == biscuit:
                 biscuitIcon = item.honey_icon
-            else:
-                biscuitIcon = '/static/icons/constructor/HoneyCake/biscuit/honey_biscuit.svg'
         for item in Cream.objects.all():
             if item.name == cream:
                 creamIcon = item.honey_icon
-            else:
-                creamIcon = '/static/icons/constructor/HoneyCake/cream/default.svg'
+                creamSecondIcon = item.honey_cream_second_icon
 
     response = {'values' : {
         'fillingIcon' : fillingIcon,
         'biscuitIcon' : biscuitIcon,
         'creamIcon' : creamIcon,
+        'creamSecondIcon' : creamSecondIcon,
         }
     }
     
