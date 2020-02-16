@@ -44,6 +44,7 @@ class CakeController extends Component {
     render(){
         return(
             <AssemblyView
+                type = {this.props.type}
                 biscuitIcon = {this.state.biscuitIcon}
                 fillingIcon = {this.state.fillingIcon}
                 creamIcon = {this.state.creamIcon}/>

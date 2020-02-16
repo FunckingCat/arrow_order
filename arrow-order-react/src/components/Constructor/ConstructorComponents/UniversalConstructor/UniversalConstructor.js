@@ -93,7 +93,6 @@ class UniversalConstructor extends Component {
         return(
             <>
                 <div className = "UniversalConstructor">
-                    <h1>{this.props.type}</h1>
                     <CakeController type = {this.props.type}/>
                     <div className = 'output'>
                         <div>Начинка: {this.props.cakeParts.filling}</div>

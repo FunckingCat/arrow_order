@@ -224,7 +224,7 @@ def getIcons(request, con_type, parts = False):
 
     elif con_type == 'honey':
         fillingIcon = '/static/icons/constructor/HoneyCake/filling/default.svg'
-        biscuitIcon = '/static/icons/constructor/HoneyCake/biscuit/honey-biscuit.svg'
+        biscuitIcon = '/static/icons/constructor/HoneyCake/biscuit/default.svg'
         creamIcon = '/static/icons/constructor/HoneyCake/cream/default.svg'
         creamSecondIcon = '/static/icons/constructor/HoneyCake/cream/default2.svg'
         for item in Filling.objects.all():
