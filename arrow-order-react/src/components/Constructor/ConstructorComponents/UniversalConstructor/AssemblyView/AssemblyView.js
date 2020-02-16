@@ -12,7 +12,8 @@ class Ingr extends Component {
         let style = {
             width : this.props.width || '100%',
             zIndex : this.props.zIndex || '0',
-            top : this.props.top || '0px',
+            top : this.props.top + 'px' || '0px',
+            opacity : this.props.opacity + '' || '',
         }
         return(
             <div className='ingredient' style = {style}>
@@ -46,21 +47,21 @@ class AssemblyView extends Component {
     }
 
     honeyConstants = {
-        BS : 0.4796, // Высота к ширине бисквита
-        BF : 0.509, //Оношение высоты и грани бисквита
-        FS : 0.0932, // Высота к ширине начинки
-        FF : 0.1347, //Отношение выстоты и грани начинки
-        CS : 0.4796, //Высота к ширине крема,
-        CF : 0.0932, //Отношение высоты и грани крема,
+        BS : 118/160, // Высота к ширине бисквита
+        BF : 0.06, //Оношение высоты и грани бисквита
+        FS : 112/160, // Высота к ширине начинки
+        FF : 0.10, //Отношение выстоты и грани начинки
+        CS : 10, //Высота к ширине крема,
+        CF : 0.05, //Отношение высоты и грани крема,
     }
 
     cupConstants = {
-        BS : 0.895, // Высота к ширине бисквита
-        BF : 0, //Оношение высоты и грани бисквита
-        FS : 0, // Высота к ширине начинки
-        FF : 0, //Отношение выстоты и грани начинки
-        CS : 0.902, //Высота к ширине крема,
-        CF : 0, //Отношение высоты и грани крема,
+        BS : 118/160, // Высота к ширине бисквита
+        BF : 0.06, //Оношение высоты и грани бисквита
+        FS : 112/160, // Высота к ширине начинки
+        FF : 0.10, //Отношение выстоты и грани начинки
+        CS : 10, //Высота к ширине крема,
+        CF : 0.05, //Отношение высоты и грани крема,
     }
 
     componentDidMount() {
@@ -186,6 +187,8 @@ class AssemblyView extends Component {
                 factors = []
         }
 
+        console.log(factors);
+
         //Сами смещения
         let offsets = [0,]
         let currentOffset = 0
@@ -228,18 +231,24 @@ class AssemblyView extends Component {
                     ingredient = <Ingr
                         key = {i+formula[i]}
                         zIndex = {-i + ''}
+                        //opacity = {0.1*(i + 2)}
+                        top = {this.state.offsets[i]}
                         src = {this.state.creamIcon}/>
                     break
                 case 'F':
                     ingredient = <Ingr
                         key = {i+formula[i]}
                         zIndex = {-i + ''}
+                        // opacity = {0.1*(i + 2)}
+                        top = {this.state.offsets[i]}
                         src = {this.state.fillingIcon}/>
                     break
                 case 'B':
                     ingredient = <Ingr
                         key = {i+formula[i]}
                         zIndex = {-i + ''}
+                        //opacity = {0.1*(i + 2)}
+                        top = {this.state.offsets[i]}
                         src = {this.state.biscuitIcon}/>
                     break
                 default:
