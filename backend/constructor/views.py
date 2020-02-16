@@ -17,14 +17,31 @@ def allInfo (request):
         response['for-creams'].append(item.all())
     return JsonResponse(response)
 
-def getFillings(request):
-    return JsonResponse({'Get' : 'Fillings'})
+def handaleRequest(request, con_type, ingredient, params = False):
+    
+    if ingredient == 'filling':
+        return getFilling(con_type, params)
+    if ingredient == 'biscuit':
+        return getBiscuit(con_type, params)
+    if ingredient == 'cream':
+        return getCream(con_type, params)
 
-def getBiscuits(request):
-    return JsonResponse({'Get' : 'Biscuits'})
+    return JsonResponse({'values' : {
+        'Error' : 'Что то не так с запросом, проверь ингрежиент по которому ищещь'
+    }})
 
-def getCreams(request):
-    return JsonResponse({'Get' : 'Creams'})
+def  buildItem(item):
+    return {
+        'name'               : item.name,
+        'hashtag'            : item.hashtag,
+        'popUpIconSRC'       : item.popUpIcon,
+    }
 
-def getIcons(request):
-    return JsonResponse({'Get' : 'Icons'})
+def getFilling(con_type, params):
+    return JsonResponse({'get' : 'filling'})
+
+def getBiscuit(con_type, params):
+    return JsonResponse({'get' : 'biscuit'})
+
+def getCream(con_type, params):
+    return JsonResponse({'get' : 'cream'})
