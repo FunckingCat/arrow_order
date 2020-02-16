@@ -5,9 +5,9 @@ export default class requestService {
 
     getResource = async (url) => {
         const res = await fetch(`${this._apiBase}${url}`);
-        if (!res.ok){
-            throw new Error(`Could not fetch ${url}; recived ${res.status}`)
-        }
+        // if (!res.ok){
+        //     throw new Error(`Could not fetch ${url}; recived ${res.status}`)
+        // }
         let response = await res.json();
         console.log(`Адрес: ${this._apiBase}${url}\nType: ${typeof(response.values)} ---`, response.values);
         return response.values;
@@ -35,6 +35,7 @@ export default class requestService {
     }
 
     getWikiCard = async (hashtag) => {
+        if (!hashtag) return
         let res = {values : []}
         try{
             res = await this.getResource(`/api/wiki/card/${hashtag}/`)
@@ -43,23 +44,23 @@ export default class requestService {
         return res
     }
 
-    getCakeInfo = async (type = '', parametrs = {}) => {
+    getCakeInfo = async (conType, type = '', parametrs = {}) => {
         let res;
         let {filling = '', biscuit = '', cream = ''} = parametrs;
         switch (type) {
             case 'Начинка':
             case 'filling':
-                res = await this.getResource(`/api/constructor/cake/filling/${biscuit}&${cream}${biscuit||cream? '/' : ''}`);
+                res = await this.getResource(`/api/constructor/${conType}/filling/${biscuit}${biscuit? '$' : ''}${cream}${biscuit||cream? '/' : ''}`);
                 break;
 
             case 'Бисквит':
             case 'biscuit':
-                res = await this.getResource(`/api/constructor/cake/biscuit/${filling}${filling? '/' : ''}`);
+                res = await this.getResource(`/api/constructor/${conType}/biscuit/${filling}${filling? '/' : ''}`);
                 break;
 
             case 'Крем':
             case 'cream':
-                res = await this.getResource(`/api/constructor/cake/cream/${filling}${filling? '/' : ''}`);
+                res = await this.getResource(`/api/constructor/${conType}/cream/${filling}${filling? '/' : ''}`);
                 break;
 
             default:
@@ -68,9 +69,9 @@ export default class requestService {
         return res
     }
     
-    getCakeIcons = async (parts) => {
+    getCakeIcons = async (conType, parts) => {
         let {filling, biscuit, cream} = parts;
-        let res = await this.getResource(`/api/constructor/cake/getCakeIcons/${filling}&&${biscuit}&&${cream}/`)
+        let res = await this.getResource(`/api/constructor/getIcons/${conType}/${filling}&&${biscuit}&&${cream}/`)
         return res
     }
 

@@ -30,9 +30,8 @@ class CakeController extends Component {
     }
 
     getIcons = () => {
-        this.requestService.getCakeIcons(this.props.parts)
+        this.requestService.getCakeIcons(this.props.type,this.props.parts)
         .then((res) => {
-            console.log(res);
             this.setState({
                 biscuitIcon : res.biscuitIcon,
                 fillingIcon : res.fillingIcon,

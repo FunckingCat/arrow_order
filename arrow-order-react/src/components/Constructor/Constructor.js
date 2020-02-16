@@ -13,6 +13,34 @@ import PopUp           from '../ComCom/PopUp/PopUp';
 export default class Constructor extends Component {
 
  render(){
+
+    let defConType = (type) => {
+        switch (type){
+            case 'cup':
+            case 'CupCake':
+            case 'cupCake':
+            case 'cupcake':
+            case 'Cupcake':
+                return 'cup'
+            case 'cake':
+            case 'Cake':
+            case 'biscuitcake':
+            case 'biscuit':
+                return 'biscuit'
+            case 'honey':
+            case 'honeyCake':
+            case 'HoneyCake':
+            case 'honeycake':
+            case 'digitCake':
+            case 'digitcake':
+            case 'Digitcake':
+            case 'DigitCake':
+                return 'honey'
+            default:
+                return 'Not defined'
+        }
+    }
+
     return(
         <section className = 'Constructor'>
             <Hat 
@@ -21,11 +49,13 @@ export default class Constructor extends Component {
                 right  = {<BurgerButton />}/>	
             <NavVidget />
             <Switch>
-                <Route exact path = '/Constructor/Cake/' component = {() => {
+                <Route exact path = '/Constructor/:type/' component = {(info) => {
                     return(
                         <>
-                            <UniversalConstructor/>
-                            <PopUp/>	
+                            <UniversalConstructor
+                                type = {defConType(info.match.params.type)}/>
+                            <PopUp
+                                type = {defConType(info.match.params.type)}/>	
                         </>
                     )
                 }} />

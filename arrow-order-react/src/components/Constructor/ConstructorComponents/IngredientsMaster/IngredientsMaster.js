@@ -31,7 +31,7 @@ class IngredientsMaster extends Component {
 
     updateItems = () => {
         if (this.props.content !== this.state.prevContent){
-            this.RequestService.getCakeInfo(this.props.content, this.props.parts)
+            this.RequestService.getCakeInfo(this.props.type, this.props.content, this.props.parts)
             .then((res) => {
                 let active = []
                 try{active = res.active.map(item => item.name)} // При сбросе вылетает исключение, ловим его
@@ -96,6 +96,11 @@ class IngredientsMaster extends Component {
                         description : res.text,
                     })
                 }                
+            })
+            .catch(res => {
+                this.setState({
+                    description : 'К сожалению к этому еще нет описания',
+                })
             });
         }        
     }

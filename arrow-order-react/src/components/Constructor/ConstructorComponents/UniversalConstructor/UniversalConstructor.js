@@ -93,7 +93,8 @@ class UniversalConstructor extends Component {
         return(
             <>
                 <div className = "UniversalConstructor">
-                    <CakeController/>
+                    <h1>{this.props.type}</h1>
+                    <CakeController type = {this.props.type}/>
                     <div className = 'output'>
                         <div>Начинка: {this.props.cakeParts.filling}</div>
                         <div>Бисквит: {this.props.cakeParts.biscuit}</div>
@@ -101,18 +102,18 @@ class UniversalConstructor extends Component {
                     </div>
                     <div className="buttonsBlock popTriggers">
                         <RoundButton 
-                            src = {this.props.domen + '/static/icons/constructor/filling/default.svg'}
+                            src = {this.props.domen + '/static/icons/constructor/BiscuitCake/filling/default.svg'}
                             onClick = {this.handaleClick}>
                                 Начинка
                         </RoundButton>
                         <RoundButton 
-                            src = {this.props.domen + '/static/icons/constructor/biscuit/default.svg'}
+                            src = {this.props.domen + '/static/icons/constructor/BiscuitCake/biscuit/default.svg'}
                             onClick = {this.handaleClick}>
                                 Бисквит
                         </RoundButton>
                         <RoundButton
                             scale = 'true' 
-                            src = {this.props.domen + '/static/icons/constructor/cream/default.svg'}
+                            src = {this.props.domen + '/static/icons/constructor/BiscuitCake/cream/default.svg'}
                             onClick = {this.handaleClick}>
                                 Крем
                         </RoundButton>
