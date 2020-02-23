@@ -38,30 +38,30 @@ class AssemblyView extends Component {
     }
 
     biscuitConstants = {
-        BS : 118/160, // Высота к ширине бисквита
-        BF : 0.32, //Оношение высоты и грани бисквита
-        FS : 102/160, // Высота к ширине начинки
-        FF : 0.20, //Отношение выстоты и грани начинки
-        CS : 0, //Высота к ширине крема,
+        CS : 47 / 34, //Высота к ширине крема,
         CF : 0, //Отношение высоты и грани крема,
+        BS : 25 / 34, // Высота к ширине бисквита
+        BF : 0.32, //Оношение высоты и грани бисквита
+        FS : 54 / 85, // Высота к ширине начинки
+        FF : 0.20, //Отношение выстоты и грани начинки
     }
-
+    
     honeyConstants = {
-        BS : 118/160, // Высота к ширине бисквита
-        BF : 0.06, //Оношение высоты и грани бисквита
-        FS : 112/160, // Высота к ширине начинки
-        FF : 0.10, //Отношение выстоты и грани начинки
-        CS : 10, //Высота к ширине крема,
-        CF : 0.05, //Отношение высоты и грани крема,
+        CS : 39 / 85, //Высота к ширине крема,
+        CF : 0.17, //Отношение высоты и грани крема,
+        BS : 81 / 170, // Высота к ширине бисквита
+        BF : 0.13, //Оношение высоты и грани бисквита
+        FS : 43 / 85, // Высота к ширине начинки
+        FF : 0.14, //Отношение выстоты и грани начинки
     }
-
+    
     cupConstants = {
+        CS : 1, //Высота к ширине крема,
+        CF : 1, //Отношение высоты и грани крема,
         BS : 118/160, // Высота к ширине бисквита
         BF : 0.06, //Оношение высоты и грани бисквита
         FS : 112/160, // Высота к ширине начинки
         FF : 0.10, //Отношение выстоты и грани начинки
-        CS : 10, //Высота к ширине крема,
-        CF : 0.05, //Отношение высоты и грани крема,
     }
 
     componentDidMount() {
@@ -97,12 +97,13 @@ class AssemblyView extends Component {
         }
     }
 
-    calcHeight = (formula, BH, BF, FH, FF, CH, CF) => {
+    calcHeight = (formula, CH, CF, BH, BF, FH, FF) => {
         let height = 0;
+        
         for (let i = 0; i < formula.length; i++){
             switch (formula[i]){
                 case 'C':
-                    height += CH * CF;
+                    height += CH * CF || 20;
                     break
                 case 'F':
                     height += FH * FF;
@@ -111,34 +112,41 @@ class AssemblyView extends Component {
                     height += BH * BF;
                     break
                 default:
-                    formula = '';
-                    break
+                    throw new Error('Неизвестные символы в формуле');
             }
         }
-        height += BH * BF;
+        if (this.props.type !== 'cup'){
+            height += BH - BH*BF;
+        }
         return height
     }// Функция вычисления высоты сборки
 
-    calcOptimalWidth = (AH, AW, BS, FS, BF, FF, CS, CF) => {
+    calcOptimalWidth = (formula, AH, AW, CS, CF, BS, BF, FS, FF) => {
         let ratio = 0.9;
+        let step = 0.1;
         let inSize = false;
 
-        while (!inSize && ratio !== 0){
-            ratio -= 0.05
-            let W = ratio * AW;
-            let BH = W * BS;
-            let FH = W * FS;
-            let СH = W * CS;
-            let tempHeight = this.calcHeight(BH, BF, FH, FF, СH, CF) + 20;
-            if (AH - tempHeight > 0){
+        while (!inSize){
+            ratio -= step;
+            let CW = AW * ratio; // Current Width
+
+            let CH = CW * CS;
+            let BH = CW * BS;
+            let FH = CW * FS;
+            
+            let height = this.calcHeight(formula, CH, CF, BH, BF, FH, FF)
+
+            if (height + 40 < AH){
                 inSize = true;
             }
-        }
-
+        }        
         return Math.round(ratio * 100) + '%'
     }
 
     defDimensions = (constants) => {
+
+        let offsets = [];
+
         let formula;
 
         switch (this.props.type){
@@ -156,74 +164,65 @@ class AssemblyView extends Component {
                 break
         }
 
-        let {BS, BF, FS, FF, CS, CF} = constants;
+        let {CS, CF, BS, BF, FS, FF} = constants;
 
         const AH = this.AssemblyView.current.offsetHeight;//Доступная высота
         const AW = this.AssemblyView.current.offsetWidth;// Вся ширина
         //СЧитаем доступный процент ширины
-        const ratio = this.calcOptimalWidth(AH, AW, BS, FS, BF, FF, CS, CF);
+        const ratio = this.calcOptimalWidth(formula, AH, AW, CS, CF, BS, BF, FS, FF);
         //Задаем гирину равной вычисленной
         this.assembly.current.style.width = ratio;
         const W = this.assembly.current.offsetWidth;// Ширина контейнера сборки в пискселях
-        const BH = W * BS; // Высота бисквита при конкретной ширине блока контейнера
-        const FH = W * FS; // Высота начинки
-        const СH = W * CS; // Высота крема
-        const height = this.calcHeight(formula, BH, BF, FH, FF, СH, CF);
 
-        //Список показывает в каком порядке идут коэффициенты удаления
-        //(размер стенки конеретной SVG шки)
-        let factors;
-        switch (this.props.type){
-            case 'biscuit':
-                factors = [CF, BF, FF, BF, FF, BF];
-                break
-            case 'honey':
-                factors = [CF, BF, FF, BF, FF, BF];
-                break
-            case 'cup':
-                factors = [CF, FF, BF];
-                break
-            default:
-                factors = []
-        }
+        let CH = W * CS; //Высота крема 
+        let BH = W * BS; //Высота бисквита
+        let FH = W * FS; //Высота начинки
+        const assemblyHeight = this.calcHeight(formula, CH, CF, BH, BF, FH, FF);
+        const CWH = W * CS * CF; // Высота стенки крема. Или 20 для отсупа в бисквитном торте
+        const BWH = W * BS * BF; // Высота стенки бисквита
+        const FWH = W * FS * FF; // Высота стенки начинки
 
-        console.log(factors);
-
-        //Сами смещения
-        let offsets = [0,]
-        let currentOffset = 0
-        for (let i = 1; i < factors.length; i++){
-            if (factors[i-1] === BF){
-                currentOffset += BH * factors[i-1];
-            } else if (factors[i-1] === FF) {
-                currentOffset += FH * factors[i-1];
-            } else if (factors[i-1] === CF){
-                currentOffset += 20;
+        let offset = 0;
+        
+        for (let i = 0; i < formula.length; i++){
+            switch (formula[i]){
+                case 'C':
+                    offset += CWH;
+                    break
+                case 'F':
+                    offset += BWH;
+                    break
+                case 'B':
+                    offset += FWH;
+                    break
+                default:
+                    throw new Error('Неизвестные символы в формуле');
             }
-            offsets.push(currentOffset);
+            offsets.push(offset)
         }
 
-        let commonOffset = (AH - height) / 2;
-        offsets = offsets.map(item => item + commonOffset)
+        let commonOffset = (AH - assemblyHeight)/2;
+        offsets = offsets.map(item => item + commonOffset);
 
         console.log(
-        'offsets', offsets,
-        '\nratio', ratio,
-        '\nassemblyHeight', height,
-        '\ncommon offset', commonOffset);
-        if (this.state.offsets[0] !== offsets[0] && this.state.offsets[3] !== offsets[3]){
+            'offsets', offsets,
+            '\nformula', formula,
+            '\nAvalivleHeight', AH,
+            '\nAssembluHeight', assemblyHeight,
+        );
+        
+        if (this.state.offsets[1] !== offsets[1] && this.state.offsets[3] !== offsets[3]){
             this.setState({
                 formula : formula,
                 offsets : offsets
             })
-        }
+        } 
     }
 
     renderIngredients = () => {
         let ingredients = [];
 
         let formula = this.state.formula || '';
-
         let ingredient = '';
         for (let i=0; i < formula.length; i++){
             switch (formula[i]){
@@ -231,7 +230,7 @@ class AssemblyView extends Component {
                     ingredient = <Ingr
                         key = {i+formula[i]}
                         zIndex = {-i + ''}
-                        //opacity = {0.1*(i + 2)}
+                        opacity = {0.1*(i + 2)}
                         top = {this.state.offsets[i]}
                         src = {this.state.creamIcon}/>
                     break
@@ -239,7 +238,7 @@ class AssemblyView extends Component {
                     ingredient = <Ingr
                         key = {i+formula[i]}
                         zIndex = {-i + ''}
-                        // opacity = {0.1*(i + 2)}
+                        opacity = {0.1*(i + 2)}
                         top = {this.state.offsets[i]}
                         src = {this.state.fillingIcon}/>
                     break
@@ -247,12 +246,11 @@ class AssemblyView extends Component {
                     ingredient = <Ingr
                         key = {i+formula[i]}
                         zIndex = {-i + ''}
-                        //opacity = {0.1*(i + 2)}
+                        opacity = {0.1*(i + 2)}
                         top = {this.state.offsets[i]}
                         src = {this.state.biscuitIcon}/>
                     break
                 default:
-                    formula = '';
                     break
             }
             ingredients.push(ingredient);
