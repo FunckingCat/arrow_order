@@ -41,18 +41,18 @@ class AssemblyView extends Component {
         CS : 47 / 34, //Высота к ширине крема,
         CF : 0, //Отношение высоты и грани крема,
         BS : 25 / 34, // Высота к ширине бисквита
-        BF : 0.32, //Оношение высоты и грани бисквита
+        BF : 0.18, //Оношение высоты и грани бисквита
         FS : 54 / 85, // Высота к ширине начинки
-        FF : 0.20, //Отношение выстоты и грани начинки
+        FF : 0.36, //Отношение выстоты и грани начинки
     }
     
     honeyConstants = {
         CS : 39 / 85, //Высота к ширине крема,
-        CF : 0.17, //Отношение высоты и грани крема,
+        CF : 0.09, //Отношение высоты и грани крема,
         BS : 81 / 170, // Высота к ширине бисквита
-        BF : 0.13, //Оношение высоты и грани бисквита
+        BF : 0.15, //Оношение высоты и грани бисквита
         FS : 43 / 85, // Высота к ширине начинки
-        FF : 0.14, //Отношение выстоты и грани начинки
+        FF : 0.09, //Отношение выстоты и грани начинки
     }
     
     cupConstants = {
@@ -145,7 +145,7 @@ class AssemblyView extends Component {
 
     defDimensions = (constants) => {
 
-        let offsets = [];
+        let offsets = [0,];
 
         let formula;
 
@@ -178,10 +178,12 @@ class AssemblyView extends Component {
         let BH = W * BS; //Высота бисквита
         let FH = W * FS; //Высота начинки
         const assemblyHeight = this.calcHeight(formula, CH, CF, BH, BF, FH, FF);
-        const CWH = W * CS * CF; // Высота стенки крема. Или 20 для отсупа в бисквитном торте
+        const CWH = W * CS * CF || 20; // Высота стенки крема. Или 20 для отсупа в бисквитном торте
         const BWH = W * BS * BF; // Высота стенки бисквита
         const FWH = W * FS * FF; // Высота стенки начинки
-
+        console.log('CWH', CWH);
+        console.log('BWH', BWH);
+        console.log('FWH', FWH);
         let offset = 0;
         
         for (let i = 0; i < formula.length; i++){
@@ -201,6 +203,7 @@ class AssemblyView extends Component {
             offsets.push(offset)
         }
 
+        console.log(offsets);
         let commonOffset = (AH - assemblyHeight)/2;
         offsets = offsets.map(item => item + commonOffset);
 
