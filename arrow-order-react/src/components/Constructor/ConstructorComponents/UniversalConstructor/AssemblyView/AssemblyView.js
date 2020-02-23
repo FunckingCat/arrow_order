@@ -2,9 +2,9 @@ import React,{Component} from 'react';
 import './AssemblyView.scss'; 
 import {connect} from 'react-redux';
 
-import BiscuitCake from './BiscuitCake/BiscuitCake';
-import HoneyCake from './HoneyCake/HoneyCake';
-import CupCake from './CupCake/CupCake';
+import BiscuitCake from './BiscuitCake';
+import HoneyCake from './HoneyCake';
+import CupCake from './CupCake';
 
 class AssemblyView extends Component {
 

@@ -1,7 +1,41 @@
 import React,{Component} from 'react';
-import './CupCake.scss'; 
 
 export default class CupCake extends Component {
+
+    state = {
+        biscuitColor : this.props.BiscuitColor   || '#fff' ,
+        biscuitStroke: this.props.biscuitStroke  || '#000' ,
+        fillingColor : this.props.FillingColor   || '#fff' ,
+        fillingStroke: this.props.fillingStroke  || '#000' ,
+        creamColor   : this.props.creamColor     || '#fff' ,
+        creamStroke  : this.props.creamStroke    || '#000' ,
+        prevColors   : [],
+    }
+
+    componentDidUpdate() {
+        this.handaleColorChange();
+    }
+
+    handaleColorChange = () => {
+        let biscuits = document.querySelectorAll('#Biscuit > *')
+        let fillings = document.querySelectorAll('#Filling > *')
+        let creams = document.querySelectorAll('#Cream > *')
+
+        for (let item of biscuits){
+            item.style.fill = this.state.biscuitColor;
+            item.style.stroke = this.state.biscuitStroke;
+        }
+
+        for (let item of fillings){
+            item.style.fill = this.state.fillingColor;
+            item.style.stroke = this.state.fillingStroke;
+        }
+
+        for (let item of creams){
+            item.style.fill = this.state.creamColor;
+            item.style.stroke = this.state.creamStroke;
+        }
+    }
 
     render(){
         return(

@@ -1,5 +1,4 @@
 import React,{Component} from 'react';
-import './BiscuitCake.scss'; 
 
 export default class BiscuitCake extends Component {
 
@@ -22,7 +21,6 @@ export default class BiscuitCake extends Component {
         let treeStrangeThings = document.querySelectorAll('#Vector_23, #Vector_24, #Vector_25');
         let fillings = document.querySelectorAll('#Filling1 > #Filling_1 > *, #Filling2 > #Filling_2 > *')
         let creams = document.querySelectorAll('#Cream_3 > *, #Filling1 > #Cream_1 > *, #Filling2 > #Cream_2 > *')
-        console.log(treeStrangeThings)
         for (let item of biscuits){
             item.style.fill = this.state.biscuitColor;
             item.style.stroke = this.state.biscuitStroke;
