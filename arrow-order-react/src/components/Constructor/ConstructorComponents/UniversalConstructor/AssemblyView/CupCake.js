@@ -3,12 +3,12 @@ import React,{Component} from 'react';
 export default class CupCake extends Component {
 
     state = {
-        biscuitColor : this.props.BiscuitColor   || '#fff' ,
-        biscuitStroke: this.props.biscuitStroke  || '#000' ,
-        fillingColor : this.props.FillingColor   || '#fff' ,
-        fillingStroke: this.props.fillingStroke  || '#000' ,
-        creamColor   : this.props.creamColor     || '#fff' ,
-        creamStroke  : this.props.creamStroke    || '#000' ,
+        biscuitColor : this.props.BiscuitColor  ,
+        biscuitStroke: this.props.biscuitStroke ,
+        fillingColor : this.props.FillingColor  ,
+        fillingStroke: this.props.fillingStroke ,
+        creamColor   : this.props.creamColor    ,
+        creamStroke  : this.props.creamStroke   ,
         prevColors   : [],
     }
 
