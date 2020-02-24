@@ -7,7 +7,7 @@ import RadioButton    from '../../Buttons/RadioButton/RadioButton';
 // title - заголовок
 // items {
 //     name
-//     popUpIconSRC
+//     icon
 // }
 // activeItems - список активых элементов
 // domen
@@ -16,7 +16,7 @@ import RadioButton    from '../../Buttons/RadioButton/RadioButton';
 export default class List extends Component {
 
     renderRadio = () => {
-        let {items, activeItems, constant, domen, radioChecked} = this.props
+        let {items, activeItems, constant, domen, radioChecked, iconComponent} = this.props
         let radioButtons = []
         let i = 1;
         for (let item of items){
@@ -26,7 +26,8 @@ export default class List extends Component {
                     name = 'RB' 
                     key = {item.name + i + constant} 
                     text = {item.name}
-                    icon = {domen + item.popUpIconSRC}
+                    iconComponent = {iconComponent}
+                    icon = {domen + item.icon}
                     active = {activeItems.includes(item.name)}
                     onChecked = {radioChecked}
                     />

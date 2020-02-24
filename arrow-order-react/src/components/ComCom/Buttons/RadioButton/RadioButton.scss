@@ -31,7 +31,7 @@ li.radio{
         display: flex;
         align-items: center;
         .icon{
-            img{
+            & > *{
               width: 100%;
               max-width: 40px;
               max-height: 1.2em;

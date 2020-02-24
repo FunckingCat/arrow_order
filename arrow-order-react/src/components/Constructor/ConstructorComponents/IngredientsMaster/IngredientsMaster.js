@@ -10,6 +10,10 @@ import BlackButton    from '../../../ComCom/Buttons/BlackButton/BlackButton';
 import Details        from '../../../ComCom/InfoView/Details/Details';
 import List           from '../../../ComCom/InfoView/List/List';
 
+import Biscuit from '../../../ComCom/Icons/Biscuit';
+import Bowl from '../../../ComCom/Icons/Bowl';
+import PastryBag from '../../../ComCom/Icons/PastryBag';
+
 class IngredientsMaster extends Component {
 
     RequestService = new requestService(this.props.domen)
@@ -119,11 +123,26 @@ class IngredientsMaster extends Component {
 
     render(){
         let summary = this.defSummary();
+        let iconComponent;
+        switch (this.props.content){
+            case 'Начинка':
+                iconComponent = <Bowl/>
+                break
+            case 'Бисквит':
+                iconComponent = <Biscuit/>
+                break
+            case 'Крем':
+                iconComponent = <PastryBag/>
+                break
+            default:
+                break
+        }
         return(
             <div className="ingredientsMaster">
                 <List 
                         title = {this.props.content}
                         items = {this.state.items}
+                        iconComponent = {iconComponent}
                         activeItems = {this.state.active}
                         domen = {this.props.domen}
                         radioChecked = {this.radioChecked}

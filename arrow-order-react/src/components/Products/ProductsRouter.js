@@ -15,7 +15,6 @@ export default class ProductsRouter extends Component {
                                     cat = {info.match.params.cat}/>
                     }}/>
                     <Route exact path = '/Products/:cat' component = {(info) => {
-                        console.log(info);
                         return <Products
                                     cat = {info.match.params.cat}/>
                     }}/>
