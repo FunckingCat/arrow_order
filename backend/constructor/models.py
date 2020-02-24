@@ -15,9 +15,17 @@ class Ingredient(models.Model):
         verbose_name = 'Название',
         help_text = 'Используется везде где упоминается элемент')
     hashtag = models.CharField(
-        max_length = 60, 
-        verbose_name = 'Hashtag', 
+        max_length = 50, 
+        verbose_name = 'Hashtag',
         help_text = 'По hashtag осуществляется поиск описаний в Вики')
+    fillColor = models.CharField(
+        max_length = 50, 
+        verbose_name = 'Цвет заливки',
+        default = 'hsl( , %, %)')
+    strokeColor = models.CharField(
+        max_length = 60, 
+        verbose_name = 'Цвет обводки',
+        default = 'hsl( , %, %)')  
     used_in_biscuit = models.BooleanField(
         default = False,
         verbose_name = 'Используется в конструкторе бисквитного торта',)
@@ -27,26 +35,6 @@ class Ingredient(models.Model):
     used_in_cup = models.BooleanField(
         default = False,
         verbose_name = 'Используется в конструкторе капкейка',)
-    biscuit_icon = models.CharField(
-        max_length = 120, 
-        verbose_name = 'Иконка в конструкторе', 
-        default = '/static/icons/constructor/BiscuitCake/',
-        help_text = 'Иконка в конструкторе бисквитного торта')
-    honey_icon = models.CharField(
-        max_length = 120, 
-        verbose_name = 'Иконка в конструкторе', 
-        default = '/static/icons/constructor/HoneyCake/',
-        help_text = 'Иконка в конструкторе откытого медовика')
-    cup_icon = models.CharField(
-        max_length = 120, 
-        verbose_name = 'Иконка в конструкторе', 
-        default = '/static/icons/constructor/CupCake/',
-        help_text = 'Иконка в конструкторе капкейка')
-    pop_up_icon = models.CharField(
-        max_length = 120, 
-        verbose_name = 'Иконка в всплывающем меню', 
-        default = '/static/icons/popup/',
-        help_text = 'Иконка в Pop Up, одинаковая для всех конструкторов')
     
     def all(self):
         return {
@@ -55,10 +43,6 @@ class Ingredient(models.Model):
             'usedInBiscuit' : self.used_in_biscuit,
             'usedInHoney' : self.used_in_honey,
             'usedInCup' : self.used_in_cup,
-            'biscuitIcon': self.biscuit_icon,
-            'honeyIcon' : self.honey_icon,
-            'cupIcon' : self.cup_icon,
-            'popUpIcon' : self.pop_up_icon,
         }
 
 class Filling(Ingredient):
@@ -173,12 +157,6 @@ class Cream(Ingredient):
         verbose_name = 'Крем'
         verbose_name_plural = 'Кремы'
     
-    honey_cream_second_icon = models.CharField(
-        max_length = 120, 
-        verbose_name = 'Иконка в конструкторе', 
-        default = '/static/icons/constructor/HoneyCake/',
-        help_text = 'Иконка в конструкторе медовика с нижними слоями')
-    
     def __str__ (self):
         return '{} --- {}'.format(self.name, self.hashtag)
 
@@ -197,7 +175,6 @@ class Cream(Ingredient):
             fillings_cup.append(item.name)
 
         res = super().all()
-        res['honeyCreamSecondIcon'] = self.honey_cream_second_icon
         res['fillingsInBiscuit'] = fillings_biscuit
         res['fillingsInHoney'] = fillings_honey
         res['fillingsInCup'] = fillings_cup  
