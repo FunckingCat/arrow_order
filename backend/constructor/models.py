@@ -18,11 +18,11 @@ class Ingredient(models.Model):
         max_length = 50, 
         verbose_name = 'Hashtag',
         help_text = 'По hashtag осуществляется поиск описаний в Вики')
-    fillColor = models.CharField(
+    fill_color = models.CharField(
         max_length = 50, 
         verbose_name = 'Цвет заливки',
         default = 'hsl( , %, %)')
-    strokeColor = models.CharField(
+    stroke_color = models.CharField(
         max_length = 60, 
         verbose_name = 'Цвет обводки',
         default = 'hsl( , %, %)')  
@@ -38,11 +38,13 @@ class Ingredient(models.Model):
     
     def all(self):
         return {
-            'name' : self.name,
-            'hashtag' : self.hashtag,
+            'name'          : self.name,
+            'hashtag'       : self.hashtag,
+            'fillColor'     : self.fill_color,
+            'strokeColor'   : self.stroke_color,
             'usedInBiscuit' : self.used_in_biscuit,
-            'usedInHoney' : self.used_in_honey,
-            'usedInCup' : self.used_in_cup,
+            'usedInHoney'   : self.used_in_honey,
+            'usedInCup'     : self.used_in_cup,
         }
 
 class Filling(Ingredient):

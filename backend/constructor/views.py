@@ -32,8 +32,10 @@ def handaleRequest(request, con_type, ingredient, params = False):
 
 def  buildItem(item):
     return {
-        'name'               : item.name,
-        'hashtag'            : item.hashtag,
+        'name'       : item.name,
+        'hashtag'    : item.hashtag,
+        'fillColor'  : item.fill_color,
+        'strokeColor': item.stroke_color,
     }
 
 def fbcList(fbc, con_type, item):
