@@ -5,7 +5,6 @@ import historyReducer from './historyReducer';
 import domenReducer from './domenReducer';
 import popUpReducer from './popUpReducer';
 import cakePartReducer from './cakeConstructorReducer';
-import ingredientsMasterReducer from './ingredientsMasterReducer';
 
 const mainReducer = combineReducers({
     domen : domenReducer,
@@ -13,7 +12,6 @@ const mainReducer = combineReducers({
     history : historyReducer,
     popUp : popUpReducer,
     cakeParts : cakePartReducer,
-    ingredientsMaster : ingredientsMasterReducer,
 });
 
 export default mainReducer

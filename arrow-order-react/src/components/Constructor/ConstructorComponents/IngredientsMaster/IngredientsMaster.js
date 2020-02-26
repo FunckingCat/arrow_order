@@ -2,7 +2,6 @@ import React,{Component} from 'react';
 import './IngredientsMaster.scss'; 
 import {connect} from 'react-redux'; 
 
-import {setSelected, setConstant} from '../../../../actions/ingredietsMasterActions';
 import {setCakeParts} from '../../../../actions/cakeConstructorActions';
 
 import requestService from '../../../../servises/requestService';
@@ -178,9 +177,7 @@ class IngredientsMaster extends Component {
 const mapStateToProps = (state) => {
     return({
         domen : state.domen,
-        content : state.ingredientsMaster.content,
-        selected : state.ingredientsMaster.selected,
-        constant : state.ingredientsMaster.constant,
+        content : state.popUp.content,
         parts : {
             filling : state.cakeParts.filling,
             biscuit : state.cakeParts.biscuit,
@@ -190,8 +187,6 @@ const mapStateToProps = (state) => {
 } 
 
 const mapDispatchToProps = {
-    setSelected : setSelected,
-    setConstant : setConstant,
     setCakeParts : setCakeParts, 
 } 
 

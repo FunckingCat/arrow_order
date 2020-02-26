@@ -3,7 +3,7 @@ import './UniversalConstructor.scss';
 import {connect} from 'react-redux';
 
 import {popUpActive}  from '../../../../actions/popUpActions';
-import {setContent}   from '../../../../actions/ingredietsMasterActions';
+import {setPopUpContent}   from '../../../../actions/popUpActions';
 import {setCakeParts} from '../../../../actions/cakeConstructorActions';
 import Storage        from '../../../../servises/StorageController';
 import CakeController from './AsseblyController/AssemblyController';
@@ -149,7 +149,7 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = {
     popUpActive : popUpActive,
-    setContent : setContent,
+    setContent : setPopUpContent,
     setCakeParts : setCakeParts,
 }
 
