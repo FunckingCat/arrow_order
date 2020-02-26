@@ -3,18 +3,50 @@ import React,{Component} from 'react';
 export default class BiscuitCake extends Component {
 
     state = {
-        biscuitColor : this.props.BiscuitColor  ,
-        biscuitStroke: this.props.biscuitStroke ,
-        fillingColor : this.props.FillingColor  ,
-        fillingStroke: this.props.fillingStroke ,
-        creamColor   : this.props.creamColor    ,
-        creamStroke  : this.props.creamStroke   ,
-        prevColors   : [],
+        biscuitColor : '' ,
+        biscuitStroke: '' ,
+        fillingColor : '' ,
+        fillingStroke: '' ,
+        creamColor   : '' ,
+        creamStroke  : '' ,
+    }
+
+    componentDidMount() {
+        this.handaleColorChange();
     }
 
     componentDidUpdate() {
+        this.updateColors();
         this.handaleColorChange();
     }
+
+    compare (o1, o2){
+        console.log(o1, o2);
+        let c1  = o1.biscuitColor === o2.biscuitColor;
+        let c2  = o1.biscuitStroke === o2.biscuitStroke;
+        let c3  = o1.fillingColor === o2.fillingColor;
+        let c4  = o1.fillingStroke === o2.fillingStroke;
+        let c5  = o1.creamColor === o2.creamColor;
+        let c6  = o1.creamStroke === o2.creamStroke;
+        if (c1&&c2&&c3&&c4&&c5&&c6){
+            return false
+        }
+        return true
+    }
+
+    updateColors = () => {
+        if (this.compare(this.props, this.state)){
+            this.setState({
+                biscuitColor : this.props.biscuitColor  ,
+                biscuitStroke: this.props.biscuitStroke ,
+                fillingColor : this.props.fillingColor  ,
+                fillingStroke: this.props.fillingStroke ,
+                creamColor   : this.props.creamColor    ,
+                creamStroke  : this.props.creamStroke   ,
+            })
+        }
+    }
+
 
     handaleColorChange = () => {
         let biscuits = document.querySelectorAll('#Biscuit1 > *, #Biscuit2 > *, #Biscuit3 > *')

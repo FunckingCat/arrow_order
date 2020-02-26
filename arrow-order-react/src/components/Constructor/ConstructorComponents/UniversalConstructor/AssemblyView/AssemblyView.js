@@ -12,13 +12,31 @@ class AssemblyView extends Component {
         let assembly;
         switch (this.props.type){
             case 'biscuit':
-                assembly = <BiscuitCake/>
+                assembly = <BiscuitCake
+                    biscuitColor  = {this.props.biscuitColor}
+                    biscuitStroke = {this.props.biscuitStroke}
+                    fillingColor  = {this.props.fillingColor}
+                    fillingStroke = {this.props.fillingStroke}
+                    creamColor    = {this.props.creamColor}
+                    creamStroke   = {this.props.creamStroke}/>
                 break
             case 'honey':
-                assembly = <HoneyCake/>
+                assembly = <HoneyCake
+                    biscuitColor  = {this.props.biscuitColor}
+                    biscuitStroke = {this.props.biscuitStroke}
+                    fillingColor  = {this.props.fillingColor}
+                    fillingStroke = {this.props.fillingStroke}
+                    creamColor    = {this.props.creamColor}
+                    creamStroke   = {this.props.creamStroke}/>
                 break
             case 'cup':
-                assembly = <CupCake/>
+                assembly = <CupCake
+                    biscuitColor  = {this.props.biscuitColor}
+                    biscuitStroke = {this.props.biscuitStroke}
+                    fillingColor  = {this.props.fillingColor}
+                    fillingStroke = {this.props.fillingStroke}
+                    creamColor    = {this.props.creamColor}
+                    creamStroke   = {this.props.creamStroke}/>
                 break
             default:
                 break

@@ -48,11 +48,11 @@ class CakeController extends Component {
         return(
             <AssemblyView
                 type = {this.props.type}
-                biscuitColor  = {this.state.biscuitFill}
+                biscuitColor  = {this.state.biscuitColor}
                 biscuitStroke = {this.state.biscuitStroke}
-                fillingColor  = {this.state.fillingFill}
+                fillingColor  = {this.state.fillingColor}
                 fillingStroke = {this.state.fillingStroke}
-                creamColor    = {this.state.creamFill}
+                creamColor    = {this.state.creamColor}
                 creamStroke   = {this.state.creamStroke}/>
         )
     }
