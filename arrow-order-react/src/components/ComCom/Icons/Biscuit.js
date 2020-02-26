@@ -16,9 +16,9 @@ export default class CupCake extends Component {
     }
 
     handaleColorChange = () => {
-        let top = document.querySelector('#Biscuit > #Top');
-        let front = document.querySelector('#Biscuit > #Front');
-        let line = document.querySelector('#Biscuit > #Line');
+        let top = document.querySelector(`#BiscuitIcon${this.props.id} #Biscuit > #Top`);
+        let front = document.querySelector(`#BiscuitIcon${this.props.id} #Biscuit > #Front`);
+        let line = document.querySelector(`#BiscuitIcon${this.props.id} #Biscuit > #Line`);
 
         top.style.fill = this.state.color;
         top.style.stroke = this.state.stroke;
@@ -29,7 +29,7 @@ export default class CupCake extends Component {
 
     render() {
         return (
-            <div className="biscuit">
+            <div className="biscuit" id = {`BiscuitIcon${this.props.id}`}>
                 <svg width="100%" height="100%" viewBox="0 0 196 100" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <g id="Biscuit">
                         <path id="Top" strokeWidth="3" d="M98.1157 55.5211C151.751 55.5211 195.231 43.3161 195.231 28.2605C195.231 13.205 151.751 1 98.1157 1C44.4802 1 1 13.205 1 28.2605C1 43.3161 44.4802 55.5211 98.1157 55.5211Z" fill="white" stroke="black" strokeMiterlimit="10" />

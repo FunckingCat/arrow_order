@@ -16,13 +16,13 @@ export default class CupCake extends Component {
     }
 
     handaleColorChange = () => {
-        let cream = document.querySelector('#PastryBag > #Cream')
+        let cream = document.querySelector(`#PastryBagIcon${this.props.id} #PastryBag > #Cream`)
         cream.style.fill = this.state.color;        
     }
 
     render(){
         return(
-            <div className="pastryBag">
+            <div className="pastryBag" id = {`PastryBagIcon${this.props.id}`}>
                 <svg width="100%" height="100%" viewBox="0 0 161 141" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <g id="PastryBag">
                     <g id="Vector">

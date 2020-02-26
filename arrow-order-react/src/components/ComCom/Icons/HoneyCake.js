@@ -20,7 +20,6 @@ export default class HoneyCake extends Component {
         let biscuits = document.querySelectorAll('#Biscuit1 > *, #Biscuit2 > *, #Biscuit3 > *')
         let fillings = document.querySelectorAll('#Filling1 > *, #Filling2 > *')
         let creams = document.querySelectorAll('#Cream1 > *, #Cream2 > *, #Cream3 > *')
-        console.log(creams)
 
         for (let item of biscuits){
             item.style.fill = this.state.biscuitColor;

@@ -16,8 +16,6 @@ export default class RadioButton extends Component {
             color : textColor,
         }
 
-        let icon = this.props.iconComponent || <img src={this.props.icon} alt="icon"/>;
-
         return(
             <li className = 'radio' style = {style} onClick = {this.handaleClick}>
                 <input 
@@ -31,7 +29,7 @@ export default class RadioButton extends Component {
                     <span className="shaft"></span>
                 </span>
                 <label htmlFor={'radio' + this.props.id}>
-                    <div className = 'icon'>{icon}</div>
+                    <div className = 'icon'>{this.props.icon}</div>
                     <div className = 'text'>{this.props.text}</div>
                 </label>
             </li>

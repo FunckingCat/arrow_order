@@ -121,30 +121,46 @@ class IngredientsMaster extends Component {
         return Math.floor(avalibleHeight)
     }
 
+    makeItems = () => {
+        let res = []
+        console.log(this.state.items);
+
+        for (let i=0; i < this.state.items.length; i++){
+            let el = this.state.items[i];
+            let ic
+            switch (this.props.content){
+                case 'Начинка':
+                    ic = <Bowl id = {i} color = {el.fillColor} stroke = {el.strokeColor}/>
+                    break
+                case 'Бисквит':
+                    ic = <Biscuit id = {i} color = {el.fillColor} stroke = {el.strokeColor}/>
+                    break
+                case 'Крем':
+                    ic = <PastryBag id = {i} color = {el.fillColor} stroke = {el.strokeColor}/>
+                    break
+                default:
+                    break
+            }
+            let item = {
+                name : el.name,
+                icon : ic,
+            }
+            res.push(item)
+        }
+        
+        console.log('res', res);
+        return res
+    }
+
     render(){
         let summary = this.defSummary();
-        let iconComponent;
-        switch (this.props.content){
-            case 'Начинка':
-                iconComponent = <Bowl/>
-                break
-            case 'Бисквит':
-                iconComponent = <Biscuit/>
-                break
-            case 'Крем':
-                iconComponent = <PastryBag/>
-                break
-            default:
-                break
-        }
+        let items = this.makeItems();
         return(
             <div className="ingredientsMaster">
                 <List 
                         title = {this.props.content}
-                        items = {this.state.items}
-                        iconComponent = {iconComponent}
+                        items = {items}
                         activeItems = {this.state.active}
-                        domen = {this.props.domen}
                         radioChecked = {this.radioChecked}
                         constant = {this.state.constant}/>
                 <div className="add">
