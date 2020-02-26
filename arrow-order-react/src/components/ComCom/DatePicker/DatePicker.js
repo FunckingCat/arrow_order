@@ -14,7 +14,7 @@ export default class DatePicker extends Component {
     state = {
         year : this.today.getFullYear(),
         prevMonth : this.today.getMonth(),
-        month : this.today.getMonth(),
+        month : this.props.month? this.today.getMonth()+1 : this.today.getMonth(),
         days : [],
         selected : '',
     }
@@ -99,6 +99,7 @@ export default class DatePicker extends Component {
                     id = {i}
                     name = {'day'}   
                     width = {this.daysRef.current.offsetWidth/7}
+                    onlyView = {this.props.onlyView}
                     date = {i + 1}
                     active = {dayActive}
                     key = {String(i) + String(this.state.month)}
@@ -153,16 +154,21 @@ export default class DatePicker extends Component {
         let prevStyle = { //Выключение левой стрелки
             color : isEqual? '#b0b0b0' : 'black',
             pointerEvents : isEqual? 'none' : '',
+            display : this.props.onlyView? 'none' : '',
         }
 
         let nextStyle = {//Выключение правой стрелки
             color : isEqual? 'black' : '#b0b0b0',
             pointerEvents : isEqual? '' : 'none',
+            display : this.props.onlyView? 'none' : '',
         }
+
+        let selectedBlock;
+        if (!this.props.onlyView) selectedBlock = <div className="selected">{selected}</div>;
 
         return(
             <div className="datePicker">
-                <div className="selected">{selected}</div>
+                {selectedBlock}
                 <div className="dates">
                     <div className="month">
                         <div 

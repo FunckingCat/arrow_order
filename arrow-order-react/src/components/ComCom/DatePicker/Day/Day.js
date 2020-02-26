@@ -41,6 +41,10 @@ export default class Day extends Component {
             </>
         )
 
+        if (this.props.onlyView === 'true'){
+            inner = this.props.date;
+        }
+
         if (this.props.active === 'false'){
             inner = this.props.date;
         }
