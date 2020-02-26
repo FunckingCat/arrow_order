@@ -59,7 +59,7 @@ export default class BiscuitCake extends Component {
         }
 
         for (let item of treeStrangeThings){
-            item.style.fill = this.state.biscuitStroke;
+            item.style.fill = this.state.creamStroke;
             item.style.stroke = 'transparent';
         }
 
