@@ -21,7 +21,6 @@ export default class CupCake extends Component {
     }
 
     compare (o1, o2){
-        console.log(o1, o2);
         let c1  = o1.biscuitColor === o2.biscuitColor;
         let c2  = o1.biscuitStroke === o2.biscuitStroke;
         let c3  = o1.fillingColor === o2.fillingColor;

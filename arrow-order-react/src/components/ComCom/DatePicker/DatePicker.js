@@ -76,10 +76,20 @@ export default class DatePicker extends Component {
 
     renderDays = () => {
         let days = [];
+        let daysPaddings = {
+            'Mon' : 0,
+            'Tue' : 1,
+            'Wed' : 2,
+            'Thu' : 3,
+            'Fri' : 4,
+            'Sat' : 5,
+            'Sun' : 6,
+        }
         let {month, year} = this.state;
         let firstDay = new Date(year, month, 1);
+        let dayOfWeek = String(firstDay).slice(0,3);
         //Создвем пустые ячейки что бы первый день месяца соответсятвовал своему дню недели
-        for (let i = 0; i < firstDay.getDay() - 1; i++){
+        for (let i = 0; i < daysPaddings[dayOfWeek]; i++){
            days.push(
             <div
                 key = {'empty' + i}
