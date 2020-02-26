@@ -122,9 +122,7 @@ class IngredientsMaster extends Component {
     }
 
     makeItems = () => {
-        let res = []
-        console.log(this.state.items);
-
+        let res = [];
         for (let i=0; i < this.state.items.length; i++){
             let el = this.state.items[i];
             let ic
@@ -147,8 +145,6 @@ class IngredientsMaster extends Component {
             }
             res.push(item)
         }
-        
-        console.log('res', res);
         return res
     }
 

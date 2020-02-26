@@ -69,9 +69,9 @@ export default class requestService {
         return res
     }
     
-    getCakeIcons = async (conType, parts) => {
+    getConstructorColors = async (parts) => {
         let {filling, biscuit, cream} = parts;
-        let res = await this.getResource(`/api/constructor/getIcons/${conType}/${filling}&&${biscuit}&&${cream}/`)
+        let res = await this.getResource(`/api/constructor/getColors/${filling}&&${biscuit}&&${cream}/`)
         return res
     }
 

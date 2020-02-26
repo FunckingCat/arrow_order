@@ -27,7 +27,7 @@ def handaleRequest(request, con_type, ingredient, params = False):
         return getCream(con_type, params)
 
     return JsonResponse({'values' : {
-        'Error' : 'Что то не так с запросом, проверь ингредиент по которому ищешь'
+        'Error' : 'Handale request. Что то не так с запросом, проверь ингредиент по которому ищешь'
     }})
 
 def  buildItem(item):
@@ -101,7 +101,7 @@ def getFilling(con_type, params):
         fillings = Filling.objects.filter(used_in_cup = True)
     else:
         return JsonResponse({'values' : {
-        'Error' : 'Что то не так с запросом, проверь тип конструктора'
+        'Error' : 'Получение начинки. Что то не так с запросом, проверь тип конструктора'
     }})
 
     for item in fillings:
@@ -137,7 +137,7 @@ def getBiscuit(con_type, params):
         biscuits = Biscuit.objects.filter(used_in_cup = True)
     else:
         return JsonResponse({'values' : {
-        'Error' : 'Что то не так с запросом, проверь тип конструктора'
+        'Error' : 'Получение бисквита. Что то не так с запросом, проверь тип конструктора'
     }})
 
     for item in biscuits:
@@ -173,11 +173,53 @@ def getCream(con_type, params):
         creams = Cream.objects.filter(used_in_cup = True)
     else:
         return JsonResponse({'values' : {
-        'Error' : 'Что то не так с запросом, проверь тип конструктора'
+        'Error' : 'Получение Крема. Что то не так с запросом, проверь тип конструктора'
     }})
 
     for item in creams:
         response['values']['all'].append(buildItem(item))
     response['values']['active'] = activeForCream(params, con_type, creams)
+
+    return JsonResponse(response)
+
+def getColors(request, parts = False):
+    if not parts:
+        return JsonResponse({'values' : {
+        'Error' : 'Не переданы части'
+        }})
+
+    temp = parts.split('&&')    
+    filling = temp[0]
+    biscuit = temp[1]
+    cream = temp[2] 
+
+    fillingFill   = ''
+    fillingStroke = ''
+    biscuitFill   = ''
+    biscuitStroke = ''
+    creamFill   = ''
+    creamStroke = ''
+    for item in Filling.objects.all():
+        if item.name == filling:
+            fillingFill   = item.fill_color
+            fillingStroke = item.stroke_color
+    for item in Biscuit.objects.all():
+        if item.name == biscuit:
+            biscuitFill   = item.fill_color
+            biscuitStroke = item.stroke_color
+    for item in Cream.objects.all():
+        if item.name == cream:
+            creamFill   = item.fill_color
+            creamStroke = item.stroke_color
+
+    response = {'values' : {
+        'fillingFill' : fillingFill,
+        'fillingStroke' : fillingStroke,
+        'biscuitFill' : biscuitFill,
+        'biscuitStroke' : biscuitStroke,
+        'creamFill' : creamFill,
+        'creamStroke': creamStroke
+        }
+    }
 
     return JsonResponse(response)

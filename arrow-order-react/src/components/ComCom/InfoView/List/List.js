@@ -16,7 +16,7 @@ import RadioButton    from '../../Buttons/RadioButton/RadioButton';
 export default class List extends Component {
 
     renderRadio = () => {
-        let {items, activeItems, constant, domen, radioChecked, iconComponent} = this.props
+        let {items, activeItems, constant, radioChecked} = this.props
         let radioButtons = []
         let i = 1;
         for (let item of items){

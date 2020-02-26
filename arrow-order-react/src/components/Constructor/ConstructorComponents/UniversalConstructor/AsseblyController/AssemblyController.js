@@ -18,25 +18,28 @@ class CakeController extends Component {
     }
 
     componentDidMount() {
-        this.getIcons();
+        this.getColors();
     }
 
     componentDidUpdate() {
         if (this.props.parts.biscuit !== this.state.prevParts.biscuit ||
             this.props.parts.filling !== this.state.prevParts.filling ||
             this.props.parts.cream !== this.state.prevParts.cream){
-                this.getIcons();
+                this.getColors();
             }
     }
 
-    getIcons = () => {
-        this.requestService.getCakeIcons(this.props.type,this.props.parts)
+    getColors = () => {
+        this.requestService.getConstructorColors(this.props.parts)
         .then((res) => {
             this.setState({
-                biscuitIcon : res.biscuitIcon,
-                fillingIcon : res.fillingIcon,
-                creamIcon : res.creamIcon,
-                prevParts : this.props.parts,
+                biscuitColor  : res.biscuitFill,
+                biscuitStroke : res.biscuitStroke,
+                fillingColor  : res.fillingFill,
+                fillingStroke : res.fillingStroke,
+                creamColor    : res.creamFill,
+                creamStroke   : res.creamStroke,
+                prevParts     : this.props.parts,
             })
         })
     }
@@ -45,9 +48,12 @@ class CakeController extends Component {
         return(
             <AssemblyView
                 type = {this.props.type}
-                biscuitIcon = {this.state.biscuitIcon}
-                fillingIcon = {this.state.fillingIcon}
-                creamIcon = {this.state.creamIcon}/>
+                biscuitColor  = {this.state.biscuitFill}
+                biscuitStroke = {this.state.biscuitStroke}
+                fillingColor  = {this.state.fillingFill}
+                fillingStroke = {this.state.fillingStroke}
+                creamColor    = {this.state.creamFill}
+                creamStroke   = {this.state.creamStroke}/>
         )
     }
 } 
