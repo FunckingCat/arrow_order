@@ -59,7 +59,6 @@ class UniversalConstructor extends Component {
     }
 
     handaleClick = (event) => {
-        console.log(event.target.closest('.RoundButton').childNodes[1].innerHTML);
         let content = event.target.closest('.RoundButton').childNodes[1].innerHTML;
         this.props.setContent(content);
         this.props.popUpActive(true);

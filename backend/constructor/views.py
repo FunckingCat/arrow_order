@@ -65,10 +65,13 @@ def fbcList(fbc, con_type, item):
 def activeForFilling(params, con_type, fillings):
     biscuit, cream = False, False
     if params:
+        print('PARAMS')
         try:
-            biscuit, cream = parametrs.split('&')
+            biscuit, cream = params.split('$')
         except:
             biscuit = params
+
+    print('BISCUIT', biscuit, 'CREAM', cream)
 
     res = []
 
