@@ -2,7 +2,12 @@ import React,{Component} from 'react';
 import './IngredientsMaster.scss'; 
 import {connect} from 'react-redux'; 
 
-import {setCakeParts} from '../../../../actions/cakeConstructorActions';
+import {setAssemblyParts} from '../../../../actions/orderActions';
+import {
+    setBiscuitColor,
+    setFillingColor,
+    setCreamColor
+} from '../../../../actions/assemblyColorsActions';
 
 import requestService from '../../../../servises/requestService';
 import BlackButton    from '../../../ComCom/Buttons/BlackButton/BlackButton';
@@ -38,7 +43,6 @@ class IngredientsMaster extends Component {
     }
 
     updateItems = () => {
-        console.log(this.props.content !== this.state.prevContent);
         if (this.props.content !== this.state.prevContent){
             this.RequestService.getCakeInfo(this.props.type, this.props.content, this.props.parts)
             .then((res) => {
@@ -66,12 +70,47 @@ class IngredientsMaster extends Component {
     }
 
     partSubmit = () => {
-        if (this.state.buttonActive === 'true'){
-            this.props.setCakeParts({
-                filling : this.props.content === 'Начинка'? this.state.selected : '',
-                biscuit : this.props.content === 'Бисквит'? this.state.selected : '',
-                cream   : this.props.content === 'Крем'? this.state.selected : '',
-            })
+        let {
+            content,
+            setAssemblyParts,
+            setBiscuitColor,
+            setFillingColor,
+            setCreamColor
+        } = this.props;
+
+        let {
+            items,
+            buttonActive,
+            selected
+        } = this.state;
+
+
+        if (buttonActive === 'true'){
+            let parts = {
+                filling : undefined,
+                biscuit : undefined,
+                cream   : undefined
+            }
+            let color = items
+                .filter(item => item.name === selected)
+                .map(item => [item.fillColor, item.strokeColor])[0]
+            switch (content){
+                case 'Начинка':
+                    parts = {...parts, filling : selected};
+                    setFillingColor(color[0], color[1]);
+                    break
+                case 'Бисквит':
+                    parts = {...parts, biscuit : selected}
+                    setBiscuitColor(color[0], color[1]);
+                    break
+                case 'Крем':
+                    parts = {...parts, cream : selected}
+                    setCreamColor(color[0], color[1]);
+                    break
+                default:
+                    break
+            }
+            setAssemblyParts(parts)
             let now = new Date();
             this.setState({
                 buttonActive : 'false',
@@ -87,8 +126,7 @@ class IngredientsMaster extends Component {
             summary = this.state.selected + ' ' + this.props.content.toLowerCase();
         }
         if (this.state.active.length === 0) {
-            summary = 'Нет подходящих вариантов, измените состав';
-            
+            summary = 'Нет подходящих вариантов, измените состав';            
         }
         return summary
     }
@@ -194,7 +232,10 @@ const mapStateToProps = (state) => {
 } 
 
 const mapDispatchToProps = {
-    setCakeParts : setCakeParts, 
+    setAssemblyParts, 
+    setBiscuitColor,
+    setFillingColor,
+    setCreamColor
 } 
 
 export default connect(mapStateToProps, mapDispatchToProps)(IngredientsMaster)

@@ -1,12 +1,9 @@
 import React,{Component} from 'react'; 
-import {connect} from 'react-redux';
 import RecuestService from '../../../../../servises/requestService';
 
 import AssemblyView from '../AssemblyView/AssemblyView';
 
-import {popUpActive} from '../../../../../actions/popUpActions';
-
-class CakeController extends Component {
+export default class CakeController extends Component {
 
     requestService = new RecuestService(this.props.domen);
 
@@ -14,59 +11,10 @@ class CakeController extends Component {
         prevParts : this.props.parts,
     }
 
-    componentDidMount() {
-        this.getColors();
-    }
-
-    componentDidUpdate() {
-        if (this.props.parts.biscuit !== this.state.prevParts.biscuit ||
-            this.props.parts.filling !== this.state.prevParts.filling ||
-            this.props.parts.cream !== this.state.prevParts.cream){
-                this.getColors();
-            }
-    }
-
-    getColors = () => {
-        this.requestService.getConstructorColors(this.props.parts)
-        .then((res) => {
-            this.setState({
-                biscuitColor  : res.biscuitFill,
-                biscuitStroke : res.biscuitStroke,
-                fillingColor  : res.fillingFill,
-                fillingStroke : res.fillingStroke,
-                creamColor    : res.creamFill,
-                creamStroke   : res.creamStroke,
-                prevParts     : this.props.parts,
-            })
-        })
-    }
-
     render(){
         return(
-            <AssemblyView
-                biscuitColor  = {this.state.biscuitColor}
-                biscuitStroke = {this.state.biscuitStroke}
-                fillingColor  = {this.state.fillingColor}
-                fillingStroke = {this.state.fillingStroke}
-                creamColor    = {this.state.creamColor}
-                creamStroke   = {this.state.creamStroke}/>
+            <AssemblyView/>
         )
     }
 } 
 
- const mapStateToProps = (state) => {
-    return({
-        domen : state.domen,
-        parts : {
-            filling : state.cakeParts.filling,
-            biscuit : state.cakeParts.biscuit,
-            cream   : state.cakeParts.cream,
-        }
-    })
-} 
-
-const mapDispatchToProps = {
-    popUpActive : popUpActive,
-} 
-
-export default connect(mapStateToProps, mapDispatchToProps)(CakeController)

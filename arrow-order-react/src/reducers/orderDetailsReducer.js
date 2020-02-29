@@ -9,6 +9,7 @@ const initialState = {
     type    : '',
     ammount : '',
     date    : '',
+    parts   : {},
 }
 
 const orderDetaiilsReducer = (state = initialState, action) => {
@@ -19,14 +20,16 @@ const orderDetaiilsReducer = (state = initialState, action) => {
             })
         case SET_ASSEMBLY_PARTS:
             let {
-                filling = '', 
-                biscuit = '', 
-                cream = ''
+                filling = state.parts.filling, 
+                biscuit = state.parts.biscuit, 
+                cream = state.parts.cream
             } = action.parts;            
             return Object.assign({}, state, {
-                filling : filling || state.filling ,
-                biscuit : biscuit || state.biscuit ,
-                cream   : cream   || state.cream ,
+                parts : {
+                    filling : filling,
+                    biscuit : biscuit,
+                    cream   : cream,
+                }
             })
         case SET_AMMOUNT:
             return Object.assign({}, state,{
