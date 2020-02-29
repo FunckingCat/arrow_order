@@ -51,7 +51,6 @@ class UniversalConstructor extends Component {
     }
 
     reset = () => {
-        console.log('Reset');
         this.props.setAssemblyParts({
             filling : '',
             biscuit : '',
