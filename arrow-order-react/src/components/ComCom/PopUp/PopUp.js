@@ -17,15 +17,15 @@ class PopUp extends Component {
 
     componentDidMount() {
         this.setStyle();
-        document.querySelector("html").style.overflow = 'hidden';
+        document.querySelector('body').style.overflow = 'hidden';
     }
 
     componentDidUpdate() {
-        this.setStyle()
+        this.setStyle();        
     }
 
     componentWillUnmount() {
-        document.querySelector("html").style.overflow = '';
+        document.querySelector('body').style.overflow = '';
     }
 
     closePopUp = (event) => {
@@ -56,19 +56,19 @@ class PopUp extends Component {
 
     render(){
         return(
-            <>
-            <div className="background" 
+            <div className="popWrapper">
+                <div className="background" 
                  ref = {this.bg}></div>
-            <div className="popup"
-                 closeable='true'
-                 onClick = {this.closePopUp}  
-                 ref = {this.popup}>
-                <div className="line"></div>
-                <div className="content">
-                    <IndredientsMaster/>
+                <div className="popup"
+                    closeable='true'
+                    onClick = {this.closePopUp}  
+                    ref = {this.popup}>
+                    <div className="line"></div>
+                    <div className="content">
+                        <IndredientsMaster/>
+                    </div>
                 </div>
             </div>
-            </>
         )
     }
 } 

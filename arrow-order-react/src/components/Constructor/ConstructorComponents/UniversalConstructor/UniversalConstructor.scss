@@ -1,19 +1,27 @@
-.UniversalConstructor{
-    box-sizing: border-box;
+.Constructor{
     width: 100%;
-    max-width: 400px;
-    height: calc(100% - 20px);
+    height: 100vh;
+    box-sizing: border-box;
+    z-index: 0;
+    padding-top: 80px;
+    padding-bottom: 20px;
     display: flex;
     flex-direction: column;
-    justify-content: flex-start;
+    align-items: center;
+    & > * {
+        margin-bottom: 5%;
+    }
     .AssemblyView{
-        height: 50%;
+        max-height: 50%;
+        height: 500px;
     }
     .output{
+        width: 100%;
         display: flex;
         flex-direction: column;
-        justify-content: center;
+        justify-content: flex-start;
         div{
+            width: 100%;
             margin-top: 0.3em;
             font-size: 1.1em;
             margin-bottom: 0.1em;
@@ -21,7 +29,6 @@
     }
     .buttonsBlock{
         width: 100%;
-        max-height: 15%;
         display: flex;
         flex-direction: row;
         justify-content: space-around;

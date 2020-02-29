@@ -7,7 +7,6 @@ import {setPopUpContent}   from '../../../../actions/popUpActions';
 import {setAssemblyParts}  from '../../../../actions/orderActions';
 import {reset_colors}      from '../../../../actions/assemblyColorsActions';
 
-import Storage     from '../../../../servises/StorageController';
 import Assembly    from './AssemblyView/AssemblyView';
 
 import BlackButton from '../../../ComCom/Buttons/BlackButton/BlackButton';
@@ -19,25 +18,6 @@ class UniversalConstructor extends Component {
     state = {
         resetActive : 'false',
         confirmActive : 'false',
-    }
-
-    St = new Storage()
-
-    componentDidMount() {
-        this.checkSessionStorage();
-    }
-
-    checkSessionStorage = () => {
-        let ingredients = this.St.getSession('ingredients')
-        if  (ingredients !== null){
-            let {filling, biscuit, cream} = ingredients;
-            console.log('filling, biscuit, cream: ', filling, biscuit, cream);
-            this.props.setCakeParts({
-                filling : filling,
-                biscuit : biscuit,
-                cream   : cream,
-            })
-        }
     }
 
     componentDidUpdate() {
@@ -73,67 +53,58 @@ class UniversalConstructor extends Component {
             biscuit : '',
             cream   : '',
         });
-        this.St.rmSession('ingredients');
         this.props.reset_colors();
         this.props.setPopUpContent('');
     }
 
     confirm = () => {
         if (this.state.confirmActive){
-            let {filling, biscuit, cream} = this.props.cakeParts;
-            this.St.setSession('ingredients', {
-                filling : filling,
-                biscuit : biscuit,
-                cream   : cream,
-            });
-            console.log(`Wrote ${filling +  biscuit + cream}`);
+            console.log('Confirm');
         }
     }
 
     render(){
                 
         return(
-            <>
-                <div className = "UniversalConstructor">
-                    <Assembly/>
-                    <div className = 'output'>
-                        <div>Начинка: {this.props.cakeParts.filling}</div>
-                        <div>Бисквит: {this.props.cakeParts.biscuit}</div>
-                        <div>Крем:    {this.props.cakeParts.cream}</div>
-                    </div>
-                    <div className="buttonsBlock popTriggers">
-                        <RoundButton 
-                            src = {this.props.domen + '/static/icons/constructor/BiscuitCake/filling/default.svg'}
-                            onClick = {this.handaleClick}>
-                                Начинка
-                        </RoundButton>
-                        <RoundButton 
-                            src = {this.props.domen + '/static/icons/constructor/BiscuitCake/biscuit/default.svg'}
-                            onClick = {this.handaleClick}>
-                                Бисквит
-                        </RoundButton>
-                        <RoundButton
-                            scale = 'true' 
-                            src = {this.props.domen + '/static/icons/constructor/BiscuitCake/cream/default.svg'}
-                            onClick = {this.handaleClick}>
-                                Крем
-                        </RoundButton>
-                        
-                    </div>
-                    <div className="buttonsBlock resetComfirm">
-                        <BlackButton 
-                            text='Сброcить'
-                            active = {this.state.resetActive}
-                            onClick = {this.reset}/>
-                        <TransLink
-                            text='Далее'
-                            transferTo = 'Продукция'
-                            to = '/Products'
-                            onClick={this.confirm}
-                            active = {this.state.confirmActive}/>
-                    </div>
+            <section className = 'Constructor'>
+                <Assembly/>
+                <div className = 'output'>
+                    <div>Начинка: {this.props.cakeParts.filling}</div>
+                    <div>Бисквит: {this.props.cakeParts.biscuit}</div>
+                    <div>Крем:    {this.props.cakeParts.cream}</div>
                 </div>
-            </>
+                <div className="buttonsBlock popTriggers">
+                    <RoundButton 
+                        src = {this.props.domen + '/static/icons/constructor/BiscuitCake/filling/default.svg'}
+                        onClick = {this.handaleClick}>
+                            Начинка
+                    </RoundButton>
+                    <RoundButton 
+                        src = {this.props.domen + '/static/icons/constructor/BiscuitCake/biscuit/default.svg'}
+                        onClick = {this.handaleClick}>
+                            Бисквит
+                    </RoundButton>
+                    <RoundButton
+                        scale = 'true' 
+                        src = {this.props.domen + '/static/icons/constructor/BiscuitCake/cream/default.svg'}
+                        onClick = {this.handaleClick}>
+                            Крем
+                    </RoundButton>
+                    
+                </div>
+                <div className="buttonsBlock resetComfirm">
+                    <BlackButton 
+                        text='Сброcить'
+                        active = {this.state.resetActive}
+                        onClick = {this.reset}/>
+                    <TransLink
+                        text='Далее'
+                        transferTo = 'Продукция'
+                        to = '/Products'
+                        onClick={this.confirm}
+                        active = {this.state.confirmActive}/>
+                </div>
+            </section>
         )
     }
 }

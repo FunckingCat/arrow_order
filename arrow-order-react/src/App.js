@@ -12,11 +12,20 @@ import WikiRouter  from './components/Wiki/WikiRouter';
 import Products    from './components/Products/ProductsRouter';
 import Constructor from './components/Constructor/Constructor';
 import AvalDates   from './components/AvalibleDates/AvalibleDates';
+import PopUp       from './components/ComCom/PopUp/PopUp';
 
 
 function App() {
 
   let toHat = (title,component) => <Hat title = {title}>{component}</Hat>
+
+  let toHatWithPopUp = (title,component) =>
+    <>
+      <Hat title = {title}>
+        {component}
+      </Hat>
+      <PopUp/>
+    </>
 
   return (
     <Router>
@@ -25,7 +34,7 @@ function App() {
         <Route exact path = '/MainPage' component = {MainPage} />
         <Route exact path = '/Menu' component = {BurgerMenu} />
         <Route path = '/Wiki' component = {() => toHat('Вики', <WikiRouter/>)}/>
-        <Route path = '/Constructor' component = {Constructor}/>
+        <Route path = '/Constructor' component = {() => toHatWithPopUp('Заказ', <Constructor/>)}/>
         <Route exact path = '/FreeDates' component = {() => toHat('Свободные даты', <AvalDates/>)} />
         <Route exact path = '/Rules' component = {CommingSoon} />
         <Route exact path = '/Contacts' component = {CommingSoon} />
