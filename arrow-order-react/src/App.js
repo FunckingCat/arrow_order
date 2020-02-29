@@ -14,6 +14,8 @@ import Constructor from './components/Constructor/Constructor';
 import AvalDates   from './components/AvalibleDates/AvalibleDates';
 import PopUp       from './components/ComCom/PopUp/PopUp';
 
+import Quantum from './components/ComCom/Quantum/Quantum';
+
 
 function App() {
 
@@ -36,8 +38,9 @@ function App() {
         <Route path = '/Wiki' component = {() => toHat('Вики', <WikiRouter/>)}/>
         <Route path = '/Constructor' component = {() => toHatWithPopUp('Заказ', <Constructor/>)}/>
         <Route exact path = '/FreeDates' component = {() => toHat('Свободные даты', <AvalDates/>)} />
-        <Route exact path = '/Rules' component = {CommingSoon} />
-        <Route exact path = '/Contacts' component = {CommingSoon} />
+        <Route exact path = '/Contacts' component = {() => <div>
+          <Quantum from = {5} to = {10} step = {0.5}/>
+          </div>} />
         <Route exact path = '/WorkWithUs' component = {CommingSoon} />
         <Route path = '/Products' component = {() => toHat('Продукция', <Products/>)} />
       </div>
