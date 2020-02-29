@@ -20,6 +20,10 @@ class UniversalConstructor extends Component {
         confirmActive : 'false',
     }
 
+    componentDidMount () {
+        this.reset();
+    }
+
     componentDidUpdate() {
         this.updateButtons();
     }
