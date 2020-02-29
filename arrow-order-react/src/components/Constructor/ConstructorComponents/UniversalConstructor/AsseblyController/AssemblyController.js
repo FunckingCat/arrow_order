@@ -12,9 +12,6 @@ class CakeController extends Component {
 
     state = {
         prevParts : this.props.parts,
-        biscuitIcon : '',
-        fillingIcon : '',
-        creamIcon   : '',
     }
 
     componentDidMount() {
@@ -47,7 +44,6 @@ class CakeController extends Component {
     render(){
         return(
             <AssemblyView
-                type = {this.props.type}
                 biscuitColor  = {this.state.biscuitColor}
                 biscuitStroke = {this.state.biscuitStroke}
                 fillingColor  = {this.state.fillingColor}

@@ -1,5 +1,5 @@
 import {SET_CAKE_PARTS} from '../actions/actionTypes';
-
+//LEGACY : DELETE
 const initialState = {
     filling : '',
     biscuit : '',

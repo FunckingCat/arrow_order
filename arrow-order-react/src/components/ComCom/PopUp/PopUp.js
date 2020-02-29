@@ -65,8 +65,7 @@ class PopUp extends Component {
                  ref = {this.popup}>
                 <div className="line"></div>
                 <div className="content">
-                    <IndredientsMaster
-                        type = {this.props.type}/>
+                    <IndredientsMaster/>
                 </div>
             </div>
             </>

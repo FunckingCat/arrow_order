@@ -27,18 +27,24 @@ class IngredientsMaster extends Component {
         description : '',
     }
 
+    componentDidMount() {
+        this.updateItems();
+        this.getDescription();
+    }
+
     componentDidUpdate() {
         this.updateItems();
         this.getDescription();
     }
 
     updateItems = () => {
+        console.log(this.props.content !== this.state.prevContent);
         if (this.props.content !== this.state.prevContent){
             this.RequestService.getCakeInfo(this.props.type, this.props.content, this.props.parts)
             .then((res) => {
                 let active = []
                 try{active = res.active.map(item => item.name)} // При сбросе вылетает исключение, ловим его
-                catch{}
+                catch(e){}
                 let description = 'Похоже вы выбрали несочетаемые ингредиенты, попробуйте начать с начинки, тогда вы точно сможете собратьт самый вкусный торт!';
                 this.setState({
                     items : res.all || [], // Так же ловим исключение про сбросе
@@ -178,6 +184,7 @@ const mapStateToProps = (state) => {
     return({
         domen : state.domen,
         content : state.popUp.content,
+        type   : state.orderDetails.type,
         parts : {
             filling : state.cakeParts.filling,
             biscuit : state.cakeParts.biscuit,

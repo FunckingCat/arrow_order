@@ -11,7 +11,7 @@ class AssemblyView extends Component {
     render(){
         let assembly;
         switch (this.props.type){
-            case 'biscuit':
+            case 'Бисквитный торт':
                 assembly = <BiscuitCake
                     biscuitColor  = {this.props.biscuitColor}
                     biscuitStroke = {this.props.biscuitStroke}
@@ -20,7 +20,8 @@ class AssemblyView extends Component {
                     creamColor    = {this.props.creamColor}
                     creamStroke   = {this.props.creamStroke}/>
                 break
-            case 'honey':
+            case 'Торт - цифра':
+            case 'Открытый медовик':
                 assembly = <HoneyCake
                     biscuitColor  = {this.props.biscuitColor}
                     biscuitStroke = {this.props.biscuitStroke}
@@ -29,7 +30,7 @@ class AssemblyView extends Component {
                     creamColor    = {this.props.creamColor}
                     creamStroke   = {this.props.creamStroke}/>
                 break
-            case 'cup':
+            case 'Капкейки':
                 assembly = <CupCake
                     biscuitColor  = {this.props.biscuitColor}
                     biscuitStroke = {this.props.biscuitStroke}
@@ -54,7 +55,8 @@ class AssemblyView extends Component {
 
 const mapStatetoProps = (state) => {
     return {
-        domen : state.domen
+        domen : state.domen,
+        type  : state.orderDetails.type,
     }
 }
 

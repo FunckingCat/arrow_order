@@ -9,9 +9,8 @@ export default class requestService {
             throw new Error(`Could not fetch ${url}; recived ${res.status}`)
         }
         let response = await res.json();
-        //console.log(`Адрес: ${this._apiBase}${url}\nType: ${typeof(response.values)} ---`, response.values);
+        console.log(`Адрес: ${this._apiBase}${url}\nType: ${typeof(response.values)} ---`, response.values);
         return response.values;
-
     }
 
     getMainPageBlocksContents = async () => {
@@ -46,23 +45,36 @@ export default class requestService {
 
     getCakeInfo = async (conType, type = '', parametrs = {}) => {
         let res;
+        let con;
+        switch (conType) {
+            case 'Бисквитный торт':
+                con = 'biscuit';
+                break 
+            case 'Открытый медовик':
+            case'Торт - цифра': 
+                con = 'honey';
+                break 
+            case 'Капкейки':
+                con = 'cup';
+                break
+            default:
+                con = '';
+                break
+        }
         let {filling = '', biscuit = '', cream = ''} = parametrs;
         switch (type) {
             case 'Начинка':
             case 'filling':
-                res = await this.getResource(`/api/constructor/${conType}/filling/${biscuit}${biscuit? '$' : ''}${cream}${biscuit||cream? '/' : ''}`);
+                res = await this.getResource(`/api/constructor/${con}/filling/${biscuit}${biscuit? '$' : ''}${cream}${biscuit||cream? '/' : ''}`);
                 break;
-
             case 'Бисквит':
             case 'biscuit':
-                res = await this.getResource(`/api/constructor/${conType}/biscuit/${filling}${filling? '/' : ''}`);
+                res = await this.getResource(`/api/constructor/${con}/biscuit/${filling}${filling? '/' : ''}`);
                 break;
-
             case 'Крем':
             case 'cream':
-                res = await this.getResource(`/api/constructor/${conType}/cream/${filling}${filling? '/' : ''}`);
+                res = await this.getResource(`/api/constructor/${con}/cream/${filling}${filling? '/' : ''}`);
                 break;
-
             default:
                 res = ['Unknown type in getCakeInfo']
         }

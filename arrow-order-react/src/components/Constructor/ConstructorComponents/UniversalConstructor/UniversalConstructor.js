@@ -6,7 +6,7 @@ import {popUpActive}  from '../../../../actions/popUpActions';
 import {setPopUpContent}   from '../../../../actions/popUpActions';
 import {setCakeParts} from '../../../../actions/cakeConstructorActions';
 import Storage        from '../../../../servises/StorageController';
-import CakeController from './AsseblyController/AssemblyController';
+import AssemblyController from './AsseblyController/AssemblyController';
 
 import BlackButton from '../../../ComCom/Buttons/BlackButton/BlackButton';
 import RoundButton from '../../../ComCom/Buttons/RoundButton/RoundButton';
@@ -92,7 +92,7 @@ class UniversalConstructor extends Component {
         return(
             <>
                 <div className = "UniversalConstructor">
-                    <CakeController type = {this.props.type}/>
+                    <AssemblyController/>
                     <div className = 'output'>
                         <div>Начинка: {this.props.cakeParts.filling}</div>
                         <div>Бисквит: {this.props.cakeParts.biscuit}</div>
