@@ -80,12 +80,6 @@ export default class requestService {
         }
         return res
     }
-    
-    getConstructorColors = async (parts) => {
-        let {filling, biscuit, cream} = parts;
-        let res = await this.getResource(`/api/constructor/getColors/${filling}&&${biscuit}&&${cream}/`)
-        return res
-    }
 
     getProducts = async (cat = '') => {
         let res = await this.getResource(`/api/products/${cat}`)

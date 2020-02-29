@@ -223,11 +223,6 @@ const mapStateToProps = (state) => {
         domen : state.domen,
         content : state.popUp.content,
         type   : state.orderDetails.type,
-        parts : {
-            filling : state.cakeParts.filling,
-            biscuit : state.cakeParts.biscuit,
-            cream : state.cakeParts.cream,
-        }
     })
 } 
 

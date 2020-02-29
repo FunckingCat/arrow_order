@@ -8,7 +8,6 @@ export const GO_TO = 'GO_TO';
 //PopUp actions
 export const POP_UP_ACTIVE = 'POP_UP_ACTIVE';
 export const SET_CONTENT = 'SET_CONTENT';
-export const SET_CAKE_PARTS = 'SET_CAKE_PARTS'; // LEGACY : DELETE
 //OrderDetails actions
 export const SET_ORDER_TYPE = 'SET_ORDER_TYPE';
 export const SET_ASSEMBLY_PARTS = 'SET_ASSEMBLY_PARTS';

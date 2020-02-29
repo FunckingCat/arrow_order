@@ -2,11 +2,12 @@ import React,{Component} from 'react';
 import './UniversalConstructor.scss'; 
 import {connect} from 'react-redux';
 
-import {popUpActive}  from '../../../../actions/popUpActions';
+import {popUpActive}       from '../../../../actions/popUpActions';
 import {setPopUpContent}   from '../../../../actions/popUpActions';
-import {setCakeParts} from '../../../../actions/cakeConstructorActions';
-import Storage        from '../../../../servises/StorageController';
-import Assembly from './AssemblyView/AssemblyView';
+import {setAssemblyParts}  from '../../../../actions/orderActions';
+
+import Storage     from '../../../../servises/StorageController';
+import Assembly    from './AssemblyView/AssemblyView';
 
 import BlackButton from '../../../ComCom/Buttons/BlackButton/BlackButton';
 import RoundButton from '../../../ComCom/Buttons/RoundButton/RoundButton';
@@ -60,19 +61,19 @@ class UniversalConstructor extends Component {
 
     handaleClick = (event) => {
         let content = event.target.closest('.RoundButton').childNodes[1].innerHTML;
-        this.props.setContent(content);
+        this.props.setPopUpContent(content);
         this.props.popUpActive(true);
     }
 
     reset = () => {
         console.log('Reset');
-        this.props.setCakeParts({
+        this.props.setAssemblyParts({
             filling : '',
             biscuit : '',
             cream   : '',
         });
         this.St.rmSession('ingredients');
-        this.props.setContent('');
+        this.props.setPopUpContent('');
     }
 
     confirm = () => {
@@ -140,17 +141,17 @@ const mapStateToProps = (state) => {
         domen : state.domen,
         isPopUpActive : state.popUp.active,
         cakeParts : {
-            filling : state.cakeParts.filling,
-            biscuit : state.cakeParts.biscuit,
-            cream : state.cakeParts.cream,
+            filling : state.orderDetails.parts.filling,
+            biscuit : state.orderDetails.parts.biscuit,
+            cream   : state.orderDetails.parts.cream
         }
     }
 }
 
 const mapDispatchToProps = {
-    popUpActive : popUpActive,
-    setContent : setPopUpContent,
-    setCakeParts : setCakeParts,
+    popUpActive,
+    setPopUpContent,
+    setAssemblyParts,
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(UniversalConstructor)
