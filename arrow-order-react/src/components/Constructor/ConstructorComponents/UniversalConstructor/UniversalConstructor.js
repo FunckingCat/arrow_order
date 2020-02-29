@@ -5,6 +5,7 @@ import {connect} from 'react-redux';
 import {popUpActive}       from '../../../../actions/popUpActions';
 import {setPopUpContent}   from '../../../../actions/popUpActions';
 import {setAssemblyParts}  from '../../../../actions/orderActions';
+import {reset_colors}      from '../../../../actions/assemblyColorsActions';
 
 import Storage     from '../../../../servises/StorageController';
 import Assembly    from './AssemblyView/AssemblyView';
@@ -73,6 +74,7 @@ class UniversalConstructor extends Component {
             cream   : '',
         });
         this.St.rmSession('ingredients');
+        this.props.reset_colors();
         this.props.setPopUpContent('');
     }
 
@@ -152,6 +154,7 @@ const mapDispatchToProps = {
     popUpActive,
     setPopUpContent,
     setAssemblyParts,
+    reset_colors,
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(UniversalConstructor)

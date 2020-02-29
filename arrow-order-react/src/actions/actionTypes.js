@@ -17,3 +17,4 @@ export const SET_DATE = 'SET_DATE';
 export const SET_BISCUIT_COLOR = 'SET_BISCUIT_COLOR';
 export const SET_FILLING_COLOR = 'SET_FILLING_COLOR';
 export const SET_CREAM_COLOR = 'SET_CREAM_COLOR';
+export const RESET_COLORS = 'RESET_COLORS';

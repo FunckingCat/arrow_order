@@ -1,16 +1,17 @@
 import {
     SET_BISCUIT_COLOR,   
     SET_FILLING_COLOR,
-    SET_CREAM_COLOR
+    SET_CREAM_COLOR,
+    RESET_COLORS
 } from '../actions/actionTypes';
 
 const initialState = {
-    biscuitFill   : '',
-    biscuitStroke : '',
-    fillingFill   : '',
-    fillingStroke : '',
-    creamFill     : '',
-    creamStroke   : ''
+    biscuitFill   : undefined,
+    biscuitStroke : undefined,
+    fillingFill   : undefined,
+    fillingStroke : undefined,
+    creamFill     : undefined,
+    creamStroke   : undefined
 }
 
 const orderDetaiilsReducer = (state = initialState, action) => {
@@ -29,6 +30,15 @@ const orderDetaiilsReducer = (state = initialState, action) => {
             return Object.assign({}, state,{
                 creamFill     : action.fill,
                 creamStroke   : action.stroke
+            })
+        case    RESET_COLORS:
+            return Object.assign({}, state, {
+                biscuitFill   : '',
+                biscuitStroke : '',
+                fillingFill   : '',
+                fillingStroke : '',
+                creamFill     : '',
+                creamStroke   : ''
             })
         default: 
             return state
