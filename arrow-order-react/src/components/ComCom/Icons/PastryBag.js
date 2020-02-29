@@ -21,8 +21,15 @@ export default class CupCake extends Component {
     }
 
     render(){
+
+        let style = {
+            width : '65%',
+            height : '65%',
+            transform : 'scale(1.6)'
+        }
+
         return(
-            <div className="pastryBag" id = {`PastryBagIcon${this.props.id}`}>
+            <div className="pastryBag" id = {`PastryBagIcon${this.props.id}`} style = {style}>
                 <svg width="100%" height="100%" viewBox="0 0 161 141" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <g id="PastryBag">
                     <g id="Vector">
