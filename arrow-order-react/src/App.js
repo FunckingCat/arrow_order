@@ -14,7 +14,7 @@ import Constructor from './components/Constructor/Constructor';
 import AvalDates   from './components/AvalibleDates/AvalibleDates';
 import PopUp       from './components/ComCom/PopUp/PopUp';
 
-import Quantum from './components/ComCom/Quantum/Quantum';
+import SevColorPicker from './components/ComCom/SevColorPicker/SevColorPicker';
 
 
 function App() {
@@ -39,7 +39,7 @@ function App() {
         <Route path = '/Constructor' component = {() => toHatWithPopUp('Заказ', <Constructor/>)}/>
         <Route exact path = '/FreeDates' component = {() => toHat('Свободные даты', <AvalDates/>)} />
         <Route exact path = '/Contacts' component = {() => <div>
-          <Quantum seq = {['Маленькая', 'Средняя', 'Большая']}/>
+          <SevColorPicker/>
           </div>} />
         <Route exact path = '/WorkWithUs' component = {CommingSoon} />
         <Route path = '/Products' component = {() => toHat('Продукция', <Products/>)} />
