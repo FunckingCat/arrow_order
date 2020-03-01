@@ -2,12 +2,13 @@ import React,{Component} from 'react';
 import './ColorPicker.scss'; 
 import {connect} from 'react-redux'; 
 
-import Color from './Color/Color'
+import Color from './Color/Color';
+import Animator from '../../Animator/Animator';
 
 class ColorPicker extends Component {
 
     state = {
-        split : this.props.split || 30,
+        split : this.props.split || 70,
         colors : [
             'hsl(13, 50%, 50%)', 
             'hsl(234, 50%, 50%)', 
@@ -59,14 +60,16 @@ class ColorPicker extends Component {
         let colors = this.renderColors();
 
         return(
-            <div className="colorPicker">
-                <div className="title">
-                    Выберите основной цвет:
+            <Animator>
+                <div className="colorPicker">
+                    <div className="title">
+                        {this.props.title}
+                    </div>
+                    <div className="colors">
+                        {colors}
+                    </div>
                 </div>
-                <div className="colors">
-                    {colors}
-                </div>
-            </div>
+            </Animator>
         )
     }
 } 
