@@ -65,7 +65,7 @@ export default class requestService {
         switch (type) {
             case 'Начинка':
             case 'filling':
-                res = await this.getResource(`/api/constructor/${con}/filling/${biscuit}${biscuit? '$' : ''}${cream}${biscuit||cream? '/' : ''}`);
+                res = await this.getResource(`/api/constructor/${con}/filling/${biscuit}$${cream}${biscuit||cream? '/' : ''}`);
                 break;
             case 'Бисквит':
             case 'biscuit':
