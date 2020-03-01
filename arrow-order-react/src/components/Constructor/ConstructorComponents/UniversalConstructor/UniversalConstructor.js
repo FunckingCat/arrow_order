@@ -97,10 +97,12 @@ class UniversalConstructor extends Component {
                 </div>
                 <div className="buttonsBlock resetComfirm">
                     <BlackButton 
+                        mode = 'border'
                         text='Сброcить'
                         active = {this.state.resetActive}
                         onClick = {this.reset}/>
                     <TransLink
+                        mode = 'border'
                         text='Далее'
                         transferTo = 'Продукция'
                         to = '/Products'

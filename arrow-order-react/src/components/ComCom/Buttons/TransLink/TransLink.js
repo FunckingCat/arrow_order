@@ -23,11 +23,23 @@ class TransLink extends Component {
     }
     
     color = () => {
-        if (this.props.active === 'true'){
-            this.link.current.style.backgroundColor = 'black'
-        } else {
-            this.link.current.style.backgroundColor = '#787878'
+        if (this.props.mode === 'border'){
+            this.link.current.style.border = '1.5px solid black'
+            if (this.props.active === 'true'){
+                this.link.current.style.borderColor = 'black';
+                this.link.current.style.color = 'black';
+            } else {
+                this.link.current.style.borderColor = '#bbbbbb';
+                this.link.current.style.color = '#bbbbbb';
+            }
+        }else{
+            if (this.props.active === 'true'){
+                this.link.current.style.backgroundColor = 'black'
+            } else {
+                this.link.current.style.backgroundColor = '#bbbbbb'
+            }
         }
+        
     }
 
     handaleClick = (event) => {

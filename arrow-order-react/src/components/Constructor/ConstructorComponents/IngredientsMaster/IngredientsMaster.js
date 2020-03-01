@@ -159,7 +159,7 @@ class IngredientsMaster extends Component {
         let radioItemHeight = 30;
         let listTitleHeight = 32 + 19.2;
         let listHeight = listTitleHeight + radioItemHeight * this.state.items.length + 40;
-        let addHeight = 100;
+        let addHeight = 125;
         let avalibleHeight = popUpRatio * windowHeight - listHeight - addHeight;
         if (avalibleHeight < 0) {avalibleHeight = 0}
         return Math.floor(avalibleHeight)
