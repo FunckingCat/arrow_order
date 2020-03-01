@@ -46,6 +46,7 @@ class ColorPicker extends Component {
         for (let i=0; i < colors.length; i++) {
             render.push(
                 <Color
+                    name = {this.props.name}
                     split = {this.state.split}
                     onChange = {this.onChange}
                     key = {i + colors[i]} 

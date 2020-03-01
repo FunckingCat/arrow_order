@@ -20,19 +20,23 @@ export default class SevColorPicker extends Component {
         }
     }
 
+    delColor = () => {
+        let {currentOptionalColors} = this.state;
+        if (currentOptionalColors > 0){
+            this.setState({
+                currentOptionalColors : currentOptionalColors - 1,
+            })
+        }
+    }
+
     renderOptionalColors = () => {
         let optionalColors = [];
         for (let i = 0; i < this.state.currentOptionalColors; i++){
             optionalColors.push(
-                <div className = 'ColorBlock' key = {'CB' + i}>
                     <ColorPicker
+                        name = {'CP' + i} 
                         key = {'CP'+i} 
                         title = {`Дополнительный цвет ${i+1}`}/>
-                    <BlackButton
-                        key = {'D'+i}
-                        text = 'Удалить'
-                        active = 'true'/>
-                </div>
             )
         }
         return optionalColors
@@ -44,12 +48,19 @@ export default class SevColorPicker extends Component {
 
         return(
             <div className="sevColorPicker">
-                <ColorPicker title = 'Основной цвет:'/>
+                <ColorPicker title = 'Основной цвет'/>
                 <BlackButton 
                     text = 'Добавить дополнительный цвет'
+                    mode = 'border'
                     onClick = {this.addColor}
                     active = {this.state.currentOptionalColors < this.state.maxOPtionalColors? 'true' : 'false'}/>
                 {optionalColors}
+                <BlackButton
+                        text = 'Удалить'
+                        mode = 'border'
+                        plusClass = 'del'
+                        active = {this.state.currentOptionalColors > 0? 'true' : 'false'}
+                        onClick = {this.delColor}/>
             </div>
         )
     }

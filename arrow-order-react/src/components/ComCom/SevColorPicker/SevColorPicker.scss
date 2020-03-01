@@ -1,0 +1,16 @@
+.sevColorPicker{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    & > *{
+        margin-top: 0.5em;
+    }
+    .BlackButton{
+        width: 90%;
+    }
+    .del{
+        align-self: flex-end;
+        width: 30%;
+        margin-right: 5%;
+    }
+}
