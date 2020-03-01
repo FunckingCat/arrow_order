@@ -10,6 +10,8 @@ import IndredientsMaster from '../../Constructor/ConstructorComponents/Ingredien
 
 class PopUp extends Component {
 
+    _isMount = false
+
     RequestService = new requestService(this.props.domen)
 
     bg = React.createRef();
@@ -18,6 +20,7 @@ class PopUp extends Component {
     componentDidMount() {
         this.setStyle();
         document.querySelector('body').style.overflow = 'hidden';
+        this._isMount = true;
     }
 
     componentDidUpdate() {
@@ -25,6 +28,7 @@ class PopUp extends Component {
     }
 
     componentWillUnmount() {
+        this._isMount = false;
         document.querySelector('body').style.overflow = '';
     }
 
@@ -56,7 +60,9 @@ class PopUp extends Component {
 
     render(){
         return(
-            <div className="popWrapper">
+            <div className="popWrapper" style = {
+                {opacity: this._isMount? '1' : '0'} 
+            }>
                 <div className="background" 
                  ref = {this.bg}></div>
                 <div className="popup"
