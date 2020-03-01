@@ -20,10 +20,12 @@ p{
     width: 100%;
     display: flex;
     justify-content: center;
-
     & > *:not([class = 'popWrapper']){
         width: 100%;
         max-width: 400px;
+    }
+    & *{
+        box-sizing: border-box;
     }
 }
 

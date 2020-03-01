@@ -51,6 +51,13 @@ class AssemblyView extends Component {
                     creamStroke   = {this.state.creamStroke}/>
                 break
             case 'Торт - цифра':
+                assembly = <HoneyCake
+                    biscuitColor  = {this.state.biscuitColor}
+                    biscuitStroke = {this.state.biscuitStroke}
+                    fillingColor  = {this.state.fillingColor}
+                    fillingStroke = {this.state.fillingStroke}
+                    creamColor    = {this.state.creamColor}
+                    creamStroke   = {this.state.creamStroke}/>
             case 'Открытый медовик':
                 assembly = <HoneyCake
                     biscuitColor  = {this.state.biscuitColor}
