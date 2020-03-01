@@ -50,7 +50,6 @@ class IngredientsMaster extends Component {
                 try{active = res.active.map(item => item.name)} // При сбросе вылетает исключение, ловим его
                 catch(e){}
                 let description = 'Похоже вы выбрали несочетаемые ингредиенты, попробуйте начать с начинки, тогда вы точно сможете собратьт самый вкусный торт!';
-                console.log(active);
                 this.setState({
                     items : res.all || [], // Так же ловим исключение про сбросе
                     active : active,

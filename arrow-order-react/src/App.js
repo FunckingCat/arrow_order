@@ -1,8 +1,9 @@
-import React from 'react';
+import React, {Component} from 'react';
 import './css_reset.css';
 import './App.scss';
 import {BrowserRouter as Router, Route} from 'react-router-dom';
 
+import storageServ from './servises/StorageController';
 import Hat         from './components/ComCom/HatAndNav/HatAndNav';
 import Login       from './components/Login/Login';
 import MainPage    from './components/MainPage/MainPage';
@@ -17,35 +18,40 @@ import PopUp       from './components/ComCom/PopUp/PopUp';
 import SevColorPicker from './components/ComCom/SevColorPicker/SevColorPicker';
 
 
-function App() {
+class App extends Component{
 
-  let toHat = (title,component) => <Hat title = {title}>{component}</Hat>
+  Stotage = new storageServ()
 
-  let toHatWithPopUp = (title,component) =>
-    <>
-      <Hat title = {title}>
-        {component}
-      </Hat>
-      <PopUp/>
-    </>
+  render() {
 
-  return (
-    <Router>
-      <div className="App">
-        <Route exact path = '/' component = {Login} /> 
-        <Route exact path = '/MainPage' component = {MainPage} />
-        <Route exact path = '/Menu' component = {BurgerMenu} />
-        <Route path = '/Wiki' component = {() => toHat('Вики', <WikiRouter/>)}/>
-        <Route path = '/Constructor' component = {() => toHatWithPopUp('Заказ', <Constructor/>)}/>
-        <Route exact path = '/FreeDates' component = {() => toHat('Свободные даты', <AvalDates/>)} />
-        <Route exact path = '/Contacts' component = {() => <div>
-          <SevColorPicker/>
-          </div>} />
-        <Route exact path = '/WorkWithUs' component = {CommingSoon} />
-        <Route path = '/Products' component = {() => toHat('Продукция', <Products/>)} />
-      </div>
-    </Router>
-  );
+    let toHat = (title,component) => <Hat title = {title}>{component}</Hat>
+
+    let toHatWithPopUp = (title,component) =>
+      <>
+        <Hat title = {title}>
+          {component}
+        </Hat>
+        <PopUp/>
+      </>
+
+    return (
+      <Router>
+        <div className="App">
+          <Route exact path = '/' component = {Login} /> 
+          <Route exact path = '/MainPage' component = {MainPage} />
+          <Route exact path = '/Menu' component = {BurgerMenu} />
+          <Route path = '/Wiki' component = {() => toHat('Вики', <WikiRouter/>)}/>
+          <Route path = '/Constructor' component = {() => toHatWithPopUp('Заказ', <Constructor/>)}/>
+          <Route exact path = '/FreeDates' component = {() => toHat('Свободные даты', <AvalDates/>)} />
+          <Route exact path = '/Contacts' component = {() => <div>
+            <SevColorPicker/>
+            </div>} />
+          <Route exact path = '/WorkWithUs' component = {CommingSoon} />
+          <Route path = '/Products' component = {() => toHat('Продукция', <Products/>)} />
+        </div>
+      </Router>
+    );
+  }  
 }
 
 export default App;
