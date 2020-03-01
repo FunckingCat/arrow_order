@@ -21,7 +21,9 @@ class UniversalConstructor extends Component {
     }
 
     componentDidMount () {
-        this.reset();
+        console.log(this.props);
+        //this.reset();
+        this.updateButtons();
     }
 
     componentDidUpdate() {

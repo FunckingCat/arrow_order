@@ -2,48 +2,12 @@ import React,{Component} from 'react';
 
 export default class CupCake extends Component {
 
-    state = {
-        biscuitColor : '' ,
-        biscuitStroke: '' ,
-        fillingColor : '' ,
-        fillingStroke: '' ,
-        creamColor   : '' ,
-        creamStroke  : '' ,
-    }
-
     componentDidMount() {
         this.handaleColorChange();
     }
 
     componentDidUpdate() {
-        this.updateColors();
         this.handaleColorChange();
-    }
-
-    compare (o1, o2){
-        let c1  = o1.biscuitColor === o2.biscuitColor;
-        let c2  = o1.biscuitStroke === o2.biscuitStroke;
-        let c3  = o1.fillingColor === o2.fillingColor;
-        let c4  = o1.fillingStroke === o2.fillingStroke;
-        let c5  = o1.creamColor === o2.creamColor;
-        let c6  = o1.creamStroke === o2.creamStroke;
-        if (c1&&c2&&c3&&c4&&c5&&c6){
-            return false
-        }
-        return true
-    }
-
-    updateColors = () => {
-        if (this.compare(this.props, this.state)){
-            this.setState({
-                biscuitColor : this.props.biscuitColor  ,
-                biscuitStroke: this.props.biscuitStroke ,
-                fillingColor : this.props.fillingColor  ,
-                fillingStroke: this.props.fillingStroke ,
-                creamColor   : this.props.creamColor    ,
-                creamStroke  : this.props.creamStroke   ,
-            })
-        }
     }
 
     handaleColorChange = () => {
@@ -52,18 +16,18 @@ export default class CupCake extends Component {
         let creams = document.querySelectorAll('#Cream > *')
 
         for (let item of biscuits){
-            item.style.fill = this.state.biscuitColor;
-            item.style.stroke = this.state.biscuitStroke;
+            item.style.fill = this.props.biscuitColor;
+            item.style.stroke = this.props.biscuitStroke;
         }
 
         for (let item of fillings){
-            item.style.fill = this.state.fillingColor;
-            item.style.stroke = this.state.fillingStroke;
+            item.style.fill = this.props.fillingColor;
+            item.style.stroke = this.props.fillingStroke;
         }
 
         for (let item of creams){
-            item.style.fill = this.state.creamColor;
-            item.style.stroke = this.state.creamStroke;
+            item.style.fill = this.props.creamColor;
+            item.style.stroke = this.props.creamStroke;
         }
     }
 

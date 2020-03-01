@@ -3,7 +3,6 @@ import './css_reset.css';
 import './App.scss';
 import {BrowserRouter as Router, Route} from 'react-router-dom';
 
-import storageServ from './servises/StorageController';
 import Hat         from './components/ComCom/HatAndNav/HatAndNav';
 import Login       from './components/Login/Login';
 import MainPage    from './components/MainPage/MainPage';
@@ -15,12 +14,10 @@ import Constructor from './components/Constructor/Constructor';
 import AvalDates   from './components/AvalibleDates/AvalibleDates';
 import PopUp       from './components/ComCom/PopUp/PopUp';
 
-import SevColorPicker from './components/ComCom/SevColorPicker/SevColorPicker';
+import SevColorPicker   from './components/ComCom/SevColorPicker/SevColorPicker';
 
 
 class App extends Component{
-
-  Stotage = new storageServ()
 
   render() {
 
