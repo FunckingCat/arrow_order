@@ -17,7 +17,7 @@ import PopUp       from './components/ComCom/PopUp/PopUp';
 import SevColorPicker   from './components/ComCom/SevColorPicker/SevColorPicker';
 
 
-class App extends Component{
+export default class App extends Component{
 
   render() {
 
@@ -50,5 +50,3 @@ class App extends Component{
     );
   }  
 }
-
-export default App;

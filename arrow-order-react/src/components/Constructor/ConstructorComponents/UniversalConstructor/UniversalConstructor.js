@@ -4,8 +4,6 @@ import {connect} from 'react-redux';
 
 import {popUpActive}       from '../../../../actions/popUpActions';
 import {setPopUpContent}   from '../../../../actions/popUpActions';
-import {setAssemblyParts}  from '../../../../actions/orderActions';
-import {reset_colors}      from '../../../../actions/assemblyColorsActions';
 
 import Assembly    from './AssemblyView/AssemblyView';
 
@@ -21,8 +19,6 @@ class UniversalConstructor extends Component {
     }
 
     componentDidMount () {
-        console.log(this.props);
-        //this.reset();
         this.updateButtons();
     }
 
@@ -50,16 +46,6 @@ class UniversalConstructor extends Component {
         let content = event.target.closest('.RoundButton').childNodes[1].innerHTML;
         this.props.setPopUpContent(content);
         this.props.popUpActive(true);
-    }
-
-    reset = () => {
-        this.props.setAssemblyParts({
-            filling : '',
-            biscuit : '',
-            cream   : '',
-        });
-        this.props.reset_colors();
-        this.props.setPopUpContent('');
     }
 
     confirm = () => {
@@ -131,8 +117,6 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = {
     popUpActive,
     setPopUpContent,
-    setAssemblyParts,
-    reset_colors,
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(UniversalConstructor)

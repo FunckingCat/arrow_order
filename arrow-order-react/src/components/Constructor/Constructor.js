@@ -1,15 +1,29 @@
 import React,{Component} from 'react';
 import {Switch, Route} from 'react-router';
 
-import {connect}      from 'react-redux';
-import {setOrderType} from '../../actions/orderActions'; 
+import {connect}           from 'react-redux';
+import {setOrderType}      from '../../actions/orderActions';
+import {setPopUpContent}   from '../../actions/popUpActions';
+import {setAssemblyParts}  from '../../actions/orderActions';
+import {reset_colors}      from '../../actions/assemblyColorsActions';
 
 import UniversalConstructor from './ConstructorComponents/UniversalConstructor/UniversalConstructor';
 
 
 class Constructor extends Component {
 
+    reset = () => {
+        this.props.setAssemblyParts({
+            filling : '',
+            biscuit : '',
+            cream   : '',
+        });
+        this.props.reset_colors();
+        this.props.setPopUpContent('');
+    }
+
     setOrderType = (orderType) => {
+        if(this.props.oldOrderType !== orderType) this.reset();
         this.props.setOrderType(orderType);
     }
 
@@ -30,8 +44,17 @@ class Constructor extends Component {
     }
 }
 
-const mapDispatchToProps = {
-    setOrderType : setOrderType
+const mapStateToProps = (state) => {
+    return {
+        oldOrderType : state.orderDetails.type,
+    }
 }
 
-export default connect(null, mapDispatchToProps)(Constructor)
+const mapDispatchToProps = {
+    setOrderType,
+    setAssemblyParts,
+    setPopUpContent,
+    reset_colors,
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Constructor)
