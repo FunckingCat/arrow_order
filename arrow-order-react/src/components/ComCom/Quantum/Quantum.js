@@ -19,6 +19,7 @@ export default class Quantum extends Component {
             this.setState({
                 min            : 0,
                 max            : this.props.seq.length,
+                counter        : 0,
                 output         : this.props.seq[0],
             })
         } else {
@@ -33,33 +34,54 @@ export default class Quantum extends Component {
     }
 
     decrease = () => {
-        let {output, step, min} = this.state;
+        let {output, step, min, counter} = this.state;
         if (this.decreaseActive()){
             if (this.props.from && output >  min){
                 this.setState({
                    output : output - (step)
+                })
+            } else if (this.props.seq && counter > min){
+                counter -= 1;
+                this.setState({
+                    counter : counter,
+                    output  : this.props.seq[counter]
                 })
             }
         } 
     }
 
     increase = () => {
-        let {output, step, max} = this.state;
+        let {output, step, max, counter} = this.state;
         if (this.increaseActive()){
             if (this.props.from && output < max){
                 this.setState({
                     output : output + (step)
+                })
+            } else if (this.props.seq && counter < max){
+                counter += 1;
+                this.setState({
+                    counter : counter,
+                    output  : this.props.seq[counter]
                 })
             }
         }
     }
 
     decreaseActive = () => {
-        return this.state.output > this.state.min;
+        if (this.props.from){
+            return this.state.output > this.state.min;
+        } else if (this.props.seq){
+            return this.state.counter > this.state.min;
+        }
     }
 
     increaseActive = () => {
-        return this.state.output < this.state.max;
+        if (this.props.from){
+            return this.state.output < this.state.max;
+        } else if (this.props.seq){
+            return this.state.counter < this.state.max - 1;
+        }
+       
     }
 
     render(){
@@ -69,11 +91,11 @@ export default class Quantum extends Component {
         }
 
         let decreaseStyle = {
-            backgroundColor : this.decreaseActive()? 'black' : '#bbbbbb'
+            backgroundColor : this.decreaseActive()? '#333333' : '#bbbbbb'
         }
 
         let increaseStyle = {
-            backgroundColor : this.increaseActive()? 'black' : '#bbbbbb'
+            backgroundColor : this.increaseActive()? '#333333' : '#bbbbbb'
         }
 
         return(

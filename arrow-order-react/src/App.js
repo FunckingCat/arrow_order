@@ -39,7 +39,7 @@ function App() {
         <Route path = '/Constructor' component = {() => toHatWithPopUp('Заказ', <Constructor/>)}/>
         <Route exact path = '/FreeDates' component = {() => toHat('Свободные даты', <AvalDates/>)} />
         <Route exact path = '/Contacts' component = {() => <div>
-          <Quantum from = {5} to = {10} step = {0.5}/>
+          <Quantum seq = {['Маленькая', 'Средняя', 'Большая']}/>
           </div>} />
         <Route exact path = '/WorkWithUs' component = {CommingSoon} />
         <Route path = '/Products' component = {() => toHat('Продукция', <Products/>)} />
