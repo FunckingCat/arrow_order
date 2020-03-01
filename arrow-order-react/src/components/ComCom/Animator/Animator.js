@@ -33,7 +33,7 @@ export default class Animator extends Component {
 
     render() {
         return(
-            <div ref = {this.animatorElement}>
+            <div ref = {this.animatorElement} className = 'Animator'>
                 {this.props.children}
             </div>
         )

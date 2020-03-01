@@ -11,11 +11,11 @@ import logo from './logo.svg';
 export default class Login extends Component {
     render() {
         return(
-            <Animator type = 'rise'>
+            <Animator type = 'rise' timeout = '1000'>
                 <div className="login" >
                 <div className="logo"><img src={logo} alt="ArrowOrder"/></div>
                 
-                <Animator type = 'fade' timeout = '450'>
+                <Animator type = 'fade' timeout = '1700'>
                 <form>
 
                     <InputField 
@@ -27,8 +27,7 @@ export default class Login extends Component {
                     <LoginButton />
 
                     <div className="copyright">
-                        pre-alpha <br/>
-                        <Link to = '/Contacts'>v0.1</Link>
+                        <Link to = '/Contacts'>pre-alpha v0.1</Link>
                     </div>
 
                 </form>

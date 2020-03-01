@@ -7,22 +7,6 @@ import {initTransfer} from '../../../../actions/historyActions';
 
 class LoginButton extends Component {
 
-    componentDidMount(){
-        this.highlight()
-    }
-
-    componentDidUpdate(){
-        this.highlight()
-    }
-
-    highlight = () => {
-        if (this.props.highlighted){
-            document.querySelector('.login form>a>input').style.background = 'black';
-        }else{
-            document.querySelector('.login form>a>input').style.background = '#787878';
-        }
-    }
-
     handaleClick = (event) => {
         if(this.props.highlighted){
             let user = JSON.stringify({name : this.props.name, contact : this.props.contact})
@@ -33,9 +17,12 @@ class LoginButton extends Component {
 
     render() {
         const {highlighted} = this.props;
+        let style = {
+            backgroundColor : highlighted? 'black' : '#bbbbbb'
+        }
         return(
-            <Link to = {highlighted? '/MainPage' : '#'}>
-                <input type="button" value="SIGN IN" onClick = {this.handaleClick}/>
+            <Link to = {highlighted? '/MainPage' : '#'} onClick = {this.handaleClick} style = {style}>
+                SIGN IN
             </Link>
         )
     }
