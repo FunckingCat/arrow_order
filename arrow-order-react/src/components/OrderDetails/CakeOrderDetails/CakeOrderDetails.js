@@ -28,7 +28,9 @@ class CakeOrderDetails extends Component {
                     dimension = {this.state.range.dimension}/>
                 <div className="title">Выберте дату заказа:</div>
                 <DatePicker/>
-                <InputText/>
+                <div className="title">Комментарий к заказу:</div>
+                <InputText
+                    placeholder = 'Напишите здесь все что вам хотелось бы видеть в торте, оставтьте информацию о ваших прдпочтениях, аллергиях и т.д.'/>
             </div>
         )
     }

@@ -12,8 +12,8 @@ export default class InputText extends Component {
     }
 
     render(){
-        let title = this.props.title || 'Здесь вы можете оставить комментарий к своему заказу'
-        let placeholder = this.props.placeholder || 'Напишите здесь все что вам хотелось бы видеть в торте, оставтьте информацию о ваших прдпочтениях, аллергиях и т.д.'
+        let title = this.props.title || '';
+        let placeholder = this.props.placeholder || '';
         return(
             <div className="inputText" onInput = {this.handaleInput}>
                 <div className="title">{title}</div>
