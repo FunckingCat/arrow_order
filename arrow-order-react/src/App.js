@@ -41,9 +41,7 @@ export default class App extends Component{
           <Route path = '/Constructor' component = {() => toHatWithPopUp('Заказ', <Constructor/>)}/>
           <Route exact path = '/FreeDates' component = {() => toHat('Свободные даты', <AvalDates/>)} />
           <Route exact path = '/Contacts' component = {() => <div>
-            <InputText onInput = {(text) => {
-              console.log(text);
-            }}/>
+            <InputText/>
             </div>} />
           <Route exact path = '/WorkWithUs' component = {CommingSoon} />
           <Route path = '/Products' component = {() => toHat('Продукция', <Products/>)} />

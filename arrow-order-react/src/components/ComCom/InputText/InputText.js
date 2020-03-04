@@ -4,6 +4,10 @@ import './InputText.scss';
 export default class InputText extends Component {
 
     handaleInput = (e) => {
+        if (!this.props.onInput){
+            console.error('Не задана функция onInput, где коллбэк братан?');
+            return
+        }
         this.props.onInput(e.target.value)
     }
 

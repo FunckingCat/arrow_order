@@ -8,6 +8,7 @@ import {setAssemblyParts}  from '../../actions/orderActions';
 import {reset_colors}      from '../../actions/assemblyColorsActions';
 
 import UniversalConstructor from './ConstructorComponents/UniversalConstructor/UniversalConstructor';
+import CakeOrderDetails     from './ConstructorComponents/CakeOrderDetails/CakeOrderDetails';
 
 
 class Constructor extends Component {
@@ -32,6 +33,7 @@ class Constructor extends Component {
         return(
             <>
                 <Switch>
+                    <Route exact path = '/Constructor/Details/' component = {CakeOrderDetails} />
                     <Route exact path = '/Constructor/:type/' component = {(info) => {
                         this.setOrderType(info.match.params.type);
                         return(

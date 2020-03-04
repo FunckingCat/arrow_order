@@ -105,7 +105,7 @@ class UniversalConstructor extends Component {
                         mode = 'border'
                         text='Далее'
                         transferTo = 'Продукция'
-                        to = '/Products'
+                        to = '/Constructor/Details/'
                         onClick={this.confirm}
                         active = {this.state.confirmActive}/>
                 </div>
