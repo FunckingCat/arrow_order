@@ -133,6 +133,11 @@ export default class DatePicker extends Component {
         this.setState({
             selected : date,
         })
+        if (!this.props.onInput){
+            console.error('Нет функции onInput, куда дату передавать?');
+            return
+        }
+        this.props.onInput(date);
     }
 
     forward = () => {//Обработчик переключения месяца вперед

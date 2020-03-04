@@ -1,13 +1,34 @@
 import React,{Component} from 'react';
 import './CakeOrderDetails.scss'; 
-import {connect} from 'react-redux'; 
+import {connect} from 'react-redux';
+
+import InputRange from '../../../ComCom/Buttons/InputRange/InputRange';
+import DatePicker from '../../../ComCom/DatePicker/DatePicker';
+import InputText from '../../../ComCom/InputText/InputText';
 
 class CakeOrderDetails extends Component {
+
+    state = {
+        range : {
+            min : 0.5,
+            max : 4,
+            step: 0.01,
+            dimension: 'кг'
+        }
+    }
 
     render(){
         return(
             <div className="cakeOrderDetails">
-                Cake Order Details
+                <div className="title">Выберте вес торта:</div>
+                <InputRange 
+                    min = {this.state.range.min}
+                    max = {this.state.range.max}
+                    step = {this.state.range.step}
+                    dimension = {this.state.range.dimension}/>
+                <div className="title">Выберте дату заказа:</div>
+                <DatePicker/>
+                <InputText/>
             </div>
         )
     }
@@ -15,7 +36,7 @@ class CakeOrderDetails extends Component {
 
  const mapStateToProps = (state) => {
     return({
-        
+        type : state.orderDetails.type
     })
 } 
 

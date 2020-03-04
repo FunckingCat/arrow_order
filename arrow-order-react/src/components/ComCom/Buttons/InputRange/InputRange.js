@@ -18,6 +18,11 @@ export default class InputRange extends Component {
         let value = S.value;
         O.innerHTML = value;
         B.style.left = (value - min)/(max - min) * S.offsetWidth + 'px';
+        if (!this.props.onInput){
+            console.error('Нет функции onInput, без колбэка не запашет братан');
+            return
+        }
+        this.props.onInput(value);
     }
 
     componentDidMount() {
@@ -42,7 +47,7 @@ export default class InputRange extends Component {
                         onInput = {this.handaleInput} 
                         className="rs-range" 
                         type="range"
-                        defaultValue = {this.props.default || (max - min)/2}
+                        defaultValue = {this.props.default || (max - min)/2 || 0}
                         step={step}  
                         min={min} 
                         max={max}/>
