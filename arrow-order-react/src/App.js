@@ -13,7 +13,7 @@ import Products    from './components/Products/ProductsRouter';
 import Constructor from './components/Constructor/Constructor';
 import AvalDates   from './components/AvalibleDates/AvalibleDates';
 import PopUp       from './components/ComCom/PopUp/PopUp';
-import CakeDetails from './components/Constructor/ConstructorComponents/CakeOrderDetails/CakeOrderDetails';
+import DetailsRouter from  './components/OrderDetails/DetailsRouter';
 
 import InputText   from './components/ComCom/InputText/InputText';
 
@@ -46,7 +46,7 @@ export default class App extends Component{
             </div>} />
           <Route exact path = '/WorkWithUs' component = {CommingSoon} />
           <Route path = '/Products' component = {() => toHat('Продукция', <Products/>)} />
-          <Route exact path = '/CakeDetails/' component = {() => toHat('Детали заказа', <CakeDetails/>)} />
+          <Route path = '/Details/' component = {() => toHat('Детали заказа', <DetailsRouter/>)} />
         </div>
       </Router>
     );

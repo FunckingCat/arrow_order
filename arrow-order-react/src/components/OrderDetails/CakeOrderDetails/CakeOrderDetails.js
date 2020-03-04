@@ -2,9 +2,9 @@ import React,{Component} from 'react';
 import './CakeOrderDetails.scss'; 
 import {connect} from 'react-redux';
 
-import InputRange from '../../../ComCom/Buttons/InputRange/InputRange';
-import DatePicker from '../../../ComCom/DatePicker/DatePicker';
-import InputText from '../../../ComCom/InputText/InputText';
+import InputRange from '../../ComCom/Buttons/InputRange/InputRange';
+import DatePicker from '../../ComCom/DatePicker/DatePicker';
+import InputText from '../../ComCom/InputText/InputText';
 
 class CakeOrderDetails extends Component {
 
