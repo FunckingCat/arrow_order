@@ -1,0 +1,23 @@
+.inputText{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    .title{
+        width: 90%;
+        padding-left: 0.5em;
+        margin: 1em 0;
+        font-size: 0.9em;
+    }
+    .ta{
+        width: 90%;
+        padding: 1em;
+        border-radius: 0.5em;
+        overflow-y: scroll;
+        resize: none;
+        font-family: Comfortaa;
+        font-size: 0.7em;
+    }
+    .ta::-webkit-scrollbar {
+        display: none;
+    }
+}

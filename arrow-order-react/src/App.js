@@ -14,7 +14,7 @@ import Constructor from './components/Constructor/Constructor';
 import AvalDates   from './components/AvalibleDates/AvalibleDates';
 import PopUp       from './components/ComCom/PopUp/PopUp';
 
-import SevColorPicker   from './components/ComCom/SevColorPicker/SevColorPicker';
+import InputText   from './components/ComCom/InputText/InputText';
 
 
 export default class App extends Component{
@@ -41,7 +41,9 @@ export default class App extends Component{
           <Route path = '/Constructor' component = {() => toHatWithPopUp('Заказ', <Constructor/>)}/>
           <Route exact path = '/FreeDates' component = {() => toHat('Свободные даты', <AvalDates/>)} />
           <Route exact path = '/Contacts' component = {() => <div>
-            <SevColorPicker/>
+            <InputText onInput = {(text) => {
+              console.log(text);
+            }}/>
             </div>} />
           <Route exact path = '/WorkWithUs' component = {CommingSoon} />
           <Route path = '/Products' component = {() => toHat('Продукция', <Products/>)} />
