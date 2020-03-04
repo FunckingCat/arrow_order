@@ -2,9 +2,10 @@ import React,{Component} from 'react';
 import './CakeOrderDetails.scss'; 
 import {connect} from 'react-redux';
 
-import InputRange from '../../ComCom/Buttons/InputRange/InputRange';
-import DatePicker from '../../ComCom/DatePicker/DatePicker';
-import InputText from '../../ComCom/InputText/InputText';
+import InputRange  from '../../ComCom/Buttons/InputRange/InputRange';
+import DatePicker  from '../../ComCom/DatePicker/DatePicker';
+import InputText   from '../../ComCom/InputText/InputText';
+import TransLink from '../../ComCom/Buttons/TransLink/TransLink';
 
 class CakeOrderDetails extends Component {
 
@@ -17,6 +18,32 @@ class CakeOrderDetails extends Component {
         }
     }
 
+    onWeightInput = (weight) => {
+        this.setState({
+            weight : weight
+        })
+    }
+
+    onDateInput = (date) => {
+        this.setState({
+            date : date
+        })
+    }
+
+    onCommentInput = (comment) => {
+        this.setState({
+            comment : comment
+        })
+    }
+
+    confirm = () => {
+        console.log(
+            this.state.weight,
+            this.state.date,
+            this.state.comment
+        );
+    }
+
     render(){
         return(
             <div className="cakeOrderDetails">
@@ -25,12 +52,22 @@ class CakeOrderDetails extends Component {
                     min = {this.state.range.min}
                     max = {this.state.range.max}
                     step = {this.state.range.step}
-                    dimension = {this.state.range.dimension}/>
+                    dimension = {this.state.range.dimension}
+                    onInput = {this.onWeightInput}/>
                 <div className="title">Выберте дату заказа:</div>
-                <DatePicker/>
+                <DatePicker
+                    onInput = {this.onDateInput}/>
                 <div className="title">Комментарий к заказу:</div>
                 <InputText
-                    placeholder = 'Напишите здесь все что вам хотелось бы видеть в торте, оставтьте информацию о ваших прдпочтениях, аллергиях и т.д.'/>
+                    placeholder = 'Напишите здесь все что вам хотелось бы видеть в торте, оставтьте информацию о ваших прдпочтениях, аллергиях и т.д.'
+                    onInput = {this.onCommentInput}/>
+                <TransLink
+                    text = 'Далее'
+                    mode = 'border'
+                    active = {this.state.weight && this.state.date? 'true' : 'false'}
+                    transferTo = 'Никуда'
+                    to = '#'
+                    onClick = {this.confirm}/>
             </div>
         )
     }
