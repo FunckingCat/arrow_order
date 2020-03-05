@@ -3,6 +3,14 @@ import './CheckList.scss';
 
 import CheckButton from './CheckButton/CheckButton';
 
+//PROPS
+//title
+//items : {
+//     text,
+//     icon
+// }
+//onChange
+
 export default class CheckList extends Component {
 
     state = {
@@ -17,14 +25,14 @@ export default class CheckList extends Component {
             selected = selected.filter(item => item !== value)
         }
         console.log(selected);
-        // if (!this.onChange){
-        //     console.error('Нет коллбэка');
-        //     return 
-        // }
-        // this.onChange(selected)
         this.setState({
             selected : selected,
         })
+        if (!this.props.onChange){
+            console.error('Нет коллбэка');
+            return 
+        }
+        this.onChange(selected)
     }
 
     renderItems = (items) => {

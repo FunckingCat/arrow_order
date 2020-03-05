@@ -43,7 +43,6 @@ li.check{
     }
 
     .checkButton:checked + .checkMark .check{
-        //fill: red;
         stroke-dashoffset: 900;
         transition: 1.5s;
     }
