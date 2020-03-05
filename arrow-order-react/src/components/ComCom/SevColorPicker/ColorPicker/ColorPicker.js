@@ -8,6 +8,7 @@ import Animator from '../../Animator/Animator';
 class ColorPicker extends Component {
 
     state = {
+        selected : '',
         split : this.props.split || 70,
         colors : [
             'hsl(13, 50%, 50%)', 
@@ -21,10 +22,15 @@ class ColorPicker extends Component {
             'hsl(78, 50%, 50%)',]
     }
 
-    onChange = (event) => {
+    onChange = (value) => {
         this.setState({
-            selected : event.target.dataset.value,
+            selected : value,
         })
+        if (!this.props.onChange){
+            console.error('Нет коллбэка, ну выбрали и выбрали (В ColorPicker)');
+            return
+        }
+        this.props.onChange(value, this.props.order)
     }
 
     hslSplit = (color) => {

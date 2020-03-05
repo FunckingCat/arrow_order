@@ -16,7 +16,7 @@ import PopUp       from './components/ComCom/PopUp/PopUp';
 import DetailsRouter from  './components/OrderDetails/DetailsRouter';
 
 import CheckList from './components/ComCom/InfoView/CheckList/CheckList';
-
+import ColorPicker from './components/ComCom/SevColorPicker/SevColorPicker';
 
 export default class App extends Component{
 
@@ -45,6 +45,7 @@ export default class App extends Component{
             <CheckList 
               title = 'Список'
               items = {['Яблочный', 'Малиновый','Красивый', 'Магазиновый']}/>
+            <ColorPicker/>
             </div>} />
           <Route exact path = '/WorkWithUs' component = {CommingSoon} />
           <Route path = '/Products' component = {() => toHat('Продукция', <Products/>)} />

@@ -3,6 +3,14 @@ import './Color.scss';
 
 export default class Color extends Component {
 
+    onChange = (event) => {
+        if (!this.props.onChange){
+            console.error('Нет коллбэка');
+            return
+        }
+        this.props.onChange(event.target.dataset.value)
+    }
+
     makeGradient = (hsl, split = 0) => {
         let toHsl = (col) => {
             return `hsl(${col[0]},${col[1]}%,${col[2]}%)`
@@ -17,16 +25,16 @@ export default class Color extends Component {
     }
 
     render(){
-        let {onChange, color,hsl, split, name} = this.props;
+        let {color,hsl, split, name} = this.props;
         let style = {
             background : this.makeGradient(hsl, split),
         }
         return(
-            <li className = 'color' onClick = {this.handaleClick}>
+            <li className = 'color'>
                 <input 
                     type="radio" 
                     name = {'colors' + name}
-                    onChange = {onChange} 
+                    onChange = {this.onChange} 
                     className = 'colorInput'
                     data-value = {color} 
                     id = {color + name}/>
