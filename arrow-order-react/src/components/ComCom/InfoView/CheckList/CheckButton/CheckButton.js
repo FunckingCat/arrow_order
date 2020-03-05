@@ -7,7 +7,11 @@ export default class CheckButton extends Component {
            event.preventDefault()
            return
         }
-        console.log(event.target.dataset.value);
+        if (!this.props.onChange){
+            console.error('Нет коллбэка');
+            return
+        }
+        this.props.onChange(event.target.dataset.value, event.target.checked);
     }
 
     render(){
@@ -16,6 +20,8 @@ export default class CheckButton extends Component {
         let style = {
             color : textColor,
         }
+
+        let icon = this.props.icon? <img src={this.props.icon} alt="ArrowCook"/> : false;
 
         return(
             <li className = 'check' style = {style}>
@@ -32,7 +38,9 @@ export default class CheckButton extends Component {
                     </svg>
                 </div>
                 <label htmlFor={'check' + this.props.text}>
-                    <div className = 'icon'>{this.props.icon}</div>
+                    <div className = 'icon'>
+                        {icon}
+                    </div>
                     <div className = 'text'>{this.props.text}</div>
                 </label>
             </li>

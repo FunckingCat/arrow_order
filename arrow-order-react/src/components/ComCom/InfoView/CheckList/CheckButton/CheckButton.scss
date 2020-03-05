@@ -12,6 +12,7 @@ li.check{
     .checkMark{
         width : 2em;
         height: 2em;
+        transform: scale(1.2);
         svg {
             display: block;
           
@@ -20,19 +21,24 @@ li.check{
                 stroke-dashoffset: 0;
                 &.check {
                 stroke-dashoffset: -100;
-                transition: 0.35s;
-                //animation: dash-check 1.2s .75s ease-in-out forwards;
+                transition: 0.25s;
                 }
             }
-            
-            // @keyframes dash-check {
-            //     0% {
-            //     stroke-dashoffset: -100;
-            //     }
-            //     100% {
-            //     stroke-dashoffset: 900;
-            //     }
-            // }
+        }
+    }
+
+    label {
+        display : flex;
+        align-items: center;
+        height: 2em;
+        .icon{
+            width: 2em;
+            height: 2em;
+            transform: scale(1.2);
+            margin-left: 0.5em;
+        }
+        .text{
+            margin-left: 0.5em;
         }
     }
 
