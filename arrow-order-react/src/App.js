@@ -15,7 +15,7 @@ import AvalDates   from './components/AvalibleDates/AvalibleDates';
 import PopUp       from './components/ComCom/PopUp/PopUp';
 import DetailsRouter from  './components/OrderDetails/DetailsRouter';
 
-import InputText   from './components/ComCom/InputText/InputText';
+import CheckList from './components/ComCom/InfoView/CheckList/CheckList';
 
 
 export default class App extends Component{
@@ -42,7 +42,9 @@ export default class App extends Component{
           <Route path = '/Constructor' component = {() => toHatWithPopUp('Заказ', <Constructor/>)}/>
           <Route exact path = '/FreeDates' component = {() => toHat('Свободные даты', <AvalDates/>)} />
           <Route exact path = '/Contacts' component = {() => <div>
-            <InputText/>
+            <CheckList 
+              title = 'Список'
+              items = {['Яблочный', 'Малиновый','Красивый', 'Магазиновый']}/>
             </div>} />
           <Route exact path = '/WorkWithUs' component = {CommingSoon} />
           <Route path = '/Products' component = {() => toHat('Продукция', <Products/>)} />

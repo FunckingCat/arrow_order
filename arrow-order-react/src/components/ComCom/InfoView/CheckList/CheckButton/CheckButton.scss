@@ -1,0 +1,45 @@
+li.check{
+    list-style-type: none;
+    display: flex;
+    align-items: center;
+    .checkButton{
+        position: absolute;
+        z-index: -1;
+        opacity: 0;
+        margin: 10px 0 0 7px;
+    }
+
+    .checkMark{
+        width : 2em;
+        height: 2em;
+        svg {
+            display: block;
+          
+            .path {
+                stroke-dasharray: 1000;
+                stroke-dashoffset: 0;
+                &.check {
+                stroke-dashoffset: -100;
+                transition: 0.35s;
+                //animation: dash-check 1.2s .75s ease-in-out forwards;
+                }
+            }
+            
+            // @keyframes dash-check {
+            //     0% {
+            //     stroke-dashoffset: -100;
+            //     }
+            //     100% {
+            //     stroke-dashoffset: 900;
+            //     }
+            // }
+        }
+    }
+
+    .checkButton:checked + .checkMark .check{
+        //fill: red;
+        stroke-dashoffset: 900;
+        transition: 1.5s;
+    }
+}
+ 
