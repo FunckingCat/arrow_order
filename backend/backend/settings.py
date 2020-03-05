@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     'wiki',
     'products',
     'constructor',
+    'conOrderDetails',
 ]
 
 MIDDLEWARE = [
