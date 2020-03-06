@@ -104,8 +104,8 @@ class UniversalConstructor extends Component {
                     <TransLink
                         mode = 'border'
                         text='Далее'
-                        transferTo = 'Детали заказа'
-                        to = '/Details/Cake/'
+                        transferTo = 'Декор'
+                        to = '/Details/Decor/'
                         onClick={this.confirm}
                         active = {this.state.confirmActive}/>
                 </div>

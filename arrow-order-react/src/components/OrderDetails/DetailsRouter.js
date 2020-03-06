@@ -3,6 +3,7 @@ import {Switch, Route} from 'react-router';
 
 import {connect}           from 'react-redux';
 
+import CakeDecor from './CakeDecor/CakeDecor';
 import CakeDetails from './CakeOrderDetails/CakeOrderDetails';
 
 class Constructor extends Component {
@@ -12,6 +13,7 @@ class Constructor extends Component {
         return(
             <>
                 <Switch>
+                    <Route exact path = '/Details/Decor' component = {CakeDecor}/>
                     <Route exact path = '/Details/Cake' component = {CakeDetails}/>
                 </Switch>
             </>		

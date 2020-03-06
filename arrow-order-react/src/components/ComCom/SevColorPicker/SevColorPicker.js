@@ -33,7 +33,6 @@ export default class SevColorPicker extends Component {
     onChange = (value, order) => {
         let selected = this.state.selected;
         selected[order] = value;
-        console.log(selected);
         this.setState({
             selected : selected
         })
@@ -52,7 +51,7 @@ export default class SevColorPicker extends Component {
                         name = {'CP' + i} 
                         key = {'CP'+i}
                         order = {i+1} 
-                        title = {`Дополнительный цвет ${i+1}`}
+                        title = {`Доп. цвет: ${i+1}`}
                         onChange = {this.onChange}/>
             )
         }
@@ -66,11 +65,11 @@ export default class SevColorPicker extends Component {
         return(
             <div className="sevColorPicker">
                 <ColorPicker 
-                    title = 'Основной цвет'
+                    title = 'Основной цвет:'
                     order = {0}
                     onChange = {this.onChange}/>
                 <BlackButton 
-                    text = 'Добавить дополнительный цвет'
+                    text = 'Добавить цвет'
                     mode = 'border'
                     onClick = {this.addColor}
                     active = {this.state.currentOptionalColors < this.state.maxOPtionalColors? 'true' : 'false'}/>

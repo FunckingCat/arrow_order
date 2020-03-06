@@ -37,6 +37,10 @@ export default class CheckList extends Component {
 
     renderItems = (items) => {
         let res = [];
+        if (!items) {
+            console.error('Не переданы элементы(CheckList)');
+            return
+        }
         for (let i = 0; i < items.length; i++){
             res.push(
                 <CheckButton

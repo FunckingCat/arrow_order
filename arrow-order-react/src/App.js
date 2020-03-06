@@ -15,9 +15,6 @@ import AvalDates   from './components/AvalibleDates/AvalibleDates';
 import PopUp       from './components/ComCom/PopUp/PopUp';
 import DetailsRouter from  './components/OrderDetails/DetailsRouter';
 
-import CheckList from './components/ComCom/InfoView/CheckList/CheckList';
-import ColorPicker from './components/ComCom/SevColorPicker/SevColorPicker';
-
 export default class App extends Component{
 
   render() {
@@ -41,12 +38,7 @@ export default class App extends Component{
           <Route path = '/Wiki' component = {() => toHat('Вики', <WikiRouter/>)}/>
           <Route path = '/Constructor' component = {() => toHatWithPopUp('Заказ', <Constructor/>)}/>
           <Route exact path = '/FreeDates' component = {() => toHat('Свободные даты', <AvalDates/>)} />
-          <Route exact path = '/Contacts' component = {() => <div>
-            <CheckList 
-              title = 'Список'
-              items = {['Яблочный', 'Малиновый','Красивый', 'Магазиновый']}/>
-            <ColorPicker/>
-            </div>} />
+          <Route exact path = '/Contacts' component = {() => <div></div>} />
           <Route exact path = '/WorkWithUs' component = {CommingSoon} />
           <Route path = '/Products' component = {() => toHat('Продукция', <Products/>)} />
           <Route path = '/Details/' component = {() => toHat('Детали заказа', <DetailsRouter/>)} />
