@@ -2,11 +2,24 @@ import React,{Component} from 'react';
 import './CakeDecor.scss'; 
 import {connect} from 'react-redux'; 
 
+import RequestService from '../../../servises/requestService';
+
 import CheckList from '../../ComCom/InfoView/CheckList/CheckList';
 import ColorPicker from '../../ComCom/SevColorPicker/SevColorPicker';
 import TransLink from '../../ComCom/Buttons/TransLink/TransLink';
 
 class CakeDecor extends Component {
+
+    RS = new RequestService(this.props.domen)
+
+    componentDidMount () {
+        this.loadInfo();
+    }
+
+    loadInfo = () => {
+        console.log(this.props.domen, this.props.type);
+        this.RS.getDetails(this.props.type)
+    }
 
     render(){
         return(
@@ -28,7 +41,8 @@ class CakeDecor extends Component {
 
  const mapStateToProps = (state) => {
     return({
-        
+        domen : state.domen,
+        type  : state.orderDetails.type,
     })
 } 
 

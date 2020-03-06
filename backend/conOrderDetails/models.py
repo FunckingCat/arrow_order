@@ -32,6 +32,7 @@ class Decor(models.Model):
     def all(self):
         return {
             'name'          : self.name,
+            'icon'          : self.icon,
             'description'   : self.description,
             'usedInBiscuit' : self.used_in_biscuit,
             'usedInHoney'   : self.used_in_honey,
@@ -108,7 +109,7 @@ class Weight(models.Model):
             'min' : self.minimal,
             'max' : self.maximal,
             'step': self.step,
-            'dim' : self.dimaension
+            'dim' : self.dimension
         }
 
     def __str__(self):
