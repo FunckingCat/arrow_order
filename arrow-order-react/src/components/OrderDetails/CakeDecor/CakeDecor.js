@@ -4,33 +4,92 @@ import {connect} from 'react-redux';
 
 import RequestService from '../../../servises/requestService';
 
-import CheckList from '../../ComCom/InfoView/CheckList/CheckList';
+import InputRange  from '../../ComCom/Buttons/InputRange/InputRange';
+import CheckList   from '../../ComCom/InfoView/CheckList/CheckList';
 import ColorPicker from '../../ComCom/SevColorPicker/SevColorPicker';
-import TransLink from '../../ComCom/Buttons/TransLink/TransLink';
+import TransLink   from '../../ComCom/Buttons/TransLink/TransLink';
 
 class CakeDecor extends Component {
 
     RS = new RequestService(this.props.domen)
+
+    state = {
+        range : {
+            min : 0,
+            max : 4,
+            step: 0.01,
+            dimension: 'кг'
+        },
+        decor  : [],
+        colors : [],
+    }
 
     componentDidMount () {
         this.loadInfo();
     }
 
     loadInfo = () => {
-        console.log(this.props.domen, this.props.type);
+        let addDomen = (item, domen) => {
+            return {
+                name : item.name,
+                icon : domen + item.icon,
+                decr : item.decr,
+            }
+        }
         this.RS.getDetails(this.props.type)
+        .then((res) => {
+            console.log(res);
+            let {colors, weight, decor} = res;
+            this.setState({
+                range : {
+                    min : weight.min,
+                    max : weight.max,
+                    step: weight.step,
+                    dimension: weight.dim,
+                },
+                colors : colors,
+                decor : decor.map(item => addDomen(item, this.props.domen)),
+            })
+        })
+    }
+
+    onWeightInput = (value) => {
+        console.log(value);
+    }
+
+    onDecorInput = (value) => {
+        console.log(value);
+    }
+
+    onColorInput = (value) => {
+        console.log(value);
     }
 
     render(){
+
+        let title = this.props.type !== 'Капкейки'? 'Вес торта:' : 'Колличество капкейков:'
+
         return(
             <div className="cakeDecor">
+                <div className="weight">
+                    <div className="title">{title}</div>
+                    <InputRange 
+                        min = {this.state.range.min}
+                        max = {this.state.range.max}
+                        step = {this.state.range.step}
+                        dimension = {this.state.range.dimension}
+                        onInput = {this.onWeightInput}/>
+                </div>
                 <CheckList
-                    title = 'Выберите декор:'/>
-                <ColorPicker/>
+                    title = 'Декор:'
+                    items = {this.state.decor}
+                    onChange = {this.onDecorInput}/>
+                <ColorPicker
+                    onChange = {this.onColorInput}/>
                 <TransLink
                         mode = 'border'
                         text='Далее'
-                        transferTo = 'Детали заказа'
+                        transferTo = 'Дата'
                         to = '/Details/Cake/'
                         onClick={this.confirm}
                         active = {'true'}/>

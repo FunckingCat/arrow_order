@@ -6,7 +6,7 @@ import CheckButton from './CheckButton/CheckButton';
 //PROPS
 //title
 //items : {
-//     text,
+//     name,
 //     icon
 // }
 //onChange
@@ -24,7 +24,6 @@ export default class CheckList extends Component {
         } else {
             selected = selected.filter(item => item !== value)
         }
-        console.log(selected);
         this.setState({
             selected : selected,
         })
@@ -32,7 +31,7 @@ export default class CheckList extends Component {
             console.error('Нет коллбэка');
             return 
         }
-        this.onChange(selected)
+        this.props.onChange(selected)
     }
 
     renderItems = (items) => {
@@ -44,7 +43,8 @@ export default class CheckList extends Component {
         for (let i = 0; i < items.length; i++){
             res.push(
                 <CheckButton
-                    text = {items[i]}
+                    name = {items[i].name}
+                    icon = {items[i].icon}
                     key = {i}
                     active = 'true'
                     onChange = {this.onChange}/>

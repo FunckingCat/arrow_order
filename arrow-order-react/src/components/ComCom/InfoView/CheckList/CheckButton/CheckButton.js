@@ -27,21 +27,21 @@ export default class CheckButton extends Component {
             <li className = 'check' style = {style}>
                 <input 
                     type="checkbox" 
-                    name = {this.props.text}
+                    name = {this.props.name}
                     onChange = {this.handaleClick} 
                     className = 'checkButton'
-                    data-value = {this.props.text} 
-                    id = {'check' + this.props.text}/>
+                    data-value = {this.props.name} 
+                    id = {'check' + this.props.name}/>
                 <div className="checkMark">
                     <svg version="1.1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 130.2 130.2">
                         <polyline className="path check" fill="none" stroke="#73AF55" strokeWidth="6" strokeLinecap="round" strokeMiterlimit="10" points="100.2,40.2 51.5,88.8 29.8,67.5 "/>
                     </svg>
                 </div>
-                <label htmlFor={'check' + this.props.text}>
+                <label htmlFor={'check' + this.props.name}>
                     <div className = 'icon'>
                         {icon}
                     </div>
-                    <div className = 'text'>{this.props.text}</div>
+                    <div className = 'text'>{this.props.name}</div>
                 </label>
             </li>
         )
