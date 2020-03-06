@@ -9,17 +9,17 @@ class ColorPicker extends Component {
 
     state = {
         selected : '',
-        split : this.props.split || 70,
-        colors : [
-            'hsl(13, 50%, 50%)', 
-            'hsl(234, 50%, 50%)', 
-            'hsl(123, 50%, 50%)', 
-            'hsl(345, 50%, 50%)', 
-            'hsl(143, 50%, 50%)', 
-            'hsl(254, 50%, 50%)', 
-            'hsl(235, 50%, 50%)', 
-            'hsl(135, 50%, 50%)', 
-            'hsl(78, 50%, 50%)',]
+        nOfUpdates : 0,
+        split : this.props.split || 0,
+        colors : this.props.colors || [],
+    }
+
+    componentDidUpdate() {
+        if (this.state.colors[0] !== this.props.colors[0]){
+            this.setState({
+                colors : this.props.colors,
+            })
+        }
     }
 
     onChange = (value) => {
@@ -64,7 +64,7 @@ class ColorPicker extends Component {
 
     render(){
 
-        let colors = this.renderColors();
+        let colors = this.state.colors? this.renderColors() : '';
 
         return(
             <Animator>

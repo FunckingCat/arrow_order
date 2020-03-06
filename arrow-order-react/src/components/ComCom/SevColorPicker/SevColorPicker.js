@@ -9,7 +9,16 @@ export default class SevColorPicker extends Component {
     state = {
         maxOPtionalColors : 2,
         currentOptionalColors : 0,
-        selected : { }
+        selected : [],
+        colors : this.props.colors || ['',],
+    }
+
+    componentDidUpdate() {
+        if (this.state.colors[0] !== this.props.colors[0]){
+            this.setState({
+                colors : this.props.colors,
+            })
+        }
     }
 
     addColor = () => {
@@ -40,7 +49,7 @@ export default class SevColorPicker extends Component {
             console.error('Нет коллбэка, ну выбрали и выбрали (В SevColorPicker)');
             return
         }
-        this.props.onChange(value, this.props.order)
+        this.props.onChange(selected)
     }
 
     renderOptionalColors = () => {
@@ -52,7 +61,8 @@ export default class SevColorPicker extends Component {
                         key = {'CP'+i}
                         order = {i+1} 
                         title = {`Доп. цвет: ${i+1}`}
-                        onChange = {this.onChange}/>
+                        onChange = {this.onChange}
+                        colors = {this.state.colors}/>
             )
         }
         return optionalColors
@@ -67,7 +77,8 @@ export default class SevColorPicker extends Component {
                 <ColorPicker 
                     title = 'Основной цвет:'
                     order = {0}
-                    onChange = {this.onChange}/>
+                    onChange = {this.onChange}
+                    colors = {this.state.colors}/>
                 <BlackButton 
                     text = 'Добавить цвет'
                     mode = 'border'

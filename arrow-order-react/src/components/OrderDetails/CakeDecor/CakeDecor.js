@@ -16,12 +16,15 @@ class CakeDecor extends Component {
     state = {
         range : {
             min : 0,
-            max : 4,
+            max : 0,
             step: 0.01,
             dimension: 'кг'
         },
         decor  : [],
         colors : [],
+        selectedWeight : 0,
+        selectedDecor : [],
+        selectedColors: [],
     }
 
     componentDidMount () {
@@ -54,20 +57,48 @@ class CakeDecor extends Component {
     }
 
     onWeightInput = (value) => {
-        console.log(value);
+        this.setState({
+            selectedWeight : Number(value),
+        })
     }
 
     onDecorInput = (value) => {
-        console.log(value);
+        this.setState({
+            selectedDecor : value || false,
+        })
     }
 
     onColorInput = (value) => {
-        console.log(value);
+        value = value.map((hsl) => {
+            for (let item of this.state.colors){
+                if (item.color === hsl) return item.name
+            }
+            return ''
+        })
+        this.setState({
+            selectedColors : value
+        })
+    }
+
+    confirm = () =>{
+        let weight = this.state.selectedWeight + this.state.range.dimension;
+        let decor = this.state.selectedDecor;
+        let colors = this.state.selectedColors;
+        console.log(weight, decor, colors);
     }
 
     render(){
 
         let title = this.props.type !== 'Капкейки'? 'Вес торта:' : 'Колличество капкейков:'
+
+        let active = () =>  {
+            let {selectedColors, selectedWeight, selectedDecor} = this.state;
+            return   (selectedWeight && 
+                      selectedDecor.length && 
+                      selectedColors.length && 
+                      selectedColors[0])? 
+            'true' : 'false';
+        }
 
         return(
             <div className="cakeDecor">
@@ -85,14 +116,15 @@ class CakeDecor extends Component {
                     items = {this.state.decor}
                     onChange = {this.onDecorInput}/>
                 <ColorPicker
-                    onChange = {this.onColorInput}/>
+                    onChange = {this.onColorInput}
+                    colors = {this.state.colors.map(item => item.color)}/>
                 <TransLink
                         mode = 'border'
                         text='Далее'
                         transferTo = 'Дата'
                         to = '/Details/Cake/'
                         onClick={this.confirm}
-                        active = {'true'}/>
+                        active = {active()}/>
             </div>
         )
     }
