@@ -12,6 +12,10 @@ class Decor(models.Model):
     name = models.CharField(
         max_length = 60, 
         verbose_name = 'Название')
+    icon = models.CharField(
+        max_length = 60,
+        default = '/static/icons/decor/',
+        verbose_name = 'Иконка')
     description = models.TextField(
         verbose_name = 'Описание',
         help_text = 'Напиши здесь описание декора')
