@@ -1,6 +1,7 @@
 import React,{Component} from 'react';
 import './CakeOrderDetails.scss'; 
 import {connect} from 'react-redux';
+import {setDetail} from '../../../actions/orderActions';
 
 import DatePicker  from '../../ComCom/DatePicker/DatePicker';
 import InputText   from '../../ComCom/InputText/InputText';
@@ -30,11 +31,10 @@ class CakeOrderDetails extends Component {
     }
 
     confirm = () => {
-        console.log(
-            this.state.weight,
-            this.state.date,
-            this.state.comment
-        );
+        this.props.setDetail('date', this.state.date);
+        if (this.state.comment){
+            this.props.setDetail('comment', this.state.comment);
+        }        
     }
 
     render(){
@@ -50,7 +50,7 @@ class CakeOrderDetails extends Component {
                 <TransLink
                     text = 'Далее'
                     mode = 'border'
-                    active = {this.state.weight && this.state.date? 'true' : 'false'}
+                    active = {this.state.date? 'true' : 'false'}
                     transferTo = 'Никуда'
                     to = '#'
                     onClick = {this.confirm}/>
@@ -66,7 +66,7 @@ class CakeOrderDetails extends Component {
 } 
 
 const mapDispatchToProps = {
-
+    setDetail
 } 
 
 export default connect(mapStateToProps, mapDispatchToProps)(CakeOrderDetails)

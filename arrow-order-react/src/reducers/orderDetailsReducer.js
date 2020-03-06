@@ -1,14 +1,11 @@
 import {
     SET_ORDER_TYPE,   
     SET_ASSEMBLY_PARTS,
-    SET_AMMOUNT,
-    SET_DATE
+    SET_DETAIL
 } from '../actions/actionTypes';
 
 const initialState = {
     type    : '',
-    ammount : '',
-    date    : '',
     parts   : {},
 }
 
@@ -31,14 +28,10 @@ const orderDetaiilsReducer = (state = initialState, action) => {
                     cream   : cream,
                 }
             })
-        case SET_AMMOUNT:
-            return Object.assign({}, state,{
-                ammount : action.ammount
-            })
-        case SET_DATE:
-            return Object.assign({}, state,{
-                date : action.date
-            })
+        case SET_DETAIL:
+            let newState = Object.assign({}, state);
+            newState[action.name] = action.value;
+            return newState
         default: 
             return state
     }

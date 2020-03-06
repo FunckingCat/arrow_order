@@ -1,6 +1,7 @@
 import React,{Component} from 'react';
 import './CakeDecor.scss'; 
 import {connect} from 'react-redux'; 
+import {setDetail} from '../../../actions/orderActions';
 
 import RequestService from '../../../servises/requestService';
 
@@ -22,9 +23,9 @@ class CakeDecor extends Component {
         },
         decor  : [],
         colors : [],
-        selectedWeight : 0,
+        selectedColors : [],
         selectedDecor : [],
-        selectedColors: [],
+        selectedWeight : 0,
     }
 
     componentDidMount () {
@@ -41,7 +42,6 @@ class CakeDecor extends Component {
         }
         this.RS.getDetails(this.props.type)
         .then((res) => {
-            console.log(res);
             let {colors, weight, decor} = res;
             this.setState({
                 range : {
@@ -84,7 +84,9 @@ class CakeDecor extends Component {
         let weight = this.state.selectedWeight + this.state.range.dimension;
         let decor = this.state.selectedDecor;
         let colors = this.state.selectedColors;
-        console.log(weight, decor, colors);
+        this.props.setDetail('weight', weight);
+        this.props.setDetail('decor', decor);
+        this.props.setDetail('colors', colors);
     }
 
     render(){
@@ -138,7 +140,7 @@ class CakeDecor extends Component {
 } 
 
 const mapDispatchToProps = {
-
+    setDetail,
 } 
 
 export default connect(mapStateToProps, mapDispatchToProps)(CakeDecor)
