@@ -21,7 +21,7 @@ class CommingSoon extends Component {
                 <div className="CommingSoon">
                     <img src={Robot} alt=""/>
                     <h2>Пока здесь нет страницы</h2>
-                    <button onClick={this.handaleClick}> <img src={backIcon} alt=""/> Назад</button>
+                    <button onClick={this.handaleClick}> <img src={backIcon} alt=""/><span> Назад</span></button>
                 </div>
             </Animator>
         )

@@ -38,8 +38,8 @@ export default class App extends Component{
           <Route path = '/Wiki' component = {() => toHat('Вики', <WikiRouter/>)}/>
           <Route path = '/Constructor' component = {() => toHatWithPopUp('Заказ', <Constructor/>)}/>
           <Route exact path = '/FreeDates' component = {() => toHat('Свободные даты', <AvalDates/>)} />
-          <Route exact path = '/Contacts' component = {() => <div></div>} />
-          <Route exact path = '/WorkWithUs' component = {CommingSoon} />
+          <Route exact path = '/Contacts' component = {() => toHat('Контакты', <CommingSoon/>)} />
+          <Route exact path = '/WorkWithUs' component = {() => toHat('Сотрудничество', <CommingSoon/>)} />
           <Route path = '/Products' component = {() => toHat('Продукция', <Products/>)} />
           <Route path = '/Details/' component = {() => toHat('Детали заказа', <DetailsRouter/>)} />
         </div>

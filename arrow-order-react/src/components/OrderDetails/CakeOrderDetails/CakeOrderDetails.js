@@ -10,12 +10,7 @@ import TransLink from '../../ComCom/Buttons/TransLink/TransLink';
 class CakeOrderDetails extends Component {
 
     state = {
-        range : {
-            min : 0.5,
-            max : 4,
-            step: 0.01,
-            dimension: 'кг'
-        }
+        
     }
 
     onDateInput = (date) => {
