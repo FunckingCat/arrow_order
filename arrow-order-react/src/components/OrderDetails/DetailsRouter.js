@@ -14,7 +14,7 @@ class Constructor extends Component {
             <>
                 <Switch>
                     <Route exact path = '/Details/Decor' component = {CakeDecor}/>
-                    <Route exact path = '/Details/Cake' component = {CakeDetails}/>
+                    <Route exact path = '/Details/Date' component = {CakeDetails}/>
                 </Switch>
             </>		
         )

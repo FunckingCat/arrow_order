@@ -14,6 +14,7 @@ import Constructor from './components/Constructor/Constructor';
 import AvalDates   from './components/AvalibleDates/AvalibleDates';
 import PopUp       from './components/ComCom/PopUp/PopUp';
 import DetailsRouter from  './components/OrderDetails/DetailsRouter';
+import ProductCard from './components/ProductCard/ProductCard';
 
 export default class App extends Component{
 
@@ -41,6 +42,7 @@ export default class App extends Component{
           <Route exact path = '/Contacts' component = {() => toHat('Контакты', <CommingSoon/>)} />
           <Route exact path = '/WorkWithUs' component = {() => toHat('Сотрудничество', <CommingSoon/>)} />
           <Route path = '/Products' component = {() => toHat('Продукция', <Products/>)} />
+          <Route exact path = '/ProductCard/:prod' component = {(info) => toHat('Заказ', <ProductCard prod = {info.match.params.prod}/>)}/>
           <Route path = '/Details/' component = {() => toHat('Детали заказа', <DetailsRouter/>)} />
         </div>
       </Router>

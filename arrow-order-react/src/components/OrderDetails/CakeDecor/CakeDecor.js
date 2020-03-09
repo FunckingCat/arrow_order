@@ -124,7 +124,7 @@ class CakeDecor extends Component {
                         mode = 'border'
                         text='Далее'
                         transferTo = 'Дата'
-                        to = '/Details/Cake/'
+                        to = '/Details/Date/'
                         onClick={this.confirm}
                         active = {active()}/>
             </div>

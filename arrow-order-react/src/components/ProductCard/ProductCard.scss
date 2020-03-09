@@ -1,0 +1,47 @@
+.productCard{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 80px;
+    padding-bottom: 1em;
+    & > div {
+        box-sizing: border-box;
+        padding: 0.5em 1em;
+    }
+    .mainInfo{
+        width: 100%;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
+        .title{
+            max-width: 70%;
+            font-size: 2em;
+        }
+        .cost{
+            margin-right: 2em;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            .value{
+                font-size: 1.5em;
+            }
+            .dim{
+                font-size: 0.8em;
+            }
+        }
+    }
+    .bgWrapper{
+        width: 100%;
+        height: 300px;
+        background-clip: content-box;
+        border-radius: 2em;
+    }
+    .descr{
+        font-size: 0.9em;
+    }
+    .TransLink{
+       width: calc(100% - 2em);
+    }   
+}
