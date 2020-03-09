@@ -15,6 +15,7 @@ export default class Quantum extends Component {
                 output         : this.props.from,
                 step           : this.props.step || 1,
             })
+            this.handaleInput(this.props.from)
         } else if (this.props.seq) {
             this.setState({
                 min            : 0,
@@ -22,6 +23,7 @@ export default class Quantum extends Component {
                 counter        : 0,
                 output         : this.props.seq[0],
             })
+            this.handaleInput(this.props.seq[0])
         } else {
             this.setState({
                 output : 'NO SEQ',
@@ -29,8 +31,12 @@ export default class Quantum extends Component {
         }
     }
 
-    defOutput = () => {
-        return this.state.counter
+    handaleInput = (value) => {
+        if (!this.props.onInput){
+            console.error('Нет коллбэка в quantum');
+            return
+        }
+        this.props.onInput(value)
     }
 
     decrease = () => {
@@ -40,12 +46,14 @@ export default class Quantum extends Component {
                 this.setState({
                    output : output - (step)
                 })
+                this.handaleInput(output - step)
             } else if (this.props.seq && counter > min){
                 counter -= 1;
                 this.setState({
                     counter : counter,
                     output  : this.props.seq[counter]
                 })
+                this.handaleInput(this.props.seq[counter])
             }
         } 
     }
@@ -57,12 +65,14 @@ export default class Quantum extends Component {
                 this.setState({
                     output : output + (step)
                 })
+                this.handaleInput(output - step)
             } else if (this.props.seq && counter < max){
                 counter += 1;
                 this.setState({
                     counter : counter,
                     output  : this.props.seq[counter]
                 })
+                this.handaleInput(this.props.seq[counter])
             }
         }
     }

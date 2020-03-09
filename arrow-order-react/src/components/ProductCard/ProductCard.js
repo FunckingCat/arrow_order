@@ -1,6 +1,7 @@
 import React,{Component} from 'react';
 import './ProductCard.scss'; 
 import {connect} from 'react-redux'; 
+import {setOrderType, setDetail} from '../../actions/orderActions';
 
 import RequestService from '../../servises/requestService';
 
@@ -21,6 +22,7 @@ class ProductCard extends Component {
     componentDidMount() {
         this.RS.getProductCard(this.props.prod)
         .then((res) => {
+            this.props.setOrderType(res.name);
             this.setState({
                 title : res.name,
                 cost  : res.cost,
@@ -34,7 +36,7 @@ class ProductCard extends Component {
 
     onInput = (name) => {
         return (value) => {
-            console.log(name,value);
+            this.props.setDetail(name, name + ' : ' + value);
         }
     }
 
@@ -61,7 +63,8 @@ class ProductCard extends Component {
                                 min = {Number(tmp[i].param[0])}
                                 max = {Number(tmp[i].param[1])}
                                 step = {Number(tmp[i].param[2])}
-                                dimension = {tmp[i].param[3]}/>
+                                dimension = {tmp[i].param[3]}
+                                onInput = {this.onInput(tmp[i].name)}/>
                         </div>
                     )
                     break
@@ -73,7 +76,8 @@ class ProductCard extends Component {
                                 width = '40%'
                                 from = {Number(tmp[i].param[0])}
                                 to = {Number(tmp[i].param[1])}
-                                step = {Number(tmp[i].param[2])}/>
+                                step = {Number(tmp[i].param[2])}
+                                onInput = {this.onInput(tmp[i].name)}/>
                         </div>
                     )
                     break
@@ -83,7 +87,8 @@ class ProductCard extends Component {
                             <div className="label">{tmp[i].name}</div>
                             <Quantum
                                 width = {defWidth(tmp[i].param)}
-                                seq = {tmp[i].param}/>
+                                seq = {tmp[i].param}
+                                onInput = {this.onInput(tmp[i].name)}/>
                         </div>
                     )
                     break
@@ -98,8 +103,6 @@ class ProductCard extends Component {
     render(){
         
         let selectors = this.renderSelectors();
-
-        this.onInput('name')('value');
 
         return(
             <Animator>
@@ -138,7 +141,8 @@ class ProductCard extends Component {
 } 
 
 const mapDispatchToProps = {
-
+    setOrderType,
+    setDetail,
 } 
 
 export default connect(mapStateToProps, mapDispatchToProps)(ProductCard)
