@@ -46,7 +46,7 @@ class CakeOrderDetails extends Component {
                     text = 'Далее'
                     mode = 'border'
                     active = {this.state.date? 'true' : 'false'}
-                    transferTo = 'Подтверждение'
+                    transferTo = 'Подтвер.'
                     to = '/OrderOutput/'
                     onClick = {this.confirm}/>
             </div>

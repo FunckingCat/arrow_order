@@ -1,7 +1,7 @@
 import React,{Component} from 'react';
 import './ProductCard.scss'; 
 import {connect} from 'react-redux'; 
-import {setOrderType, setDetail} from '../../actions/orderActions';
+import {setOrderType, setDetail, resetOrder} from '../../actions/orderActions';
 
 import RequestService from '../../servises/requestService';
 
@@ -20,6 +20,7 @@ class ProductCard extends Component {
     }
 
     componentDidMount() {
+        this.props.resetOrder();
         this.RS.getProductCard(this.props.prod)
         .then((res) => {
             this.props.setOrderType(res.name);
@@ -144,6 +145,7 @@ class ProductCard extends Component {
 const mapDispatchToProps = {
     setOrderType,
     setDetail,
+    resetOrder,
 } 
 
 export default connect(mapStateToProps, mapDispatchToProps)(ProductCard)

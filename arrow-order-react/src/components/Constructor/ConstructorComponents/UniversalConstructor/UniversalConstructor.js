@@ -4,7 +4,7 @@ import {connect} from 'react-redux';
 
 import {popUpActive}       from '../../../../actions/popUpActions';
 import {setPopUpContent}   from '../../../../actions/popUpActions';
-import {setAssemblyParts}  from '../../../../actions/orderActions';
+import {setAssemblyParts, resetOrder}  from '../../../../actions/orderActions';
 import {reset_colors}      from '../../../../actions/assemblyColorsActions';
 
 import Assembly    from './AssemblyView/AssemblyView';
@@ -131,6 +131,7 @@ const mapDispatchToProps = {
     setPopUpContent,
     setAssemblyParts,
     reset_colors,
+    resetOrder,
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(UniversalConstructor)

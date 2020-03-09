@@ -8,7 +8,8 @@ import TransLink from '../ComCom/Buttons/TransLink/TransLink';
 class OrderOutput extends Component {
 
     renderParts = (order) => {
-        if (!order.parts || order.parts.biscuit === '') return false
+        if (order.parts.biscuit === '' ||
+            order.parts.biscuit === undefined) return false
         return(
             <>  
                 <div className="detail">

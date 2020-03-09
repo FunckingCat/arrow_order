@@ -1,7 +1,8 @@
 import {
     SET_ORDER_TYPE,   
     SET_ASSEMBLY_PARTS,
-    SET_DETAIL
+    SET_DETAIL,
+    RESET_ORDER
 } from '../actions/actionTypes';
 
 const initialState = {
@@ -32,6 +33,8 @@ const orderDetaiilsReducer = (state = initialState, action) => {
             let newState = Object.assign({}, state);
             newState[action.name] = action.value;
             return newState
+        case RESET_ORDER:
+            return initialState
         default: 
             return state
     }

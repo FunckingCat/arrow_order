@@ -65,7 +65,7 @@ export default class Quantum extends Component {
                 this.setState({
                     output : output + (step)
                 })
-                this.handaleInput(output - step)
+                this.handaleInput(output + step)
             } else if (this.props.seq && counter < max){
                 counter += 1;
                 this.setState({

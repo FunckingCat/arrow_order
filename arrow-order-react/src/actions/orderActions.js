@@ -2,6 +2,7 @@ import {
     SET_ORDER_TYPE,   
     SET_ASSEMBLY_PARTS,
     SET_DETAIL,
+    RESET_ORDER,
 } from './actionTypes';
 
 export function setOrderType (orderType){
@@ -23,5 +24,11 @@ export function setDetail (name, value){
         type : SET_DETAIL,
         name : name,
         value: value
+    }
+}
+
+export function resetOrder (){
+    return {
+        type : RESET_ORDER,
     }
 }

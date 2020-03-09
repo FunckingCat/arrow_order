@@ -6,22 +6,25 @@
     flex-direction: column;
     align-items: center;
     & > div {
+        box-sizing: border-box;
         width: 100%;
         padding : 0.5rem 1rem;
     }
     .logo{
+        padding-bottom: 0;
         width: 20em;
-        height: 20em;        
+        height: 18.5em;        
     }
     .title{
         font-size: 1.7em;
     }
     .details{
-        margin-left: 1.5em;
+        padding-left: 2.5em;
         .detail{
             margin-top: 0.3em;
             font-size: 0.9em;
             .value{
+                font-size: 0.95em;
                 margin-left: 1em;
             }
         }
