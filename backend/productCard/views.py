@@ -26,5 +26,7 @@ def getProductCard(request, card_hashtag):
     template = template.replace('\r\n','').split(';')
     template = list(filter(lambda x: len(x) > 0, template))
     template = list(map(lambda item: parseTemplate(item), template))
+    for item in template:
+        item['param'] = item['param'].split(',')
     response['values']['template'] = template
     return JsonResponse(response)

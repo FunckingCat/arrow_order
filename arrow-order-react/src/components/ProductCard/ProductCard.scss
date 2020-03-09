@@ -41,6 +41,19 @@
     .descr{
         font-size: 0.9em;
     }
+    .selectors{
+        width: 100%;
+        & > div{
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex
+            .label{
+                font-size: 1.1em;
+            }
+        }
+    }
     .TransLink{
        width: calc(100% - 2em);
     }   
