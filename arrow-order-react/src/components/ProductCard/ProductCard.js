@@ -3,6 +3,7 @@ import './ProductCard.scss';
 import {connect} from 'react-redux'; 
 
 import Image     from '../ComCom/Bg/Bg';
+//import Quantum   from '../ComCom/Quantum/Quantum';
 import TransLink from '../ComCom/Buttons/TransLink/TransLink';
 
 class ProductCard extends Component {
@@ -29,7 +30,7 @@ class ProductCard extends Component {
                     <h1 className="title">{this.state.title}</h1>
                     <div className="cost">
                         <span className="value">1200</span> 
-                        <span className="dim">р/кг</span>
+                        <span className="dim">рублей/пакетик</span>
                     </div>
                 </div>
                 <Image  

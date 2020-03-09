@@ -45,6 +45,7 @@ INSTALLED_APPS = [
     'products',
     'constructor',
     'conOrderDetails',
+    'productCard',
 ]
 
 MIDDLEWARE = [
