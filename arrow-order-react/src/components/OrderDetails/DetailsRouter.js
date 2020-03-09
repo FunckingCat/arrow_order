@@ -1,12 +1,10 @@
 import React,{Component} from 'react';
 import {Switch, Route} from 'react-router';
 
-import {connect}           from 'react-redux';
-
 import CakeDecor from './CakeDecor/CakeDecor';
 import CakeDetails from './CakeOrderDetails/CakeOrderDetails';
 
-class Constructor extends Component {
+export default class Constructor extends Component {
 
     render(){
 
@@ -20,15 +18,3 @@ class Constructor extends Component {
         )
     }
 }
-
-const mapStateToProps = (state) => {
-    return {
-       
-    }
-}
-
-const mapDispatchToProps = {
-    
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(Constructor)

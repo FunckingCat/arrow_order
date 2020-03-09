@@ -1,0 +1,32 @@
+.orderOutput{
+    width: 100%;
+    padding-top: 80px;
+    padding-bottom: 1em;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    & > div {
+        width: 100%;
+        padding : 0.5rem 1rem;
+    }
+    .logo{
+        width: 20em;
+        height: 20em;        
+    }
+    .title{
+        font-size: 1.7em;
+    }
+    .comment{
+        font-size: 0.8em;
+    }
+    .dateOut{
+        .date{
+            margin-left: 1em;
+            font-size: 1.3em;
+        }
+    }
+    .TransLink{
+        margin-top: 0.5em;
+        width: calc(100% - 2rem)
+    }
+}

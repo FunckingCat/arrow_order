@@ -23,6 +23,7 @@ class ProductCard extends Component {
         this.RS.getProductCard(this.props.prod)
         .then((res) => {
             this.props.setOrderType(res.name);
+            this.props.setDetail('cost', res.cost);
             this.setState({
                 title : res.name,
                 cost  : res.cost,
@@ -36,7 +37,7 @@ class ProductCard extends Component {
 
     onInput = (name) => {
         return (value) => {
-            this.props.setDetail(name, name + ' : ' + value);
+            this.props.setDetail(name, value);
         }
     }
 
