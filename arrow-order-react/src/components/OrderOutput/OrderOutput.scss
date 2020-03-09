@@ -16,6 +16,16 @@
     .title{
         font-size: 1.7em;
     }
+    .details{
+        margin-left: 1.5em;
+        .detail{
+            margin-top: 0.3em;
+            font-size: 0.9em;
+            .value{
+                margin-left: 1em;
+            }
+        }
+    }
     .comment{
         font-size: 0.8em;
     }

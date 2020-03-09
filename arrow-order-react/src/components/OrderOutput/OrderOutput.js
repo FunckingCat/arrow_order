@@ -10,17 +10,38 @@ class OrderOutput extends Component {
     renderParts = (order) => {
         if (!order.parts || order.parts.biscuit === '') return false
         return(
-            <>
-                <div className="biscuit">Бисквит: {order.parts.biscuit}</div>
-                <div className="filling">Начинка: {order.parts.filling}</div>
-                <div className="cream">Крем: {order.parts.cream}</div>
+            <>  
+                <div className="detail">
+                    <span className="key">
+                        Бисквит:
+                    </span>
+                    <span className="value">
+                        {order.parts.biscuit}
+                    </span>
+                </div>
+                <div className="detail">
+                    <span className="key">
+                        Начинка:
+                    </span>
+                    <span className="value">
+                        {order.parts.filling}
+                    </span>
+                </div>
+                <div className="detail">
+                    <span className="key">
+                        Крем:
+                    </span>
+                    <span className="value">
+                        {order.parts.cream}
+                    </span>
+                </div>
             </>
         )
     }
 
     renderOptionalDetails = (order) => {
         let res = [];
-        let notDisplay = ['type', 'date', 'comment', 'parts']
+        let notDisplay = ['type', 'date', 'comment', 'parts', 'cost']
         for (let key in order){
             if (notDisplay.indexOf(key) < 0){
                 res.push(
@@ -54,8 +75,10 @@ class OrderOutput extends Component {
                         {this.props.contact}
                     </div>                
                     <div className="title">{order.type}</div>
-                    {parts}
-                    {optionalDetails}
+                    <div className="details">
+                        {parts}
+                        {optionalDetails}
+                    </div>
                     <div className="comment">{order.comment}</div>
                     <div className="dateOut">
                         <span className="text">Дата заказа:</span>
