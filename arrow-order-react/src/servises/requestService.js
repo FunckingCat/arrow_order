@@ -9,7 +9,7 @@ export default class requestService {
             throw new Error(`Could not fetch ${url}; recived ${res.status}`)
         }
         let response = await res.json();
-        //console.log(`Адрес: ${this._apiBase}${url}\nType: ${typeof(response.values)} ---`, response.values);
+        console.log(`Адрес: ${this._apiBase}${url}\nType: ${typeof(response.values)} ---`, response.values);
         return response.values;
     }
 
@@ -88,6 +88,11 @@ export default class requestService {
 
     getDetails = async (type) => {
         let res = await this.getResource(`/api/details/${type}/`);
+        return res
+    }
+
+    getProductCard = async (type) => {
+        let res = await this.getResource(`/api/productCard/${type}/`);
         return res
     }
 }

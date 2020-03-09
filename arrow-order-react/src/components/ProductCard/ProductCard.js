@@ -2,17 +2,31 @@ import React,{Component} from 'react';
 import './ProductCard.scss'; 
 import {connect} from 'react-redux'; 
 
+import RequestService from '../../servises/requestService';
+
 import Image     from '../ComCom/Bg/Bg';
 //import Quantum   from '../ComCom/Quantum/Quantum';
 import TransLink from '../ComCom/Buttons/TransLink/TransLink';
 
 class ProductCard extends Component {
 
+    RS = new RequestService(this.props.domen)
+
     state = {
-        title : this.props.prod,
-        image : '/static/stock/Bell.png',
-        descr : `Разнообразный и богатый опыт дальнейшее развитие различных форм деятельности в значительной степени обуславливает создание дальнейших направлений развития.
-        С другой стороны постоянный количественный рост и сфера нашей активности позволяет оценить значение форм развития. Равным образом реализация намеченных плановых заданий позволяет оценить значение системы обучения кадров, соответствует насущным потребностям. Значимость этих проблем настолько очевидна, что дальнейшее развитие различных форм деятельности обеспечивает широкому кругу`
+        
+    }
+
+    componentDidMount() {
+        this.RS.getProductCard(this.props.prod)
+        .then((res) => {
+            this.setState({
+                title : res.name,
+                cost  : res.cost,
+                dim   : res.dim,
+                descr : res.descr,
+                image : res.image, 
+            })
+        })
     }
 
     renderSelectors = () => {
@@ -29,8 +43,8 @@ class ProductCard extends Component {
                 <div className="mainInfo">
                     <h1 className="title">{this.state.title}</h1>
                     <div className="cost">
-                        <span className="value">1200</span> 
-                        <span className="dim">рублей/пакетик</span>
+                        <span className="value">{this.state.cost}</span> 
+                        <span className="dim">{this.state.dim}</span>
                     </div>
                 </div>
                 <Image  
