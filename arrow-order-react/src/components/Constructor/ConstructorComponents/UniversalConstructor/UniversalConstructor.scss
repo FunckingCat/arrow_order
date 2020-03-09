@@ -7,13 +7,12 @@
     padding-bottom: 20px;
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
     align-items: center;
     & > * {
         margin-bottom: 5%;
     }
     .AssemblyView{
-        max-height: 50%;
+        max-height: 45%;
         height: 500px;
     }
     .output{

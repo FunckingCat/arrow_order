@@ -19,7 +19,6 @@ class PopUp extends Component {
 
     componentDidMount() {
         this.setStyle();
-        document.querySelector('body').style.overflow = 'hidden';
         this._isMount = true;
     }
 
@@ -29,27 +28,48 @@ class PopUp extends Component {
 
     componentWillUnmount() {
         this._isMount = false;
-        document.querySelector('body').style.overflow = '';
+    }
+
+    showPop = () => {
+        let st = this.popup.current.style;
+        st.bottom = '-100vh';
+        st.pointerEvents = '';
+        setTimeout(() => {
+            st.opacity = '1';
+            st.bottom = '-70px';
+        }, 600)
+    }
+
+    hidePop = () => {
+        let st = this.popup.current.style;
+        st.bottom = '-100vh';
+        st.pointerEvents = 'none';
+        setTimeout(() => {
+            st.opacity = '0';
+            st.bottom = '0px';
+        }, 600)
     }
 
     closePopUp = (event) => {
+        console.log('Attr', event.target.getAttribute('closeable') === 'true');
         if (event.target.hasAttribute('closeable') 
             && event.target.getAttribute('closeable') === 'true'){
             this.props.popUpActive(false);
+            console.log('Off pop');
         }            
     }
 
     setStyle = () => {
+        console.log(this.props.active);
         if (this.props.active) {
-            this.bg.current.classList.remove('hide')
-            this.bg.current.style.backgroundColor = 'rgba(115,115,115,0.5)';
-            this.popup.current.classList.remove('hide')
+            this.bg.current.classList.remove('bg-hide')
+            this.showPop();
         } else {
-            this.bg.current.style.backgroundColor = 'rgba(115,115,115,0)';
-            this.popup.current.classList.add('hide')
+            this.popup.current.classList.add('pop-hide')
+            this.hidePop();
             setTimeout(() => {                
                 try{
-                    this.bg.current.classList.add('hide')
+                    this.bg.current.classList.add('bg-hide')
                 }
                 catch{
                     console.log('Непонятная ошибка');
@@ -63,8 +83,11 @@ class PopUp extends Component {
             <div className="popWrapper" style = {
                 {opacity: this._isMount? '1' : '0'} 
             }>
-                <div className="background" 
-                 ref = {this.bg}></div>
+                <div 
+                    className="background bg-hide" 
+                    ref = {this.bg} 
+                    onClick = {this.closePopUp}
+                    closeable='true'></div>
                 <div className="popup"
                     closeable='true'
                     onClick = {this.closePopUp}  

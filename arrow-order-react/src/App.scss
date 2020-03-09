@@ -14,12 +14,19 @@ p{
     cursor: default;
 }
 
+body::-webkit-scrollbar {
+    display: none;
+}
+
 .App{
     font-family: Comfortaa;
     outline: none;
     width: 100%;
     display: flex;
     justify-content: center;
+    &::-webkit-scrollbar {
+        display: none;
+    }
     & > *:not([class = 'popWrapper']){
         width: 100%;
         max-width: 400px;
