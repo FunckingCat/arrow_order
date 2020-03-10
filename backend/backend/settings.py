@@ -46,6 +46,7 @@ INSTALLED_APPS = [
     'constructor',
     'conOrderDetails',
     'productCard',
+    'datesManager',
 ]
 
 MIDDLEWARE = [
