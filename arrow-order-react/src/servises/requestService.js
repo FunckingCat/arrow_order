@@ -95,4 +95,9 @@ export default class requestService {
         let res = await this.getResource(`/api/productCard/${type}/`);
         return res
     }
+
+    getBusyDays = async (month) => {
+        let res = await this.getResource(`/api/avalDates/${month}/`);
+        return res
+    }
 }

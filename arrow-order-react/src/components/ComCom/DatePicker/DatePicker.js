@@ -1,9 +1,12 @@
 import React,{Component} from 'react';
 import './DatePicker.scss'; 
+import {connect} from 'react-redux';
+
+import RequestService from '../../../servises/requestService';
 
 import Day from './Day/Day';
 
-export default class DatePicker extends Component {
+class DatePicker extends Component {
 
     daysRef = React.createRef();
 
@@ -11,27 +14,56 @@ export default class DatePicker extends Component {
 
     today = new Date()
 
+    RS = new RequestService(this.props.domen)
+
     state = {
         year : this.today.getFullYear(),
-        prevMonth : this.today.getMonth(),
         month : this.props.month? this.today.getMonth()+1 : this.today.getMonth(),
+        busyDays : [],
         days : [],
         selected : '',
+        prevMonth : this.today.getMonth(),
+        prevBusyDays : [],
     }
 
     componentDidMount() {
+        this.getBusyDays();
         this.renderWeek();
         this.renderDays();
     }
 
     componentDidUpdate() {
-        let {month, prevMonth} = this.state;
+        let {month, prevMonth, busyDays, prevBusyDays} = this.state;
         if (month !== prevMonth){
+            this.getBusyDays();
             this.renderDays();
             this.setState({
                 prevMonth : month,
             })
         }
+        if (!this.equal(busyDays, prevBusyDays)){
+            this.renderDays();
+            this.setState({
+                prevBusyDays : busyDays,
+            })
+        }
+    }
+
+    equal = (a1, a2) => {
+        if (a1.length !== a2.length) return false
+        for (let i=0; i<a1.length; i++){
+            if (a1[i] !== a2[i]) return false
+        }
+        return true
+    }
+
+    getBusyDays = () => {
+        this.RS.getBusyDays(this.state.month + 1)
+        .then(res => {
+            this.setState({
+                busyDays : res,
+            })
+        })
     }
 
     //Создаем шапочку с днями недели
@@ -103,7 +135,10 @@ export default class DatePicker extends Component {
         //Дальше создаем все дни месяца
         let daysAmmount = this.defDaysAmmount();
         for( let i = 0; i < daysAmmount; i++){
+            // Проверяем прошел день или нет
             let dayActive = i <= this.today.getDate() + 1 && month === this.today.getMonth()? 'false' : 'true';
+            //Проверяем если день в списке занятых дней
+            if (this.state.busyDays.indexOf(i) > -1) dayActive = 'false'; 
             days.push(
                 <Day
                     id = {i}
@@ -205,3 +240,11 @@ export default class DatePicker extends Component {
         )
     }
 }
+
+const mapStateToProps = (state) => {
+    return {
+        domen : state.domen,
+    }
+}
+
+export default connect(mapStateToProps)(DatePicker)
