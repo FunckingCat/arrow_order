@@ -9,11 +9,13 @@ def getAvalDates(request, month):
         'values' : []
     }
     dates = busy_date.objects.all()
+    current_day = datetime.datetime.now().timetuple()[2]
     current_month = datetime.datetime.now().timetuple()[1]
     current_year = datetime.datetime.now().timetuple()[0]
     for date in dates:
         if (date.getYear() < current_year or 
-            date.getMonth() < current_month):
+            date.getMonth() < current_month or 
+            date.getDay() < current_day):
             date.delete()
             continue
         if date.getMonth() == month:
