@@ -27,4 +27,5 @@ urlpatterns = [
     re_path(r'^api/details/', include('conOrderDetails.urls')),
     re_path(r'^api/productCard/', include('productCard.urls')),
     re_path(r'^api/avalDates/', include('datesManager.urls')),
+    re_path(r'^api/postOrder/', include('orderManager.urls')),
 ]
