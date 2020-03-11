@@ -7,7 +7,7 @@ import RequestService from '../../../servises/requestService';
 
 import InputRange  from '../../ComCom/Buttons/InputRange/InputRange';
 import CheckList   from '../../ComCom/InfoView/CheckList/CheckList';
-import ColorPicker from '../../ComCom/SevColorPicker/SevColorPicker';
+//import ColorPicker from '../../ComCom/SevColorPicker/SevColorPicker';
 import TransLink   from '../../ComCom/Buttons/TransLink/TransLink';
 
 class CakeDecor extends Component {
@@ -23,7 +23,7 @@ class CakeDecor extends Component {
         },
         decor  : [],
         colors : [],
-        selectedColors : [],
+        //selectedColors : [],
         selectedDecor : [],
         selectedWeight : 0,
     }
@@ -50,7 +50,7 @@ class CakeDecor extends Component {
                     step: weight.step,
                     dimension: weight.dim,
                 },
-                colors : colors,
+                // colors : colors,
                 decor : decor.map(item => addDomen(item, this.props.domen)),
             })
         })
@@ -68,25 +68,25 @@ class CakeDecor extends Component {
         })
     }
 
-    onColorInput = (value) => {
-        value = value.map((hsl) => {
-            for (let item of this.state.colors){
-                if (item.color === hsl) return item.name
-            }
-            return ''
-        })
-        this.setState({
-            selectedColors : value
-        })
-    }
+    // onColorInput = (value) => {
+    //     value = value.map((hsl) => {
+    //         for (let item of this.state.colors){
+    //             if (item.color === hsl) return item.name
+    //         }
+    //         return ''
+    //     })
+    //     this.setState({
+    //         selectedColors : value
+    //     })
+    // }
 
     confirm = () =>{
         let weight = this.state.selectedWeight + this.state.range.dimension;
         let decor = this.state.selectedDecor.join(', ');
-        let colors = this.state.selectedColors;
+        //let colors = this.state.selectedColors;
         this.props.setDetail('Вес', weight);
         this.props.setDetail('Декор', decor);
-        this.props.setDetail('Цвета', colors);
+        //this.props.setDetail('Цвета', colors);
     }
 
     render(){
@@ -94,11 +94,11 @@ class CakeDecor extends Component {
         let title = this.props.type !== 'Капкейки'? 'Вес торта:' : 'Колличество капкейков:'
 
         let active = () =>  {
-            let {selectedColors, selectedWeight, selectedDecor} = this.state;
+            let {/*selectedColors,*/ selectedWeight, selectedDecor} = this.state;
             return   (selectedWeight && 
-                      selectedDecor.length && 
-                      selectedColors.length && 
-                      selectedColors[0])? 
+                      selectedDecor.length)? //&& 
+                    //   selectedColors.length && 
+                    //   selectedColors[0])? 
             'true' : 'false';
         }
 
@@ -117,9 +117,9 @@ class CakeDecor extends Component {
                     title = 'Декор:'
                     items = {this.state.decor}
                     onChange = {this.onDecorInput}/>
-                <ColorPicker
+                {/* <ColorPicker
                     onChange = {this.onColorInput}
-                    colors = {this.state.colors.map(item => item.color)}/>
+                    colors = {this.state.colors.map(item => item.color)}/> */}
                 <TransLink
                         mode = 'border'
                         text='Далее'
