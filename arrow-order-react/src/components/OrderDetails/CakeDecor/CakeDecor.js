@@ -42,7 +42,7 @@ class CakeDecor extends Component {
         }
         this.RS.getDetails(this.props.type)
         .then((res) => {
-            let {colors, weight, decor} = res;
+            let {/*colors,*/ weight, decor} = res;
             this.setState({
                 range : {
                     min : weight.min,

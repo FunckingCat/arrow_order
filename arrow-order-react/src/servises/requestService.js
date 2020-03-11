@@ -100,4 +100,20 @@ export default class requestService {
         let res = await this.getResource(`/api/avalDates/${month}/`);
         return res
     }
+
+    postOrder = async (order) => {
+        const res = await fetch(`${this._apiBase}/api/postOrder/`,{
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json;charset=utf-8'
+            },
+            body: order,
+        }).catch(res => console.log('Что то не так', res));
+        if (!res.ok){
+            throw new Error(`Could not POST; recived ${res.status}`)
+        }
+        let response = await res.json();
+        console.log(`ORDER_POST\n ${response}`);
+        return response;
+    }
 }

@@ -89,8 +89,8 @@ class OrderOutput extends Component {
                         text = 'Подвтвердить'
                         mode = 'border'
                         active = {'true'}
-                        transferTo = 'Подтверждение'
-                        to = '/MainPage'/>
+                        transferTo = 'Завершение'
+                        to = '/OrderPush'/>
                 </div>
             </Animator>
         )

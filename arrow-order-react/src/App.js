@@ -16,6 +16,7 @@ import PopUp       from './components/ComCom/PopUp/PopUp';
 import DetailsRouter from  './components/OrderDetails/DetailsRouter';
 import ProductCard from './components/ProductCard/ProductCard';
 import OrderOutput from './components/OrderOutput/OrderOutput';
+import OrderPush   from './components/OrderPush/OrderPush';
 
 export default class App extends Component{
 
@@ -46,6 +47,7 @@ export default class App extends Component{
           <Route exact path = '/ProductCard/:prod' component = {(info) => toHat('Заказ', <ProductCard prod = {info.match.params.prod}/>)}/>
           <Route path = '/Details/' component = {() => toHat('Детали заказа', <DetailsRouter/>)} />
           <Route exact path = '/OrderOutput/' component = {() => toHat('Подтверждение', <OrderOutput/>)}/>
+          <Route exact path = '/OrderPush/' component = {OrderPush}/>
         </div>
       </Router>
     );

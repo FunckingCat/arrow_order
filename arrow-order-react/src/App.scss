@@ -27,7 +27,7 @@ body::-webkit-scrollbar {
     &::-webkit-scrollbar {
         display: none;
     }
-    & > *:not([class = 'popWrapper']){
+    & > *:not([class = 'popWrapper']):not([class = 'orderPush']){
         width: 100%;
         max-width: 400px;
     }
