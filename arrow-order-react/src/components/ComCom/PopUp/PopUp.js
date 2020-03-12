@@ -51,16 +51,13 @@ class PopUp extends Component {
     }
 
     closePopUp = (event) => {
-        console.log('Attr', event.target.getAttribute('closeable') === 'true');
         if (event.target.hasAttribute('closeable') 
             && event.target.getAttribute('closeable') === 'true'){
             this.props.popUpActive(false);
-            console.log('Off pop');
         }            
     }
 
     setStyle = () => {
-        console.log(this.props.active);
         if (this.props.active) {
             this.bg.current.classList.remove('bg-hide')
             this.showPop();

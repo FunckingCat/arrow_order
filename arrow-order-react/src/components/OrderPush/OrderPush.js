@@ -31,10 +31,10 @@ class OrderPush extends Component {
         let details = '';
         let parts = '';
         if (order.parts && Object.keys(order.parts).length !== 0){
-            parts = `Начинка: ${order.parts.filling},\n Бисквит: ${order.parts.biscuit},\n Крем: ${order.parts.cream}`
+            parts = `Начинка: ${order.parts.filling}; Бисквит: ${order.parts.biscuit}; Крем: ${order.parts.cream}`
         }
         for (let key in order){
-            if (lockedKeys.indexOf(key) < 0) details += `${key}: ${order[key]},\n`
+            if (lockedKeys.indexOf(key) < 0) details += `${key}: ${order[key]};`
         }
         let orderObj =  {
             name    : name,
@@ -45,6 +45,7 @@ class OrderPush extends Component {
             comment : order.comment || '',
         }
         if (parts.length > 0) orderObj.parts = parts
+        console.log(orderObj);
         return JSON.stringify(orderObj)
     }
 

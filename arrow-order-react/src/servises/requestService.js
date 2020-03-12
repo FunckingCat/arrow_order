@@ -108,12 +108,12 @@ export default class requestService {
                 'Content-Type': 'application/json;charset=utf-8'
             },
             body: order,
-        }).catch(res => console.log('Что то не так', res));
+        });
         if (!res.ok){
             throw new Error(`Could not POST; recived ${res.status}`)
         }
         let response = await res.json();
-        console.log(`ORDER_POST\n ${response}`);
+        console.log(`ORDER_POST ${response.status}`);
         return response;
     }
 }
