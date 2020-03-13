@@ -14,18 +14,15 @@ class OrderPush extends Component {
         requestStatus : 'In Process',
     }
 
-    renderContent = (status) => {
-        return false && <Spinner/>
-    }
-
+    
     componentDidMount () {
         let orderJSON = this.buildOrderJson(
             this.props.order,
             this.props.name,
             this.props.contact);
-        this.RS.postOrder(orderJSON)
-    }
-
+            this.RS.postOrder(orderJSON)
+        }
+        
     buildOrderJson = (order, name, contact) => {
         let lockedKeys = ['type', 'parts', 'cost', 'date', 'comment']
         let details = '';
@@ -47,6 +44,10 @@ class OrderPush extends Component {
         if (parts.length > 0) orderObj.parts = parts
         console.log(orderObj);
         return JSON.stringify(orderObj)
+    }
+   
+    renderContent = (status) => {
+        return <Spinner/>
     }
 
     render(){
