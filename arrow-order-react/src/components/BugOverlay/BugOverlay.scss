@@ -59,6 +59,16 @@
                     transform: rotate(-45deg)
                 }
             }
+            .checkList{
+                .check{
+                    padding-left: 10px;
+                    font-size: 0.8rem;
+                }
+            }
+            .BlackButton{
+                width: 90%;
+                margin-top: 1rem;
+            }
         }
     }
 }

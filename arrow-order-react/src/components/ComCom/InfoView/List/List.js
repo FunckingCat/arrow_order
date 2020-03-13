@@ -27,7 +27,7 @@ export default class List extends Component {
                     key = {item.name + i + constant} 
                     text = {item.name}
                     icon = {item.icon}
-                    active = {activeItems.includes(item.name)}
+                    active = {activeItems === 'all' || activeItems.includes(item.name)}
                     onChecked = {radioChecked}
                     />
             )
