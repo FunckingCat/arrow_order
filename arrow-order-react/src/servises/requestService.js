@@ -4,8 +4,8 @@ export default class requestService {
     }
 
     getResource = async (url) => {
-        const res = await fetch(`${this._apiBase}${url}`).catch(res => console.log('Что то не так'));
-        if (!res.ok){
+        const res = await fetch(`${this._apiBase}${url}`);
+        if ( !res || !res.ok){
             throw new Error(`Could not fetch ${url}; recived ${res.status}`)
         }
         let response = await res.json();

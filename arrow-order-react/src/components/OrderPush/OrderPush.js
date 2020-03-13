@@ -4,6 +4,7 @@ import {connect} from 'react-redux';
 
 import RequestService from '../../servises/requestService';
 
+import Animator from '../ComCom/Animator/Animator';
 import Spinner from '../ComCom/Spiner/Spiner';
 import TransLink from '../ComCom/Buttons/TransLink/TransLink';
 import BlackButton from '../ComCom/Buttons/BlackButton/BlackButton';
@@ -19,13 +20,20 @@ class OrderPush extends Component {
 
     
     componentDidMount () {
+        this.pushOrder()
+    }
+
+    pushOrder = () => {
+        this.setState({
+            status : 'Going'
+        })
         let orderJSON = this.buildOrderJson(
             this.props.order,
             this.props.name,
             this.props.contact);
-            this.RS.postOrder(orderJSON)
-            .then(res => this.updateStatus(res.status))
-        }
+        this.RS.postOrder(orderJSON)
+        .then(res => this.updateStatus(res.status))
+    }
 
     updateStatus = (status) => {
         this.setState({
@@ -57,6 +65,9 @@ class OrderPush extends Component {
     }
    
     renderContent = (status) => {
+
+        let anim = com => <Animator>{com}</Animator>
+
         let loading = 
             <div className="loading">
                 <div className="massage first">Отправляю ваш заказ на сервер</div>
@@ -67,6 +78,7 @@ class OrderPush extends Component {
             <div className="ok">
                 <div className="massage first">Заказ принят</div>
                 <div className="massage second">Катя скоро с вами свяжется</div>
+                <Spinner/>
                 <TransLink
                     text = 'На главную'
                     mode = 'border'
@@ -82,21 +94,30 @@ class OrderPush extends Component {
                 <BlackButton
                     mode = 'border'
                     active = 'true'
+                    onClick = {this.pushOrder}
                     text = 'Попробавть еще раз'/>
             </div>
         let reject = 
             <div className="reject">
                 <div className="massage first">Заказ отклонен</div>
-                <div className="massage second">Почему? никто не знает</div>
+                <div className="massage second">Почему? Никто не знает</div>
+                <div className="massage second">Возможно не заполнены контакные данные</div>
                 <BlackButton
                     mode = 'border'
                     active = 'true'
+                    onClick = {this.pushOrder}
                     text = 'Попробавть еще раз'/>
+                <TransLink
+                    text = 'На главную'
+                    mode = 'border'
+                    active = {'true'}
+                    transferTo = 'Главная'
+                    to = '/MainPage'/>
             </div>
-        if (status === 'Going') return loading
-        else if (status === 'Ok') return ok
-        else if (status === 'Disconnect') return disconnect
-        else if (status === 'Reject') return reject
+        if (status === 'Going') return anim(loading)
+        else if (status === 'Ok') return anim(ok)
+        else if (status === 'Disconnect') return anim(disconnect)
+        else if (status === 'Reject') return anim(reject)
         else console.error('Неизвестный ответ сервера: OrderPush renderContent');
     }
 
