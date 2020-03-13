@@ -5,13 +5,15 @@ import {connect} from 'react-redux';
 import RequestService from '../../servises/requestService';
 
 import Spinner from '../ComCom/Spiner/Spiner';
+import TransLink from '../ComCom/Buttons/TransLink/TransLink';
+import BlackButton from '../ComCom/Buttons/BlackButton/BlackButton';
 
 class OrderPush extends Component {
 
     RS = new RequestService(this.props.domen)
 
     state = {
-        requestStatus : 'In Process',
+        status : 'Going',
     }
 
     
@@ -21,7 +23,14 @@ class OrderPush extends Component {
             this.props.name,
             this.props.contact);
             this.RS.postOrder(orderJSON)
+            .then(res => this.updateStatus(res.status))
         }
+
+    updateStatus = (status) => {
+        this.setState({
+            status : status,
+        })
+    } 
         
     buildOrderJson = (order, name, contact) => {
         let lockedKeys = ['type', 'parts', 'cost', 'date', 'comment']
@@ -47,7 +56,40 @@ class OrderPush extends Component {
     }
    
     renderContent = (status) => {
-        return <Spinner/>
+        let loading = 
+            <div className="loading">
+                <div className="massage">Отправляю ваш заказ на сервер</div>
+                <div className="massage">Ждем ответ</div>
+                <Spinner/>
+            </div>
+        let ok = 
+            <div className="ok">
+                <div className="massage">Заказ принят</div>
+                <div className="massage">Катя скоро с вами свяжется</div>
+                <TransLink
+                    text = 'На главную'
+                    mode = 'border'
+                    active = {'true'}
+                    transferTo = 'Главная'
+                    to = '/MainPage'/>
+            </div>
+        let disconnect =
+            <div className="disconnect">
+                <div className="massage">Проблемы с подключением</div>
+                <BlackButton
+                    mode = 'border'
+                    active = 'true'
+                    text = 'Попробавть еще раз'/>
+            </div>
+        let reject = 
+            <div className="reject">
+
+            </div>
+        if (status === 'Going') return loading
+        else if (status === 'Ok') return ok
+        else if (status === 'Ok') return ok
+        else if (status === 'Disconnect') return disconnect
+        else return reject
     }
 
     render(){

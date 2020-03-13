@@ -108,12 +108,16 @@ export default class requestService {
                 'Content-Type': 'application/json;charset=utf-8'
             },
             body: order,
-        });
-        if (!res.ok){
-            throw new Error(`Could not POST; recived ${res.status}`)
+        })
+        .catch(() => {});
+        try{
+            let response = await res.json();
+            console.log(`ORDER_POST ${response.status}`);
+            return response;
+        } 
+        catch{
+            console.error('Disconnect');
+            return {status : 'Disconnect'}
         }
-        let response = await res.json();
-        console.log(`ORDER_POST ${response.status}`);
-        return response;
     }
 }
