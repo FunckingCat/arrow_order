@@ -18,6 +18,8 @@ import ProductCard from './components/ProductCard/ProductCard';
 import OrderOutput from './components/OrderOutput/OrderOutput';
 import OrderPush   from './components/OrderPush/OrderPush';
 
+import BugOverlay from './components/BugOverlay/BugOverlay';
+
 export default class App extends Component{
 
   render() {
@@ -33,6 +35,7 @@ export default class App extends Component{
       </>
 
     return (
+      <>
       <Router>
         <div className="App">
           <Route exact path = '/' component = {Login} /> 
@@ -48,8 +51,10 @@ export default class App extends Component{
           <Route path = '/Details/' component = {() => toHat('Детали заказа', <DetailsRouter/>)} />
           <Route exact path = '/OrderOutput/' component = {() => toHat('Подтверждение', <OrderOutput/>)}/>
           <Route exact path = '/OrderPush/' component = {OrderPush}/>
+          <BugOverlay/>
         </div>
       </Router>
+      </>
     );
   }  
 }

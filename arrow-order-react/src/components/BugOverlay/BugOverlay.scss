@@ -1,0 +1,77 @@
+.bugOverlay{
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    min-height: 100vh;
+    z-index: 10;
+    pointer-events: none;
+    .report{
+        position: absolute;
+        top: 55px;
+        right: 0;
+        pointer-events: all;
+        font-family: Comfortaa;
+        border: 1px solid black;
+        background-color: #fff;
+        border-top-left-radius: 0.4em;
+        border-bottom-left-radius: 0.4em;
+        .top{
+            font-size: 0.4rem;
+        }
+        .bottom{
+            font-size: 0.8rem;
+            font-weight: 800;
+        }
+    }
+    .formWrapper{
+        pointer-events: all;
+        width:100%;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        background-color: rgba(168, 168, 168,0.7);
+        .form {
+            width: 80%;
+            max-width: 320px;
+            margin-top: 75px;
+            min-height: 200px;
+            background-color: #fff;
+            border-radius: 2em;
+            padding: 1.5em 1em;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            .cross{
+                align-self: flex-end;
+                width: 1.5rem;
+                height: 1.5rem;
+                & > *{
+                    position: absolute;
+                    width: 1.5em;
+                    height: 1px;
+                    background-color: black;
+                }
+                .first{
+                    transform: rotate(45deg);
+                }
+                .second{
+                    transform: rotate(-45deg)
+                }
+            }
+        }
+    }
+}
+
+@media (min-width: 500px){
+    .bugOverlay{
+        .report{
+            .top{
+                font-size: 0.6rem;
+            }
+            .bottom{
+                font-size: 1rem;
+            }
+        }
+    }
+}
