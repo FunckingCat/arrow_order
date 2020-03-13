@@ -127,9 +127,7 @@ class OrderPush extends Component {
 
         return(
                 <div className="orderPush">
-                    <div className="content">
-                        {content}
-                    </div>
+                    {content}
                 </div>
             )
         }
