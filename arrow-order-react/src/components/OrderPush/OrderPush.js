@@ -7,6 +7,7 @@ import RequestService from '../../servises/requestService';
 import Spinner from '../ComCom/Spiner/Spiner';
 import TransLink from '../ComCom/Buttons/TransLink/TransLink';
 import BlackButton from '../ComCom/Buttons/BlackButton/BlackButton';
+import ErrorIcon from '../ComCom/Icons/Error'
 
 class OrderPush extends Component {
 
@@ -58,14 +59,14 @@ class OrderPush extends Component {
     renderContent = (status) => {
         let loading = 
             <div className="loading">
-                <div className="massage">Отправляю ваш заказ на сервер</div>
-                <div className="massage">Ждем ответ</div>
+                <div className="massage first">Отправляю ваш заказ на сервер</div>
+                <div className="massage second">Ждем ответ</div>
                 <Spinner/>
             </div>
         let ok = 
             <div className="ok">
-                <div className="massage">Заказ принят</div>
-                <div className="massage">Катя скоро с вами свяжется</div>
+                <div className="massage first">Заказ принят</div>
+                <div className="massage second">Катя скоро с вами свяжется</div>
                 <TransLink
                     text = 'На главную'
                     mode = 'border'
@@ -75,7 +76,9 @@ class OrderPush extends Component {
             </div>
         let disconnect =
             <div className="disconnect">
-                <div className="massage">Проблемы с подключением</div>
+                <div className="massage first">Упс</div>
+                <div className="massage second">Проблемы с подключением</div>
+                <ErrorIcon/>
                 <BlackButton
                     mode = 'border'
                     active = 'true'
@@ -83,13 +86,18 @@ class OrderPush extends Component {
             </div>
         let reject = 
             <div className="reject">
-
+                <div className="massage first">Заказ отклонен</div>
+                <div className="massage second">Почему? никто не знает</div>
+                <BlackButton
+                    mode = 'border'
+                    active = 'true'
+                    text = 'Попробавть еще раз'/>
             </div>
         if (status === 'Going') return loading
         else if (status === 'Ok') return ok
-        else if (status === 'Ok') return ok
         else if (status === 'Disconnect') return disconnect
-        else return reject
+        else if (status === 'Reject') return reject
+        else console.error('Неизвестный ответ сервера: OrderPush renderContent');
     }
 
     render(){

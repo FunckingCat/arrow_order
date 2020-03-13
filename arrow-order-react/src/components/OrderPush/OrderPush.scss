@@ -15,7 +15,29 @@
         padding: 1em;
         display: flex;
         flex-direction: column;
+        justify-content: center;
         align-items: center;
+        & > div{
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+        }
+        .error{
+            width : 60%;
+            align-self: center; 
+        }
+        .massage{
+            margin-bottom: 1rem;
+        }
+        .first{
+            font-size: 2em;
+        }
+        .second{
+            font-size: 1rem;
+        }
+        .TransLink, .BlackButton{
+            width: 100%;
+        }
         .spinner{
             width: 50%;
         }
