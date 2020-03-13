@@ -19,7 +19,7 @@ from . import views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', views.index, name = 'index'),
+    path('', views.index),
     re_path(r'^api/menu/', include('menu.urls')),
     re_path(r'^api/wiki/', include('wiki.urls')),
     re_path(r'^api/products/', include('products.urls')),

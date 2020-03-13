@@ -3,6 +3,7 @@ from django.http import JsonResponse
 from .models import Order
 import datetime
 import json
+from django.core.mail import send_mail
 # Create your views here.
 
 def status(value, info = False):
@@ -30,7 +31,39 @@ def parseDate(date):
     year = int(date[10:14])
     return datetime.date(year, month, day)
 
+def send_email(order,date):
 
+    mail_body = '''
+        Имя заказчика : {}
+        Контакт       : {}
+        Тип продукции : {}
+        Дата          : {}
+    '''.format(
+        order['name'],
+        order['contact'],
+        order['type'],
+        date.strftime("%d %B"),
+    )
+
+    if 'parts' in order:
+        parts = order['parts'].split(';')
+        mail_body += '''
+            {}
+            {}
+            {}
+        '''.format(parts[0], parts[1],parts[2])
+    if 'comment' in order:
+        mail_body += '''
+            Комметарий: {}
+        '''.format(order['comment'])
+
+    send_mail(
+        'Новый заказ',
+        mail_body,
+        'david99111@mail.ru',
+        ['smartguy3756@gmail.com'],
+        fail_silently=False
+    )
 
 def handaleNewOrder(request):
     if request.method == 'POST':
@@ -49,5 +82,6 @@ def handaleNewOrder(request):
         if 'comment' in order:
             new_order.comment = order['comment']
         new_order.save()
+        mail_status = send_email(order, date)
         return status('Ok')
     return status('Reject', 'Wrong method')

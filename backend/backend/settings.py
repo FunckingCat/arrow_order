@@ -130,3 +130,9 @@ STATIC_URL = '/static/'
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, "static"),
 ]
+
+EMAIL_HOST = dj_settings.dj_settings('email_host')
+EMAIL_HOST_USER = dj_settings.dj_settings('email_host_user')
+EMAIL_HOST_PASSWORD = dj_settings.dj_settings('host_password')
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
