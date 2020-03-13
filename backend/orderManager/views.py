@@ -32,38 +32,42 @@ def parseDate(date):
     return datetime.date(year, month, day)
 
 def send_email(order,date):
+    try:
+        mail_body = '''
+            Имя заказчика : {}
+            Контакт       : {}
+            Тип продукции : {}
+            Дата          : {}
+        '''.format(
+            order['name'],
+            order['contact'],
+            order['type'],
+            date.strftime("%d %B"),
+        )
 
-    mail_body = '''
-        Имя заказчика : {}
-        Контакт       : {}
-        Тип продукции : {}
-        Дата          : {}
-    '''.format(
-        order['name'],
-        order['contact'],
-        order['type'],
-        date.strftime("%d %B"),
-    )
+        if 'parts' in order:
+            parts = order['parts'].split(';')
+            mail_body += '''
+                {}
+                {}
+                {}
+            '''.format(parts[0], parts[1],parts[2])
+        if 'comment' in order:
+            mail_body += '''
+                Комметарий: {}
+            '''.format(order['comment'])
 
-    if 'parts' in order:
-        parts = order['parts'].split(';')
-        mail_body += '''
-            {}
-            {}
-            {}
-        '''.format(parts[0], parts[1],parts[2])
-    if 'comment' in order:
-        mail_body += '''
-            Комметарий: {}
-        '''.format(order['comment'])
+        send_mail(
+            'Новый заказ',
+            mail_body,
+            'david99111@mail.ru',
+            ['smartguy3756@gmail.com'],
+            fail_silently=False
+        )
 
-    send_mail(
-        'Новый заказ',
-        mail_body,
-        'david99111@mail.ru',
-        ['smartguy3756@gmail.com'],
-        fail_silently=False
-    )
+        return True
+    except:
+        return False
 
 def handaleNewOrder(request):
     if request.method == 'POST':
@@ -83,5 +87,7 @@ def handaleNewOrder(request):
             new_order.comment = order['comment']
         new_order.save()
         mail_status = send_email(order, date)
+        if not mail_status:
+            return ('Reject','Mail not sent')
         return status('Ok')
     return status('Reject', 'Wrong method')
