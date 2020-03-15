@@ -16,6 +16,8 @@ import TransLink   from '../../../ComCom/Buttons/TransLink/TransLink';
 
 class UniversalConstructor extends Component {
 
+    _isMounted = false;
+
     RS = new RequestService(this.props.domen)
 
     state = {
@@ -23,15 +25,24 @@ class UniversalConstructor extends Component {
     }
 
     componentDidMount () {
+        this._isMounted = true;
         this.RS.getCakeInfo(this.props.type)
-        .then(res => {
+        .then(res => {if (this._isMounted){
+            this.setItems(res)
+        }});
+    }
+
+    componentWillUnmount() {
+        this._isMounted = false;
+    }
+
+    setItems = (res) => {
             this.setState({
                 biscuitInfo : res.biscuits,
                 fillingInfo : res.fillings,
                 creamInfo   : res.creams,
                 loaded : true,
             })
-        });
     }
 
     confirmActive = () => {

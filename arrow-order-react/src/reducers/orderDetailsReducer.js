@@ -26,7 +26,9 @@ const orderDetaiilsReducer = (state = initialState, action) => {
             newState[action.name] = action.value;
             return newState
         case RESET_ORDER:
-            return initialState
+            return Object.assign({}, initialState, {
+                parts : {},
+            });
         default: 
             return state
     }

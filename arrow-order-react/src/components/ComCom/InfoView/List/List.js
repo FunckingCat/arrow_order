@@ -14,7 +14,14 @@ import RadioButton    from '../../Buttons/RadioButton/RadioButton';
 
 export default class List extends Component {
 
+    state = {
+        selected : '',
+    }
+
     onSelect = (event) => {
+        this.setState({
+            selected : event.target.dataset.value,
+        })
         if (!this.props.onSelect){
             console.log('Нет коллбэка в List');
             return
@@ -33,6 +40,7 @@ export default class List extends Component {
                     name = {'RB' + title} 
                     key = {i + Math.random()} 
                     text = {item.name}
+                    selected = {this.state.selected}
                     icon = {item.icon}
                     active = {active === 'all' || active.includes(item.name)}
                     onSelect = {this.onSelect}

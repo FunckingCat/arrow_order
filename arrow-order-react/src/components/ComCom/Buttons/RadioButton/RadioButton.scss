@@ -43,32 +43,21 @@ li.radio{
 
     .the-arrow {
         width: $shaft-width;
-        transition: all 0.2s;
-        transition-delay: 0.2s;
-       
-        &.-left {
-          position: absolute;
-          top: 45%;
-      
-          > .shaft {
-            width: 0;
-            background-color: $gray;
-            
-            &:before,
-            &:after {
-              width: 0;
-              background-color: $gray;
-            }
-          }
-        }
+        transition: all 2s;
+        transition-delay: 2s;
+        position: absolute;
+        top: 45%;
 
-        > .shaft {
+        .shaft {
             display: block;
             height: $shaft-thickness;
             position: relative;
-            transition: all 0.2s;
+            transition: all 2s;
             transition-delay: 0;
             will-change: transform;
+            width: 0;
+            background-color: $gray;
+            transition: width 1s;
         
             &:before,
             &:after {
@@ -77,6 +66,8 @@ li.radio{
               position: absolute;
               top: 0;
               right: 0;
+              width: 0;
+              background-color: $gray;
             }
         
             &:before {
@@ -89,15 +80,15 @@ li.radio{
           }
     }
     
-    .radioButton:checked + .the-arrow {
+    > .the-arrow-active {
         > .shaft {
             width: $newshaft-width;
-            transition-delay: 0.1s;
+            transition-delay: 1s;
     
             &:before,
             &:after {
               width: $arrow-head-width;
-              transition-delay: 0.1s;
+              transition-delay: 1s;
             }
     
             &:before {

@@ -18,6 +18,10 @@ export default class RadioButton extends Component {
 
         let id = Math.random();
 
+        let classList = this.props.text === this.props.selected
+        ? 'the-arrow the-arrow-active -left'
+        : 'the-arrow -left'
+
         return(
             <li className = 'radio' style = {style} onClick = {this.handaleClick}>
                 <input 
@@ -27,7 +31,7 @@ export default class RadioButton extends Component {
                     className = 'radioButton'
                     data-value = {this.props.text} 
                     id = {id}/>
-                <span className="the-arrow -left">
+                <span className={classList}>
                     <span className="shaft"></span>
                 </span>
                 <label htmlFor={id}>
