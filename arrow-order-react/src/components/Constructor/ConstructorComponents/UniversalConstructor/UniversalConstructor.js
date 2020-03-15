@@ -2,52 +2,49 @@ import React,{Component} from 'react';
 import './UniversalConstructor.scss'; 
 import {connect} from 'react-redux';
 
-import {popUpActive}       from '../../../../actions/popUpActions';
-import {setPopUpContent}   from '../../../../actions/popUpActions';
-import {setAssemblyParts, resetOrder}  from '../../../../actions/orderActions';
 import {reset_colors}      from '../../../../actions/assemblyColorsActions';
+import {resetOrder}        from '../../../../actions/orderActions';
 
+import Animator            from '../../../ComCom/Animator/Animator';
+import RequestService from '../../../../servises/requestService';
 import Assembly    from './AssemblyView/AssemblyView';
+import IngredientsMaster from '../IngredientsMaster/IngredientsMaster';
 
 import BlackButton from '../../../ComCom/Buttons/BlackButton/BlackButton';
-import RoundButton from '../../../ComCom/Buttons/RoundButton/RoundButton';
 import TransLink   from '../../../ComCom/Buttons/TransLink/TransLink';
 
 class UniversalConstructor extends Component {
 
+    RS = new RequestService(this.props.domen)
+
     state = {
-        resetActive : 'false',
-        confirmActive : 'false',
+        loaded : false,
     }
 
     componentDidMount () {
-        this.updateButtons();
+        this.RS.getCakeInfo(this.props.type)
+        .then(res => {
+            this.setState({
+                biscuitInfo : res.biscuits,
+                fillingInfo : res.fillings,
+                creamInfo   : res.creams,
+                loaded : true,
+            })
+        });
     }
 
     componentDidUpdate() {
-        this.updateButtons();
+        
     }
 
-    updateButtons = () => {
+    confirmActive = () => {
         let {filling, biscuit, cream} = this.props.cakeParts;
-        let reset = String(Boolean(filling || biscuit || cream))
-        let confirm = String(Boolean(filling && biscuit && cream))
-        if (reset !== this.state.resetActive){
-            this.setState({
-                resetActive : reset
-            })
-        } 
-        if (confirm !== this.state.confirmActive){
-            this.setState({
-                confirmActive : confirm
-            })
-        } 
+        return String(Boolean(filling || biscuit || cream))
     }
 
-    handaleClick = (event) => {
-        let content = event.target.closest('.RoundButton').childNodes[1].innerHTML;
-        this.props.setPopUpContent(content);
-        this.props.popUpActive(true);
+    resetActive = () => {
+        let {filling, biscuit, cream} = this.props.cakeParts;
+        return String(Boolean(filling && biscuit && cream))
     }
 
     confirm = () => {
@@ -57,58 +54,53 @@ class UniversalConstructor extends Component {
     }
 
     reset = () => {
-        this.props.setAssemblyParts({
-            filling : '',
-            biscuit : '',
-            cream   : '',
-        });
+        this.props.resetOrder();
         this.props.reset_colors();
-        this.props.setPopUpContent('');
+    }
+
+    renderContent = (loaded) => {
+        if (loaded) {
+            return (
+                <Animator>
+                    <Assembly/>
+                    <div className="Ingredients">
+                        <IngredientsMaster
+                            content = 'Начинка' 
+                            items = {this.state.fillingInfo}/>
+                        <IngredientsMaster
+                            content = 'Бисквит' 
+                            items = {this.state.biscuitInfo}/>  
+                        <IngredientsMaster
+                            content = 'Крем' 
+                            items = {this.state.creamInfo}/>              
+                    </div>
+                    <div className="buttonsBlock resetComfirm">
+                        <BlackButton 
+                            mode = 'border'
+                            text='Сброcить'
+                            active = {this.resetActive()}
+                            onClick = {this.reset}/>
+                        <TransLink
+                            mode = 'border'
+                            text='Далее'
+                            transferTo = 'Декор'
+                            to = '/Details/Decor/'
+                            onClick={this.confirm}
+                            active = {this.confirmActive()}/>
+                    </div>
+                </Animator>
+            )
+            
+        }
     }
 
     render(){
                 
+        let content = this.renderContent(this.state.loaded);
+
         return(
             <section className = 'Constructor'>
-                <Assembly/>
-                <div className = 'output'>
-                    <div>Начинка: {this.props.cakeParts.filling}</div>
-                    <div>Бисквит: {this.props.cakeParts.biscuit}</div>
-                    <div>Крем:    {this.props.cakeParts.cream}</div>
-                </div>
-                <div className="buttonsBlock popTriggers">
-                    <RoundButton 
-                        src = {this.props.domen + '/static/icons/constructor/BiscuitCake/filling/default.svg'}
-                        onClick = {this.handaleClick}>
-                            Начинка
-                    </RoundButton>
-                    <RoundButton 
-                        src = {this.props.domen + '/static/icons/constructor/BiscuitCake/biscuit/default.svg'}
-                        onClick = {this.handaleClick}>
-                            Бисквит
-                    </RoundButton>
-                    <RoundButton
-                        scale = 'true' 
-                        src = {this.props.domen + '/static/icons/constructor/BiscuitCake/cream/default.svg'}
-                        onClick = {this.handaleClick}>
-                            Крем
-                    </RoundButton>
-                    
-                </div>
-                <div className="buttonsBlock resetComfirm">
-                    <BlackButton 
-                        mode = 'border'
-                        text='Сброcить'
-                        active = {this.state.resetActive}
-                        onClick = {this.reset}/>
-                    <TransLink
-                        mode = 'border'
-                        text='Далее'
-                        transferTo = 'Декор'
-                        to = '/Details/Decor/'
-                        onClick={this.confirm}
-                        active = {this.state.confirmActive}/>
-                </div>
+                {content}
             </section>
         )
     }
@@ -117,7 +109,7 @@ class UniversalConstructor extends Component {
 const mapStateToProps = (state) => {
     return {
         domen : state.domen,
-        isPopUpActive : state.popUp.active,
+        type  : state.orderDetails.type,
         cakeParts : {
             filling : state.orderDetails.parts.filling,
             biscuit : state.orderDetails.parts.biscuit,
@@ -127,9 +119,6 @@ const mapStateToProps = (state) => {
 }
 
 const mapDispatchToProps = {
-    popUpActive,
-    setPopUpContent,
-    setAssemblyParts,
     reset_colors,
     resetOrder,
 }

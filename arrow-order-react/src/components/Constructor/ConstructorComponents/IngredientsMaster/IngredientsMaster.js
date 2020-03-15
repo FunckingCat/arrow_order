@@ -10,7 +10,6 @@ import {
 } from '../../../../actions/assemblyColorsActions';
 
 import requestService from '../../../../servises/requestService';
-import BlackButton    from '../../../ComCom/Buttons/BlackButton/BlackButton';
 import Details        from '../../../ComCom/InfoView/Details/Details';
 import List           from '../../../ComCom/InfoView/List/List';
 
@@ -25,8 +24,6 @@ class IngredientsMaster extends Component {
     state = {
         items : [],
         active : [],
-        selected : '',
-        buttonActive : 'false',
         constant : 0,
         prevContent : null,
         description : '',
@@ -46,30 +43,22 @@ class IngredientsMaster extends Component {
         if (this.props.content !== this.state.prevContent){
             this.RequestService.getCakeInfo(this.props.type, this.props.content, this.props.parts)
             .then((res) => {
-                let active = []
-                try{active = res.active.map(item => item.name)} // При сбросе вылетает исключение, ловим его
-                catch(e){}
                 let description = 'Похоже вы выбрали несочетаемые ингредиенты, попробуйте начать с начинки, тогда вы точно сможете собратьт самый вкусный торт!';
                 this.setState({
-                    items : res.all || [], // Так же ловим исключение про сбросе
-                    active : active,
+                    active : res,
                     selected : '',
                     buttonActive : 'false',
                     prevContent : this.props.content,
-                    description : active.length === 0? description : '',
+                    description : res.length === 0? description : '',
                 })                           
             })
         } 
     }
 
-    radioChecked = (event) => {
-        this.setState({
-            selected : event.target.dataset.value,
-            buttonActive : 'true',
-        })
-    }
+    partSubmit = (event) => {
 
-    partSubmit = () => {
+        let selected = event.target.dataset.value;
+        
         let {
             content,
             setAssemblyParts,
@@ -81,7 +70,6 @@ class IngredientsMaster extends Component {
         let {
             items,
             buttonActive,
-            selected
         } = this.state;
 
 
@@ -152,23 +140,11 @@ class IngredientsMaster extends Component {
         }        
     }
 
-    calcMaxHeight = () => {
-        let windowHeight = document.documentElement.clientHeight;
-        let popUpRatio = 0.9;
-        let radioItemHeight = 30;
-        let listTitleHeight = 32 + 19.2;
-        let listHeight = listTitleHeight + radioItemHeight * this.state.items.length + 40;
-        let addHeight = 195;
-        let avalibleHeight = popUpRatio * windowHeight - listHeight - addHeight;
-        if (avalibleHeight < 0) {avalibleHeight = 0}
-        return Math.floor(avalibleHeight)
-    }
-
     makeItems = () => {
         let res = [];
-        for (let i=0; i < this.state.items.length; i++){
-            let el = this.state.items[i];
-            let ic
+        for (let i=0; i < this.props.items.length; i++){
+            let el = this.props.items[i];
+            let ic;
             switch (this.props.content){
                 case 'Начинка':
                     ic = <Bowl id = {i} color = {el.fillColor} stroke = {el.strokeColor}/>
@@ -200,20 +176,12 @@ class IngredientsMaster extends Component {
                         title = {this.props.content}
                         items = {items}
                         activeItems = {this.state.active}
-                        radioChecked = {this.radioChecked}
                         constant = {this.state.constant}/>
-                <div className="add">
-                    <Details
-                        summary = {summary}
-                        height = {this.calcMaxHeight() + 'px'}>
-                            {this.state.description}
-                    </Details>
-                    <BlackButton 
-                        text = 'Добавить' 
-                        active={this.state.buttonActive}
-                        onClick = {this.partSubmit}/>
-                    <div className="zapas"></div>
-                </div>
+                <Details
+                    summary = {summary}
+                    height = {'8em'}>
+                        {this.state.description}
+                </Details>
             </div>
         )
     }
@@ -222,7 +190,6 @@ class IngredientsMaster extends Component {
 const mapStateToProps = (state) => {
     return({
         domen : state.domen,
-        content : state.popUp.content,
         type   : state.orderDetails.type,
         parts : {
             biscuit : state.orderDetails.parts.biscuit, 

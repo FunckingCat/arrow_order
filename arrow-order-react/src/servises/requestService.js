@@ -95,6 +95,9 @@ export default class requestService {
             case 'cream':
                 res = await this.getResource(`/api/constructor/${con}/cream/${filling}${filling? '/' : ''}`);
                 break;
+            case '':
+                res = await this.getResource(`/api/constructor/${con}/`);
+                break
             default:
                 res = ['Unknown type in getCakeInfo']
         }

@@ -5,9 +5,6 @@ export const SET_CONTACT = 'SET_CONTACT';
 export const NEW_TRANSFER = 'NEW_TRANSFER';
 export const BACK = 'BACK';
 export const GO_TO = 'GO_TO';
-//PopUp actions
-export const POP_UP_ACTIVE = 'POP_UP_ACTIVE';
-export const SET_CONTENT = 'SET_CONTENT';
 //OrderDetails actions
 export const SET_ORDER_TYPE = 'SET_ORDER_TYPE';
 export const SET_ASSEMBLY_PARTS = 'SET_ASSEMBLY_PARTS';

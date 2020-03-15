@@ -3,8 +3,7 @@ import {Switch, Route} from 'react-router';
 
 import {connect}           from 'react-redux';
 import {setOrderType}      from '../../actions/orderActions';
-import {setPopUpContent}   from '../../actions/popUpActions';
-import {resetOrder}  from '../../actions/orderActions';
+import {resetOrder}        from '../../actions/orderActions';
 import {reset_colors}      from '../../actions/assemblyColorsActions';
 
 import UniversalConstructor from './ConstructorComponents/UniversalConstructor/UniversalConstructor';
@@ -14,7 +13,6 @@ class Constructor extends Component {
     reset = () => {
         this.props.resetOrder();
         this.props.reset_colors();
-        this.props.setPopUpContent('');
     }
 
     setOrderType = (orderType) => {
@@ -48,7 +46,6 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = {
     setOrderType,
     resetOrder,
-    setPopUpContent,
     reset_colors,
 }
 
