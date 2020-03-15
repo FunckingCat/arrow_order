@@ -1,11 +1,15 @@
 import React,{Component} from 'react';
 import './BugOverlay.scss'; 
+import {connect} from 'react-redux';
 
-import CheckList from '../ComCom/InfoView/CheckList/CheckList';
-import InputText from '../ComCom/InputText/InputText';
-import BlackButton from '../ComCom/Buttons/BlackButton/BlackButton';
+import RequestService from '../../servises/requestService';
+import CheckList      from '../ComCom/InfoView/CheckList/CheckList';
+import InputText      from '../ComCom/InputText/InputText';
+import BlackButton    from '../ComCom/Buttons/BlackButton/BlackButton';
 
-export default class BugOverlay extends Component {
+class BugOverlay extends Component {
+
+    RS = new RequestService(this.props.domen)
 
     reasons = [
         {name : 'Странное поведение'},
@@ -48,6 +52,13 @@ export default class BugOverlay extends Component {
     }
 
     sendForm = () => {
+        let report = {
+            name : this.props.name,
+            contact : this.props.contact,
+            reason : this.state.reasons,
+            descr : this.state.comment,
+        }
+        this.RS.postBugReport(JSON.stringify(report));
         this.closeReport()
     }
 
@@ -97,3 +108,13 @@ export default class BugOverlay extends Component {
         )
     }
 }
+
+const mapStateToProps = (state) => {
+    return {
+        name    : state.login.name,
+        contact : state.login.contact,
+        domen   : state.domen,
+    }
+}
+
+export default connect(mapStateToProps)(BugOverlay)

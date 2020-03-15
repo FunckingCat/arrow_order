@@ -1,17 +1,60 @@
-/* eslint-disable jsx-a11y/anchor-is-valid */
 import React, {Component} from 'react';
-import {Link} from "react-router-dom";
 import {connect} from 'react-redux';
 import {initTransfer} from '../../../../actions/historyActions';
+import {Link} from "react-router-dom";
+
+import RequestService from '../../../../servises/requestService';
 
 
 class LoginButton extends Component {
 
+    RS = new RequestService(this.props.domen)
+
+    detectMob = () => {
+        const toMatch = [
+            /Android/i,
+            /webOS/i,
+            /iPhone/i,
+            /iPad/i,
+            /iPod/i,
+            /BlackBerry/i,
+            /Windows Phone/i
+        ];
+    
+        return toMatch.some((toMatchItem) => {
+            return navigator.userAgent.match(toMatchItem);
+        });
+    }
+
+    get_name_browser = () => {
+        let ua = navigator.userAgent;  
+        if (ua.search(/Yandex/) > 0) return 'Yandex';  
+        if (ua.search(/Chrome/) > 0) return 'Google Chrome';
+        if (ua.search(/Firefox/) > 0) return 'Firefox';
+        if (ua.search(/Opera/) > 0) return 'Opera';
+        if (ua.search(/Safari/) > 0) return 'Safari';
+        if (ua.search(/MSIE/) > 0) return 'Internet Explorer';
+        return 'Не определен';
+    }
+     
+
     handaleClick = (event) => {
         if(this.props.highlighted){
-            let user = JSON.stringify({name : this.props.name, contact : this.props.contact})
+            let user = JSON.stringify({
+                name : this.props.name, 
+                contact : this.props.contact
+            })
             localStorage.setItem('user', user);
-            this.props.transitTo('Главная', '/MainPage')
+            this.props.transitTo('Главная', '/MainPage');
+            user = {
+                name      : this.props.name,
+                contact   : this.props.contact,
+                navigator : this.get_name_browser(),
+                device    : this.detectMob() || 'desktop',
+                width     : window.innerWidth,
+                height    : window.innerHeight,
+            }
+            this.RS.postNewUser(JSON.stringify(user))
         }
     }
 
@@ -32,7 +75,8 @@ const mapStatetoProps = (state) => {
     return {
         highlighted : Boolean(state.login.name && state.login.contact),
         name : state.login.name,
-        contact : state.login.contact
+        contact : state.login.contact,
+        domen : state.domen,
     }
 }
 
