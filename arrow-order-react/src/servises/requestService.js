@@ -127,12 +127,14 @@ export default class requestService {
     }
 
     postBugReport = async (report) => {
-        const res = await this.postRequest('/api/logger/bugReport/', report);
-        return res
+        return 
+        // const res = await this.postRequest('/api/logger/bugReport/', report);
+        // return res
     }
 
     postNewUser = async (user) => {
-        const res = await this.postRequest('/api/logger/newUser/', user);
-        return res
+        return
+        // const res = await this.postRequest('/api/logger/newUser/', user);
+        // return res
     }
 }
