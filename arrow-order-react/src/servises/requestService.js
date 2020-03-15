@@ -13,6 +13,26 @@ export default class requestService {
         return response.values;
     }
 
+    postRequest = async (url, body) => {
+        const res = await fetch(`${this._apiBase}${url}`,{
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json;charset=utf-8'
+            },
+            body: body,
+        })
+        .catch(() => {});
+        try{
+            let response = await res.json();
+            console.log(`ORDER_POST ${response.status}`);
+            return response;
+        } 
+        catch{
+            console.error('Disconnect');
+            return {status : 'Disconnect'}
+        }
+    }
+
     getMainPageBlocksContents = async () => {
        const res = await this.getResource('/api/menu/main/')
        return res
@@ -102,22 +122,7 @@ export default class requestService {
     }
 
     postOrder = async (order) => {
-        const res = await fetch(`${this._apiBase}/api/postOrder/`,{
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json;charset=utf-8'
-            },
-            body: order,
-        })
-        .catch(() => {});
-        try{
-            let response = await res.json();
-            console.log(`ORDER_POST ${response.status}`);
-            return response;
-        } 
-        catch{
-            console.error('Disconnect');
-            return {status : 'Disconnect'}
-        }
+        const res = await this.postRequest('/api/postOrder/', order);
+        return res
     }
 }
