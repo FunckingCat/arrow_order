@@ -48,6 +48,7 @@ INSTALLED_APPS = [
     'productCard',
     'datesManager',
     'orderManager',
+    'logger',
 ]
 
 MIDDLEWARE = [
