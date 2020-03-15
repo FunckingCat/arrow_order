@@ -55,7 +55,7 @@ class BugOverlay extends Component {
         let report = {
             name : this.props.name,
             contact : this.props.contact,
-            reason : this.state.reasons,
+            reason : this.state.reasons.join(' '),
             descr : this.state.comment,
         }
         this.RS.postBugReport(JSON.stringify(report));

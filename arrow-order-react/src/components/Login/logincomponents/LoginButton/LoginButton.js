@@ -20,10 +20,11 @@ class LoginButton extends Component {
             /BlackBerry/i,
             /Windows Phone/i
         ];
-    
-        return toMatch.some((toMatchItem) => {
-            return navigator.userAgent.match(toMatchItem);
-        });
+
+        for (let item of toMatch){
+            if (navigator.userAgent.match(item)) return navigator.userAgent.match(item)[0];
+        }
+        return false
     }
 
     get_name_browser = () => {
@@ -54,6 +55,7 @@ class LoginButton extends Component {
                 width     : window.innerWidth,
                 height    : window.innerHeight,
             }
+            console.log(user);
             this.RS.postNewUser(JSON.stringify(user))
         }
     }

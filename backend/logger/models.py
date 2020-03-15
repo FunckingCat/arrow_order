@@ -14,6 +14,10 @@ class Log_abc(models.Model):
     contact = models.CharField(max_length = 100)
     date = models.DateTimeField(auto_now_add = True)
 
+    def __str__(self):
+        tt = self.date.timetuple()
+        return self.date.strftime("%d %B %I:%M%p ") + self.name 
+
 class Bug(Log_abc):
 
     class Meta:
