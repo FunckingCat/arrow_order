@@ -12,10 +12,11 @@ export function setOrderType (orderType){
     }
 }
 
-export function setAssemblyParts (parts){
+export function setAssemblyParts (name, value){
     return {
         type : SET_ASSEMBLY_PARTS,
-        parts : parts,
+        name,
+        value,
     }
 }
 

@@ -11,26 +11,18 @@ const initialState = {
 }
 
 const orderDetaiilsReducer = (state = initialState, action) => {
+    let newState;
     switch (action.type){
         case SET_ORDER_TYPE:
             return Object.assign({}, state,{
                 type : action.orderType
             })
         case SET_ASSEMBLY_PARTS:
-            let {
-                filling = state.parts.filling, 
-                biscuit = state.parts.biscuit, 
-                cream = state.parts.cream
-            } = action.parts;            
-            return Object.assign({}, state, {
-                parts : {
-                    filling : filling,
-                    biscuit : biscuit,
-                    cream   : cream,
-                }
-            })
+            newState = Object.assign({}, state)
+            newState.parts[action.name] = action.value;
+            return newState
         case SET_DETAIL:
-            let newState = Object.assign({}, state);
+            newState = Object.assign({}, state);
             newState[action.name] = action.value;
             return newState
         case RESET_ORDER:

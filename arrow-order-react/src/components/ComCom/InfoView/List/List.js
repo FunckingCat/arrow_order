@@ -16,15 +16,15 @@ import RadioButton    from '../../Buttons/RadioButton/RadioButton';
 export default class List extends Component {
 
     renderRadio = () => {
-        let {items, activeItems, constant, radioChecked} = this.props
+        let {items, activeItems, radioChecked, title} = this.props
         let radioButtons = []
         let i = 1;
         for (let item of items){
             radioButtons.push(
                 <RadioButton 
                     id = {i++} 
-                    name = 'RB' 
-                    key = {item.name + i + constant} 
+                    name = {'RB' + title} 
+                    key = {i + Math.random()} 
                     text = {item.name}
                     icon = {item.icon}
                     active = {activeItems === 'all' || activeItems.includes(item.name)}

@@ -4,6 +4,7 @@ import {connect} from 'react-redux';
 
 import {reset_colors}      from '../../../../actions/assemblyColorsActions';
 import {resetOrder}        from '../../../../actions/orderActions';
+import {setAssemblyParts}  from '../../../../actions/orderActions';
 
 import Animator            from '../../../ComCom/Animator/Animator';
 import RequestService from '../../../../servises/requestService';
@@ -33,18 +34,14 @@ class UniversalConstructor extends Component {
         });
     }
 
-    componentDidUpdate() {
-        
-    }
-
     confirmActive = () => {
         let {filling, biscuit, cream} = this.props.cakeParts;
-        return String(Boolean(filling || biscuit || cream))
+        return String(Boolean(filling && biscuit && cream))
     }
 
     resetActive = () => {
         let {filling, biscuit, cream} = this.props.cakeParts;
-        return String(Boolean(filling && biscuit && cream))
+        return String(Boolean(filling || biscuit || cream))
     }
 
     confirm = () => {
@@ -54,7 +51,9 @@ class UniversalConstructor extends Component {
     }
 
     reset = () => {
-        this.props.resetOrder();
+        this.props.setAssemblyParts('filling', undefined)
+        this.props.setAssemblyParts('biscuit', undefined)
+        this.props.setAssemblyParts('cream', undefined)
         this.props.reset_colors();
     }
 
@@ -121,6 +120,7 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = {
     reset_colors,
     resetOrder,
+    setAssemblyParts,
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(UniversalConstructor)

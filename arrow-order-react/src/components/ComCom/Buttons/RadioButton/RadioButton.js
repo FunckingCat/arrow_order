@@ -16,6 +16,8 @@ export default class RadioButton extends Component {
             color : textColor,
         }
 
+        let id = Math.random();
+
         return(
             <li className = 'radio' style = {style} onClick = {this.handaleClick}>
                 <input 
@@ -24,11 +26,11 @@ export default class RadioButton extends Component {
                     onChange = {this.props.onChecked} 
                     className = 'radioButton'
                     data-value = {this.props.text} 
-                    id = {'radio' + this.props.id}/>
+                    id = {'radio' + id}/>
                 <span className="the-arrow -left">
                     <span className="shaft"></span>
                 </span>
-                <label htmlFor={'radio' + this.props.id}>
+                <label htmlFor={'radio' + id}>
                     <div className = 'icon'>{this.props.icon}</div>
                     <div className = 'text'>{this.props.text}</div>
                 </label>

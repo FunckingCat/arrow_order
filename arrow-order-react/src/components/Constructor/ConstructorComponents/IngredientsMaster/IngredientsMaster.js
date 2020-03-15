@@ -13,8 +13,8 @@ import requestService from '../../../../servises/requestService';
 import Details        from '../../../ComCom/InfoView/Details/Details';
 import List           from '../../../ComCom/InfoView/List/List';
 
-import Biscuit from '../../../ComCom/Icons/Biscuit';
-import Bowl from '../../../ComCom/Icons/Bowl';
+import Biscuit   from '../../../ComCom/Icons/Biscuit';
+import Bowl      from '../../../ComCom/Icons/Bowl';
 import PastryBag from '../../../ComCom/Icons/PastryBag';
 
 class IngredientsMaster extends Component {
@@ -22,44 +22,61 @@ class IngredientsMaster extends Component {
     RequestService = new requestService(this.props.domen)
 
     state = {
-        items : [],
         active : [],
-        constant : 0,
-        prevContent : null,
+        prevParts : {},
         description : '',
     }
 
     componentDidMount() {
         this.updateItems();
-        this.getDescription();
     }
 
     componentDidUpdate() {
-        this.updateItems();
-        this.getDescription();
+        if (this.shouldUpdate()){
+            this.updateItems();
+        }        
+    }
+
+    shouldUpdate = () => {
+        let {filling, biscuit,cream} = this.props.parts;
+        let prev = this.state.prevParts;
+        //if (biscuit !== prev.biscuit || cream !== prev.cream || filling !== prev.filling) return true
+        switch (this.props.content){
+            case 'Начинка':
+                if (biscuit !== prev.biscuit || cream !== prev.cream) return true
+                break
+            case 'Бисквит':
+                if (filling !== prev.filling || cream !== prev.cream) return true
+                break
+            case 'Крем':
+                if (filling !== prev.filling || biscuit !== prev.biscuit) return true
+                break
+            default:
+                break
+        }
+        return false
     }
 
     updateItems = () => {
-        if (this.props.content !== this.state.prevContent){
-            this.RequestService.getCakeInfo(this.props.type, this.props.content, this.props.parts)
-            .then((res) => {
-                let description = 'Похоже вы выбрали несочетаемые ингредиенты, попробуйте начать с начинки, тогда вы точно сможете собратьт самый вкусный торт!';
-                this.setState({
-                    active : res,
-                    selected : '',
-                    buttonActive : 'false',
-                    prevContent : this.props.content,
-                    description : res.length === 0? description : '',
-                })                           
-            })
-        } 
+        this.RequestService.getCakeInfo(this.props.type, this.props.content, this.props.parts)
+        .then((res) => {
+            //let description = 'Похоже вы выбрали несочетаемые ингредиенты, попробуйте начать с начинки, тогда вы точно сможете собратьт самый вкусный торт!';
+            this.setState({
+                active : res,
+                prevParts : this.props.parts,
+                //description : res.length === 0? description : '',
+            })                           
+        })
     }
 
     partSubmit = (event) => {
 
         let selected = event.target.dataset.value;
+
+        console.log(selected);
         
         let {
+            items,
             content,
             setAssemblyParts,
             setBiscuitColor,
@@ -67,45 +84,25 @@ class IngredientsMaster extends Component {
             setCreamColor
         } = this.props;
 
-        let {
-            items,
-            buttonActive,
-        } = this.state;
-
-
-        if (buttonActive === 'true'){
-            let parts = {
-                filling : undefined,
-                biscuit : undefined,
-                cream   : undefined
-            }
-            let color = items
-                .filter(item => item.name === selected)
-                .map(item => [item.fillColor, item.strokeColor])[0]
-            switch (content){
-                case 'Начинка':
-                    parts = {...parts, filling : selected};
-                    setFillingColor(color[0], color[1]);
-                    break
-                case 'Бисквит':
-                    parts = {...parts, biscuit : selected}
-                    setBiscuitColor(color[0], color[1]);
-                    break
-                case 'Крем':
-                    parts = {...parts, cream : selected}
-                    setCreamColor(color[0], color[1]);
-                    break
-                default:
-                    break
-            }
-            setAssemblyParts(parts)
-            let now = new Date();
-            this.setState({
-                buttonActive : 'false',
-                selected : '',
-                constant : now.getMilliseconds(),
-            })
-        }            
+        let color = items
+            .filter(item => item.name === selected)
+            .map(item => [item.fillColor, item.strokeColor])[0]
+        switch (content){
+            case 'Начинка':
+                setAssemblyParts('filling', selected)
+                setFillingColor(color[0], color[1]);
+                break
+            case 'Бисквит':
+                setAssemblyParts('biscuit', selected)
+                setBiscuitColor(color[0], color[1]);
+                break
+            case 'Крем':
+                setAssemblyParts('cream', selected)
+                setCreamColor(color[0], color[1]);
+                break
+            default:
+                break
+        }    
     }
 
     defSummary = () => {
@@ -176,7 +173,7 @@ class IngredientsMaster extends Component {
                         title = {this.props.content}
                         items = {items}
                         activeItems = {this.state.active}
-                        constant = {this.state.constant}/>
+                        radioChecked = {this.partSubmit}/>
                 <Details
                     summary = {summary}
                     height = {'8em'}>
