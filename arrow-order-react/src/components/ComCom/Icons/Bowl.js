@@ -1,6 +1,6 @@
 import React,{Component} from 'react';
 
-export default class CupCake extends Component {
+export default class Bowl extends Component {
 
     state = {
         color : this.props.color || 'hsl(12, 56%, 26%)',

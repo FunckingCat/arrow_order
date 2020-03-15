@@ -23,14 +23,14 @@ export default class RadioButton extends Component {
                 <input 
                     type="radio" 
                     name = {this.props.name}
-                    onChange = {this.props.onChecked} 
+                    onChange = {this.props.onSelect} 
                     className = 'radioButton'
                     data-value = {this.props.text} 
-                    id = {'radio' + id}/>
+                    id = {id}/>
                 <span className="the-arrow -left">
                     <span className="shaft"></span>
                 </span>
-                <label htmlFor={'radio' + id}>
+                <label htmlFor={id}>
                     <div className = 'icon'>{this.props.icon}</div>
                     <div className = 'text'>{this.props.text}</div>
                 </label>

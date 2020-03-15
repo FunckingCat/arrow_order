@@ -10,7 +10,7 @@ import {
 } from '../../../../actions/assemblyColorsActions';
 
 import requestService from '../../../../servises/requestService';
-import Details        from '../../../ComCom/InfoView/Details/Details';
+//import Details        from '../../../ComCom/InfoView/Details/Details';
 import List           from '../../../ComCom/InfoView/List/List';
 
 import Biscuit   from '../../../ComCom/Icons/Biscuit';
@@ -40,7 +40,6 @@ class IngredientsMaster extends Component {
     shouldUpdate = () => {
         let {filling, biscuit,cream} = this.props.parts;
         let prev = this.state.prevParts;
-        //if (biscuit !== prev.biscuit || cream !== prev.cream || filling !== prev.filling) return true
         switch (this.props.content){
             case 'Начинка':
                 if (biscuit !== prev.biscuit || cream !== prev.cream) return true
@@ -60,125 +59,65 @@ class IngredientsMaster extends Component {
     updateItems = () => {
         this.RequestService.getCakeInfo(this.props.type, this.props.content, this.props.parts)
         .then((res) => {
-            //let description = 'Похоже вы выбрали несочетаемые ингредиенты, попробуйте начать с начинки, тогда вы точно сможете собратьт самый вкусный торт!';
             this.setState({
                 active : res,
                 prevParts : this.props.parts,
-                //description : res.length === 0? description : '',
             })                           
         })
     }
 
-    partSubmit = (event) => {
+    randomInteger = (min = 1, max = 999) => {
+        // получить случайное число от (min-0.5) до (max+0.5)
+        let rand = min - 0.5 + Math.random() * (max - min + 1);
+        return Math.round(rand);
+      }
 
-        let selected = event.target.dataset.value;
-
-        console.log(selected);
-        
-        let {
-            items,
-            content,
-            setAssemblyParts,
-            setBiscuitColor,
-            setFillingColor,
-            setCreamColor
-        } = this.props;
-
-        let color = items
-            .filter(item => item.name === selected)
-            .map(item => [item.fillColor, item.strokeColor])[0]
-        switch (content){
-            case 'Начинка':
-                setAssemblyParts('filling', selected)
-                setFillingColor(color[0], color[1]);
-                break
-            case 'Бисквит':
-                setAssemblyParts('biscuit', selected)
-                setBiscuitColor(color[0], color[1]);
-                break
-            case 'Крем':
-                setAssemblyParts('cream', selected)
-                setCreamColor(color[0], color[1]);
-                break
-            default:
-                break
-        }    
-    }
-
-    defSummary = () => {
-        let summary = '';
-        if (this.state.selected){
-            summary = this.state.selected + ' ' + this.props.content.toLowerCase();
+    onSelect = (value) => {
+        let item;
+        let {items, setAssemblyParts, setBiscuitColor,
+            setFillingColor, setCreamColor, content} = this.props;
+        if (content === 'Начинка'){
+            setAssemblyParts('filling', value);
+            item = items.filter(item => item.name === value)[0];
+            setFillingColor(item.fillColor, item.strokeColor);
+        } else if (content === 'Бисквит'){
+            setAssemblyParts('biscuit', value);
+            item = items.filter(item => item.name === value)[0];
+            setBiscuitColor(item.fillColor, item.strokeColor);
+        } else if (content === 'Крем'){
+            setAssemblyParts('cream', value);
+            item = items.filter(item => item.name === value)[0];
+            setCreamColor(item.fillColor, item.strokeColor);
         }
-        if (this.state.active.length === 0) {
-            summary = 'Нет подходящих вариантов, измените состав';            
-        }
-        return summary
     }
 
-    getDescription = async () => {
-        if (this.state.selected){
-            let hashtag = this.state.items
-            .filter(item => item.name === this.state.selected)
-            .map(item => item.hashtag)[0];
-            this.RequestService.getWikiCard(hashtag)
-            .then(res => {
-                if (this.state.description !== res.text){
-                    this.setState({
-                        description : res.text,
-                    })
-                }                
-            })
-            .catch(res => {
-                this.setState({
-                    description : 'К сожалению к этому еще нет описания',
-                })
-            });
-        }        
-    }
-
-    makeItems = () => {
+    //Рендерим иконки по заданным цветам
+    renderItems = (items) => {
         let res = [];
-        for (let i=0; i < this.props.items.length; i++){
-            let el = this.props.items[i];
-            let ic;
-            switch (this.props.content){
-                case 'Начинка':
-                    ic = <Bowl id = {i} color = {el.fillColor} stroke = {el.strokeColor}/>
-                    break
-                case 'Бисквит':
-                    ic = <Biscuit id = {i} color = {el.fillColor} stroke = {el.strokeColor}/>
-                    break
-                case 'Крем':
-                    ic = <PastryBag id = {i} color = {el.fillColor} stroke = {el.strokeColor}/>
-                    break
-                default:
-                    break
-            }
-            let item = {
-                name : el.name,
-                icon : ic,
-            }
-            res.push(item)
+        let icon; //Определяем тип иконки исзодя из контента
+        if (this.props.content === 'Начинка') icon = (id, fill, stroke) => <Bowl id = {id} color = {fill} stroke = {stroke}/>
+        if (this.props.content === 'Бисквит') icon = (id, fill, stroke) => <Biscuit id = {id} color = {fill} stroke = {stroke}/>
+        if (this.props.content === 'Крем')    icon = (id, fill, stroke) => <PastryBag id = {id} color = {fill} stroke = {stroke}/>
+        let i = this.randomInteger();//ID что бы склкторы на SVG выбирались правильно
+        for (let item of items){
+            i++;
+            res.push({
+                name : item.name,
+                icon : icon(i, item.fillColor, item.strokeColor),
+            })
         }
         return res
     }
 
     render(){
-        let summary = this.defSummary();
-        let items = this.makeItems();
+
         return(
-            <div className="ingredientsMaster">
-                <List 
-                        title = {this.props.content}
-                        items = {items}
-                        activeItems = {this.state.active}
-                        radioChecked = {this.partSubmit}/>
-                <Details
-                    summary = {summary}
-                    height = {'8em'}>
-                        {this.state.description}
-                </Details>
+            <div className="IngredientsMaster">
+                <List
+                    title = {this.props.content} 
+                    items = {this.renderItems(this.props.items)}
+                    active = {this.state.active}
+                    onSelect = {this.onSelect}/>
             </div>
         )
     }

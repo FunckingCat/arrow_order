@@ -9,14 +9,21 @@ import RadioButton    from '../../Buttons/RadioButton/RadioButton';
 //     name
 //     icon
 // }
-// activeItems - список активых элементов
-// domen
-// radioChecked - функция вызываемая при переключении элементов
+// active - список активых элементов
+// onSelect - функция вызываемая при переключении элементов
 
 export default class List extends Component {
 
+    onSelect = (event) => {
+        if (!this.props.onSelect){
+            console.log('Нет коллбэка в List');
+            return
+        }
+        return this.props.onSelect(event.target.dataset.value)
+    }
+
     renderRadio = () => {
-        let {items, activeItems, radioChecked, title} = this.props
+        let {items, active, title} = this.props
         let radioButtons = []
         let i = 1;
         for (let item of items){
@@ -27,8 +34,8 @@ export default class List extends Component {
                     key = {i + Math.random()} 
                     text = {item.name}
                     icon = {item.icon}
-                    active = {activeItems === 'all' || activeItems.includes(item.name)}
-                    onChecked = {radioChecked}
+                    active = {active === 'all' || active.includes(item.name)}
+                    onSelect = {this.onSelect}
                     />
             )
         }
