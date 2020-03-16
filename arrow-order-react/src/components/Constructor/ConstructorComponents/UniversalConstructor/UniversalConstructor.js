@@ -73,6 +73,9 @@ class UniversalConstructor extends Component {
     }
 
     reset = () => {
+        document.querySelectorAll('.radioButton').forEach(item => {
+            item.checked = false;
+        })
         this.props.setAssemblyParts('filling', undefined)
         this.props.setAssemblyParts('biscuit', undefined)
         this.props.setAssemblyParts('cream', undefined)

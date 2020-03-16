@@ -32,12 +32,6 @@ class IngredientsMaster extends Component {
     }
 
     componentDidUpdate() {
-        let {filling,biscuit,cream} = this.props.parts;
-        if (!Boolean(filling||biscuit||cream)){
-            document.querySelectorAll('.radioButton').forEach(item => {
-                item.checked = false;
-            })
-        }
         if (this.shouldUpdate()){
             this.updateItems();
         }        
