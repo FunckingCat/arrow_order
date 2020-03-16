@@ -3,6 +3,10 @@ from django.db import models
 # Create your models here.
 class Product(models.Model):
 
+    class Meta:
+        verbose_name = 'Элемент меню первого уровня'
+        verbose_name_plural = 'Элементы меню первого уровня'
+
     title  = models.CharField(max_length = 50)
     href   = models.CharField(max_length = 80, default = '/Products/')
     image  = models.CharField(max_length = 80, default = '/static/stock/')
@@ -20,6 +24,10 @@ class Product(models.Model):
         }
 
 class Products_sub(models.Model):
+
+    class Meta:
+        verbose_name = 'Элемент меню второго уровня'
+        verbose_name_plural = 'Элементы меню второго уровня'
 
     title  = models.CharField(max_length = 50)
     href   = models.CharField(max_length = 80,

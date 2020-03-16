@@ -4,6 +4,10 @@ from django.db import models
 
 class MainPageContent(models.Model):
 
+    class Meta:
+        verbose_name = 'Запись на главной странице'
+        verbose_name_plural = 'Записи на главной странице'
+
     title = models.CharField(max_length = 200, verbose_name = 'Заголовок', blank = True)
     text = models.TextField(verbose_name = 'Текст')
     image = models.CharField(max_length = 500, verbose_name = 'Ссылка на изображение')
@@ -21,6 +25,10 @@ class MainPageContent(models.Model):
         }
 
 class BurgerMenuItems(models.Model):
+
+    class Meta:
+        verbose_name = 'Элемент меню'
+        verbose_name_plural = 'Элементы меню'
 
     title = models.CharField(max_length = 100, verbose_name = 'Заголовок')
     href = models.CharField(max_length = 100, verbose_name = 'Ссылка')

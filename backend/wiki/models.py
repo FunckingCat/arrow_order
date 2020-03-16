@@ -4,6 +4,10 @@ from django.db import models
 
 class WikiObject(models.Model):
 
+    class Meta:
+        verbose_name = 'Вики статья'
+        verbose_name_plural = 'Вики статьи'
+
     defaultText = 'Hashtag должен сооствтсвовать хэштэгу из Wiki Subcategores и CakeConstructor объектов, что бы все работало правильно'
 
     title = models.CharField(max_length = 60, verbose_name = 'Заголовок')
@@ -23,6 +27,10 @@ class WikiObject(models.Model):
 
 class WikiCategores(models.Model):
 
+    class Meta:
+        verbose_name = 'Вики категоря'
+        verbose_name_plural = 'Вики категории'
+
     title  = models.CharField(max_length = 50)
     image  = models.CharField(max_length = 80)
     slogan = models.TextField(blank = True)
@@ -39,6 +47,10 @@ class WikiCategores(models.Model):
         }
 
 class WikiSubCategores(models.Model):
+
+    class Meta:
+        verbose_name = 'Вики подкатегория'
+        verbose_name_plural = 'Вики подкатегории'
 
     title  = models.CharField(max_length = 50)
     image  = models.CharField(max_length = 80)
