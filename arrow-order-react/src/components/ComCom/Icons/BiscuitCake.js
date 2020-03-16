@@ -3,6 +3,9 @@ import React,{Component} from 'react';
 export default class BiscuitCake extends Component {
 
     componentDidMount() {
+        document.querySelectorAll('.biscuitCake *').forEach(element => {
+            element.style.transition = '0.2s';
+        });
         this.handaleColorChange();
     }
 

@@ -3,6 +3,9 @@ import React,{Component} from 'react';
 export default class CupCake extends Component {
 
     componentDidMount() {
+        document.querySelectorAll('.cupCake *').forEach(element => {
+            element.style.transition = '0.2s';
+        });
         this.handaleColorChange();
     }
 
