@@ -36,13 +36,24 @@ class UniversalConstructor extends Component {
         this._isMounted = false;
     }
 
+    randomInteger = (min = 1, max = 9999) => {
+        let rand = min - 0.5 + Math.random() * (max - min + 1);
+        return Math.round(rand);
+    }
+
     setItems = (res) => {
-            this.setState({
-                biscuitInfo : res.biscuits,
-                fillingInfo : res.fillings,
-                creamInfo   : res.creams,
-                loaded : true,
+        for (let cat in res){
+            res[cat].forEach(item => {
+                item.id = this.randomInteger();
             })
+        }
+        console.log(res);
+        this.setState({
+            biscuitInfo : res.biscuits,
+            fillingInfo : res.fillings,
+            creamInfo   : res.creams,
+            loaded : true,
+        })
     }
 
     confirmActive = () => {

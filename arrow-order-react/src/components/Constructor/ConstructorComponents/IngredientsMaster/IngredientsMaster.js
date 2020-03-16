@@ -66,12 +66,6 @@ class IngredientsMaster extends Component {
         })
     }
 
-    randomInteger = (min = 1, max = 999) => {
-        // получить случайное число от (min-0.5) до (max+0.5)
-        let rand = min - 0.5 + Math.random() * (max - min + 1);
-        return Math.round(rand);
-      }
-
     onSelect = (value) => {
         let item;
         let {items, setAssemblyParts, setBiscuitColor,
@@ -98,12 +92,11 @@ class IngredientsMaster extends Component {
         if (this.props.content === 'Начинка') icon = (id, fill, stroke) => <Bowl id = {id} color = {fill} stroke = {stroke}/>
         if (this.props.content === 'Бисквит') icon = (id, fill, stroke) => <Biscuit id = {id} color = {fill} stroke = {stroke}/>
         if (this.props.content === 'Крем')    icon = (id, fill, stroke) => <PastryBag id = {id} color = {fill} stroke = {stroke}/>
-        let i = this.randomInteger();//ID что бы склкторы на SVG выбирались правильно
         for (let item of items){
-            i++;
             res.push({
+                id   : item.id,
                 name : item.name,
-                icon : icon(i, item.fillColor, item.strokeColor),
+                icon : icon(item.id, item.fillColor, item.strokeColor),
             })
         }
         return res

@@ -6,6 +6,7 @@ import RadioButton    from '../../Buttons/RadioButton/RadioButton';
 //Для работы этосу компоненту нужно:
 // title - заголовок
 // items {
+//     id
 //     name
 //     icon
 // }
@@ -36,9 +37,9 @@ export default class List extends Component {
         for (let item of items){
             radioButtons.push(
                 <RadioButton 
-                    id = {i++} 
+                    id = {item.id} 
                     name = {'RB' + title} 
-                    key = {i + Math.random()} 
+                    key = {item.id} 
                     text = {item.name}
                     selected = {this.state.selected}
                     icon = {item.icon}
