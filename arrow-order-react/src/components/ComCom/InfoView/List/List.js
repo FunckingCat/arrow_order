@@ -33,7 +33,6 @@ export default class List extends Component {
     renderRadio = () => {
         let {items, active, title} = this.props
         let radioButtons = []
-        let i = 1;
         for (let item of items){
             radioButtons.push(
                 <RadioButton 
