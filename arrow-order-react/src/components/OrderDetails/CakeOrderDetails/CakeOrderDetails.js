@@ -1,11 +1,12 @@
 import React,{Component} from 'react';
 import './CakeOrderDetails.scss'; 
-import {connect} from 'react-redux';
+import {connect}   from 'react-redux';
 import {setDetail} from '../../../actions/orderActions';
 
 import DatePicker  from '../../ComCom/DatePicker/DatePicker';
 import InputText   from '../../ComCom/InputText/InputText';
-import TransLink from '../../ComCom/Buttons/TransLink/TransLink';
+import TransLink   from '../../ComCom/Buttons/TransLink/TransLink';
+import Animator    from '../../ComCom/Animator/Animator';
 
 class CakeOrderDetails extends Component {
 
@@ -34,22 +35,24 @@ class CakeOrderDetails extends Component {
 
     render(){
         return(
-            <div className="cakeOrderDetails">
-                <div className="title">Выберте дату заказа:</div>
-                <DatePicker
-                    onInput = {this.onDateInput}/>
-                <div className="title">Комментарий к заказу:</div>
-                <InputText
-                    placeholder = 'Напишите здесь все что вам хотелось бы видеть в торте, оставтьте информацию о ваших прдпочтениях, аллергиях и т.д.'
-                    onInput = {this.onCommentInput}/>
-                <TransLink
-                    text = 'Далее'
-                    mode = 'border'
-                    active = {this.state.date? 'true' : 'false'}
-                    transferTo = 'Подтвер.'
-                    to = '/OrderOutput/'
-                    onClick = {this.confirm}/>
-            </div>
+            <Animator>
+                <div className="cakeOrderDetails">
+                    <div className="title">Выберте дату заказа:</div>
+                    <DatePicker
+                        onInput = {this.onDateInput}/>
+                    <div className="title">Комментарий к заказу:</div>
+                    <InputText
+                        placeholder = 'Напишите здесь все что вам хотелось бы видеть в торте, оставтьте информацию о ваших прдпочтениях, аллергиях и т.д.'
+                        onInput = {this.onCommentInput}/>
+                    <TransLink
+                        text = 'Далее'
+                        mode = 'border'
+                        active = {this.state.date? 'true' : 'false'}
+                        transferTo = 'Подтвер.'
+                        to = '/OrderOutput/'
+                        onClick = {this.confirm}/>
+                </div>
+            </Animator>
         )
     }
 } 

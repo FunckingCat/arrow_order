@@ -5,6 +5,7 @@ import {setDetail} from '../../../actions/orderActions';
 
 import RequestService from '../../../servises/requestService';
 
+import Animator from '../../ComCom/Animator/Animator';
 import InputRange  from '../../ComCom/Buttons/InputRange/InputRange';
 import CheckList   from '../../ComCom/InfoView/CheckList/CheckList';
 //import ColorPicker from '../../ComCom/SevColorPicker/SevColorPicker';
@@ -103,31 +104,33 @@ class CakeDecor extends Component {
         }
 
         return(
-            <div className="cakeDecor">
-                <div className="weight">
-                    <div className="title">{title}</div>
-                    <InputRange 
-                        min = {this.state.range.min}
-                        max = {this.state.range.max}
-                        step = {this.state.range.step}
-                        dimension = {this.state.range.dimension}
-                        onInput = {this.onWeightInput}/>
+            <Animator>
+                <div className="cakeDecor">
+                    <div className="weight">
+                        <div className="title">{title}</div>
+                        <InputRange 
+                            min = {this.state.range.min}
+                            max = {this.state.range.max}
+                            step = {this.state.range.step}
+                            dimension = {this.state.range.dimension}
+                            onInput = {this.onWeightInput}/>
+                    </div>
+                    <CheckList
+                        title = 'Декор:'
+                        items = {this.state.decor}
+                        onChange = {this.onDecorInput}/>
+                    {/* <ColorPicker
+                        onChange = {this.onColorInput}
+                        colors = {this.state.colors.map(item => item.color)}/> */}
+                    <TransLink
+                            mode = 'border'
+                            text='Далее'
+                            transferTo = 'Дата'
+                            to = '/Details/Date/'
+                            onClick={this.confirm}
+                            active = {active()}/>
                 </div>
-                <CheckList
-                    title = 'Декор:'
-                    items = {this.state.decor}
-                    onChange = {this.onDecorInput}/>
-                {/* <ColorPicker
-                    onChange = {this.onColorInput}
-                    colors = {this.state.colors.map(item => item.color)}/> */}
-                <TransLink
-                        mode = 'border'
-                        text='Далее'
-                        transferTo = 'Дата'
-                        to = '/Details/Date/'
-                        onClick={this.confirm}
-                        active = {active()}/>
-            </div>
+            </Animator>
         )
     }
 } 
