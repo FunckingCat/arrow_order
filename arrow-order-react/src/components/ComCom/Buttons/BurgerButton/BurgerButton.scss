@@ -32,7 +32,7 @@ $hatButtonHeight: 40px;
       div{
         background-color: $BurgerColor;
         height: 2px;
-        border-radius: 2px;
+        border-radius: 1px;
         &:first-child{
             animation: burgerIconAnimation  4s infinite linear;
             animation-direction: alternate;

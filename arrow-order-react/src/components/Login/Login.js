@@ -1,19 +1,19 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import React, {Component} from 'react';
+import {connect} from 'react-redux';
 import {Link} from "react-router-dom";
 import './Login.scss';
 
 import InputField from './logincomponents/InputField/InputField';
 import LoginButton from './logincomponents/LoginButton/LoginButton';
 import Animator from '../ComCom/Animator/Animator';
-import logo from './logo.svg';
 
-export default class Login extends Component {
+class Login extends Component {
     render() {
         return(
             <Animator type = 'rise' timeout = '1000'>
                 <div className="login" >
-                <div className="logo"><img src={logo} alt="ArrowOrder"/></div>
+                <div className="logo"><img src={this.props.domen + '/static/logo.svg'} alt="ArrowOrder"/></div>
                 
                 <Animator type = 'fade' timeout = '1700'>
                 <form>
@@ -37,3 +37,11 @@ export default class Login extends Component {
         )
     }
 }
+
+const mapStateToProps = (state) => {
+    return {
+        domen : state.domen,
+    }
+}
+
+export default connect(mapStateToProps)(Login)
