@@ -4,7 +4,7 @@
   align-items: center;
   font-family: Comfortaa;
   margin-bottom: 1.2em;
-  .errorImg{
+  .error{
     max-width: 175px;
     width: 50%;
   }
@@ -16,17 +16,21 @@
     text-align: center;
   }
   button{
-    padding: 10px 20px;
+    padding: 5px 20px;
     color:white;
     border: none;
     background-color: black;
     border-radius: 12px;
 
-    img{
-      max-width: 30px;  
+    svg{
+      max-width: 30px;
+      max-height: 30px; 
+      path{
+        fill: #fff;
+      } 
     }
   }
-  & > *:not(.errorImg){
+  & > *{
     margin-top: 1em;
   }
 }
