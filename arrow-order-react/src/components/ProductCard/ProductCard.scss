@@ -48,9 +48,45 @@
             display: flex;
             align-items: center;
             justify-content: space-between;
-            flex
-            .label{
-                font-size: 1.1em;
+            font-size: 1.1em;
+        }
+        .list, .checkList {
+            padding : 0;
+            flex-direction: column;
+            align-items: flex-start;
+            margin-bottom: 0.5em;
+        }
+        .checkList{
+            li.check > label {
+                margin-top: 0.5rem;
+                height : 1em;
+                .icon{
+                    margin-left: 0.5em;
+                    img{
+                        height: 1em;
+                        width  : 1em;
+                    }
+                }
+                .text{
+                    font-size: 1rem;
+                }
+            }
+            .checkMark{
+                position: relative;
+                width : 1em;
+                height: 1em;
+                transform: scale(1.7);
+                .check{
+                    position: absolute;
+                    bottom: 0.4rem;
+                    border-bottom: 1px solid green;
+                    border-right: 1px solid green;
+                    border-color: white;
+                    transform: rotate(-45deg);
+                    width: 0%;
+                    height: 0%;            
+                    transition: height 0.1s linear 0s, width 0.1s linear 0s;
+                }
             }
         }
     }

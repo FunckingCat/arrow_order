@@ -10,6 +10,8 @@ import Quantum    from '../ComCom/Quantum/Quantum';
 import InputRange from '../ComCom/Buttons/InputRange/InputRange';
 import TransLink  from '../ComCom/Buttons/TransLink/TransLink';
 import Animator   from '../ComCom/Animator/Animator';
+import List       from '../ComCom/InfoView/List/List';
+import CheckList  from '../ComCom/InfoView/CheckList/CheckList';
 
 class ProductCard extends Component {
 
@@ -36,14 +38,25 @@ class ProductCard extends Component {
         })
     }
 
+    randomInteger = (min = 1, max = 9999) => {
+        let rand = min - 0.5 + Math.random() * (max - min + 1);
+        return Math.round(rand);
+    }
+
     onInput = (name) => {
         return (value) => {
+            if (typeof(value) !== 'string'){
+                try{
+                    value = value.join(' ')
+                } catch {}
+            }
             this.props.setDetail(name, value);
         }
     }
 
     renderSelectors = () => {
         let selectors = [];
+        let items;
         let tmp = this.state.template;
         let defWidth = (param) => {
             let ml = 0;
@@ -55,6 +68,7 @@ class ProductCard extends Component {
             return '65%'
         }
         if (!tmp) return []
+        console.log(tmp);
         for (let i=0; i < tmp.length; i++){
             switch (tmp[i].type){
                 case 'range':
@@ -91,6 +105,39 @@ class ProductCard extends Component {
                                 width = {defWidth(tmp[i].param)}
                                 seq = {tmp[i].param}
                                 onInput = {this.onInput(tmp[i].name)}/>
+                        </div>
+                    )
+                    break
+                case 'list':
+                    items = tmp[i].param.map(item => {
+                        return {
+                            name : item,
+                            id   : this.randomInteger() 
+                        }
+                    })
+                    selectors.push(
+                        <div className="list" key = {i}>
+                            <div className="label">{tmp[i].name}</div>
+                            <List 
+                                active = 'all'
+                                items = {items}
+                                onSelect = {this.onInput(tmp[i].name)}/>
+                        </div>
+                    )
+                    break
+                case 'check':
+                    items = tmp[i].param.map(item => {
+                        return {
+                            name : item,
+                            id   : this.randomInteger() 
+                        }
+                    })
+                    selectors.push(
+                        <div className="checkList" key = {i}>
+                            <div className="label">{tmp[i].name}</div>
+                            <CheckList 
+                                items = {items}
+                                onChange = {this.onInput(tmp[i].name)}/>
                         </div>
                     )
                     break

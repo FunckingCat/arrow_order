@@ -10,8 +10,8 @@ $arrow-head-width: 10px;
 $arrow-head-thickness: $shaft-thickness;
 
 li.radio{
-    font-size: 1.1em;
-    margin-top: 0.5em;
+    font-size: 1rem;
+    margin-top: 0.5rem;
     display: inline-block;
     color: $black;
     position: relative;
@@ -33,7 +33,7 @@ li.radio{
             & > *{
               width: 100%;
               max-width: 40px;
-              max-height: 1.2em;
+              max-height: 1.2rem;
             }
         }
         .text{
