@@ -4,8 +4,19 @@ import {connect} from 'react-redux';
 
 import Animator from '../ComCom/Animator/Animator';
 import TransLink from '../ComCom/Buttons/TransLink/TransLink';
+import AssemblyView from '../Constructor/ConstructorComponents/UniversalConstructor/AssemblyView/AssemblyView';
 
 class OrderOutput extends Component {
+
+    renderLogo = (type) => {
+        console.log(type);
+        let specialTypes = ['Бисквитный торт', 'Открытый медовик', 'Капкейки', 'Торт - цифра']
+        if (specialTypes.includes(type)){
+            return <AssemblyView/>
+        } else {
+            return <img src={this.props.domen + '/static/logo.svg'} alt=""/>
+        }
+    }
 
     renderParts = (order) => {
         if (order.parts.biscuit === '' ||
@@ -61,6 +72,7 @@ class OrderOutput extends Component {
     }
 
     render(){
+        let logo = this.renderLogo(this.props.order.type)
         let order = this.props.order;
         let parts = this.renderParts(order);
         let optionalDetails = this.renderOptionalDetails(order);
@@ -68,7 +80,7 @@ class OrderOutput extends Component {
             <Animator>
                 <div className="orderOutput">
                     <div className="logo">
-                        <img src={this.props.domen + '/static/logo.svg'} alt=""/>
+                        {logo}
                     </div>
                     <div className="name">Имя: {this.props.name}</div>
                     <div className="contact">
