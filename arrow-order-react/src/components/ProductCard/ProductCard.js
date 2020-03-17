@@ -74,7 +74,7 @@ class ProductCard extends Component {
                 case 'range':
                     selectors.push(
                         <div className="range" key = {i}>
-                            <div className="label">{tmp[i].name}</div>
+                            <div className="label">{tmp[i].name}:</div>
                             <InputRange
                                 min = {Number(tmp[i].param[0])}
                                 max = {Number(tmp[i].param[1])}
@@ -87,7 +87,7 @@ class ProductCard extends Component {
                 case 'amm':
                     selectors.push(
                         <div className="amm" key = {i}>
-                            <div className="label">{tmp[i].name}</div>
+                            <div className="label">{tmp[i].name}:</div>
                             <Quantum
                                 width = '40%'
                                 from = {Number(tmp[i].param[0])}
@@ -100,7 +100,7 @@ class ProductCard extends Component {
                 case 'seq':
                     selectors.push(
                         <div className="seq" key = {i}>
-                            <div className="label">{tmp[i].name}</div>
+                            <div className="label">{tmp[i].name}:</div>
                             <Quantum
                                 width = {defWidth(tmp[i].param)}
                                 seq = {tmp[i].param}
@@ -117,7 +117,7 @@ class ProductCard extends Component {
                     })
                     selectors.push(
                         <div className="list" key = {i}>
-                            <div className="label">{tmp[i].name}</div>
+                            <div className="label">{tmp[i].name}:</div>
                             <List 
                                 active = 'all'
                                 items = {items}
@@ -134,7 +134,7 @@ class ProductCard extends Component {
                     })
                     selectors.push(
                         <div className="checkList" key = {i}>
-                            <div className="label">{tmp[i].name}</div>
+                            <div className="label">{tmp[i].name}:</div>
                             <CheckList 
                                 items = {items}
                                 onChange = {this.onInput(tmp[i].name)}/>
