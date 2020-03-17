@@ -16,7 +16,8 @@ class productCard(models.Model):
         max_length = 60, 
         verbose_name = 'Hashtag',
         help_text = 'Должен быть такой же как в ссылке на карточку в меню')
-    cost = models.IntegerField( 
+    cost = models.CharField(
+        max_length = 20,  
         verbose_name = 'Цена')
     dim = models.CharField(
         max_length = 10, 
