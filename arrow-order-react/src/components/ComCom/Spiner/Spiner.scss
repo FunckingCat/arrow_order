@@ -1,13 +1,16 @@
 .spinner{
-    position: relative;
-    width: 100%;
-    max-width: 200px;
-    max-height: 300px;
-    path{
-      stroke-dasharray: 3594;
-      stroke-dashoffset: 3594;
-      animation: lines 6s cubic-bezier(.31,-0.01,.65,.79) reverse infinite;
-    }
+  position: relative;
+  width: 100%;
+  max-width: 200px;
+  max-height: 300px;
+  path{
+    stroke-dasharray: 0;
+    stroke-dashoffset: 3594;
+  }
+  .spin{
+    stroke-dasharray: 3594;
+    animation: lines 6s cubic-bezier(.31,-0.01,.65,.79) reverse infinite;
+  }
 }
 
 @keyframes lines{
