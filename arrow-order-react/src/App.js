@@ -17,7 +17,6 @@ import ProductCard   from './components/ProductCard/ProductCard';
 import OrderOutput   from './components/OrderOutput/OrderOutput';
 import OrderPush     from './components/OrderPush/OrderPush';
 
-//import PopUp       from './components/ComCom/PopUp/PopUp';
 import BugOverlay from './components/BugOverlay/BugOverlay';
 
 export default class App extends Component{
@@ -25,14 +24,6 @@ export default class App extends Component{
   render() {
 
     let toHat = (title,component) => <Hat title = {title}>{component}</Hat>
-
-    // let toHatWithPopUp = (title,component) =>
-    //   <>
-    //     <Hat title = {title}>
-    //       {component}
-    //     </Hat>
-    //     <PopUp/>
-    //   </>
 
     return (
       <>
