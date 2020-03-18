@@ -5,7 +5,7 @@ import {connect} from 'react-redux';
 import RequestService from '../../servises/requestService';
 
 import Animator from '../ComCom/Animator/Animator';
-import Spinner from '../ComCom/Spiner/Spiner';
+import Spiner from '../ComCom/Spiner/Spiner';
 import TransLink from '../ComCom/Buttons/TransLink/TransLink';
 import BlackButton from '../ComCom/Buttons/BlackButton/BlackButton';
 import ErrorIcon from '../ComCom/Icons/Error'
@@ -15,12 +15,20 @@ class OrderPush extends Component {
     RS = new RequestService(this.props.domen)
 
     state = {
-        status : 'Going',
+        status : 'Disconnect',
+        prevStatus : null,
     }
 
     
     componentDidMount () {
-        this.pushOrder()
+        //this.pushOrder()
+        this.setContent('Going')
+    }
+
+    componentDidUpdate() {
+        if (this.state.status !== this.state.prevStatus){
+            this.setContent(this.state.status)
+        }
     }
 
     pushOrder = () => {
@@ -63,72 +71,87 @@ class OrderPush extends Component {
         console.log(orderObj);
         return JSON.stringify(orderObj)
     }
-   
-    renderContent = (status) => {
 
-        let anim = com => <Animator>{com}</Animator>
-
-        let loading = 
-            <div className="loading">
-                <div className="massage first">Отправляю ваш заказ на сервер</div>
-                <div className="massage second">Ждем ответ</div>
-                <Spinner/>
-            </div>
-        let ok = 
-            <div className="ok">
-                <div className="massage first">Заказ принят</div>
-                <div className="massage second">Катя скоро с вами свяжется</div>
-                <Spinner/>
-                <TransLink
-                    text = 'На главную'
-                    mode = 'border'
-                    active = {'true'}
-                    transferTo = 'Главная'
-                    to = '/MainPage'/>
-            </div>
-        let disconnect =
-            <div className="disconnect">
-                <div className="massage first">Упс</div>
-                <div className="massage second">Проблемы с подключением</div>
-                <ErrorIcon/>
-                <BlackButton
-                    mode = 'border'
-                    active = 'true'
-                    onClick = {this.pushOrder}
-                    text = 'Попробавть еще раз'/>
-            </div>
-        let reject = 
-            <div className="reject">
-                <div className="massage first">Заказ отклонен</div>
-                <div className="massage second">Почему? Никто не знает</div>
-                <div className="massage second">Возможно не заполнены контакные данные</div>
-                <BlackButton
-                    mode = 'border'
-                    active = 'true'
-                    onClick = {this.pushOrder}
-                    text = 'Попробавть еще раз'/>
-                <TransLink
-                    text = 'На главную'
-                    mode = 'border'
-                    active = {'true'}
-                    transferTo = 'Главная'
-                    to = '/MainPage'/>
-            </div>
-        if (status === 'Going') return anim(loading)
-        else if (status === 'Ok') return anim(ok)
-        else if (status === 'Disconnect') return anim(disconnect)
-        else if (status === 'Reject') return anim(reject)
-        else console.error('Неизвестный ответ сервера: OrderPush renderContent');
+    setContent(status){
+        if (status === 'Going'){
+            this.setState({
+                prevStatus    : status,
+                firstMassage  : 'Отправляю ваш заказ на сервер',
+                secondMassage : 'Ждем ответ',
+                thirdMassage  : '',
+                icon          : <Spiner spin = 'true'/>,
+                firstButton   : '',
+                secondButton  : '',
+            })
+        }
+        else if (status === 'Ok'){
+            this.setState({
+                prevStatus    : status,
+                firstMassage  : 'Заказ принят',
+                secondMassage : 'Катя скоро с вами свяжется',
+                thirdMassage  : '',
+                icon          : <Spiner/>,
+                firstButton   : <TransLink
+                                    text = 'На главную'
+                                    mode = 'border'
+                                    active = {'true'}
+                                    transferTo = 'Главная'
+                                    to = '/MainPage'/>,
+                secondButton  : '',
+            })
+        }
+        else if (status === 'Disconnect'){
+            this.setState({
+                prevStatus    : status,
+                firstMassage  : 'Упс',
+                secondMassage : 'Проблемы с подключением',
+                thirdMassage  : '',
+                icon          : <ErrorIcon/>,
+                firstButton   : <BlackButton
+                                    mode = 'border'
+                                    active = 'true'
+                                    onClick = {this.pushOrder}
+                                    text = 'Попробавть еще раз'/>,
+                secondButton  : '',
+            })
+        }
+        else if (status === 'Reject'){
+            this.setState({
+                prevStatus    : status,
+                firstMassage  : 'Заказ отклонен',
+                secondMassage : 'Почему? Никто не знает',
+                thirdMassage  : 'Возможно не заполнены контакные данные',
+                icon          : <ErrorIcon/>,
+                firstButton   : <BlackButton
+                                    mode = 'border'
+                                    active = 'true'
+                                    onClick = {this.pushOrder}
+                                    text = 'Попробавть еще раз'/>,
+                secondButton  : <TransLink
+                                    text = 'На главную'
+                                    mode = 'border'
+                                    active = {'true'}
+                                    transferTo = 'Главная'
+                                    to = '/MainPage'/>,
+            })
+        }
+        else console.error('Неизвестный ответ сервера: OrderPush ', status);
     }
 
     render(){
-
-        let content = this.renderContent(this.state.status);
-
+        let {firstMassage, secondMassage, thirdMassage,
+            icon, firstButton, secondButton} = this.state;
         return(
+            <Animator>
                 <div className="orderPush">
-                    {content}
+                    <div className="massage first">{firstMassage}</div>
+                    <div className="massage second">{secondMassage}</div>
+                    <div className="massage second">{thirdMassage}</div>
+                    {icon}
+                    {firstButton}
+                    {secondButton}
                 </div>
+            </Animator>
             )
         }
     } 

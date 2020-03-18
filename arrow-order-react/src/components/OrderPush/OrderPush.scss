@@ -8,41 +8,24 @@
     display: flex;
     flex-direction: column;
     justify-content: center;
-    align-items: center;
-    & > div > div{
-        width: 100%;
-        display: flex;
-        flex-direction: column;
-    }
-    .error{
-        width : 60%;
-        align-self: center; 
-    }
     .massage{
         margin-bottom: 1rem;
+        &.first{
+            font-size: 2rem;
+        }
+        &.second{
+            font-size: 1rem;
+            height: 1rem;
+        }
     }
-    .first{
-        font-size: 2em;
-    }
-    .second{
-        font-size: 1rem;
+    .error, .spinner{
+        width: 100%;
+        max-height: 16rem;
+        align-self: center;
+        margin-bottom: 1rem;
     }
     .TransLink, .BlackButton{
         width: 100%;
-        margin-bottom: 1em;
-    }
-    .spinner{
-        width: 50%;
-        align-self: center;
-        margin-top: 2rem;
-        margin-bottom: 2rem;
-    }
-}
-
-@media screen and (min-width: 500px){
-    .orderPush{
-        .error{
-            width: 100%;
-        }
+        margin-bottom: 1rem;
     }
 }
