@@ -4,8 +4,13 @@
   max-width: 200px;
   max-height: 300px;
   path{
-    stroke-dasharray: 0;
+    stroke-dasharray: 3594;
     stroke-dashoffset: 3594;
+    animation: lines 6s cubic-bezier(.31,-0.01,.65,.79) normal;
+  }
+  .stop{
+    stroke-dasharray: 3594;
+    animation: lines2 6s ease forwards;
   }
   .spin{
     stroke-dasharray: 3594;
@@ -22,6 +27,12 @@
   }
   to {
     stroke-dashoffset: 3594;
+  }
+}
+
+@keyframes lines2{
+  to {
+    stroke-dashoffset: 0;
   }
 }
     

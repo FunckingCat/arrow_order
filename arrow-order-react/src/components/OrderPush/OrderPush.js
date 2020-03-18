@@ -15,14 +15,13 @@ class OrderPush extends Component {
     RS = new RequestService(this.props.domen)
 
     state = {
-        status : 'Disconnect',
+        status : 'Going',
         prevStatus : null,
     }
 
     
     componentDidMount () {
-        //this.pushOrder()
-        this.setContent('Going')
+        this.pushOrder()
     }
 
     componentDidUpdate() {
@@ -76,8 +75,8 @@ class OrderPush extends Component {
         if (status === 'Going'){
             this.setState({
                 prevStatus    : status,
-                firstMassage  : 'Отправляю ваш заказ на сервер',
-                secondMassage : 'Ждем ответ',
+                firstMassage  : 'Отправляю заказ',
+                secondMassage : 'Ждем ответ сервера',
                 thirdMassage  : '',
                 icon          : <Spiner spin = 'true'/>,
                 firstButton   : '',

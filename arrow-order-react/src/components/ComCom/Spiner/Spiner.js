@@ -5,7 +5,7 @@ export default class Spiner extends Component {
 
     render() {
 
-        let className = this.props.spin? 'spin' : '';
+        let className = this.props.spin? 'spin' : 'stop';
 
         return(
             <div className="spinner">
