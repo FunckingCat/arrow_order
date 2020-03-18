@@ -2,8 +2,6 @@ import React,{Component} from 'react';
 
 export default class Error extends Component {
 
-    // <defs><style>.cls-1{fill:#474867;}.cls-2{fill:#fafafc;}.cls-3{fill:#d2d7e4;}.cls-4{fill:#eec2cf;}.cls-5{fill:#4f87c6;}.cls-6{fill:#fff;}</style></defs><title>Монтажная область 1</title>
-
     render(){
         return(
             <div className="error">
