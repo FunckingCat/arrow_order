@@ -4,7 +4,7 @@ import {Link} from "react-router-dom";
 export default class LoginButton extends Component {     
 
     handaleClick = (event) => {
-        if(this.props.highlighted){
+        if(this.props.active){
             this.props.onClick()
         }
     }
