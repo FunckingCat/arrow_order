@@ -82,7 +82,7 @@ class MainPage extends Component {
                 </Animator>
                 <Animator type = 'fade' timeout = '300'>
                     <div className="parallaxContainer">
-                        <div className="underhat" id = 'underHat'>Under Hat</div>
+                        <div className="underhat" id = 'underHat'></div>
                         {content}
                     <Basement />
                      </div>
