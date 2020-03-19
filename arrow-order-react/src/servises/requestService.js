@@ -130,14 +130,12 @@ export default class requestService {
     }
 
     postBugReport = async (report) => {
-        return 
-        // const res = await this.postRequest('/api/logger/bugReport/', report);
-        // return res
+        const res = await this.postRequest('/api/logger/bugReport/', report);
+        return res
     }
 
     postNewUser = async (user) => {
-        return
-        // const res = await this.postRequest('/api/logger/newUser/', user);
-        // return res
+        const res = await this.postRequest('/api/logger/newUser/', user);
+        return res
     }
 }

@@ -7,16 +7,15 @@ $Comfortaa: 'Comfortaa';
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    padding: 25px 0;
+    padding: 1.3rem 0;
     font-family: $Comfortaa;
     h2{
-        font-size: 1.3em;
-        
-        margin-bottom: 1em;
+        font-size: 1.3rem;        
     }
     p{
-      max-width: 350px;
-      line-height: 1.1em;
+      padding : 1rem 1rem 0 1rem;
+      max-width: 380px;
+      line-height: 1.1rem;
     }
   }
 }
