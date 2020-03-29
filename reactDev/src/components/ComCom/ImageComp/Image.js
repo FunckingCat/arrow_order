@@ -2,7 +2,6 @@ import React, {Component} from 'react';
 import {connect} from 'react-redux';
 
 import Spiner from '../Spiner/Spiner';
-import NotFound from './NotFound.svg';
 
 class Image extends Component {
 
@@ -10,7 +9,7 @@ class Image extends Component {
         if (this.props.status === 102 || this.props.status === '102'){
             return <Spiner/>
         } else  if (this.props.src){
-            return <img src={this.props.domen + this.props.src || NotFound} alt={this.props.alt || 'Have a nice day'}/>
+            return <img src={this.props.domen + this.props.src} alt={this.props.alt || 'Have a nice day'}/>
         } else {
             return <Spiner/>
         }

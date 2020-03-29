@@ -1,7 +1,6 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import RequestSevice from '../../servises/requestService';
-import logo from './ArrowCook.svg';
 import './BurgerMenu.scss';
 
 import Animator from '../ComCom/Animator/Animator';
@@ -67,7 +66,7 @@ class BurgerMenu extends Component {
                 <div className = 'burgerMenu'>
                     <Arrow />
                     <div className="wrapper">
-                        <div className="logo"><img src={logo} alt=""/></div>
+                        <div className="logo"><img src={this.props.domen + '/static/logoA.svg'} alt=""/></div>
                         <nav>
                         {menuItems}
                         </nav>
