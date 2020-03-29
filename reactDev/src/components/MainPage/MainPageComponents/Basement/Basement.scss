@@ -17,12 +17,13 @@
   font-family: Comfortaa;
   h2{
     font-size: 1.2em;
+    margin-bottom: 1em;
   }
   span:last-child{
     font-size: 0.8em;
   }
-  img{
-    height: 30px;
-    width: 30px;
+  a > svg{
+    height: 50px;
+    width: 50px;
   }
 }
