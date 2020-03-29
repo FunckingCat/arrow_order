@@ -28,5 +28,5 @@ urlpatterns = [
     re_path(r'^api/avalDates/', include('datesManager.urls')),
     re_path(r'^api/postOrder/', include('orderManager.urls')),
     re_path(r'^api/logger/', include('logger.urls')),
-    re_path(r'^(?!api)[wW]*', views.index),
+    re_path(r'^(?!api)(?!admin)[\w\W]*', views.index),
 ]
