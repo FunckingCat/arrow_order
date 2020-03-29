@@ -4,12 +4,13 @@ export default class requestService {
     }
 
     getResource = async (url) => {
+        //console.log(`FETCHING ${this._apiBase}${url}`);
         const res = await fetch(`${this._apiBase}${url}`);
         if ( !res || !res.ok){
             throw new Error(`Could not fetch ${url}; recived ${res.status}`)
         }
         let response = await res.json();
-        console.log(`Адрес: ${this._apiBase}${url}\nType: ${typeof(response.values)} ---`, response.values);
+        //console.log(`Адрес: ${this._apiBase}${url}\nType: ${typeof(response.values)} ---`, response.values);
         return response.values;
     }
 
@@ -24,7 +25,7 @@ export default class requestService {
         .catch(() => {});
         try{
             let response = await res.json();
-            console.log(`ORDER_POST ${response.status}`);
+            //console.log(`ORDER_POST ${response.status}`);
             return response;
         } 
         catch{
@@ -85,7 +86,7 @@ export default class requestService {
         switch (type) {
             case 'Начинка':
             case 'filling':
-                res = await this.getResource(`/api/constructor/${con}/filling/${biscuit}$${cream}${biscuit||cream? '/' : ''}`);
+                res = await this.getResource(`/api/constructor/${con}/filling/${biscuit}${biscuit||cream? '$' : ''}${cream}${biscuit||cream? '/' : ''}`);
                 break;
             case 'Бисквит':
             case 'biscuit':

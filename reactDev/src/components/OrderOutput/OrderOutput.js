@@ -9,7 +9,7 @@ import AssemblyView from '../Constructor/ConstructorComponents/UniversalConstruc
 class OrderOutput extends Component {
 
     renderLogo = (type) => {
-        console.log(type);
+        //console.log(type);
         let specialTypes = ['Бисквитный торт', 'Открытый медовик', 'Капкейки', 'Торт - цифра']
         if (specialTypes.includes(type)){
             return <AssemblyView/>

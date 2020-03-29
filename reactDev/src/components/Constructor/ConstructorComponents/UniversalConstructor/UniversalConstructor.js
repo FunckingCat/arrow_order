@@ -47,7 +47,7 @@ class UniversalConstructor extends Component {
                 item.id = this.randomInteger();
             })
         }
-        console.log(res);
+        //console.log(res);
         this.setState({
             biscuitInfo : res.biscuits,
             fillingInfo : res.fillings,
@@ -64,12 +64,6 @@ class UniversalConstructor extends Component {
     resetActive = () => {
         let {filling, biscuit, cream} = this.props.cakeParts;
         return String(Boolean(filling || biscuit || cream))
-    }
-
-    confirm = () => {
-        if (this.state.confirmActive){
-            console.log('Confirm');
-        }
     }
 
     reset = () => {

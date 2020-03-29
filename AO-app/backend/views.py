@@ -1,5 +1,7 @@
-from django.http import  JsonResponse
-from django.core.mail import send_mail
+from django.http import HttpResponse
+from django.template import loader
 
 def index(request):
-    return JsonResponse({'values' : ['Yes, server works well (Index)',]})
+    template = loader.get_template('index.html')
+    context = {}
+    return HttpResponse(template.render(context, request))

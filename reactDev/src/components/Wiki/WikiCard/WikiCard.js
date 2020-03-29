@@ -22,7 +22,7 @@ class WikCard extends Component {
 	}
 
 	update = () => {
-		console.log(this.props.hashtag);
+		//console.log(this.props.hashtag);
 		this.RequestService.getWikiCard(this.props.hashtag)
 		.then(res => {
 			this.setState({

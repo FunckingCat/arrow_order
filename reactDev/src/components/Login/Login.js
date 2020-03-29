@@ -58,7 +58,7 @@ class Login extends Component {
             width     : window.innerWidth,
             height    : window.innerHeight,
         }
-        console.log(user);
+        //console.log(user);
         this.RS.postNewUser(JSON.stringify(user))
     }
 

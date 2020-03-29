@@ -67,7 +67,7 @@ class OrderPush extends Component {
         }
         if (parts.length > 0) orderObj.parts = parts
         if (order.comment && order.comment.length > 0) orderObj.comment = order.comment
-        console.log(orderObj);
+        //console.log(orderObj);
         return JSON.stringify(orderObj)
     }
 
