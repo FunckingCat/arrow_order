@@ -14,8 +14,7 @@ def getAvalDates(request, month):
     current_year = datetime.datetime.now().timetuple()[0]
     for date in dates:
         if (date.getYear() < current_year or 
-            date.getMonth() < current_month or 
-            date.getDay() < current_day):
+            date.getMonth() < current_month):
             date.delete()
             continue
         if date.getMonth() == month:

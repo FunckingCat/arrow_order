@@ -52,6 +52,10 @@ def send_email(order,date):
                 {}
                 {}
             '''.format(parts[0], parts[1],parts[2])
+        if 'details' in order:
+            mail_body += '''
+                Характеристики: {}
+            '''.format(order['details'])
         if 'comment' in order:
             mail_body += '''
                 Комметарий: {}

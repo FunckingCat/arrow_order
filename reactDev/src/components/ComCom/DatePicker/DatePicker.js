@@ -138,7 +138,7 @@ class DatePicker extends Component {
             // Проверяем прошел день или нет
             let dayActive = i <= this.today.getDate() + 1 && month === this.today.getMonth()? 'false' : 'true';
             //Проверяем если день в списке занятых дней
-            if (this.state.busyDays.indexOf(i) > -1) dayActive = 'false'; 
+            if (this.state.busyDays.indexOf(i+1) > -1) dayActive = 'false'; 
             days.push(
                 <Day
                     id = {i}
