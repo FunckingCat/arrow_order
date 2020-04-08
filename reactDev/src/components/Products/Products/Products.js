@@ -22,7 +22,6 @@ class Products extends Component {
     updateMenuItems() {
         this.RecuestService.getProducts(this.props.cat)
         .then((res) => {
-            console.log(res);
             this.setState({
                 title : res.title,
                 slogan : res.slogan,

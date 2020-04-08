@@ -17,8 +17,16 @@ li.MenuItem{
 		position: absolute;
 		top: 15%;
 		left: 5%;
-		font-size: 1.8em;
+		font-size: 1.6em;
 		color: white;
 		text-shadow: 1px 1px 1px black;
 	}
 }	
+
+@media screen and (max-width: 400px){
+	li.MenuItem{
+		.bgWrapper{
+			height: 20vh;
+		}
+	}
+}

@@ -68,7 +68,6 @@ class ProductCard extends Component {
             return '65%'
         }
         if (!tmp) return []
-        console.log(tmp);
         for (let i=0; i < tmp.length; i++){
             switch (tmp[i].type){
                 case 'range':
