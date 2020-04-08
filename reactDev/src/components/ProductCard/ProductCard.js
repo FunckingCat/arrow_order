@@ -149,9 +149,27 @@ class ProductCard extends Component {
         return selectors
     }
 
+    renderDescr = (descr) => {
+        if (!descr) return descr
+        let render = []
+        let paragraphs = descr.split('\n')
+        for (let item of paragraphs){
+            if (item.length < 4) continue
+            render.push(
+                <div className="paragraph" key = {item}>
+                    <div className="tab"></div>
+                    <div className="cont">{item}</div>
+                </div>
+            )
+        }
+        return render
+    }
+
     render(){
         
         let selectors = this.renderSelectors();
+
+        let descr = this.renderDescr(this.state.descr)
 
         return(
             <Animator>
@@ -166,7 +184,7 @@ class ProductCard extends Component {
                     <Image  
                         domen = {this.props.domen}
                         src = {this.state.image}/>
-                    <div className="descr">{this.state.descr}</div>
+                    <div className="descr">{descr}</div>
                     <div className="selectors">
                         {selectors}
                     </div>

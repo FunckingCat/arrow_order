@@ -42,6 +42,17 @@
         font-size: 0.9em;
         font-family: 'Montserrat Alternates', sans-serif;
         line-height: 1.2em;
+        .paragraph{
+            margin: 0.5rem 0;
+            .tab{
+                display: inline-block;
+                width: 1rem;
+                height: 1em;
+            }
+            .cont{
+                display: inline;
+            }
+        }
     }
     .selectors{
         width: 100%;
