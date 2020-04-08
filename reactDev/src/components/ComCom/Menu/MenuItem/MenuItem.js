@@ -21,7 +21,10 @@ class MenuItem extends Component {
             return(
                 <Link to = {this.props.href} onClick = {this.handaleClick}>
                     <li className="MenuItem">
-                        <Bg src = {this.props.src} text = {this.props.title}></Bg>
+                        <Bg 
+                            src = {this.props.src} 
+                            text = {this.props.title}
+                            gradient = 'true'></Bg>
                     </li>
                 </Link>
             )

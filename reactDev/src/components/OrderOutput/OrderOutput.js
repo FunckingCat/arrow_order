@@ -82,9 +82,9 @@ class OrderOutput extends Component {
                     <div className="logo">
                         {logo}
                     </div>
-                    <div className="name">Имя: {this.props.name}</div>
+                    <div className="name"><span className='key'>Имя:</span> {this.props.name}</div>
                     <div className="contact">
-                        {this.props.contact[0]==='@'? 'Insta : ':'Телефон : '}
+                        <span className='key'>{this.props.contact[0]==='@'? 'Insta : ':'Телефон : '}</span>
                         {this.props.contact}
                     </div>                
                     <div className="title">{order.type}</div>
@@ -94,7 +94,7 @@ class OrderOutput extends Component {
                     </div>
                     <div className="comment">{order.comment}</div>
                     <div className="dateOut">
-                        <span className="text">Дата заказа:</span>
+                        <span className="text key">Дата заказа:</span>
                         <span className="date">{order.date}</span>
                     </div>
                     <TransLink

@@ -10,6 +10,12 @@ render(){
         backgroundImage: `url(${this.props.domen}${this.props.src})`
     }
 
+    if (this.props.gradient){
+        style = {
+            backgroundImage: `linear-gradient(167.05deg, #171717 -3.31%, rgba(255, 255, 255, 0) 61.22%), url(${this.props.domen}${this.props.src})`
+        }
+    }
+
     return(
         <div className = 'bgWrapper' style = {style}>
             <div className = 'text one'>{this.props.text}</div>
