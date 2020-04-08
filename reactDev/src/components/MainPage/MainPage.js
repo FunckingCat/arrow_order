@@ -70,7 +70,7 @@ class MainPage extends Component {
         let content = this.renderContent(this.state.contentBlocks);
 
         if (this.state.error){
-            content = <Error />
+            return <Error />
         }
 
         return(
