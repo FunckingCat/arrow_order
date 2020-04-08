@@ -19,14 +19,17 @@ def categories(request):
 
 def subs(request, name):
     if request.method == 'GET':
-        items = Products_sub.objects.all()
+        all_items = Products_sub.objects.all()
+        items = []
+        for item in all_items:
+            if item.category.title == name:
+                items.append(item)
         response = {'values' : {
             'title' : items[0].category.title,
             'slogan': items[0].category.slogan,
             'items' : [],
         }}
         for item in items:
-            if item.category.title == name:
-                response['values']['items'].append(item.all())
+            response['values']['items'].append(item.all())
         return JsonResponse(response)
         
