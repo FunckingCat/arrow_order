@@ -35,6 +35,7 @@ def send(order, date):
     from_email = 'david99111@mail.ru'
     to = [
         'smartguy3756@gmail.com',
+        'katerina.arrow@gmail.com',
     ]
     subject = 'Заказ на {}'.format(date)
 
