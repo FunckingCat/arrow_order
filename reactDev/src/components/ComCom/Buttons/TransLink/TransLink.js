@@ -24,7 +24,6 @@ class TransLink extends Component {
     
     color = () => {
         if (this.props.mode === 'border'){
-            this.link.current.style.border = '1.5px solid black'
             if (this.props.active === 'true'){
                 this.link.current.style.borderColor = 'black';
                 this.link.current.style.color = 'black';

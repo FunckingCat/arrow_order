@@ -33,6 +33,7 @@ class MainPage extends Component {
     }
 
     onContentLoaded = (content) => {
+        console.log(content);
         this.setState({
             contentBlocks : content
         })
@@ -58,7 +59,9 @@ class MainPage extends Component {
             content.push(<ContentBlock
             key = {i+0.5} 
             header = {data[i].title}
-            text = {data[i].text}/>);
+            text = {data[i].text}
+            href = {data[i].href}
+            hrefText = {data[i].href_text}/>);
             content.push(<Image key = {i + data[i].title} src = {data[i].image} alt = 'Arrow Products'/>);
         }
 

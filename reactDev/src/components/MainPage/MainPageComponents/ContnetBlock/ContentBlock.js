@@ -1,6 +1,7 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import React, {Component} from 'react';
-import './ContentBlock.scss'
+import TransLink from '../../../ComCom/Buttons/TransLink/TransLink';
+import './ContentBlock.scss';
 
 export default class ContentBlock extends Component {
 
@@ -28,10 +29,21 @@ export default class ContentBlock extends Component {
 
         let text = this.renderText(this.props.text)
 
+        let button = '';
+        if (this.props.href && this.props.href.length > 1){
+            button = <TransLink
+                mode = 'border'
+                text = {this.props.hrefText}
+                transferTo = {this.props.hrefText}
+                to = {this.props.href}
+                active = 'true'/>
+        }
+
         return(
             <div className="content">
                 {header}
                 <div className='text'>{text}</div>
+                {button}
             </div>
         )
     }
