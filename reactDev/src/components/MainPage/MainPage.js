@@ -33,7 +33,6 @@ class MainPage extends Component {
     }
 
     onContentLoaded = (content) => {
-        console.log(content);
         this.setState({
             contentBlocks : content
         })
