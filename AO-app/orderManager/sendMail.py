@@ -5,7 +5,7 @@ def render_parts(order):
     parts = ''
     if 'parts' in order:
         spl = order['parts'].split(';')
-        parts+= '<h3>Состав торта<h3/>'
+        parts+= '<h3>Состав:<h3/>'
         for item in spl:
             parts += '<div class ="part">{}<div/>'.format(item)
     return parts
@@ -13,22 +13,35 @@ def render_parts(order):
 def render_details(details):
     render = ''
     spl = details.split(';')
-    render += '<h3>Доп. сведения<h3/>'
+    render += '<h3>Доп. сведения:<h3/>'
     for item in spl:
         render += '<div class ="part">{}<div/>'.format(item)
     return render
 
+def genLink(contact):
+    link = ''
+    if contact[0] == '@':
+        account = contact[1:]
+        link = '<a href="https://www.instagram.com/{}/">@{}</a>'.format(account, account)
+    else:
+        tel = ''
+        for item in contact:
+            if item.isdigit():
+                tel += item
+        link = '<a href="tel:{}">{}</a>'.format(tel, contact)
+    return link
+
 def send(order, date):
 
     client     = order['name']
-    contact    = order['contact']
+    contact    = genLink(order['contact'])
     order_type = order['type']
     date       = date.strftime("%d %B")
     parts      = render_parts(order) 
 
     comment    = '' 
     if 'comment' in order:
-        comment = '<h3>Комментарий<h3/><p>{}<p/>'.format(order['comment'])
+        comment = '<h3>Комментарий</h3><p>{}</p>'.format(order['comment'])
 
     details = render_details(order['details']) 
     

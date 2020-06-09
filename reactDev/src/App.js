@@ -17,7 +17,7 @@ import ProductCard   from './components/ProductCard/ProductCard';
 import OrderOutput   from './components/OrderOutput/OrderOutput';
 import OrderPush     from './components/OrderPush/OrderPush';
 
-import BugOverlay from './components/BugOverlay/BugOverlay';
+//import BugOverlay from './components/BugOverlay/BugOverlay';
 
 export default class App extends Component{
 
@@ -42,7 +42,7 @@ export default class App extends Component{
           <Route exact path = '/OrderPush/'        component = {OrderPush}/>
           {/* <Route exact path = '/Contacts'          component = {()     => toHat('Контакты', <CommingSoon/>)} />
           <Route exact path = '/WorkWithUs'        component = {()     => toHat('Сотрудничество', <CommingSoon/>)} /> */}
-          <BugOverlay/>
+          {/* <BugOverlay/> Remove if needed to display report a bug service*/}
         </div>
       </Router>
       </>

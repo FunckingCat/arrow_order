@@ -85,7 +85,8 @@ class CakeDecor extends Component {
         let weight = this.state.selectedWeight + this.state.range.dimension;
         let decor = this.state.selectedDecor.join(', ');
         //let colors = this.state.selectedColors;
-        this.props.setDetail('Вес', weight);
+        let dim = this.props.type === 'Капкейки'? 'Колличество':'Вес';
+        this.props.setDetail(dim, weight);
         this.props.setDetail('Декор', decor);
         //this.props.setDetail('Цвета', colors);
     }
