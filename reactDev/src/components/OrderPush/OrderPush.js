@@ -87,7 +87,7 @@ class OrderPush extends Component {
             this.setState({
                 prevStatus    : status,
                 firstMassage  : 'Заказ принят',
-                secondMassage : 'Катя скоро с вами свяжется',
+                secondMassage : 'Я скоро с вами свяжусь',
                 thirdMassage  : '',
                 icon          : <Spiner/>,
                 firstButton   : <TransLink

@@ -16,7 +16,7 @@ export default class Day extends Component {
             let {red, active} = this.props;
             let color = 'black'
             if (red === 'true') color = '#b43131';
-            if (active !== 'true') color = '#808080';
+            if (active !== 'true') color = '#D9D9D9';
             return color
         }
 

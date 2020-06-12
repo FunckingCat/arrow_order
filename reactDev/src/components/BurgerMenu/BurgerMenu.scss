@@ -16,9 +16,9 @@
         width: 80%;
         display: flex;
         flex-direction: column;
-        justify-content: center;
+        justify-content: flex-start;
         & > *{
-            margin: 2em 0;
+            margin: 1.5em 0;
         }
         .logo{
             width: 100%;
@@ -26,7 +26,7 @@
             align-items: center;
             justify-content: center;
             img{
-                width: 50%;
+                width: 40%;
             }
         }
         .crossWrapper{

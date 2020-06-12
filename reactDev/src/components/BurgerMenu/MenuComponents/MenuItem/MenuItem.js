@@ -14,7 +14,7 @@ class MenuItem extends Component {
     render(){
         return(
             <Link to ={this.props.href} onClick = {this.handaleClick}>
-                <div className="container">
+                <div className="item-container">
                     <ul>
                         <li>
                         <div className="animated-arrow">

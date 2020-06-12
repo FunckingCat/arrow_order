@@ -42,7 +42,7 @@ class CakeOrderDetails extends Component {
                         onInput = {this.onDateInput}/>
                     <div className="title">Комментарий к заказу:</div>
                     <InputText
-                        placeholder = 'Напишите здесь все что вам хотелось бы видеть в торте, оставтьте информацию о ваших прдпочтениях, аллергиях и т.д.'
+                        placeholder = 'Напишите здесь все ваши пожелания, оставтьте информацию о ваших вкусовых предпочтениях, аллергиях, опишите желаемый декор и т.д.'
                         onInput = {this.onCommentInput}/>
                     <TransLink
                         text = 'Далее'
