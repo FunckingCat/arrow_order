@@ -34,6 +34,7 @@ class WikiCategores(models.Model):
     title  = models.CharField(max_length = 50)
     image  = models.CharField(max_length = 80)
     slogan = models.TextField(blank = True)
+    priority = models.PositiveSmallIntegerField(verbose_name = 'Приоритет(чем меньше тем ближе к верху)', default = 0)
 
     def __str__(self):
         return self.title
@@ -44,6 +45,7 @@ class WikiCategores(models.Model):
             'title' : self.title,
             'image' : self.image,
             'href'  : '/Wiki/' + str(self.id),
+            'priority' : self.priority,
         }
 
 class WikiSubCategores(models.Model):
@@ -56,6 +58,7 @@ class WikiSubCategores(models.Model):
     image  = models.CharField(max_length = 80)
     hashtag   = models.CharField(max_length = 50)
     category = models.ForeignKey(WikiCategores, on_delete=models.CASCADE)
+    priority = models.PositiveSmallIntegerField(verbose_name = 'Приоритет(чем меньше тем ближе к верху)', default = 0)
 
     def __str__(self):
         return '{} --- {}'.format(self.title, self.category)
@@ -66,4 +69,5 @@ class WikiSubCategores(models.Model):
             'title' : self.title,
             'image' : self.image,
             'href'  : '/Wiki/Card/' + self.hashtag,
+            'priority' : self.priority,
         }

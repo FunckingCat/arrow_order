@@ -33,7 +33,9 @@ export default class Menu extends Component {
     }
 
     render(){
-        let menuItems = this.renderMenuITems(this.props.menuItems)
+		console.log(this.props.menuItems);
+
+        let menuItems = this.renderMenuITems(this.props.menuItems.sort((a,b) => a.priority - b.priority))
 
         return(
             <section className = 'Menu'> 
