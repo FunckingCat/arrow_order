@@ -31,12 +31,16 @@ export default class ContentBlock extends Component {
 
         let button = '';
         if (this.props.href && this.props.href.length > 1){
-            button = <TransLink
+            if (this.props.href.slice(0,4) === 'http'){
+                button = <a href={this.props.href} className = 'TransLink'>{this.props.hrefText}</a>
+            }else{
+                button = <TransLink
                 mode = 'border'
                 text = {this.props.hrefText}
                 transferTo = {this.props.hrefText}
                 to = {this.props.href}
                 active = 'true'/>
+            }
         }
 
         return(
