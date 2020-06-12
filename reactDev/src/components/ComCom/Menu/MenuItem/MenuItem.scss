@@ -7,7 +7,7 @@ li.MenuItem{
 		padding-top: 1.2em;
 		padding-left: 1em;
 		width : 90%;
-		height : 23vh;
+		height : 19vh;
 		max-height: 140px;
 		border-radius: 20px;
 		margin-top: 1em;
@@ -23,19 +23,21 @@ li.MenuItem{
 	}
 }	
 
-@media screen and (max-width: 400px){
-	li.MenuItem{		
-		width: 100%;
-		height: 100%;
-		.bgWrapper{
-			margin: 2%;
-			width: 96%;
-			height: 96%;
-			max-height: none;
-			padding-left: 4%;
-		}
-		.text{
-			font-size: 1.3rem;
-		}
-	}
-}
+//Uncomment if needed to make square net, uncomment in Menu.scss too
+
+// @media screen and (max-width: 400px){
+// 	li.MenuItem{		
+// 		width: 100%;
+// 		height: 100%;
+// 		.bgWrapper{
+// 			margin: 2%;
+// 			width: 96%;
+// 			height: 96%;
+// 			max-height: none;
+// 			padding-left: 4%;
+// 		}
+// 		.text{
+// 			font-size: 1.3rem;
+// 		}
+// 	}
+// }

@@ -19,18 +19,20 @@
     }
 }
 
-@media screen and (max-width: 400px){
-	.Menu{
-        text-align: center;      
-		ul{
-            text-align: start;
-            display: flex;
-            flex-direction: row;
-            flex-wrap: wrap;
-            .Animator{
-                width: 50vw;
-                height: 50vw;
-            }
-        }
-	}
-}
+//Uncomment if needed to make square net, uncomment in MenuItem.scss too
+
+// @media screen and (max-width: 400px){
+// 	.Menu{
+//         text-align: center;      
+// 		ul{
+//             text-align: start;
+//             display: flex;
+//             flex-direction: row;
+//             flex-wrap: wrap;
+//             .Animator{
+//                 width: 50vw;
+//                 height: 50vw;
+//             }
+//         }
+// 	}
+// }

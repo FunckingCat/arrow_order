@@ -40,7 +40,7 @@ class CakeOrderDetails extends Component {
                     <div className="title">Выберте дату заказа:</div>
                     <DatePicker
                         onInput = {this.onDateInput}/>
-                    <div className="title">Комментарий к заказу:</div>
+                    <div className="title comment">Комментарий к заказу:</div>
                     <InputText
                         placeholder = 'Напишите здесь все ваши пожелания, оставтьте информацию о ваших вкусовых предпочтениях, аллергиях, опишите желаемый декор и т.д.'
                         onInput = {this.onCommentInput}/>
