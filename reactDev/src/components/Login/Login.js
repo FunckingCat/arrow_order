@@ -82,7 +82,7 @@ class Login extends Component {
                         onClick = {this.handaleClick}/>
 
                     <div className="copyright">
-                        <Link to = '/Contacts'>pre-alpha v0.1</Link>
+                        <a href='https://www.instagram.com/arrowcook/'>@arrowcook</a>
                     </div>
 
                 </form>

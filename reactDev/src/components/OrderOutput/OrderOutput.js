@@ -76,6 +76,7 @@ class OrderOutput extends Component {
         let order = this.props.order;
         let parts = this.renderParts(order);
         let optionalDetails = this.renderOptionalDetails(order);
+        if (!this.props.contact) document.location = '/';
         return(
             <Animator>
                 <div className="orderOutput">
